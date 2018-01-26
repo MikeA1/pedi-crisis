@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, viewport-fit=cover"
+    />
+
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/animations.css" />
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <title>Pedi Crisis</title>
+</head>
+
+<body>
+    <div>
+        <div style="background-color:#efefef; display: flex; height:10%" ;>
+            <div style="flex-grow:1">
+                <img src="img/logo.png" height=50 width=50 />
+            </div>
+            <div style="flex-grow:4">
+                <h1 id="title">Pedi Crisis</h1>
+            </div>
+            <div style="flex-grow:1">
+                <button data-prev>Back</button>
+            </div>
+        </div>
+        <div style="background-color:#efefef; border-bottom: 1px #959595 solid; display: flex; height:10%" ;>
+            <div style="flex-grow:1">
+                <button id="events" data-href="/html/events/index.html" data-title="Pedi Crisis">Events</button>
+            </div>
+            <div style="flex-grow:1">
+                <button id="phone" data-href="/html/phone/index.html" data-title="Pedi Crisis">Phone Numbers</button>
+            </div>
+            <div style="flex-grow:1">
+                <button id="weight" data-href="/html/weight/index.html" data-title="Pedi Crisis">Pt Wt ---</button>
+            </div>
+        </div>
+        <!-- `overflow:hidden` prevents a horizontal scrollbar during for screen transitions -->
+        <div id="content" style="margin:10px; overflow:hidden">
+
+        </div>
+
+    </div>
+    <script type="text/javascript" src="js/index.js"></script>
+    <!-- cordova.js has to be last! -->
+    <script type="text/javascript" src="cordova.js"></script>
+</body>
+
+</html>

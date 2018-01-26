@@ -1,0 +1,43 @@
+<form id="weight-form" class="page">
+    <input id="weight-input" type="number" step="0.1" placeholder="Patient Weight" autofocus>
+    <span>kgs</span>
+    <div>
+        <button id="weight-ok">OK</button>
+        <button id="weight-cancel">Cancel</button>
+    </div>
+</form>
+
+<script>
+    var input = document.getElementById("weight-input");
+    var weight = window.app.weight;
+
+    if (weight) {
+        input.value = weight;
+    }
+
+    function updateWeight ()  {
+        app.weight = +input.value;
+        app.navigate.prev();
+        return false; // For the form's submit event.
+    }
+
+    var form = document.getElementById("weight-form");
+    //form.addEventListener("submit", updateWeight);
+    form.onsubmit = function(event) {event.preventDefault(); updateWeight(); return false;};
+
+    var okButton = document.getElementById("weight-ok");
+    okButton.addEventListener("click", updateWeight);
+    okButton.addEventListener("touchstart", updateWeight);
+
+    function cancelWeight() {
+        app.navigate.prev();
+    }
+    var cancelButton = document.getElementById("weight-cancel")
+    cancelButton.addEventListener("click", cancelWeight);
+    cancelButton.addEventListener("touchstart", cancelWeight);
+
+    // The "autofocus" attribute does not work in Chrome. (But it works in iOS). 
+    // Use this workaround for Chrome (even though it won't work in iOS!)
+    //setTimeout(function() {document.getElementById("weight-input").focus();}, 250);
+
+</script>

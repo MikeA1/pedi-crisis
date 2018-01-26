@@ -1,0 +1,79 @@
+/* Tweaked from www.justinaguilar.com/animations */
+
+.slide-left{
+	animation-name: slide-left;
+	-webkit-animation-name: slide-left;	
+
+	animation-duration: 0.2s;	
+	-webkit-animation-duration: 0.2s;
+
+	animation-timing-function: ease-in-out;
+	-webkit-animation-timing-function: ease-in-out;
+
+	visibility: visible !important;
+}
+
+@keyframes slide-left {
+	0% {
+		opacity: 0%;
+		transform: translateX(150%);
+	}
+	50%{
+		opacity: 100%;
+		transform: translateX(8%);
+	}		
+	100% {
+		transform: translateX(0%);
+	}
+}
+
+@-webkit-keyframes slide-left {
+	0% {
+		opacity: 0%;
+		-webkit-transform: translateX(150%);
+	}
+	50%{
+		opacity: 100%;
+		-webkit-transform: translateX(8%);
+	}		
+	100% {
+		-webkit-transform: translateX(0%);
+	}
+}
+
+.slide-right{
+	animation-name: slide-right;
+	-webkit-animation-name: slide-right;	
+
+	animation-duration: 0.2s;	
+	-webkit-animation-duration: 0.2s;
+
+	animation-timing-function: ease-in-out;	
+	-webkit-animation-timing-function: ease-in-out;		
+
+	visibility: visible !important;	
+}
+
+@keyframes slide-right {
+	0% {
+		transform: translateX(-150%);
+	}
+	50%{
+		transform: translateX(-8%);
+	}
+	100% {
+		transform: translateX(0%);
+	}	
+}
+
+@-webkit-keyframes slide-right {
+	0% {
+		-webkit-transform: translateX(-150%);
+	}
+	50%{
+		-webkit-transform: translateX(-8%);
+	}		
+	100% {
+		-webkit-transform: translateX(0%);
+	}
+}

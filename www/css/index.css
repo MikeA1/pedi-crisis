@@ -1,0 +1,54 @@
+/* Prevent focus outlines. See https://stackoverflow.com/a/17772980/772086 */
+* {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important; 
+    -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important; 
+    outline: none !important;
+} 
+
+body {
+
+    /* prevent callout to copy image, etc when tap to hold */
+    -webkit-touch-callout: none;
+
+    /* prevent webkit from resizing text to fit */
+    -webkit-text-size-adjust: none;
+
+    /* prevent copy paste, to allow, change 'none' to 'text' */
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+    /* Keep the background color the same as the header for iPhoneX */
+    background-color:#efefef; 
+
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A7A7A7),
+        color-stop(0.51, #E4E4E4)
+    );
+    
+    background-attachment:fixed;
+
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    width:100%;
+}
+
+.page {
+    /* Make the page *look* like a page */
+    background-color: #efefef;
+    padding:10px
+}
+
+.emphasis {
+    border: 3px solid black;
+}
