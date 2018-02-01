@@ -1,5 +1,5 @@
 <form id="weight-form" class="page">
-    <input id="weight-input" type="number" step="0.1" placeholder="Patient Weight" autofocus>
+    <input id="weight-input" type="number" inputmode="numeric" pattern="[0-9.]*" step="0.1" placeholder="Patient Weight" autofocus>
     <span>kgs</span>
     <div>
         <button id="weight-ok">OK</button>
@@ -11,26 +11,37 @@
     var input = document.getElementById("weight-input");
     var weight = window.app.weight;
 
+    // This is the first time loading the screen, so set the weight input.
     if (weight) {
         input.value = weight;
     }
 
-    function updateWeight ()  {
+    function updateWeight (event)  {
+        // Probably only need to call 
+        if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+        if (event.preventDefault) event.preventDefault();
+        // The "+" is important because it converts the string to a number!
         app.weight = +input.value;
         app.navigate.prev();
-        return false; // For the form's submit event.
     }
 
     var form = document.getElementById("weight-form");
-    //form.addEventListener("submit", updateWeight);
-    form.onsubmit = function(event) {event.preventDefault(); updateWeight(); return false;};
+    form.addEventListener("submit", updateWeight);
+    // form.onsubmit = function(event) {
+    //     updateWeight();
+    //     // It's important that the form doesn't *actually* send an HTTP POST to the server!
+    //     return false;
+    // };
 
     var okButton = document.getElementById("weight-ok");
     okButton.addEventListener("click", updateWeight);
     okButton.addEventListener("touchstart", updateWeight);
 
-    function cancelWeight() {
+    function cancelWeight(event) {
+        // Prevent double-events (touchstart and click) from firing with `preventDefault`.
+        if (event.preventDefault) event.preventDefault();
         app.navigate.prev();
+        return false; // This probably doesn't do anything, but why not?
     }
     var cancelButton = document.getElementById("weight-cancel")
     cancelButton.addEventListener("click", cancelWeight);

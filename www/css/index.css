@@ -52,3 +52,7 @@ body {
 .emphasis {
     border: 3px solid black;
 }
+
+[data-uri] {
+    cursor: pointer;
+}

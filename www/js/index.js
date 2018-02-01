@@ -1,35 +1,3 @@
-// Implement polyfills. 
-(function () {
-
-    // Polyfill for Internet Explorer browsers.
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith
-    if (!String.prototype.endsWith) {
-        String.prototype.endsWith = function (search, this_len) {
-            if (this_len === undefined || this_len > this.length) {
-                this_len = this.length;
-            }
-            return this.substring(this_len - search.length, this_len) === search;
-        };
-    }
-
-    // Polyfill for Internet Explorer and FireFox.
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
-    if (!String.prototype.includes) {
-        String.prototype.includes = function (search, start) {
-            'use strict';
-            if (typeof start !== 'number') {
-                start = 0;
-            }
-
-            if (start + search.length > this.length) {
-                return false;
-            } else {
-                return this.indexOf(search, start) !== -1;
-            }
-        };
-    }
-})();
-
 window.app = {
     _weightValue: 0,
     weightButton: null,
@@ -63,43 +31,60 @@ app.navigate = (function (defaultTitle) {
     navigate.history = [];
     /**
      * This function does not affect history. Use `prev` and `next` to change history.
-     * @param {string} href the page to load
-     * @param {string} title the tile of the page
+     * @param {string} uri the page to load
+     * @param {string} title the title of the page
      */
-    navigate.change = function (href, title, addClass) {
-        if (!href) {
-            console.warn("href is missing");
+    navigate.change = function (uri, title, addClass) {
+        if (!uri) {
+            console.warn("uri is missing");
             return;
         }
-        // This is a little tricky - if a URL is relative then prefix it with the root URL.
-        if (href[0] === "/") {
-            href = navigate.root + href;
+       
+        // Phonegap works best on multiple platforms if all URIs are absolute.
+        // The uri is absolute if uri contains a protocol: file:///android_asset/www/html/events/index.html
+        let hasProtocol = uri.indexOf('://') > 0;
+        // Not confirmed to occur in PhoneGap app, but guard against a context-implied protocol: //localhost:3000/index.html
+        let hasImpliedProtocol = uri.indexOf('//') === 0;
+
+        if (!hasProtocol && !hasImpliedProtocol) {
+            // If here then assume uri is relative.
+            // We don't know what the full path is at compile time (it's different for each platform) so `navigate.root` is captured once when this script is first run.
+            // Avoid breaking Android by doubling-up forward slashes. This bad-uri-example has two slashes between "www" and "html": file:///android_asset/www//html/events/index.html
+            while (navigate.root && navigate.root.endsWith("/") && uri && uri.startsWith("/")) {
+                uri = uri.substring(1);
+            }
+            uri = navigate.root + uri;            
         }
+        console.log(`navigating to ${uri}`)
         var container = document.createElement("div");
         container.classList.add(addClass);
-        $(container).load(href);
+        $(container).load(uri);
+        // $.html() has memory-management magic
+        // "jQuery removes other constructs such as data and event handlers from child elements 
+        //  before replacing those elements with the new content" - http://api.jquery.com/html/#html2
         $(contentElement).html(container);
+
         titleElement.innerText = title || defaultTitle;
         if (navigate.onChange) {
-            navigate.onChange(href, title);
+            navigate.onChange(uri, title);
         }
     }
     /**
      * Navigate to the specified page. Adds page to the history stack.
-     * @param {string} href the page to load
+     * @param {string} uri the page to load
      * @param {string} title the tile of the page
      */
-    navigate.next = function (href, title) {
+    navigate.next = function (uri, title) {
 
         var prevPage = navigate.history.length && navigate.history[navigate.history.length - 1];
 
-        if (prevPage && prevPage.href === href) {
+        if (prevPage && prevPage.uri === uri) {
             // Clicked on a link that leads to the same place. Don't navigate.
             return;
         }
 
-        navigate.history.push({ href: href, title: title });
-        navigate.change(href, title, "slide-left")
+        navigate.history.push({ uri: uri, title: title });
+        navigate.change(uri, title, "slide-left")
     };
     /**
      * Navigate to previous page in the history stack.
@@ -112,9 +97,10 @@ app.navigate = (function (defaultTitle) {
         // Remove the current page from history and then navigate to the previous page.
         navigate.history.pop();
         var page = navigate.history[navigate.history.length - 1];
-        navigate.change(page.href, page.title, "slide-right");
+        navigate.change(page.uri, page.title, "slide-right");
     };
 
+    // The primary "index.html" file should be the first (and only) page that references this script.
     var rootPath = window.location.href;
     if (rootPath.endsWith("index.html")) {
         rootPath = rootPath.slice(0, rootPath.length - 10);
@@ -123,16 +109,16 @@ app.navigate = (function (defaultTitle) {
 
     // Capture `click` for desktop and `touchstart` for mobile.
     // https://stackoverflow.com/a/11507558/772086
-    $(document).on("touchstart click", "[data-href]", function (event) {
+    $(document).on("touchstart click", "[data-uri]", function (event) {
         event.stopPropagation();
         event.preventDefault();
         // `currentTarget` is the "the element to which the event handler has been attached".
         var attributes = (event.currentTarget || event.target).attributes;
-        var href = attributes.getNamedItem("data-href").value;
+        var uri = attributes.getNamedItem("data-uri").value;
         // The attribute `data-title` is optional.
         var titleAttr = attributes.getNamedItem("data-title");
         var title = titleAttr ? titleAttr.value : undefined;
-        navigate.next(href, title);
+        navigate.next(uri, title);
         event.handled = true;
     });
 
@@ -157,11 +143,11 @@ app.navigate = (function (defaultTitle) {
     var phoneButton = $("#phone");
     var weightButton = $("#weight");
 
-    app.navigate.onChange = function (href, title) {
+    app.navigate.onChange = function (uri, title) {
 
-        var isEvent = href.includes("html/events/");
-        var isPhone = href.includes("html/phone/");
-        var isWeight = href.includes("html/weight/");
+        var isEvent = uri.includes("html/events/");
+        var isPhone = uri.includes("html/phone/");
+        var isWeight = uri.includes("html/weight/");
 
         if (isEvent) {
             eventButton.addClass("emphasis");

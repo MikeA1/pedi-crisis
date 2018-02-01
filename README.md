@@ -16,7 +16,7 @@
    - `phonegap serve` should output something like _listening on 192.168.0.5:3000_
       - Debug in a browser by navigating to the above IP address
       - Debug on iOS and Android with the [PhoneGap Developer](http://docs.phonegap.com/getting-started/2-install-mobile-app/) mobile app, 
-         - If a Windows user, you may need to open port 3000 in Windows Firewall.
+         - Windows: you may need to open port 3000 in Windows Firewall.
 
 # Build
 
@@ -27,6 +27,14 @@ This should work after Getting Started is completed. No additional steps needed.
 Follow [these steps](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#requirements-and-support):
 1. Install the [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) v8 or later.
 2. Install [Android Studio](https://developer.android.com/studio/index.html).
+   - In Android Studio, open preferences, then navigate Appearance & Behavior > System Settings > Android SDK. In the SDK Platforms tab, install API Level 26.
+3. Update the PATH variables `ANDROID_HOME` and `JAVA_HOME`. Follow [these instructions](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#setting-environment-variables).
+4. Build! `phonegap build android`
+   - Linux/Mac: If you receive the error "spawn: EACCES", then run the following command: 
+   ```
+   sudo chmod 777 “/Applications/Android Studio.app/Contents/gradle/gradle-4.1/bin/gradle”
+   ```
+   Watch the space in "Android Studio.app"! See [this GitHub comment](https://github.com/ionic-team/ionic-cli/issues/2835#issuecomment-340200015) for details.
 
 
 ### iOS
