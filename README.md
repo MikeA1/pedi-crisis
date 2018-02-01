@@ -11,7 +11,7 @@
    - Example: `git clone https://github.com/MikeA1/pedi-crisis.git`
    - (or just download the project files)
 4. Restore packages
-   - `node update`
+   - `npm update`
 5. Start debugging
    - `phonegap serve` should output something like _listening on 192.168.0.5:3000_
       - Debug in a browser by navigating to the above IP address
