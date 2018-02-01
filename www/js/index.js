@@ -20,6 +20,7 @@ window.app = {
         } else {
             console.warn("Value provided where weight '" + value + '" is not a number.');
         }
+        localStorage.setItem("weight", this._weightValue);
     }
 };
 
@@ -39,7 +40,7 @@ app.navigate = (function (defaultTitle) {
             console.warn("uri is missing");
             return;
         }
-       
+
         // Phonegap works best on multiple platforms if all URIs are absolute.
         // The uri is absolute if uri contains a protocol: file:///android_asset/www/html/events/index.html
         let hasProtocol = uri.indexOf('://') > 0;
@@ -53,15 +54,17 @@ app.navigate = (function (defaultTitle) {
             while (navigate.root && navigate.root.endsWith("/") && uri && uri.startsWith("/")) {
                 uri = uri.substring(1);
             }
-            uri = navigate.root + uri;            
+            uri = navigate.root + uri;
         }
-        console.log(`navigating to ${uri}`)
+
         var container = document.createElement("div");
         container.classList.add(addClass);
         $(container).load(uri);
-        // $.html() has memory-management magic
+
+        // $.html() has memory-management magic:
         // "jQuery removes other constructs such as data and event handlers from child elements 
         //  before replacing those elements with the new content" - http://api.jquery.com/html/#html2
+        // $.html() also handles execution of our script code: this uses an evil eval, so never load untrusted/third-party content!
         $(contentElement).html(container);
 
         titleElement.innerText = title || defaultTitle;
@@ -173,16 +176,27 @@ app.navigate = (function (defaultTitle) {
     app.navigate.next("/html/events/index.html");
 })();
 
+// Handle the cordova "device ready" event.
 (function () {
     "use strict";
-
-    // Hijack the Android back button. See: https://stackoverflow.com/a/18465461/772086
     function onDeviceReady() {
+        // Hijack the Android back button. See: https://stackoverflow.com/a/18465461/772086
         document.addEventListener("backbutton", function (e) {
             e.preventDefault();
             app.navigate.prev();
         });
     }
     document.addEventListener("deviceready", onDeviceReady, false);
+})();
+
+// Load data stored in local storage.
+(function () {
+    "use strict";
+    var weight = localStorage.getItem("weight");
+    if (weight) {
+        app.weight = +weight;
+    }
+
+    var currentLocation = localStorage.getItem("uri");
 
 })();
