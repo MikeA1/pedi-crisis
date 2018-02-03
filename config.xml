@@ -12,7 +12,8 @@
     <preference name="DisallowOverscroll" value="false" />
     <preference name="android-minSdkVersion" value="14" />
     <icon src="www/img/logo.png" />
-    <engine name="android" spec="~6.3.0" />
     <engine name="ios" spec="~4.5.4" />
+    <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-globalization" spec="~1.0.7" />
+    <plugin name="cordova-plugin-device" spec="^2.0.1" />
 </widget>

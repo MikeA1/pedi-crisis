@@ -5,12 +5,13 @@
    - NPM v4.6 (NPM v5 is sketchy, so consider a downgrade via `npm install -g npm@4`).
    - Git v2.14+
 2. Install [PhoneGap](http://docs.phonegap.com/getting-started/1-install-phonegap/cli/)
-   - `sudo npm install -g phonegap@latest`
+   - `npm install -g phonegap@latest` (you may need to use `sudo` in linux/mac)
    - Test that it works: `phonegap` should output usage instructions. 
 3. Fork and Clone this repo 
    - Example: `git clone https://github.com/MikeA1/pedi-crisis.git`
    - (or just download the project files)
 4. Restore packages
+   - Windows: consider disabling symlinks for compiled node packages, via `npm install --no-bin-links`.
    - `npm update`
 5. Start debugging
    - `phonegap serve` should output something like _listening on 192.168.0.5:3000_
@@ -35,7 +36,8 @@ Follow [these steps](https://cordova.apache.org/docs/en/latest/guide/platforms/a
    sudo chmod 777 “/Applications/Android Studio.app/Contents/gradle/gradle-4.1/bin/gradle”
    ```
    Watch the space in "Android Studio.app"! See [this GitHub comment](https://github.com/ionic-team/ionic-cli/issues/2835#issuecomment-340200015) for details.
-
+5. Open Android Studio. Follow [these instructions](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#opening-a-project-in-android-studio) to start debugging on a physical or emulated device. 
+   - If prompted to upgrade Gradle from 3.x to 4.x - don't do it! This appears to create dependency problems.
 
 ### iOS
 

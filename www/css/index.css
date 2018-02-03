@@ -1,7 +1,7 @@
 /* Prevent focus outlines. See https://stackoverflow.com/a/17772980/772086 */
 * {
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important; 
-    -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important; 
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+    -webkit-tap-highlight-color: transparent;
     outline: none !important;
 } 
 
@@ -13,7 +13,7 @@ body {
     /* prevent webkit from resizing text to fit */
     -webkit-text-size-adjust: none;
 
-    /* prevent copy paste, to allow, change 'none' to 'text' */
+    /* prevent copy paste */
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -21,32 +21,33 @@ body {
     /* Keep the background color the same as the header for iPhoneX */
     background-color:#efefef; 
 
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
-    
-    background-attachment:fixed;
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
 
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    
-    font-size:12px;
-    height:100%;
-    margin:0px;
-    padding:0px;
-    width:100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+#header {
+    /* "sticky" has poor support on older browsers (e.g., IE11),
+     *  but a header that doesn't stay put is not app-breaking.
+     * The alternative is "fixed", but that requires offsetting
+     * the header of the following element :-/
+     */
+    position: sticky;
+    top: 0px; /* this is needed for "sticky" */
+
+    /* This is needed to prevent text from being visible when it scrolls behind the header. */
+    background-color: #efefef;
 }
 
 .page {
     /* Make the page *look* like a page */
     background-color: #efefef;
-    padding:10px
+    padding: 10px;
+    margin: 10px;
 }
 
 .emphasis {
