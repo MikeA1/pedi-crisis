@@ -3,7 +3,27 @@
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
     -webkit-tap-highlight-color: transparent;
     outline: none !important;
-} 
+}
+
+html {
+    /* Center the body */
+    margin:    0 auto;
+    max-width: 1000px;
+    color: #666666;
+    /* font-size: 1.2rem; */
+
+    /* Force the Content div to expand to occupy the remainder of the screen. */
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+
+    background-color: #fafafa;
+    background-image: repeating-linear-gradient(-45deg,
+    transparent 1px,
+    transparent 1px,
+    #fafafa 3px,
+    #eee 6px);
+}
 
 body {
 
@@ -22,15 +42,18 @@ body {
     background-color:#efefef; 
 
     font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
 
     height: 100%;
+    /* height: -webkit-fill-available; */
     margin: 0px;
     padding: 0px;
     width: 100%;
+
+    /* This fixes an issue where iOS will shift the screen up when the keyboard is dismissed. */
+    /* position: fixed; */
 }
 
-#header {
+#nav {
     /* "sticky" has poor support on older browsers (e.g., IE11),
      *  but a header that doesn't stay put is not app-breaking.
      * The alternative is "fixed", but that requires offsetting
@@ -40,20 +63,92 @@ body {
     top: 0px; /* this is needed for "sticky" */
 
     /* This is needed to prevent text from being visible when it scrolls behind the header. */
+    background-color: #f4f4f4;
+
+    border-bottom: 1px solid #777;
+}
+
+#content {
+    flex-grow: 1;
     background-color: #efefef;
+}
+
+#title {
+    font-size: 1rem;
 }
 
 .page {
     /* Make the page *look* like a page */
-    background-color: #efefef;
-    padding: 10px;
-    margin: 10px;
-}
-
-.emphasis {
-    border: 3px solid black;
+    background-color: #f7f7f7;
+    padding: 1em;
+    margin: 1em;
 }
 
 [data-uri] {
     cursor: pointer;
+}
+
+.button-group {
+    display: flex;
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.button-container {
+    flex-grow: 1;
+    padding-right: 1rem;
+}
+
+button {
+    height: 2rem;
+    color: #444;
+}
+
+input {
+    font-size: 1em;
+}
+
+button.emphasis {
+    font-weight: 700;
+}
+
+.button-container button {
+    width: 100%;
+}
+
+.event-row {
+    padding-bottom: 2px;
+}
+
+.event-number {
+    display: inline-block;
+    padding: 0.5em 1em;
+    font-weight:800;
+}
+
+/* CSS for the back button */
+
+/* The default for all platforms: the back button is not displayed. */
+#back-button {
+    display: none;
+}
+
+/* The default for iOS: the back button occupies space, but it is invisible. */
+body.display-virtual-back-button #back-button {
+    display: inherit;
+    opacity: 0;
+}
+
+/* For iOS: the back button appears when there is history. */
+body.display-virtual-back-button.has-history #back-button {
+    animation-name: fade-in;
+    -webkit-animation-name: fade-in;
+
+    animation-duration: 0.2s;
+	-webkit-animation-duration: 0.2s;
+
+	animation-timing-function: ease-in-out;	
+    -webkit-animation-timing-function: ease-in-out;
+    
+    opacity: 1;
 }

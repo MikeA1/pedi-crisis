@@ -1,6 +1,8 @@
 <form id="weight-form" class="page">
-    <input id="weight-input" type="number" inputmode="numeric" pattern="[0-9.]*" step="0.1" placeholder="Patient Weight" autofocus>
-    <span>kgs</span>
+    <div style="padding-bottom: 1em;">
+        <input id="weight-input" type="number" inputmode="numeric" pattern="[0-9.]*" step="0.1" placeholder="Patient Weight" autofocus>
+        <span>kgs</span>
+    </div>
     <div>
         <button id="weight-ok">OK</button>
         <button id="weight-cancel">Cancel</button>
@@ -16,7 +18,7 @@
         input.value = weight;
     }
 
-    function updateWeight (event)  {
+    function updateWeight(event) {
         // Probably only need to call 
         if (event.stopImmediatePropagation) event.stopImmediatePropagation();
         if (event.preventDefault) event.preventDefault();
@@ -27,11 +29,6 @@
 
     var form = document.getElementById("weight-form");
     form.addEventListener("submit", updateWeight);
-    // form.onsubmit = function(event) {
-    //     updateWeight();
-    //     // It's important that the form doesn't *actually* send an HTTP POST to the server!
-    //     return false;
-    // };
 
     var okButton = document.getElementById("weight-ok");
     okButton.addEventListener("click", updateWeight);

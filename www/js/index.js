@@ -24,90 +24,221 @@ window.app = {
     }
 };
 
-app.navigate = (function (defaultTitle) {
+app.navigate = (function () {
     "use strict";
-    var contentElement = document.getElementById("content");
-    var titleElement = document.getElementById("title");
-    var navigate = {};
-    navigate.history = [];
-    /**
-     * This function does not affect history. Use `prev` and `next` to change history.
-     * @param {string} uri the page to load
-     * @param {string} title the title of the page
-     */
-    navigate.change = function (uri, title, addClass) {
-        if (!uri) {
-            console.warn("uri is missing");
-            return;
-        }
 
+    let defaultHeader = "Pedi Crisis";
+    let contentElement = document.getElementById("content");
+    let headerElement = document.getElementById("header");
+
+    // `historyIndex` determines which screen we are on in history.
+    // This helps the navigation logic determine whether the user just moved forward or backward (e.g., using the browser back/forward buttons.)
+    // Note that historyIndex is one-based to match the one-based counter in `window.history.length`.
+    let historyIndex = 1;
+
+    // These buttons ont he 
+    let eventButton = document.getElementById("events");
+    let phoneButton = document.getElementById("phone");
+    let weightButton = document.getElementById("weight");
+
+    /**
+     * Takes a relative URI and converts it to an absolute URI (with respect to the root of the current location). 
+     * Does not affect a URI that is already absolute. 
+     * @param {string} uri 
+     */
+    function createAbsoluteUri(uri) {
+        "use strict";
         // Phonegap works best on multiple platforms if all URIs are absolute.
         // The uri is absolute if uri contains a protocol: file:///android_asset/www/html/events/index.html
         let hasProtocol = uri.indexOf('://') > 0;
         // Not confirmed to occur in PhoneGap app, but guard against a context-implied protocol: //localhost:3000/index.html
         let hasImpliedProtocol = uri.indexOf('//') === 0;
-
-        if (!hasProtocol && !hasImpliedProtocol) {
-            // If here then assume uri is relative.
-            // We don't know what the full path is at compile time (it's different for each platform) so `navigate.root` is captured once when this script is first run.
-            // Avoid breaking Android by doubling-up forward slashes. This bad-uri-example has two slashes between "www" and "html": file:///android_asset/www//html/events/index.html
-            while (navigate.root && navigate.root.endsWith("/") && uri && uri.startsWith("/")) {
-                uri = uri.substring(1);
-            }
-            uri = navigate.root + uri;
+        let fullUri = uri;
+        if (hasProtocol || hasImpliedProtocol) {
+            return uri;
         }
-
-        var container = document.createElement("div");
-        container.classList.add(addClass);
-        $(container).load(uri);
-
-        // $.html() has memory-management magic:
-        // "jQuery removes other constructs such as data and event handlers from child elements 
-        //  before replacing those elements with the new content" - http://api.jquery.com/html/#html2
-        // $.html() also handles execution of our script code: this uses an evil eval, so never load untrusted/third-party content!
-        $(contentElement).html(container);
-
-        titleElement.innerText = title || defaultTitle;
-        if (navigate.onChange) {
-            navigate.onChange(uri, title);
+        // If here then assume uri is relative.
+        // We don't know what the full path is until run time, (and it's different for each platform), so `navigate.root` is captured once when this script is first run/parsed.
+        // Avoid creating invalid paths with double forward slashes. This bad-uri-example has two slashes between "www" and "html": file:///android_asset/www//html/events/index.html
+        // Note: the double forward slashes was observed to break navigation in Android.
+        while (uri && uri.startsWith("/")) {
+            uri = uri.substring(1); // Remove the leading character until 
         }
+        return navigate.root + uri;
     }
+
     /**
-     * Navigate to the specified page. Adds page to the history stack.
-     * @param {string} uri the page to load
-     * @param {string} title the tile of the page
+     * Takes a URI (e.g., "/events/index.html") and generates an object `{hash, title}` that contains text suitable for
+     * the hash component of a URL (e.g., localhost:3000/#events) and a title (e.g., "Pedi Crisis | events")
+     * @param {string} uri 
      */
-    navigate.next = function (uri, title) {
-
-        var prevPage = navigate.history.length && navigate.history[navigate.history.length - 1];
-
-        if (prevPage && prevPage.uri === uri) {
-            // Clicked on a link that leads to the same place. Don't navigate.
-            return;
+    function createHashAndTitle(uri) {
+        "use strict";
+        var hash = uri
+            .replace(/html/g, "") // trim off common file name extension
+            .replace(/\./g, "") // remove .
+            .replace(/index/g, "") // remove index
+            .replace(/\//g, "-") // replace "/" with "-"
+            .replace(/--/g, "-") // replace "--" with "-"
+            .replace(/^-/, "") // remove leading "-"
+            .replace(/-$/, ""); // remove trailing "-"
+        let title = "Pedi Crisis";
+        if (hash) {
+            title += " | " + hash.replace(/-/g, " - "); // e.g., "Pedi Crisis | events - anaphylaxis"
+            hash = "#" + hash;
         }
 
-        navigate.history.push({ uri: uri, title: title });
-        navigate.change(uri, title, "slide-left")
-    };
-    /**
-     * Navigate to previous page in the history stack.
-     */
-    navigate.prev = function () {
-        // If there's one item in history then that item is the current page. Nothing to see here, need to bounce.
-        if (navigate.history.length <= 1) {
-            return;
-        }
-        // Remove the current page from history and then navigate to the previous page.
-        navigate.history.pop();
-        var page = navigate.history[navigate.history.length - 1];
-        navigate.change(page.uri, page.title, "slide-right");
-    };
+        return { hash: hash, title: title };
+    }
 
+    // This object is returned by the current function to set `app.navigate`. Note that there are a
+    // few helper variables/functions that are intentionally not exposed in `app.navigate`!
+    let navigate = {
+        // history.length is one-based
+        index: 1,
+        /**
+         * Move back one in history.
+         */
+        prev: function () {
+            "use strict";
+            // Don't do anything if we're at the beginning of history.
+            // Note that historyIndex is one-based to match the one-based counter in `window.history.length`.
+            if (historyIndex > 1) {
+                history.back(); // This triggers app.navigate.onHistoryChange
+                historyIndex -= 1;
+                if (historyIndex === 1) {
+                    // Just decremented from *some history* to *no history*; remove the pertinent class to the body.
+                    document.body.classList.remove("has-history");
+                }
+            }
+        },
+        /**
+         * Create a new history entry. Navigate to this new entry.
+         */
+        next: function (uri, header, addClass) {
+            "use strict";
+            if (history.state && history.state.uri === uri) {
+                // Don't navigate to the same page more than once. That would be silly.
+                return;
+            }
+            historyIndex += 1;
+            if (historyIndex == 2) {
+                // Just incremented from *no history* to *some history*; add the pertinent class to the body.
+                document.body.classList.add("has-history");
+            }
+            let nice = createHashAndTitle(uri);
+            history.pushState({ index: historyIndex, uri: uri, header: header, title: nice.title, hash: nice.hash, addClass: addClass }, nice.title, nice.hash);
+            navigate.change(uri, header, nice.title, addClass || "slide-left");
+        },
+        /** 
+         * This handles window.onpopstate.
+         */
+        onHistoryChange: function (event) {
+            "use strict";
+            let state = event.state;
+            if (!state) return;
+            let index = state.index;
+            let uri = state.uri;
+            let header = state.header;
+            let title = state.title;
+            let addClass = state.addClass;
+            if (!addClass) {
+                addClass = index > historyIndex ? "slide-left" : "slide-right";
+            }
+
+            if (historyIndex > 1 && index === 1) {
+                // Moved backward - there's no longer history
+                document.body.classList.remove("has-history");
+            } else if (historyIndex === 1 && index > 1) {
+                // Moved forward - there's now history.
+                document.body.classList.add("has-history");
+            }
+
+            historyIndex = index;
+            navigate.change(uri, header, title, addClass);
+        },
+        /**
+         * Loads the specified URI.
+         */
+        change: function (uri, header, title, addClass) {
+            "use strict";
+            if (!uri) {
+                console.warn("uri is missing");
+                return;
+            }
+
+            // Load the uri in a container before adding it to the DOM because this makes the implementation of "addClass" easier.
+            let container = document.createElement("div");
+            if (addClass) container.classList.add(addClass);
+            // Transform the URI to an absolute path.
+            var fullUri = createAbsoluteUri(uri);
+            $(container).load(fullUri);
+
+            // $.html() has memory-management magic:
+            // "jQuery removes other constructs such as data and event handlers from child elements 
+            //  before replacing those elements with the new content" - http://api.jquery.com/html/#html2
+            // $.html() also handles execution of our script code: this uses an evil eval, so never load untrusted/third-party content!
+            $(contentElement).html(container);
+
+            headerElement.innerText = header || defaultHeader;
+
+            if (title) {
+                try {
+                    document.getElementsByTagName('title')[0].innerHTML = title.replace('<', '&lt;').replace('>', '&gt;').replace(' & ', ' &amp; ');
+                }
+                catch (Exception) { }
+                document.title = title;
+            }
+
+            // When a navigation change occurs, add or remove emphasis to pertinent header buttons.
+            let isEvent = uri.includes("html/events/");
+            let isPhone = uri.includes("html/phone/");
+            let isWeight = uri.includes("html/weight/");
+
+            if (isEvent) {
+                eventButton.classList.add("emphasis");
+            } else {
+                eventButton.classList.remove("emphasis");
+            }
+
+            if (isPhone) {
+                phoneButton.classList.add("emphasis");
+            } else {
+                phoneButton.classList.remove("emphasis");
+            }
+
+            if (isWeight) {
+                weightButton.classList.add("emphasis");
+            } else {
+                weightButton.classList.remove("emphasis");
+            }
+        },
+    }
+
+    // If in a browser, handle the user using the "back" or "forward" browser buttons. 
+    window.onpopstate = navigate.onHistoryChange;
+
+    // Determine the rootPath. This is needed later when constructing absolute paths.
+    let rootPath = window.location.href;
+    // If here due to a browser reloading on a hash-nav page, remove everything after hash.
+    // Example: 
+    //    Before: http://localhost:3000/#events
+    //    After: http://localhost:3000/
+    let hashPosition = rootPath.indexOf("#");
+    if (hashPosition) {
+        rootPath = rootPath.substring(0, hashPosition);
+    }
     // The primary "index.html" file should be the first (and only) page that references this script.
-    var rootPath = window.location.href;
+    // On the browser platform, the user can navigate directly to the root without "index.html", 
+    // so the `endsWith` check is necessary.
     if (rootPath.endsWith("index.html")) {
         rootPath = rootPath.slice(0, rootPath.length - 10);
     }
+    // To make combining paths easier later, ensure that the rootPath ends with a forward slash.
+    if (!rootPath.endsWith("/")) {
+        rootPath += "/";
+    }
+    // Create read-only property because the root should never change.
     Object.defineProperty(navigate, "root", { value: rootPath, writable: false });
 
     // Capture `click` for desktop and `touchstart` for mobile.
@@ -116,11 +247,11 @@ app.navigate = (function (defaultTitle) {
         event.stopPropagation();
         event.preventDefault();
         // `currentTarget` is the "the element to which the event handler has been attached".
-        var attributes = (event.currentTarget || event.target).attributes;
-        var uri = attributes.getNamedItem("data-uri").value;
+        let attributes = (event.currentTarget || event.target).attributes;
+        let uri = attributes.getNamedItem("data-uri").value;
         // The attribute `data-title` is optional.
-        var titleAttr = attributes.getNamedItem("data-title");
-        var title = titleAttr ? titleAttr.value : undefined;
+        let titleAttr = attributes.getNamedItem("data-title");
+        let title = titleAttr ? titleAttr.value : undefined;
         navigate.next(uri, title);
         event.handled = true;
     });
@@ -134,57 +265,33 @@ app.navigate = (function (defaultTitle) {
 
     return navigate;
 
-})("Pedi Crisis");
+})();
 
-// When a navigation change occurs, add or remove emphasis to pertinent header buttons.
-// Note: this `onChange` event is implemented separate from the rest of the `navigate` definition
-// to keep the above code cleaner and more isolated.
 (function () {
     "use strict";
 
-    var eventButton = $("#events");
-    var phoneButton = $("#phone");
-    var weightButton = $("#weight");
+    // User hit "back button" on browser from other site.
+    if (history.state) {
+        let event = { state: history.state };
+        app.navigate.onHistoryChange(event);
+    }
+    else {
+        // Automatically navigate to the event page.
+        let uri = "/html/events/index.html";
+        let header = "Pedi Crisis";
+        let title = "Pedi Crisis";
+        let hash = "#events";
+        app.navigate.change(uri, header, title);
+        history.replaceState({ index: 1, uri: uri, header: header, title: title }, title, hash);
+    }
 
-    app.navigate.onChange = function (uri, title) {
-
-        var isEvent = uri.includes("html/events/");
-        var isPhone = uri.includes("html/phone/");
-        var isWeight = uri.includes("html/weight/");
-
-        if (isEvent) {
-            eventButton.addClass("emphasis");
-        } else {
-            eventButton.removeClass("emphasis");
-        }
-
-        if (isPhone) {
-            phoneButton.addClass("emphasis");
-        } else {
-            phoneButton.removeClass("emphasis");
-        }
-
-        if (isWeight) {
-            weightButton.addClass("emphasis");
-        } else {
-            weightButton.removeClass("emphasis");
-        }
-
-    };
-
-    // Automatically navigate to the event page.
-    app.navigate.next("/html/events/index.html");
 })();
 
 // Handle the cordova "device ready" event.
 (function () {
     "use strict";
     function onDeviceReady() {
-        // Hijack the Android back button. See: https://stackoverflow.com/a/18465461/772086
-        document.addEventListener("backbutton", function (e) {
-            e.preventDefault();
-            app.navigate.prev();
-        });
+        document.body.classList.add("display-virtual-back-button");
     }
     document.addEventListener("deviceready", onDeviceReady, false);
 })();
@@ -192,11 +299,11 @@ app.navigate = (function (defaultTitle) {
 // Load data stored in local storage.
 (function () {
     "use strict";
-    var weight = localStorage.getItem("weight");
+    let weight = localStorage.getItem("weight");
     if (weight) {
         app.weight = +weight;
     }
 
-    var currentLocation = localStorage.getItem("uri");
+    let currentLocation = localStorage.getItem("uri");
 
 })();

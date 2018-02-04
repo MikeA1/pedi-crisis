@@ -22,40 +22,41 @@
     -->
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <!-- animations.css should come first because index.css relies on certain definitions. -->
     <link rel="stylesheet" type="text/css" href="css/animations.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <title>Pedi Crisis</title>
 </head>
 
 <body>
-    <div id="header">
-        <div style="display: flex; height:10%" ;>
-            <div style="flex-grow:1">
+    <div id="nav">
+        <div class="button-group" style="padding-top:.5rem">
+            <div style="align-self: center; padding-right: 1rem;">
                 <img src="img/logo.png" height=50 width=50 />
             </div>
-            <div style="flex-grow:4">
-                <h1 id="title">Pedi Crisis</h1>
+            <div style="align-self: center; flex: 8; padding-right: 1rem;">
+                <span id="header">Pedi Crisis</span>
             </div>
-            <div style="flex-grow:1">
-                <button data-prev>Back</button>
+            <div id="back-button" style="align-self: center; flex-grow: 1; padding-right: 1rem" class="hide">
+                <button data-prev style="width:100%">Back</button>
             </div>
         </div>
-        <div style="border-bottom: 1px #959595 solid; display: flex; height:10%" ;>
-            <div style="flex-grow:1">
+        <div class="button-group">
+            <div class="button-container">
                 <button id="events" data-uri="/html/events/index.html" data-title="Pedi Crisis">Events</button>
             </div>
-            <div style="flex-grow:1">
+            <div class="button-container">
                 <button id="phone" data-uri="/html/phone/index.html" data-title="Pedi Crisis">Phone Numbers</button>
             </div>
-            <div style="flex-grow:1">
+            <div class="button-container">
                 <button id="weight" data-uri="/html/weight/index.html" data-title="Pedi Crisis">Pt Wt ---</button>
             </div>
         </div>
     </div>
 
     <!-- `overflow:hidden` prevents a horizontal scrollbar during for screen transitions -->
-    <div id="content" style="overflow:hidden">
+    <div id="content" style="overflow-x:hidden">
         <!-- Dynamic content is injected here via javascript. -->
     </div>
 
