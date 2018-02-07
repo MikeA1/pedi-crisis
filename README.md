@@ -1,18 +1,18 @@
 # Getting Started
 
 1. Install Git, Node and NPM. These versions should work well:
-   - Node v9.3+
-   - NPM v4.6 (NPM v5 is sketchy, so consider a downgrade via `npm install -g npm@4`).
-   - Git v2.14+
+   - `node --version` v8.9 (or greater)
+   - `npm --version` 4.6 (or greater, but NPM v5 is sketchy, so consider a downgrade via `npm install -g npm@4`).
+   - `git --version` 2.14 (or greater)
 2. Install [PhoneGap](http://docs.phonegap.com/getting-started/1-install-phonegap/cli/)
    - `npm install -g phonegap@latest` (you may need to use `sudo` in linux/mac)
-   - Test that it works: `phonegap` should output usage instructions. 
+   - Test that it works: `phonegap --version` (version 7.1.1 is ideal.)
 3. Fork and Clone this repo 
-   - Example: `git clone https://github.com/MikeA1/pedi-crisis.git`
+   - Example: `git clone https://github.com/~your~account~name~/pedi-crisis.git`
    - (or just download the project files)
 4. Restore packages
    - Windows: consider disabling symlinks for compiled node packages, via `npm install --no-bin-links`.
-   - `npm update`
+   - In the root project folder (which contains the file _package.json_): `npm update`
 5. Start debugging
    - `phonegap serve` should output something like _listening on 192.168.0.5:3000_
       - Debug in a browser by navigating to the above IP address
@@ -40,5 +40,4 @@ Follow [these steps](https://cordova.apache.org/docs/en/latest/guide/platforms/a
    - If prompted to upgrade Gradle from 3.x to 4.x - don't do it! This appears to create dependency problems.
 
 ### iOS
-
-
+Follow [these steps](https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html).
