@@ -223,8 +223,6 @@ app.navigate = (function () {
     // If in a browser, handle the user using the "back" or "forward" browser buttons. 
     window.onpopstate = navigate.onHistoryChange;
 
-    console.log(`window.location(1): ${JSON.stringify(window.location)}`);
-
     /**
      * Catpures the root path/uri. This is needed later when constructing absolute paths.
      * Note that this is primarily called in the event DeviceReady because iOS has issues

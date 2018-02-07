@@ -80,35 +80,75 @@ body {
     background-color: #f7f7f7;
     padding: 1em;
     margin: 1em;
+    /* Let the content breath! */
+    line-height: 2;
 }
 
 [data-uri] {
     cursor: pointer;
 }
 
+/* These two rules pad the left and right side of the nav buttons. */
+#nav .button-group {
+    padding-left: 1rem;
+}
+
+#nav .button-container {
+    padding-right: 1rem;
+}
+
+/* button-group is the parent of button-container */
 .button-group {
     display: flex;
-    padding-left: 1rem;
     padding-bottom: 0.5rem;
 }
 
+/* Use `button-container` instead of a straight `button`.
+ * Buttons don't stretch to the proper width with `flex`,
+ * but they stretch just fine to fill a containing element.
+ */
 .button-container {
     flex-grow: 1;
     padding-right: 1rem;
 }
 
-button {
-    height: 2rem;
-    color: #444;
+/* For a non-nav button-container, don't pad the far left or far right side (the containing .page already has padding) */
+.button-container:last-child {
+    padding-right: 0rem;
 }
+
+button {
+	background-color:#ededed;
+	-moz-border-radius:16px;
+	-webkit-border-radius:16px;
+	border-radius:16px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	font-family:Arial;
+	text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+    height: 2rem;
+}
+button:hover {
+	background-color:#dfdfdf;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
+
+        
 
 input {
     font-size: 1em;
 }
 
+/* Buttons are styled very lightly so that the native styles may be applied. */
 button.emphasis {
     font-weight: 700;
-    box-shadow: 0 0 4px #c4a300;
+    /* This works on Chrome but not iOS WebView. */
+    box-shadow: 0 0 4px #777;
 }
 
 .button-container button {
@@ -116,13 +156,20 @@ button.emphasis {
 }
 
 .event-row {
-    padding-bottom: 2px;
+    padding-bottom: 1em;
 }
 
 .event-number {
     display: inline-block;
-    padding: 0.5em 1em;
+    padding: 0.4em 1em;
     font-weight:800;
+    border-radius: 8px;
+}
+
+.event-title {
+    border-radius: 8px;
+    font-weight: 500;
+    padding: .5em;
 }
 
 /* CSS for the back button */
@@ -150,4 +197,49 @@ body.display-virtual-back-button.has-history #back-button {
     -webkit-animation-timing-function: ease-in-out;
     
     opacity: 1;
+}
+
+.bg-red {
+    background-color: #f1c7d1;
+}
+
+button.bg-red:hover {
+    background-color: #ecb3c0;
+}
+
+.bg-orange {
+    background-color: #f1d2c7;
+}
+
+button.bg-orange:hover {
+    background-color: #ecc2b3;
+}
+
+.bg-green {
+    background-color: #e2f6d6;
+}
+
+button.bg-green:hover {
+    background-color: #d3f1c1;
+}
+
+.bg-blue {
+    background-color: #c7e6f1;
+}
+
+button.bg-blue:hover {
+    background-color: #b3ddec;
+}
+
+.bg-purple {
+    background-color: #c7d1f1;
+}
+
+button.bg-purple:hover {
+    background-color: #b3c0ec;
+}
+
+.uri {
+    color: #33aa33;
+    font-weight: 600;
 }

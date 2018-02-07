@@ -133,7 +133,26 @@
 	-webkit-animation-timing-function: ease-in-out;		
 }
 
+/* This is just for fun */
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
 
+.spin {
+	animation-name: spin;
+	-webkit-animation-name: spin;
 
+	animation-duration: 3s;
+	-webkit-animation-duration: 3s;
 
+	animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
 
+	animation-timing-function: linear;
+	-webkit-animation-timing-function: linear;
+}
