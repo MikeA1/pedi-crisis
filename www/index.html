@@ -50,7 +50,10 @@
                 <button id="phone" data-uri="/html/phone/index.html" data-title="Pedi Crisis">Phone Numbers</button>
             </div>
             <div class="button-container">
-                <button id="weight" data-uri="/html/weight/index.html" data-title="Pedi Crisis">Pt Wt ---</button>
+                <!-- The "no-transition" class prevents an animation/transition CSS class from being applied to the object. -->
+                <!-- In this case, the class is needed because iOS freaks out w.r.t. autofocus. -->
+                <!-- Another option is to use a different animation for this page (or perhaps all pages?) -->
+                <button id="weight" data-uri="/html/weight/index.html" data-title="Pedi Crisis" data-add-class="no-transition">Pt Wt ---</button>
             </div>
         </div>
     </div>

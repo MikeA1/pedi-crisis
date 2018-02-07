@@ -27,16 +27,21 @@ window.app = {
 app.navigate = (function () {
     "use strict";
 
+    // The header is updated when a "data-uri" attribute is accompanied by a "data-title" attribute.
     let defaultHeader = "Pedi Crisis";
-    let contentElement = document.getElementById("content");
     let headerElement = document.getElementById("header");
+
+    // The inner HTML of this element is updated during a page transition.
+    let contentElement = document.getElementById("content");
+    
 
     // `historyIndex` determines which screen we are on in history.
     // This helps the navigation logic determine whether the user just moved forward or backward (e.g., using the browser back/forward buttons.)
     // Note that historyIndex is one-based to match the one-based counter in `window.history.length`.
     let historyIndex = 1;
 
-    // These buttons ont he 
+    // These are the primary navigation buttons. They are always on the screen, so grab references to them once.
+    // These elements are updated to indicate which screen is active.
     let eventButton = document.getElementById("events");
     let phoneButton = document.getElementById("phone");
     let weightButton = document.getElementById("weight");
@@ -47,7 +52,6 @@ app.navigate = (function () {
      * @param {string} uri 
      */
     function createAbsoluteUri(uri) {
-        "use strict";
         // Phonegap works best on multiple platforms if all URIs are absolute.
         // The uri is absolute if uri contains a protocol: file:///android_asset/www/html/events/index.html
         let hasProtocol = uri.indexOf('://') > 0;
@@ -73,7 +77,6 @@ app.navigate = (function () {
      * @param {string} uri 
      */
     function createHashAndTitle(uri) {
-        "use strict";
         var hash = uri
             .replace(/html/g, "") // trim off common file name extension
             .replace(/\./g, "") // remove .
@@ -100,7 +103,6 @@ app.navigate = (function () {
          * Move back one in history.
          */
         prev: function () {
-            "use strict";
             // Don't do anything if we're at the beginning of history.
             // Note that historyIndex is one-based to match the one-based counter in `window.history.length`.
             if (historyIndex > 1) {
@@ -116,7 +118,6 @@ app.navigate = (function () {
          * Create a new history entry. Navigate to this new entry.
          */
         next: function (uri, header, addClass) {
-            "use strict";
             if (history.state && history.state.uri === uri) {
                 // Don't navigate to the same page more than once. That would be silly.
                 return;
@@ -134,7 +135,6 @@ app.navigate = (function () {
          * This handles window.onpopstate.
          */
         onHistoryChange: function (event) {
-            "use strict";
             let state = event.state;
             if (!state) return;
             let index = state.index;
@@ -161,9 +161,8 @@ app.navigate = (function () {
          * Loads the specified URI.
          */
         change: function (uri, header, title, addClass) {
-            "use strict";
             if (!uri) {
-                console.warn("uri is missing");
+                console.error("uri is missing");
                 return;
             }
 
@@ -252,7 +251,9 @@ app.navigate = (function () {
         // The attribute `data-title` is optional.
         let titleAttr = attributes.getNamedItem("data-title");
         let title = titleAttr ? titleAttr.value : undefined;
-        navigate.next(uri, title);
+        let addClassAttr = attributes.getNamedItem("data-add-class");
+        let addClass = addClassAttr ? addClassAttr.value : undefined;
+        navigate.next(uri, title, addClass);
         event.handled = true;
     });
 

@@ -18,6 +18,10 @@
         input.value = weight;
     }
 
+    // The `autofocus` attribute on the input works on *page load* for Chrome, but not in this single-page app context.
+    // So, manually set focus.
+    input.focus();
+
     function updateWeight(event) {
         // Probably only need to call 
         if (event.stopImmediatePropagation) event.stopImmediatePropagation();
