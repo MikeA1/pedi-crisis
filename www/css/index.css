@@ -54,18 +54,16 @@ body {
 }
 
 #nav {
-    /* "sticky" has poor support on older browsers (e.g., IE11),
-     *  but a header that doesn't stay put is not app-breaking.
-     * The alternative is "fixed", but that requires offsetting
-     * the header of the following element :-/
-     */
-    position: sticky;
-    top: 0px; /* this is needed for "sticky" */
-
     /* This is needed to prevent text from being visible when it scrolls behind the header. */
     background-color: #f4f4f4;
 
     border-bottom: 1px solid #777;
+
+    position: fixed;
+    width: inherit;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    max-width: 1000px; /* This matches the same rule on html */
 }
 
 #content {
@@ -110,6 +108,7 @@ input {
 
 button.emphasis {
     font-weight: 700;
+    box-shadow: 0 0 4px #c4a300;
 }
 
 .button-container button {

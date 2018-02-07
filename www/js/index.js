@@ -68,7 +68,7 @@ app.navigate = (function () {
         while (uri && uri.startsWith("/")) {
             uri = uri.substring(1); // Remove the leading character until 
         }
-        return navigate.root + uri;
+        return navigate.rootPath + uri;
     }
 
     /**
@@ -211,34 +211,59 @@ app.navigate = (function () {
             } else {
                 weightButton.classList.remove("emphasis");
             }
+
+            // The header may have grown or shrunk vertically, so move the spacer div appropriately.
+            const navElement = document.getElementById("nav");
+            const offsetHeight = navElement.offsetHeight;
+            const navOffsetElement = document.getElementById("nav-offset");
+            navOffsetElement.style.height = offsetHeight + "px";
         },
     }
 
     // If in a browser, handle the user using the "back" or "forward" browser buttons. 
     window.onpopstate = navigate.onHistoryChange;
 
-    // Determine the rootPath. This is needed later when constructing absolute paths.
-    let rootPath = window.location.href;
-    // If here due to a browser reloading on a hash-nav page, remove everything after hash.
-    // Example: 
-    //    Before: http://localhost:3000/#events
-    //    After: http://localhost:3000/
-    let hashPosition = rootPath.indexOf("#");
-    if (hashPosition) {
-        rootPath = rootPath.substring(0, hashPosition);
+    console.log(`window.location(1): ${JSON.stringify(window.location)}`);
+
+    /**
+     * Catpures the root path/uri. This is needed later when constructing absolute paths.
+     * Note that this is primarily called in the event DeviceReady because iOS has issues
+     * capturing window.location in the initial execution of this function.
+     */
+    navigate.updateRootPath = function() {
+
+        if (navigate.rootPath) {
+            // Already set. Don't change it.
+            return;
+        }
+
+        // Determine the rootPath. 
+        let rootPath = window.location.href;
+        // If here due to a browser reloading on a hash-nav page, remove everything after hash.
+        // Example: 
+        //    Before: http://localhost:3000/#events
+        //    After: http://localhost:3000/
+        let hashPosition = rootPath.indexOf("#");
+        if (hashPosition) {
+            rootPath = rootPath.substring(0, hashPosition);
+        }
+        // The primary "index.html" file should be the first (and only) page that references this script.
+        // On the browser platform, the user can navigate directly to the root without "index.html", 
+        // so the `endsWith` check is necessary.
+        if (rootPath.endsWith("index.html")) {
+            rootPath = rootPath.slice(0, rootPath.length - 10);
+        }
+        // To make combining paths easier later, ensure that the rootPath ends with a forward slash.
+        if (rootPath && !rootPath.endsWith("/")) {
+            rootPath += "/";
+        }
+
+        navigate.rootPath = rootPath;
     }
-    // The primary "index.html" file should be the first (and only) page that references this script.
-    // On the browser platform, the user can navigate directly to the root without "index.html", 
-    // so the `endsWith` check is necessary.
-    if (rootPath.endsWith("index.html")) {
-        rootPath = rootPath.slice(0, rootPath.length - 10);
-    }
-    // To make combining paths easier later, ensure that the rootPath ends with a forward slash.
-    if (!rootPath.endsWith("/")) {
-        rootPath += "/";
-    }
-    // Create read-only property because the root should never change.
-    Object.defineProperty(navigate, "root", { value: rootPath, writable: false });
+
+    // `updateRootPath()` is executed in the event "DeviceReady", but capture the root now in case "DeviceReady" never fires
+    // (e.g., with a pure browser experience).
+    navigate.updateRootPath();
 
     // Capture `click` for desktop and `touchstart` for mobile.
     // https://stackoverflow.com/a/11507558/772086
@@ -292,7 +317,11 @@ app.navigate = (function () {
 (function () {
     "use strict";
     function onDeviceReady() {
-        document.body.classList.add("display-virtual-back-button");
+        if (device.platform.toLowerCase() === "ios") {
+            document.body.classList.add("display-virtual-back-button");
+        }
+        // Try to update the root path.
+        app.navigate.updateRootPath();
     }
     document.addEventListener("deviceready", onDeviceReady, false);
 })();
@@ -300,11 +329,8 @@ app.navigate = (function () {
 // Load data stored in local storage.
 (function () {
     "use strict";
-    let weight = localStorage.getItem("weight");
+    const weight = localStorage.getItem("weight");
     if (weight) {
         app.weight = +weight;
     }
-
-    let currentLocation = localStorage.getItem("uri");
-
 })();
