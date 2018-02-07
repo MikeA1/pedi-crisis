@@ -19,8 +19,9 @@
     }
 
     // The `autofocus` attribute on the input works on *page load* for Chrome, but not in this single-page app context.
-    // So, manually set focus.
-    input.focus();
+    // So, if the element does not already have focus, set the focus.
+    // It's important to check `document.hasFocus` in order to avoid removing focus from an already-displayed keyboard!
+    if (document.hasFocus && document.activeElement !== input) input.focus();
 
     function updateWeight(event) {
         // Probably only need to call 
