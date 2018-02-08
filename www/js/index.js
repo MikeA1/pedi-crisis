@@ -1,28 +1,41 @@
-window.app = {
-    _weightValue: 0,
-    weightButton: null,
-    get weight() {
-        return this._weightValue;
-    },
-    set weight(value) {
-        // A check of `!isNaN(value)` is redundant with `> 0`
-        if (!this.weightButton) {
-            this.weightButton = document.getElementById("weight");
+(function () {
+    "use strict";
+    const weightButton = document.getElementById("weight");
+    let weightValue = 0;
+    window.app = {
+        get weight() {
+            return weightValue;
+        },
+        set weight(value) {
+            // A check of `!isNaN(value)` is redundant with `> 0`
+            if (typeof (value) === "number" && value > 0) {
+                // This is a positive number
+                if (!weightValue) {
+                    // Add the has-weight rule.
+                    document.body.classList.add("has-weight");
+                    document.body.classList.remove("no-weight");
+                }
+                weightValue = value;
+                weightButton.innerHTML = "<strong>" + value + "</strong> kgs";
+            } else if (value === null || value <= 0) {
+                // User cleared the input
+
+                if (weightValue) {
+                    // Add the has-weight rule.
+                    document.body.classList.add("no-weight");
+                    document.body.classList.remove("has-weight");
+                }
+
+                weightValue = null;
+                weightButton.innerHTML = "Pt Wt ---";
+            } else {
+                console.warn("Value provided where weight '" + value + '" is not a number.');
+            }
+            localStorage.setItem("weight", weightValue);
         }
-        if (typeof (value) === "number" && value > 0) {
-            // This is a positive number
-            this._weightValue = value;
-            this.weightButton.innerHTML = "<strong>" + value + "</strong> kgs";
-        } else if (value === null || value <= 0) {
-            // User is clearing the input
-            this._weightValue = null;
-            this.weightButton.innerHTML = "Pt Wt ---";
-        } else {
-            console.warn("Value provided where weight '" + value + '" is not a number.');
-        }
-        localStorage.setItem("weight", this._weightValue);
-    }
-};
+    };
+
+})();
 
 app.navigate = (function () {
     "use strict";
@@ -33,7 +46,7 @@ app.navigate = (function () {
 
     // The inner HTML of this element is updated during a page transition.
     let contentElement = document.getElementById("content");
-    
+
 
     // `historyIndex` determines which screen we are on in history.
     // This helps the navigation logic determine whether the user just moved forward or backward (e.g., using the browser back/forward buttons.)
@@ -228,7 +241,7 @@ app.navigate = (function () {
      * Note that this is primarily called in the event DeviceReady because iOS has issues
      * capturing window.location in the initial execution of this function.
      */
-    navigate.updateRootPath = function() {
+    navigate.updateRootPath = function () {
 
         if (navigate.rootPath) {
             // Already set. Don't change it.
@@ -330,5 +343,78 @@ app.navigate = (function () {
     const weight = localStorage.getItem("weight");
     if (weight) {
         app.weight = +weight;
+    }
+})();
+
+(function () {
+    /**
+     * Intelligently prints numbers. Removes trailing 0's.
+     * Expected Results: 
+     *   const a = .02 * 35; // 0.7000000000000001
+     *   app.printNumber(a) // 1
+     *   app.printNumber(a, 1) // 0.7
+     *   app.printNumber(a, 4) // 0.7000
+     *   app.printNumber(a, 4, 8) // 0.7000
+     *   const b = 0.123456
+     *   app.printNumber(b) // 0
+     *   app.printNumber(b, 1) // 0.1
+     *   app.printNumber(b, 4) // 0.1235
+     *   app.printNumber(b, 4, 8) // 0.123456
+     * 
+     * @param {number} value The value to round.
+     * @param {number} minDecimalPlaces The minimum number of decimalPlaces (e.g., 0)
+     * @param {number} maxDecimalPlaces The maximum number of decimalPlaces (e.g., 4)
+     */
+    app.printNumber = function (value, minDecimalPlaces, maxDecimalPlaces) {
+        // Use `+` for a strict conversion to float because `parseFloat` will
+        // convert strings that represent more than numbers (like "123 Fake Street" to "123".)
+        // Note: `+` will convert the following
+        //   - `undefined` to `NaN`
+        //   - `null` to `0`
+        //   - `window` to `NaN` (assume window is an object)
+        //   - "1 Fake Street" to `NaN`
+        //   - "100" to 100
+        //   - "1e2" to 100
+        //   - "-100" to -100
+
+        value = +value;
+        if (value === undefined || isNaN(value)) {
+            return "";
+        }
+
+        minDecimalPlaces = +minDecimalPlaces;
+        maxDecimalPlaces = +maxDecimalPlaces;
+        if (!minDecimalPlaces || minDecimalPlaces < 0) {
+            minDecimalPlaces = 0;
+        }
+        if (!maxDecimalPlaces || maxDecimalPlaces <= minDecimalPlaces) {
+            // If maxDecimalPlaces is falsey or a less than min, then it's invalid. 
+            // So, just treat minDecimalPlaces === maxDecimalPlaces;
+            return value.toFixed(minDecimalPlaces);
+        }
+
+        // Notes on toFixed: 
+        // const a = 2/3; // 0.666666666666
+        // console.log(a.toFixed(0)); // 1
+        // console.log(a.toFixed(1)) // 0.7
+        // console.log(a.toFixed(4)) // 0.6667
+
+        const longValue = value.toFixed(maxDecimalPlaces);
+        let index = longValue.length - 1;
+        const decimalPlace = longValue.indexOf(".");
+
+        // if longNumber === "0.2345"
+        // and minDecimalPlaces === 2
+        // and decimalPlace === 1
+        // then...
+        // if index === 4 then continue
+        // if index === 3 then stop (note that minDecimalPlaces + decimalPlace === 3)
+        while (index > minDecimalPlaces + decimalPlace && longValue.charAt(index) === "0") {
+            index -= 1;
+        }
+        
+        // This would *truncate* the number. Instead, run toFixed (again) to *round* the number.
+        //return longNumber.substring(0, index + 1);
+        return value.toFixed(index - decimalPlace);
     }
 })();

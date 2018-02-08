@@ -33,7 +33,7 @@ Follow [these steps](https://cordova.apache.org/docs/en/latest/guide/platforms/a
 4. Build! `phonegap build android`
    - Linux/Mac: If you receive the error "spawn: EACCES", then run the following command: 
    ```
-   sudo chmod 777 “/Applications/Android Studio.app/Contents/gradle/gradle-4.1/bin/gradle”
+   sudo chmod 777 "/Applications/Android Studio.app/Contents/gradle/gradle-4.1/bin/gradle"
    ```
    Watch the space in "Android Studio.app"! See [this GitHub comment](https://github.com/ionic-team/ionic-cli/issues/2835#issuecomment-340200015) for details.
 5. Open Android Studio. Follow [these instructions](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#opening-a-project-in-android-studio) to start debugging on a physical or emulated device. 

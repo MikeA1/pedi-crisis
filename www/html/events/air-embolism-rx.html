@@ -1,25 +1,50 @@
 <div class="page">
-        <div class="event-nav button-group">
-            <div class="button-container">
-                <button data-uri="/html/events/air-embolism-dx.html" data-title="Air Embolism" class="bg-red emphasis">Dx</button>
-            </div>
-            <div class="button-container">
-                <button data-uri="/html/events/air-embolism-ddx.html" data-title="Air Embolism" class="bg-orange">DDx</button>
-            </div>
-            <div class="button-container">
-                <button data-uri="/html/events/air-embolism-tx.html" data-title="Air Embolism" class="bg-green">Tx</button>
-            </div>
-            <div class="button-container">
-                <button data-uri="/html/events/air-embolism-rx.html" data-title="Air Embolism" class="bg-blue emphasis">Rx</button>
-            </div>
-            <div class="button-container">
-                <button data-uri="/html/events/air-embolism-crisis.html" data-title="Air Embolism" class="bg-purple">Crisis</button>
-            </div>
+    <div class="event-nav button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/air-embolism-dx.html" data-title="Air Embolism" class="bg-red emphasis">Dx</button>
         </div>
-        <div class="bg-blue event-title">Drug / Dosage Summary</div>
-        <ul>
-            <li><strong>Epinephrine</strong> 1-10 MICROgrams/kg IV/IO, may need infusion 0.02-0.2 MICROgrams/kg/min IV</li>
-            <li><strong>Norepinephrine</strong> 0.05-2 MICROgrams/kg/min IV</li>
-        </ul>
+        <div class="button-container">
+            <button data-uri="/html/events/air-embolism-ddx.html" data-title="Air Embolism" class="bg-orange">DDx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/air-embolism-tx.html" data-title="Air Embolism" class="bg-green">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/air-embolism-rx.html" data-title="Air Embolism" class="bg-blue emphasis">Rx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/air-embolism-crisis.html" data-title="Air Embolism" class="bg-purple">Crisis</button>
+        </div>
     </div>
-    
+    <div class="bg-blue event-title">Drug / Dosage Summary</div>
+    <ul>
+        <li class="no-weight"><strong>Epinephrine</strong> 1-10 MICROgrams/kg IV/IO, may need infusion 0.02-0.2 MICROgrams/kg/min IV</li>
+        <li class="has-weight"><strong>Epinephrine</strong>
+            <span id="weight-range-1"></span> MICROgrams <span class="per-kg-weight">(1-10 MICROgrams/kg)</span> IV/IO, may need infusion
+            <span id="weight-range-2"></span> MICROgrams/min <span class="per-kg-weight">(0.02-0.2 MICROgrams/kg/min)</span> IV</li>
+        <li class="no-weight"><strong>Norepinephrine</strong> 0.05-2 MICROgrams/kg/min IV</li>
+        <li class="has-weight"><strong>Norepinephrine</strong> <span id="weight-range-3"></span> MICROgrams/min <span class="per-kg-weight">(0.05-2 MICROgrams/kg/min)</span> IV</li>
+    </ul>
+</div>
+
+
+<script>
+    if (app.weight > 0) {
+        // We'll fill in the weight ranges here.
+
+        // 1-10 MICROgrams/kg
+        const calculatedRange1a = app.printNumber(app.weight, 0, 2); 
+        const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
+        document.getElementById("weight-range-1").innerText = calculatedRange1a + "-" + calculatedRange1b;
+
+        // 0.02-0.2 MICROgrams/kg/min
+        const calculatedRange2a = app.printNumber(app.weight * 0.02, 0, 2); 
+        const calculatedRange2b = app.printNumber(app.weight * 0.2, 0, 2);
+        document.getElementById("weight-range-2").innerText = calculatedRange2a + "-" + calculatedRange2b;
+
+        // 0.05-2 MICROgrams/kg/min
+        const calculatedRange3a = app.printNumber(app.weight * 0.05, 0, 2); 
+        const calculatedRange3b = app.printNumber(app.weight * 2, 0, 2);
+        document.getElementById("weight-range-3").innerText = calculatedRange3a + "-" + calculatedRange3b;
+    }
+</script>

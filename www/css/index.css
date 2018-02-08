@@ -172,6 +172,36 @@ button.emphasis {
     padding: .5em;
 }
 
+/* These weight-related CSS classes will hide or display select items. */
+body.has-weight .has-weight {
+    display: initial;
+}
+
+body.has-weight li.has-weight {
+    display: list-item;
+}
+
+body.has-weight .no-weight {
+    display: none;
+}
+
+body.no-weight .no-weight {
+    display: inherit;
+}
+
+body.no-weight li.no-weight {
+    display: list-item;
+}
+
+body.no-weight .has-weight {
+    display: none;
+}
+
+.per-kg-weight {
+    color: #aaa;
+    font-size: 0.8em;
+}
+
 /* CSS for the back button */
 
 /* The default for all platforms: the back button is not displayed. */
@@ -197,6 +227,13 @@ body.display-virtual-back-button.has-history #back-button {
     -webkit-animation-timing-function: ease-in-out;
     
     opacity: 1;
+}
+
+/* Decrease the size of padding-left to fit more horizontally on a (relatively) small mobile screen. */
+ul {
+    /* Default for `ul` is 40px in Chrome. */
+    padding-left: 20px;
+    -webkit-padding-start: 20px; 
 }
 
 .bg-red {

@@ -1,34 +1,46 @@
 <div class="page">
-        <div class="event-nav button-group">
-            <div class="button-container">
-                <button data-uri="/html/events/air-embolism-dx.html" data-title="Air Embolism" class="bg-red emphasis">Dx</button>
-            </div>
-            <div class="button-container">
-                <button data-uri="/html/events/air-embolism-ddx.html" data-title="Air Embolism" class="bg-orange">DDx</button>
-            </div>
-            <div class="button-container">
-                <button data-uri="/html/events/air-embolism-tx.html" data-title="Air Embolism" class="bg-green">Tx</button>
-            </div>
-            <div class="button-container">
-                <button data-uri="/html/events/air-embolism-rx.html" data-title="Air Embolism" class="bg-blue">Rx</button>
-            </div>
-            <div class="button-container">
-                <button data-uri="/html/events/air-embolism-crisis.html" data-title="Air Embolism" class="bg-purple emphasis">Crisis</button>
-            </div>
+    <div class="event-nav button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/air-embolism-dx.html" data-title="Air Embolism" class="bg-red emphasis">Dx</button>
         </div>
-        <div class="bg-purple event-title">Verify DX - Stabilize Patient</div>
-        <ul>
-            <li>Notify surgeon, call for help and code cart</li>
-            <li>Call for transesophageal echocardiography</li>
-            <li>
-                    Check pulse. If no pulse or HR&lt;30:
-                <ul>
-                    <li>Start chest compressions</li>
-                    <li>Give epinephrine 1-10 MICROgrams/kg IV/IO</li>
-                    <li>If cardiac arrest, See <span data-uri="/html/events/not-implemented.html" data-title="Cardiac Arrest" class="uri">CARDIAC ARREST</span></li>
-                    <li>Consider ECMO (pager #7722)</li>
-                </ul>
-            </li>
-        </ul>
+        <div class="button-container">
+            <button data-uri="/html/events/air-embolism-ddx.html" data-title="Air Embolism" class="bg-orange">DDx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/air-embolism-tx.html" data-title="Air Embolism" class="bg-green">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/air-embolism-rx.html" data-title="Air Embolism" class="bg-blue">Rx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/air-embolism-crisis.html" data-title="Air Embolism" class="bg-purple emphasis">Crisis</button>
+        </div>
     </div>
-    
+    <div class="bg-purple event-title">Crisis Management</div>
+    <ul>
+        <li>Notify surgeon, call for help and code cart</li>
+        <li>Call for transesophageal echocardiography</li>
+        <li>
+            Check pulse. If no pulse or HR&lt;30:
+            <ul>
+                <li>Start chest compressions</li>
+                <li class="no-weight">Give epinephrine 1-10 MICROgrams/kg IV/IO</li>
+                <li class="has-weight">Give epinephrine <span id="weight-range-1"></span> MICROgrams <span class="per-kg-weight">(1-10 MICROgrams/kg)</span> IV/IO</li>
+                <li>If cardiac arrest, See <span data-uri="/html/events/not-implemented.html" data-title="Cardiac Arrest" class="uri">CARDIAC ARREST</span></li>
+                <li>Consider ECMO (pager #7722)</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<script>
+if (app.weight > 0) {
+    // We'll fill in the weight ranges here.
+
+    // 1-10 MICROgrams/kg
+    const calculatedRange1a = app.printNumber(app.weight, 0, 2); 
+    const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
+    document.getElementById("weight-range-1").innerText = calculatedRange1a + "-" + calculatedRange1b;
+
+}
+</script>
