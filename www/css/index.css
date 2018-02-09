@@ -1,3 +1,76 @@
+/* Add custom fonts to the app */
+@font-face {
+    font-family: 'ralewaybold';
+    src: url('fonts/raleway-bold.woff2') format('woff2'),
+         url('fonts/raleway-bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ralewayextrabold';
+    src: url('fonts/raleway-extrabold.woff2') format('woff2'),
+         url('fonts/raleway-extrabold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ralewayextralight';
+    src: url('fonts/raleway-extralight.woff2') format('woff2'),
+         url('fonts/raleway-extralight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ralewayheavy';
+    src: url('fonts/raleway-heavy.woff2') format('woff2'),
+         url('fonts/raleway-heavy.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ralewaylight';
+    src: url('fonts/raleway-light.woff2') format('woff2'),
+         url('fonts/raleway-light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ralewaymedium';
+    src: url('fonts/raleway-medium.woff2') format('woff2'),
+         url('fonts/raleway-medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ralewayregular';
+    src: url('fonts/raleway-regular.ttf') format('ttf'),
+         url('fonts/raleway-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ralewaysemibold';
+    src: url('fonts/raleway-semibold.woff2') format('woff2'),
+         url('fonts/raleway-semibold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ralewaythin';
+    src: url('fonts/raleway-thin.woff2') format('woff2'),
+         url('fonts/raleway-thin.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* Prevent focus outlines. See https://stackoverflow.com/a/17772980/772086 */
 * {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
@@ -39,9 +112,10 @@ body {
     -ms-user-select: none;
 
     /* Keep the background color the same as the header for iPhoneX */
-    background-color:#efefef; 
+    background-color:#efefef;
 
-    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    /*font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;*/
+    font-family: 'ralewaymedium', sans-serif;;
 
     height: 100%;
     /* height: -webkit-fill-available; */
@@ -138,7 +212,7 @@ button:active {
 	top:1px;
 }
 
-        
+
 
 input {
     font-size: 1em;
@@ -161,9 +235,9 @@ button.emphasis {
 
 .event-number {
     display: inline-block;
-    padding: 0.4em 1em;
+    padding: 0.4em 1.15em;
     font-weight:800;
-    border-radius: 8px;
+    border-radius: 4px;
 }
 
 .event-title {
@@ -223,9 +297,9 @@ body.display-virtual-back-button.has-history #back-button {
     animation-duration: 0.2s;
 	-webkit-animation-duration: 0.2s;
 
-	animation-timing-function: ease-in-out;	
+	animation-timing-function: ease-in-out;
     -webkit-animation-timing-function: ease-in-out;
-    
+
     opacity: 1;
 }
 
@@ -233,14 +307,14 @@ body.display-virtual-back-button.has-history #back-button {
 ul {
     /* Default for `ul` is 40px in Chrome. */
     padding-left: 20px;
-    -webkit-padding-start: 20px; 
+    -webkit-padding-start: 20px;
 }
 
 .bg-red {
     background-color: #f1c7d1;
 }
 
-button.bg-red:hover {
+button.bg-red:hover, button.bg-red.emphasis {
     background-color: #ecb3c0;
 }
 
@@ -248,7 +322,7 @@ button.bg-red:hover {
     background-color: #f1d2c7;
 }
 
-button.bg-orange:hover {
+button.bg-orange:hover, button.bg-orange.emphasis {
     background-color: #ecc2b3;
 }
 
@@ -256,7 +330,7 @@ button.bg-orange:hover {
     background-color: #e2f6d6;
 }
 
-button.bg-green:hover {
+button.bg-green:hover, button.bg-green.emphasis {
     background-color: #d3f1c1;
 }
 
@@ -264,7 +338,7 @@ button.bg-green:hover {
     background-color: #c7e6f1;
 }
 
-button.bg-blue:hover {
+button.bg-blue:hover, button.bg-blue.emphasis {
     background-color: #b3ddec;
 }
 
@@ -272,7 +346,7 @@ button.bg-blue:hover {
     background-color: #c7d1f1;
 }
 
-button.bg-purple:hover {
+button.bg-purple:hover, button.bg-purple.emphasis {
     background-color: #b3c0ec;
 }
 
