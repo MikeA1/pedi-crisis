@@ -1,0 +1,54 @@
+<div class="page">
+    <div class="event-nav button-group">
+          <div class="button-container">
+              <button data-uri="/html/events/last-dx.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-red">Dx</button>
+          </div>
+          <div class="button-container">
+              <button data-uri="/html/events/last-ddx.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-orange">DDx</button>
+          </div>
+          <div class="button-container">
+              <button data-uri="/html/events/last-tx.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-green">Tx</button>
+          </div>
+          <div class="button-container">
+              <button data-uri="/html/events/last-rx.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-blue emphasis">Rx</button>
+          </div>
+          <div class="button-container">
+              <button data-uri="/html/events/last-crisis.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-purple">Crisis</button>
+          </div>
+          <div class="button-container">
+              <button data-uri="/html/events/last-intraipid.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-yellow">Intralipid</button>
+          </div>
+    </div>
+    <div class="bg-blue event-title">Drug / Dosage Summary</div>
+    <ul>
+        <li class="no-weight"><strong>Intralipid 20%</strong> 1.5 mL/kg IV over 1 min, repeat until stable (see orange box below)</li>
+        <li class="has-weight"><strong>Intralipid 20%</strong>  <span id="weight-range-1"></span> milliliter <span class="per-kg-weight">(1.5 mL/kg)</span> IV over 1 min, repeat until stable (see orange box below)</li>
+
+        <li class="no-weight"><strong>Epinephrine</strong> 1 MICROgram/kg IV/IO</li>
+        <li class="has-weight"><strong>Epinephrine</strong> <span id="weight-range-2"></span> MICROgrams <span class="per-kg-weight">(1 MICROgram/kg)</span> IV/IO</li>
+
+        <li class="no-weight"><strong>Midazolam</strong> 0.05-0.1 mg/kg IV</li>
+        <li class="has-weight"><strong>Midazolam</strong> <span id="weight-range-3"></span> MICROgrams <span class="per-kg-weight">(0.05-0.1 mg/kg)</span> IV</li>
+    </ul>
+</div>
+
+<script>
+    if (app.weight > 0) {
+        // We'll fill in the weight ranges here.
+
+        // 1-10 MICROgrams/kg
+        const calculatedRange1a = app.printNumber(app.weight, 0, 2);
+        const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
+        document.getElementById("weight-range-1").innerText = calculatedRange1a + "-" + calculatedRange1b;
+
+        // 0.02-0.2 MICROgrams/kg/min
+        const calculatedRange2a = app.printNumber(app.weight * 0.02, 0, 2);
+        const calculatedRange2b = app.printNumber(app.weight * 0.2, 0, 2);
+        document.getElementById("weight-range-2").innerText = calculatedRange2a + "-" + calculatedRange2b;
+
+        // 0.05-2 MICROgrams/kg/min
+        const calculatedRange3a = app.printNumber(app.weight * 0.05, 0, 2);
+        const calculatedRange3b = app.printNumber(app.weight * 2, 0, 2);
+        document.getElementById("weight-range-3").innerText = calculatedRange3a + "-" + calculatedRange3b;
+    }
+</script>
