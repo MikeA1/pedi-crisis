@@ -115,7 +115,7 @@ body {
     background-color:#efefef;
 
     /*font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;*/
-    font-family: 'ralewaymedium', sans-serif;;
+    font-family: 'ralewaymedium', sans-serif;
 
     height: 100%;
     /* height: -webkit-fill-available; */
@@ -125,6 +125,10 @@ body {
 
     /* This fixes an issue where iOS will shift the screen up when the keyboard is dismissed. */
     /* position: fixed; */
+}
+
+strong {
+    font-family: 'ralewayextrabold', sans-serif;
 }
 
 #nav {
@@ -220,7 +224,7 @@ input {
 
 /* Buttons are styled very lightly so that the native styles may be applied. */
 button.emphasis {
-    font-weight: 700;
+    font-family: 'ralewayextrabold', sans-serif;
     /* This works on Chrome but not iOS WebView. */
     box-shadow: 0 0 4px #777;
 }
@@ -324,6 +328,14 @@ button.bg-red:hover, button.bg-red.emphasis {
 
 button.bg-orange:hover, button.bg-orange.emphasis {
     background-color: #ecc2b3;
+}
+
+.bg-yellow {
+    background-color: #FCF8E4;
+}
+
+button.bg-yellow:hover, button.bg-yellow.emphasis {
+    background-color: #f9f0c6;
 }
 
 .bg-green {
