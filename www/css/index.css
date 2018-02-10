@@ -362,7 +362,14 @@ button.bg-purple:hover, button.bg-purple.emphasis {
 
 .uri {
     color: #33aa33;
-    font-weight: 600;
+    font-family: 'ralewaybold', sans-serif;
+}
+
+/* Telephone numbers */
+a {
+  color: #33aa33;
+  font-family: 'ralewaybold', sans-serif;
+  text-decoration: none;
 }
 
 /* Styling for aside boxes on page */
