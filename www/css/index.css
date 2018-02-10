@@ -203,7 +203,7 @@ button {
 	border:1px solid #dcdcdc;
 	display:inline-block;
 	cursor:pointer;
-	font-family:Arial;
+	font-family: 'ralewaymedium', sans-serif;
 	text-decoration:none;
     text-shadow:0px 1px 0px #ffffff;
     height: 2rem;
@@ -215,8 +215,6 @@ button:active {
 	position:relative;
 	top:1px;
 }
-
-
 
 input {
     font-size: 1em;
@@ -240,13 +238,13 @@ button.emphasis {
 .event-number {
     display: inline-block;
     padding: 0.4em 1.15em;
-    font-weight:800;
+    font-family: 'ralewayextrabold', sans-serif;
     border-radius: 4px;
 }
 
 .event-title {
     border-radius: 8px;
-    font-weight: 500;
+    font-family: 'ralewaybold', sans-serif;
     padding: .5em;
 }
 
@@ -299,9 +297,9 @@ body.display-virtual-back-button.has-history #back-button {
     -webkit-animation-name: fade-in;
 
     animation-duration: 0.2s;
-	-webkit-animation-duration: 0.2s;
+	  -webkit-animation-duration: 0.2s;
 
-	animation-timing-function: ease-in-out;
+	  animation-timing-function: ease-in-out;
     -webkit-animation-timing-function: ease-in-out;
 
     opacity: 1;
@@ -365,4 +363,19 @@ button.bg-purple:hover, button.bg-purple.emphasis {
 .uri {
     color: #33aa33;
     font-weight: 600;
+}
+
+/* Styling for aside boxes on page */
+.subhet {
+  font-family: 'ralewaybold', sans-serif;
+}
+
+aside {
+  border-radius: 8px;
+  padding: .5em;
+}
+
+aside ul {
+  margin-top: 0;
+  margin-bottom: 0;
 }
