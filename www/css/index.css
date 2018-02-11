@@ -386,3 +386,8 @@ aside ul {
   margin-top: 0;
   margin-bottom: 0;
 }
+
+.attn {
+    padding: 1rem;
+    padding-left: 2rem;
+}
