@@ -276,6 +276,14 @@ button.bg-purple:hover {
     background-color: #b3c0ec;
 }
 
+.bg-violet {
+    background-color: #d2c7f1;
+}
+
+button.bg-violet:hover {
+    background-color: #c2b3ec;
+}
+
 .uri {
     color: #33aa33;
     font-weight: 600;
