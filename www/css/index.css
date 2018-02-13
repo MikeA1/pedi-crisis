@@ -197,9 +197,9 @@ strong {
 
 button {
 	background-color:#ededed;
-	-moz-border-radius:16px;
-	-webkit-border-radius:16px;
-	border-radius:16px;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
 	border:1px solid #dcdcdc;
 	display:inline-block;
 	cursor:pointer;
@@ -243,14 +243,14 @@ button.emphasis {
 }
 
 .event-title {
-    border-radius: 8px;
+    border-radius: 4px;
     font-family: 'ralewaybold', sans-serif;
     padding: .5em;
 }
 
 /* These weight-related CSS classes will hide or display select items. */
 body.has-weight .has-weight {
-    display: initial;
+    display: unset;
 }
 
 body.has-weight li.has-weight {
@@ -262,7 +262,7 @@ body.has-weight .no-weight {
 }
 
 body.no-weight .no-weight {
-    display: inherit;
+    display: unset;
 }
 
 body.no-weight li.no-weight {
@@ -386,7 +386,7 @@ a {
 }
 
 aside {
-  border-radius: 8px;
+  border-radius: px;
   padding: .5em;
 }
 
