@@ -360,6 +360,14 @@ button.bg-purple:hover, button.bg-purple.emphasis {
     background-color: #b3c0ec;
 }
 
+.bg-violet {
+    background-color: #d2c7f1;
+}
+
+button.bg-violet:hover {
+    background-color: #c2b3ec;
+}
+
 .uri {
     color: #33aa33;
     font-family: 'ralewaybold', sans-serif;

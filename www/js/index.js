@@ -8,7 +8,7 @@
         },
         set weight(value) {
             // A check of `!isNaN(value)` is redundant with `> 0`
-            if (typeof (value) === "number" && value > 0) {
+            if (typeof (value) === "number" && value > 0 && isFinite(value)) {
                 // This is a positive number
                 if (!weightValue) {
                     // Add the has-weight rule.
@@ -26,7 +26,7 @@
                     document.body.classList.remove("has-weight");
                 }
 
-                weightValue = null;
+                weightValue = 0;
                 weightButton.innerHTML = "Pt Wt ---";
             } else {
                 console.warn("Value provided where weight '" + value + '" is not a number.');
@@ -83,6 +83,11 @@ app.navigate = (function () {
         }
         return navigate.rootPath + uri;
     }
+
+    // This tracks the number of pixels the content is offset vs. the fixed header.
+    const navElement = document.getElementById("nav");
+    const navOffsetElement = document.getElementById("nav-offset");
+    let offsetHeight = 0;
 
     /**
      * Takes a URI (e.g., "/events/index.html") and generates an object `{hash, title}` that contains text suitable for
@@ -179,18 +184,11 @@ app.navigate = (function () {
                 return;
             }
 
-            // Load the uri in a container before adding it to the DOM because this makes the implementation of "addClass" easier.
-            let container = document.createElement("div");
-            if (addClass) container.classList.add(addClass);
             // Transform the URI to an absolute path.
             var fullUri = createAbsoluteUri(uri);
-            $(container).load(fullUri);
-
-            // $.html() has memory-management magic:
-            // "jQuery removes other constructs such as data and event handlers from child elements 
-            //  before replacing those elements with the new content" - http://api.jquery.com/html/#html2
-            // $.html() also handles execution of our script code: this uses an evil eval, so never load untrusted/third-party content!
-            $(contentElement).html(container);
+            //$(container).load(fullUri);
+            //$(contentElement).html(container);
+            $(contentElement).load(fullUri);
 
             headerElement.innerText = header || defaultHeader;
 
@@ -226,10 +224,14 @@ app.navigate = (function () {
             }
 
             // The header may have grown or shrunk vertically, so move the spacer div appropriately.
-            const navElement = document.getElementById("nav");
-            const offsetHeight = navElement.offsetHeight;
-            const navOffsetElement = document.getElementById("nav-offset");
-            navOffsetElement.style.height = offsetHeight + "px";
+            
+            const newOffsetHeight = navElement.offsetHeight;
+            // Prevent reflows
+            if (newOffsetHeight !== offsetHeight) {
+                navOffsetElement.style.height = newOffsetHeight + "px";
+                offsetHeight = newOffsetHeight;
+            }
+            
         },
     }
 
@@ -340,9 +342,14 @@ app.navigate = (function () {
 // Load data stored in local storage.
 (function () {
     "use strict";
-    const weight = localStorage.getItem("weight");
+    const weight = +localStorage.getItem("weight");
     if (weight) {
         app.weight = +weight;
+    } else {
+        // Only need to do this once because the default weight is zero, so setting it to 
+        // zero again will not cause the class list to change.
+        //app.weight = 0;
+        document.body.classList.add("no-weight");
     }
 })();
 
@@ -358,7 +365,7 @@ app.navigate = (function () {
      *   const b = 0.123456
      *   app.printNumber(b) // 0
      *   app.printNumber(b, 1) // 0.1
-     *   app.printNumber(b, 4) // 0.1235
+     *   app.printNumber(b, 4) // 0.1235 - Note that .12345 is correctly rounded up to .1235!
      *   app.printNumber(b, 4, 8) // 0.123456
      * 
      * @param {number} value The value to round.
