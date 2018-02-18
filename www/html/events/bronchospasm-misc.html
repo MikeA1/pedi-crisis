@@ -27,9 +27,7 @@
         <li>Consider chest radiograph</li>
         <li>Consider IV steroids</li>
         <li class="no-weight">If severe, consider intravenous EPINEPHrine 1-2 MICROgrams/kg IV (MAX 1 mg)</li>
-        <li class="has-weight">If severe, consider intravenous EPINEPHrine
-            <span id="weight-range-1"></span> MICROgrams
-            <span class="per-kg-weight">(1-2 MICROgrams/kg, MAX 1 mg)</span> IV</li>
+        <li class="has-weight">If severe, consider intravenous EPINEPHrine <span id="weight-range-1"></span> MICROgrams <span class="per-kg-weight">(1-2 MICROgrams/kg, MAX 1 mg)</span> IV</li>
         <li>If severe, consider ICU and/or advanced airway management</li>
     </ul>
 </div>
@@ -37,10 +35,10 @@
 
 <script>
     if (app.weight > 0) {
-        // 1-2 MICROgrams/kg IV (MAX 1 mg)
+        // 1-2 MICROgrams/kg, MAX 1 mg
         // Note: use `Math.min()` to apply "MAX 1 mg" logic.
         const calculatedRange1a = app.printNumber(Math.min(app.weight, 1000));
         const calculatedRange1b = app.printNumber(Math.min(app.weight * 2, 1000));
-        document.getElementById("weight-range-1").innerText = calculatedRange1a + "-" + calculatedRange1b;
+        document.getElementById("weight-range-1").innerText = calculatedRange1a === calculatedRange1b ? calculatedRange1a : calculatedRange1a + "-" + calculatedRange1b;
     }
 </script>

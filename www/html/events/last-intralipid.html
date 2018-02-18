@@ -13,43 +13,49 @@
               <button data-uri="/html/events/last-rx.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-blue">Rx</button>
         </div>
         <div class="button-container">
-              <button data-uri="/html/events/last-crisis.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-purple">Crisis</button>
+            <button data-uri="/html/events/last-intralipid.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-violet emphasis">Misc</button>
         </div>
         <div class="button-container">
-              <button data-uri="/html/events/last-intralipid.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-yellow emphasis">Intralipid</button>
+              <button data-uri="/html/events/last-crisis.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-purple">Crisis</button>
         </div>
     </div>
-    <div class="bg-yellow event-title">Intralipid Dosing</div>
+    <div class="bg-violet event-title">Intralipid Dosing</div>
     <ul>
       <li class="no-weight">Bolus <strong>Intralipid 20%</strong> 1.5 mL/kg IV over 1 minute. Repeat every 3-5 minutes, until hemodynamically stable
         <ul>
           <li>Start infusion <strong>0.25 mL/kg/min</strong>, increase as needed to 0.5 mL/kg/min</li>
         </ul>
       </li>
-      <li class="has-weight">Bolus <strong>Intralipid 20% <span id="weight-range-1"></span> milliliter <span class="per-kg-weight">(1.5 mL/kg)</span> IV</strong> over 1 minute. Repeat every 3-5 minutes, until hemodynamically stable
+      <li class="has-weight">Bolus <strong>Intralipid 20% <span id="weight-range-1"></span> mL <span class="per-kg-weight">(1.5 mL/kg)</span> IV</strong> over 1 minute. Repeat every 3-5 minutes, until hemodynamically stable
         <ul>
-          <li>Start infusion <strong><span id="weight-range-2"></span> milliliter <span class="per-kg-weight">(0.25 mL/kg/min)</span></strong>, increase as needed to 0.5 mL/kg/min</li>
+          <li>Start infusion <strong><span id="weight-range-2"></span> mL/min <span class="per-kg-weight">(0.25 mL/kg/min)</span></strong>, increase as needed to <span id="weight-range-3"></span> mL/min <span class="per-kg-weight">(0.5 mL/kg/min)</span></li>
         </ul>
       </li>
 
       <li><strong>Continue infusion for at least 10 min</strong> after hemodynamic stability is restored.</li>
-      <li>Max dose of intralipid 20% is 10 mL/kg over first 30 min. If not responding, reconsider if other diagnosis or inadequate resuscitation</li>
+      <li class="no-weight">Max dose of intralipid 20% is 10 mL/kg over first 30 min. If not responding, reconsider if other diagnosis or inadequate resuscitation</li>
+      <li class="has-weight">Max dose of intralipid 20% is <span id="weight-range-4"></span> mL <span class="per-kg-weight">(10 mL/kg)</span> over first 30 min. If not responding, reconsider if other diagnosis or inadequate resuscitation</li>
     </ul>
 </div>
 
 <script>
 if (app.weight > 0) {
     // We'll fill in the weight ranges here.
-
+    
     // 1.5 Milliliters/kg
-    const calculatedRange1a = app.printNumber(app.weight, 0, 2);
-    const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
-    document.getElementById("weight-range-1").innerText = calculatedRange1a + "-" + calculatedRange1b;
-
-    // 0.25 Milliliters/kg
-    const calculatedRange2a = app.printNumber(app.weight * 0.02, 0, 2);
-    const calculatedRange2b = app.printNumber(app.weight * 0.2, 0, 2);
-    document.getElementById("weight-range-2").innerText = calculatedRange2a + "-" + calculatedRange2b;
-
+    const calculatedRange1 = app.printNumber(app.weight * 1.5, 0, 2);
+    document.getElementById("weight-range-1").innerText = calculatedRange1;
+    
+    // 0.25 mL/kg/min
+    const calculatedRange2 = app.printNumber(app.weight * 0.25, 0, 2);
+    document.getElementById("weight-range-2").innerText = calculatedRange2;
+    
+    // 0.5 mL/kg/min
+    const calculatedRange3 = app.printNumber(app.weight * 0.5, 0, 2);
+    document.getElementById("weight-range-3").innerText = calculatedRange3;
+    
+    // 10 mL/kg
+    const calculatedRange4 = app.printNumber(app.weight * 10, 0, 2);
+    document.getElementById("weight-range-4").innerText = calculatedRange4;
 }
 </script>

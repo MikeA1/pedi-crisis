@@ -13,22 +13,25 @@
                 <button data-uri="/html/events/anaphylaxis-rx.html" data-title="Anaphylaxis" class="bg-blue">Rx</button>
             </div>
             <div class="button-container">
+                <button data-uri="/html/events/anaphylaxis-misc.html" data-title="Anaphylaxis" class="bg-violet">Misc</button>
+            </div>
+            <div class="button-container">
                 <button data-uri="/html/events/anaphylaxis-crisis.html" data-title="Anaphylaxis" class="bg-purple">Crisis</button>
             </div>
         </div>
         <div class="bg-green event-title">Treatment</div>
           <ul>
             <li class="no-weight">To restore intravascular volume, give NS or LR 10-30 mL/kg IV/IO rapidly</li>
-            <li class="has-weight">To restore intravascular volume, give NS or LR <span id="weight-range-1"></span> milliliters <span class="per-kg-weight">(10-30 mL/kg)</span> IV/IO rapidly</li>
+            <li class="has-weight">To restore intravascular volume, give NS or LR <span id="weight-range-1"></span> mL <span class="per-kg-weight">(10-30 mL/kg)</span> IV/IO rapidly</li>
 
             <li class="no-weight">To restore BP and ↓ mediator release, give EPINEPHrine 1-10 MICROgrams/kg IV/IO, as needed, may need infusion 0.02-0.2 MICROgrams/kg/min</li>
-            <li class="has-weight">To restore BP and ↓ mediator release, give EPINEPHrine <span id="weight-range-2"></span> MICROgrams <span class="per-kg-weight">(1-10 MICROgrams/kg)</span> IV/IO, as needed, may need infusion <span id="weight-range-3"></span> MICROgrams <span class="per-kg-weight">(0.02-0.2 MICROgrams/kg/min)</span></li>
+            <li class="has-weight">To restore BP and ↓ mediator release, give EPINEPHrine <span id="weight-range-2"></span> MICROgrams <span class="per-kg-weight">(1-10 MICROgrams/kg)</span> IV/IO, as needed, may need infusion <span id="weight-range-3"></span> MICROgrams/min <span class="per-kg-weight">(0.02-0.2 MICROgrams/kg/min)</span></li>
 
             <li class="no-weight">To ↓ histamine-mediated effects, give diphenhydrAMINE 1 mg/kg IV/IO (MAX 50 mg)</li>
-            <li class="has-weight">To ↓ histamine-mediated effects, give diphenhydrAMINE <span id="weight-range-4"></span> milligrams <span class="per-kg-weight">(1 mg/kg)</span> IV/IO (MAX 50 mg)</li>
+            <li class="has-weight">To ↓ histamine-mediated effects, give diphenhydrAMINE <span id="weight-range-4"></span> mg <span class="per-kg-weight">(1 mg/kg, MAX 50 mg)</span> IV/IO</li>
 
             <li class="no-weight">To ↓ mediator release, give MethylPREDNISolone 2 mg/kg IV/IO (MAX 100 mg)</li>
-            <li class="has-weight">To ↓ mediator release, give MethylPREDNISolone <span id="weight-range-5"></span> milligrams <span class="per-kg-weight">(2 mg/kg)</span> IV/IO (MAX 100 mg)</li>
+            <li class="has-weight">To ↓ mediator release, give MethylPREDNISolone <span id="weight-range-5"></span> mg <span class="per-kg-weight">(2 mg/kg, MAX 100 mg)</span> IV/IO</li>
 
             <li class="no-weight">For continued ↓ BP, give vasopressin 10 MICROunits/kg IV</li>
             <li class="has-weight">For continued ↓ BP, give vasopressin <span id="weight-range-6"></span> MICROunits <span class="per-kg-weight">(10 MICROunits/kg)</span> IV</li>
@@ -36,7 +39,7 @@
             <li>To ↓ bronchoconstriction, give albuterol 4-10 puffs as needed</li>
 
             <li class="no-weight">To ↓ effects of histamine, give famotidine 0.25 mg/kg IV (MAX 20 mg) or ranitidine 1 mg/kg IV (MAX 50 mg)</li>
-            <li class="has-weight">To ↓ effects of histamine, give famotidine <span id="weight-range-7"></span> Milligrams <span class="per-kg-weight">(0.25 mg/kg)</span> IV (MAX 20 mg) or ranitidine <span id="weight-range-8"></span> Milligrams <span class="per-kg-weight">(1 mg/kg)</span> IV (MAX 50 mg)</li>
+            <li class="has-weight">To ↓ effects of histamine, give famotidine <span id="weight-range-7"></span> mg <span class="per-kg-weight">(0.25 mg/kg, MAX 20 mg)</span> IV or ranitidine <span id="weight-range-8"></span> mg <span class="per-kg-weight">(1 mg/kg, MAX 50 mg)</span> IV</li>
 
             <li>If lab confirmation needed, send mast cell tryptase level within 2 hours</li>
           </ul>
@@ -46,19 +49,35 @@
         if (app.weight > 0) {
             // We'll fill in the weight ranges here.
 
-            // 1-10 MICROgrams/kg
-            const calculatedRange1a = app.printNumber(app.weight, 0, 2);
-            const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
+            // 10-30 mL/kg
+            const calculatedRange1a = app.printNumber(app.weight * 10, 0, 2);
+            const calculatedRange1b = app.printNumber(app.weight * 30, 0, 2);
             document.getElementById("weight-range-1").innerText = calculatedRange1a + "-" + calculatedRange1b;
 
-            // 0.02-1 MICROgrams/kg/min
-            const calculatedRange2a = app.printNumber(app.weight * 0.02, 0, 2);
-            const calculatedRange2b = app.printNumber(app.weight, 0, 2);
+            // 1-10 MICROgrams/kg
+            const calculatedRange2a = app.printNumber(app.weight, 0, 2);
+            const calculatedRange2b = app.printNumber(app.weight * 10, 0, 2);
             document.getElementById("weight-range-2").innerText = calculatedRange2a + "-" + calculatedRange2b;
 
-            // 0.05-2 MICROgrams/kg/min
-            const calculatedRange3a = app.printNumber(app.weight * 0.05, 0, 2);
-            const calculatedRange3b = app.printNumber(app.weight * 2, 0, 2);
+            // 0.02-0.2 MICROgrams/kg/min
+            const calculatedRange3a = app.printNumber(app.weight * 0.02, 0, 2);
+            const calculatedRange3b = app.printNumber(app.weight * 0.2, 0, 2);
             document.getElementById("weight-range-3").innerText = calculatedRange3a + "-" + calculatedRange3b;
+
+            // 1 mg/kg, MAX 50 mg
+            const calculatedRange4a = app.printNumber(Math.min(app.weight, 50), 0, 2);
+            document.getElementById("weight-range-4").innerText = calculatedRange4a;
+
+            // 2 mg/kg, MAX 100 mg
+            document.getElementById("weight-range-5").innerText = app.printNumber(Math.min(app.weight * 2, 100), 0, 2);
+
+            // 10 MICROunits/kg
+            document.getElementById("weight-range-6").innerText = app.printNumber(app.weight * 10, 0, 2);
+
+            // 0.25 mg/kg, MAX 20 mg
+            document.getElementById("weight-range-7").innerText = app.printNumber(Math.min(app.weight * 0.25, 20), 0, 2);
+
+            // 1 mg/kg, MAX 50 mg
+            document.getElementById("weight-range-8").innerText = app.printNumber(Math.min(app.weight, 50), 0, 2);
         }
     </script>

@@ -18,10 +18,10 @@
             <li>Notify surgeon, call for help and code cart/defibrillator</li>
             <li>If ETT, 100-120 chest compressions/min + 10 breaths/min</li>
             <li>If no ETT, 15:2 compression:ventilation ratio (100-120 chest compressions/min + 8 breaths/min)</li>
-            <li>For chest compressions, maximize EtCO2 > 10 mmHg (see next card for more details):
+            <li>For chest compressions, maximize EtCO<sub>2</sub> &gt; 10 mmHg (see next card for more details):
               <ul>
                 <li>Switch compressor every 2 min
-                <li>Use sudden increase in EtCO2 for ROSC, Do NOT stop compressions for pulse check</li>
+                <li>Use sudden increase in EtCO<sub>2</sub> for ROSC, Do NOT stop compressions for pulse check</li>
               </ul>
             </li>
             <li>Give 100% oxygen. Turn off anesthetics</li>
@@ -32,35 +32,30 @@
             <li>If VF/VT, shock 2-4 joules/kg (up to 10 joules/kg on subsequent shocks)
             <li>Resume chest compressions immediately regardless of rhythm
             <li class="no-weight">EPINEPHrine 10 MICROgrams/kg IV q 3-5 min while in arrest (MAX 1 mg)
-            <li class="has-weight">EPINEPHrine <span id="weight-range-1"></span> MICROgrams <span class="per-kg-weight">(10 MICROgrams/kg)</span> IV q 3-5 min while in arrest (MAX 1 mg)
+            <li class="has-weight">EPINEPHrine <span id="weight-range-1"></span> MICROgrams <span class="per-kg-weight">(10 MICROgrams/kg, MAX 1 mg)</span> IV q 3-5 min while in arrest
 
             <li>Check pulse & rhythm q 2 min during compressor change
             <li>Check for reversible causes (Hs and Ts) early and often (see table below)
             <li class="no-weight">Lidocaine 1 mg/kg bolus (MAX 100 mg); may repeat (total: 2 doses) OR amiodarone 5 mg/kg bolus; may repeat (total: 3 doses)
-            <li class="has-weight">Lidocaine <span id="weight-range-2"></span> MILLIgrams <span class="per-kg-weight">(1 mg/kg)</span> bolus (MAX 100 mg); may repeat (total: 2 doses) OR amiodarone <span id="weight-range-3"></span> MILLIgrams <span class="per-kg-weight">(5 mg/kg)</span> bolus; may repeat (total: 3 doses)
+            <li class="has-weight">Lidocaine <span id="weight-range-2"></span> mg <span class="per-kg-weight">(1 mg/kg, MAX 100 mg)</span> bolus; may repeat (total: 2 doses) OR amiodarone <span id="weight-range-3"></span> mg <span class="per-kg-weight">(5 mg/kg)</span> bolus; may repeat (total: 3 doses)
 
             <li>Repeat sequence in this box until return of spontaneous circulation
-            <li>If cardiac arrest > 6 min, activate ECMO (if available)
+            <li>If cardiac arrest &gt; 6 min, activate ECMO (if available)
         </ul>
     </div>
 
     <script>
         if (app.weight > 0) {
-            // We'll fill in the weight ranges here.
+            // 10 MICROgrams/kg, MAX 1 mg
+            const calculatedRange1 = app.printNumber(Math.min(app.weight, 1000), 0, 2);
+            document.getElementById("weight-range-1").innerText = calculatedRange1;
 
-            // 1-10 MICROgrams/kg
-            const calculatedRange1a = app.printNumber(app.weight, 0, 2);
-            const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
-            document.getElementById("weight-range-1").innerText = calculatedRange1a + "-" + calculatedRange1b;
+            // 1 mg/kg, MAX 100 mg
+            const calculatedRange2 = app.printNumber(Math.min(app.weight, 100), 0, 2);
+            document.getElementById("weight-range-2").innerText = calculatedRange2;
 
-            // 0.02-1 MICROgrams/kg/min
-            const calculatedRange2a = app.printNumber(app.weight * 0.02, 0, 2);
-            const calculatedRange2b = app.printNumber(app.weight, 0, 2);
-            document.getElementById("weight-range-2").innerText = calculatedRange2a + "-" + calculatedRange2b;
-
-            // 0.05-2 MICROgrams/kg/min
-            const calculatedRange3a = app.printNumber(app.weight * 0.05, 0, 2);
-            const calculatedRange3b = app.printNumber(app.weight * 2, 0, 2);
-            document.getElementById("weight-range-3").innerText = calculatedRange3a + "-" + calculatedRange3b;
+            // 5 mg/kg
+            const calculatedRange3 = app.printNumber(app.weight * 5, 0, 2);
+            document.getElementById("weight-range-3").innerText = calculatedRange3;
         }
     </script>

@@ -21,11 +21,7 @@
             </div>
     <div class="bg-red event-title">Verify DX - Stabilize Patient</div>
     <ul>
-        <li>Verify Bronchospasm: ↓ EtCO
-            <sub>2</sub>, upslope stage III EtCO
-            <sub>2</sub> ↑ airway pressures, ↓ SpO
-            <sub>2</sub>
-        </li>
+        <li>Verify Bronchospasm: ↓ EtCO<sub>2</sub>, upslope stage III EtCO<sub>2</sub> ↑ airway pressures, ↓ SpO<sub>2</sub></li>
         <li>Auscultate the chest
             <ul>
                 <li>Equal breath sounds?</li>
@@ -44,7 +40,7 @@
         <li class="no-weight">If needed, give ketamine 1-2 mg/kg IV</li>
         <li class="has-weight">If needed, give ketamine <span id="weight-range-1"></span> mg <span class="per-kg-weight">(1-2 mg/kg)</span> IV</li>
         <li class="no-weight">If severe, consider EPINEPHrine 1-2 MICROgrams/kg IV (MAX 1 mg)</li>
-        <li class="has-weight">If severe, consider EPINEPHrine <span id="weight-range-2"></span> MICROgrams <span class="per-kg-weight">(1-2 MICROgrams/kg IV, MAX 1 mg)</span> IV </li>
+        <li class="has-weight">If severe, consider EPINEPHrine <span id="weight-range-2"></span> MICROgrams <span class="per-kg-weight">(1-2 MICROgrams/kg, MAX 1 mg)</span> IV </li>
     </ul>
 </div>
 
@@ -61,7 +57,7 @@
             // Note: use `Math.min()` to apply "MAX 1 mg" logic.
             const calculatedRange2a = app.printNumber(Math.min(app.weight, 1000));
             const calculatedRange2b = app.printNumber(Math.min(app.weight * 2, 1000));
-            document.getElementById("weight-range-2").innerText = calculatedRange2a + "-" + calculatedRange2b;
+            document.getElementById("weight-range-2").innerText = calculatedRange2a === calculatedRange2b ? calculatedRange2a : calculatedRange2a + "-" + calculatedRange2b;
         }
     </script>
     
