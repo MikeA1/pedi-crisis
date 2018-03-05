@@ -19,7 +19,7 @@
       - Debug on iOS and Android with the [PhoneGap Developer](http://docs.phonegap.com/getting-started/2-install-mobile-app/) mobile app, 
          - Windows: you may need to open port 3000 in Windows Firewall.
 
-# Build
+# Platforms
 
 ### Browser
 This should work after Getting Started is completed. No additional steps needed.
