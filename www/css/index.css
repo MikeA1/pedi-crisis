@@ -1,72 +1,72 @@
 /* Add custom fonts to the app */
 @font-face {
-    font-family: 'ralewaybold';
-    src: url('fonts/raleway-bold.woff2') format('woff2'),
-         url('fonts/raleway-bold.woff') format('woff');
+    font-family: 'roboto-bold';
+    src: url('fonts/roboto-bold.woff2') format('woff2'),
+         url('fonts/roboto-bold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'ralewayextrabold';
-    src: url('fonts/raleway-extrabold.woff2') format('woff2'),
-         url('fonts/raleway-extrabold.woff') format('woff');
+    font-family: 'roboto-black';
+    src: url('fonts/roboto-black.woff2') format('woff2'),
+         url('fonts/roboto-black.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'ralewayextralight';
-    src: url('fonts/raleway-extralight.woff2') format('woff2'),
-         url('fonts/raleway-extralight.woff') format('woff');
+    font-family: 'roboto-light';
+    src: url('fonts/roboto-light.woff2') format('woff2'),
+         url('fonts/roboto-light.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'ralewayheavy';
-    src: url('fonts/raleway-heavy.woff2') format('woff2'),
-         url('fonts/raleway-heavy.woff') format('woff');
+    font-family: 'roboto-regular';
+    src: url('fonts/roboto-regular.woff2') format('woff2'),
+         url('fonts/roboto-regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'ralewaylight';
-    src: url('fonts/raleway-light.woff2') format('woff2'),
-         url('fonts/raleway-light.woff') format('woff');
+    font-family: 'roboto-thin';
+    src: url('fonts/roboto-thin.woff2') format('woff2'),
+         url('fonts/roboto-thin.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'ralewaymedium';
-    src: url('fonts/raleway-medium.woff2') format('woff2'),
-         url('fonts/raleway-medium.woff') format('woff');
+    font-family: 'roboto-medium';
+    src: url('fonts/roboto-medium.woff2') format('woff2'),
+         url('fonts/roboto-medium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'ralewayregular';
-    src: url('fonts/raleway-regular.ttf') format('ttf'),
-         url('fonts/raleway-regular.woff') format('woff');
+    font-family: 'robotocondensed-regular';
+    src: url('fonts/robotocondensed-regular.woff') format('woff'),
+         url('fonts/robotocondensed-regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'ralewaysemibold';
-    src: url('fonts/raleway-semibold.woff2') format('woff2'),
-         url('fonts/raleway-semibold.woff') format('woff');
+    font-family: 'robotocondensed-bold';
+    src: url('fonts/robotocondensed-bold.woff2') format('woff2'),
+         url('fonts/robotocondensed-bold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'ralewaythin';
-    src: url('fonts/raleway-thin.woff2') format('woff2'),
-         url('fonts/raleway-thin.woff') format('woff');
+    font-family: 'robotocondensed-light';
+    src: url('fonts/robotocondensed-light.woff2') format('woff2'),
+         url('fonts/robotocondensed-light.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -115,7 +115,7 @@ body {
     background-color:#efefef;
 
     /*font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;*/
-    font-family: 'ralewaymedium', sans-serif;
+    font-family: 'roboto-regular', sans-serif;
 
     height: 100%;
     /* height: -webkit-fill-available; */
@@ -128,7 +128,7 @@ body {
 }
 
 strong {
-    font-family: 'ralewayextrabold', sans-serif;
+    font-family: 'roboto-black', sans-serif;
 }
 
 #nav {
@@ -151,6 +151,11 @@ strong {
 
 #title {
     font-size: 1rem;
+}
+
+#header {
+  font-family: 'robotocondensed-bold', sans-serif;
+  font-size: 1.2rem;
 }
 
 .page {
@@ -203,7 +208,7 @@ button {
 	border:1px solid #dcdcdc;
 	display:inline-block;
 	cursor:pointer;
-	font-family: 'ralewaymedium', sans-serif;
+	font-family: 'roboto-medium', sans-serif;
 	text-decoration:none;
     text-shadow:0px 1px 0px #ffffff;
     height: 2rem;
@@ -222,9 +227,10 @@ input {
 
 /* Buttons are styled very lightly so that the native styles may be applied. */
 button.emphasis {
-    font-family: 'ralewayextrabold', sans-serif;
+    font-family: 'roboto-black', sans-serif;
     /* This works on Chrome but not iOS WebView. */
     box-shadow: 0 0 4px #777;
+    border-color: #666;
 }
 
 .button-container button {
@@ -238,13 +244,13 @@ button.emphasis {
 .event-number {
     display: inline-block;
     padding: 0.4em 1.15em;
-    font-family: 'ralewayextrabold', sans-serif;
+    font-family: 'roboto-black', sans-serif;
     border-radius: 4px;
 }
 
 .event-title {
     border-radius: 4px;
-    font-family: 'ralewaybold', sans-serif;
+    font-family: 'roboto-bold', sans-serif;
     padding: .5em;
 }
 
@@ -312,6 +318,15 @@ ul {
     -webkit-padding-start: 20px;
 }
 
+li li {
+  list-style-type: none;
+}
+
+li li:before {
+  content: "-";
+  padding-right: 5px;
+}
+
 .bg-red {
     background-color: #f1c7d1;
 }
@@ -320,12 +335,22 @@ button.bg-red:hover, button.bg-red.emphasis {
     background-color: #ecb3c0;
 }
 
+button.bg-red.emphasis {
+  border-color: #f1053a;
+  box-shadow: 0 0 4px #f1053a;
+}
+
 .bg-orange {
     background-color: #f1d2c7;
 }
 
 button.bg-orange:hover, button.bg-orange.emphasis {
     background-color: #ecc2b3;
+}
+
+button.bg-orange.emphasis {
+  border-color: #f34705;
+  box-shadow: 0 0 4px #f34705;
 }
 
 .bg-yellow {
@@ -344,12 +369,22 @@ button.bg-green:hover, button.bg-green.emphasis {
     background-color: #d3f1c1;
 }
 
+button.bg-green.emphasis {
+  border-color: #4ac109;
+  box-shadow: 0 0 4px #4ac109;
+}
+
 .bg-blue {
     background-color: #c7e6f1;
 }
 
 button.bg-blue:hover, button.bg-blue.emphasis {
     background-color: #b3ddec;
+}
+
+button.bg-blue.emphasis {
+  border-color: #08a0d6;
+  box-shadow: 0 0 4px #08a0d6;
 }
 
 .bg-purple {
@@ -360,29 +395,39 @@ button.bg-purple:hover, button.bg-purple.emphasis {
     background-color: #b3c0ec;
 }
 
+button.bg-purple.emphasis {
+  border-color: #0837da;
+  box-shadow: 0 0 4px #0837da;
+}
+
 .bg-violet {
     background-color: #d2c7f1;
 }
 
-button.bg-violet:hover {
+button.bg-violet:hover, button.bg-violet.emphasis {
     background-color: #c2b3ec;
+}
+
+button.bg-violet.emphasis {
+  border-color: #4007ea;
+  box-shadow: 0 0 4px #4007ea;
 }
 
 .uri {
     color: #33aa33;
-    font-family: 'ralewaybold', sans-serif;
+    font-family: 'roboto-bold', sans-serif;
 }
 
 /* Telephone numbers */
 a {
   color: #33aa33;
-  font-family: 'ralewaybold', sans-serif;
+  font-family: 'roboto-bold', sans-serif;
   text-decoration: none;
 }
 
 /* Styling for aside boxes on page */
 .subhet {
-  font-family: 'ralewaybold', sans-serif;
+  font-family: 'roboto-bold', sans-serif;
 }
 
 aside {
