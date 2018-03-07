@@ -153,9 +153,7 @@ button {
     text-shadow:0px 1px 0px #ffffff;
     height: 2rem;
 }
-button:hover {
-	background-color:#dfdfdf;
-}
+
 button:active {
 	position:relative;
 	top:1px;
@@ -167,7 +165,7 @@ input {
 
 /* Buttons are styled very lightly so that the native styles may be applied. */
 button.emphasis {
-    /* This works on Chrome but not iOS WebView. */
+    background-color:#dfdfdf;
     box-shadow: 0 0 4px #777;
 }
 
@@ -220,8 +218,8 @@ body.no-weight .has-weight {
     font-size: 0.8em;
 }
 
-/* First bullet point is a filled circle (default); 
- * this rule sets the second-level bullet point to a dash ("-")  
+/* First bullet point is a filled circle (default);
+ * this rule sets the second-level bullet point from an open circle (default) to a dash ("-")  .
  * Why? Via Barbara Burian, "the human eye tries to interpret open bullets as letters (like a or o)"
  */
 li li {
@@ -230,7 +228,8 @@ li li {
 
 li li:before {
   content: "-";
-  padding-right: 5px;
+  padding-right: 5px; /* Give a little space between this dash and content */
+  margin-left: -10px; /* Move this dash a little to the left. This allows line-wrapped content to look roughly correct. */
 }
 
 /* CSS for the back button */
@@ -271,24 +270,18 @@ ul {
     background-color: #f1c7d1;
 }
 
-button.bg-red:hover, button.bg-red.emphasis {
-    background-color: #ecb3c0;
-}
-
 button.bg-red.emphasis {
+    background-color: #ecb3c0;
     border-color: #f1053a;
     box-shadow: 0 0 4px #f1053a;
-  }
+}
 
 .bg-orange {
     background-color: #f1d2c7;
 }
 
-button.bg-orange:hover, button.bg-orange.emphasis {
-    background-color: #ecc2b3;
-}
-
 button.bg-orange.emphasis {
+    background-color: #ecc2b3;
     border-color: #f34705;
     box-shadow: 0 0 4px #f34705;
 }
@@ -297,19 +290,18 @@ button.bg-orange.emphasis {
     background-color: #FCF8E4;
 }
 
-button.bg-yellow:hover, button.bg-yellow.emphasis {
+button.bg-yellow.emphasis {
     background-color: #f9f0c6;
+    border-color: #b9b066;
+    box-shadow: 0 0 4px #b9b066;
 }
 
 .bg-green {
     background-color: #e2f6d6;
 }
 
-button.bg-green:hover, button.bg-green.emphasis {
-    background-color: #d3f1c1;
-}
-
 button.bg-green.emphasis {
+    background-color: #d3f1c1;
     border-color: #4ac109;
     box-shadow: 0 0 4px #4ac109;
 }
@@ -318,11 +310,8 @@ button.bg-green.emphasis {
     background-color: #c7e6f1;
 }
 
-button.bg-blue:hover, button.bg-blue.emphasis {
-    background-color: #b3ddec;
-}
-
 button.bg-blue.emphasis {
+    background-color: #b3ddec;
     border-color: #08a0d6;
     box-shadow: 0 0 4px #08a0d6;
 }
@@ -331,11 +320,8 @@ button.bg-blue.emphasis {
     background-color: #c7d1f1;
 }
 
-button.bg-purple:hover, button.bg-purple.emphasis {
-    background-color: #b3c0ec;
-}
-
 button.bg-purple.emphasis {
+    background-color: #b3c0ec;
     border-color: #0837da;
     box-shadow: 0 0 4px #0837da;
 }
@@ -346,9 +332,6 @@ button.bg-purple.emphasis {
 
 button.bg-violet:hover, button.bg-violet.emphasis {
     background-color: #c2b3ec;
-}
-
-button.bg-violet.emphasis {
     border-color: #4007ea;
     box-shadow: 0 0 4px #4007ea;
 }
