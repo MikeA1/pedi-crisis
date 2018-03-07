@@ -218,9 +218,9 @@ body.no-weight .has-weight {
     font-size: 0.8em;
 }
 
-/* First bullet point is a filled circle (default);
- * this rule sets the second-level bullet point from an open circle (default) to a dash ("-")  .
- * Why? Via Barbara Burian, "the human eye tries to interpret open bullets as letters (like a or o)"
+/* The default root/parent bullet point is a filled circle; the default second-level bullet point is an open circle.
+ * Change second-level (and deeper) bullet points to a dash ("-").
+ * Why? According to Barbara Burian, "the human eye tries to interpret open bullets as letters (like a or o)".
  */
 li li {
   list-style-type: none;
