@@ -82,19 +82,33 @@ body {
     background-color: #f7f7f7;
     padding: 1em;
     margin: 0 15px;
-    max-width: 934px; /* 1000px is max-width, padded 30px on left and 30px on right. */
+
+    /* The following CSS rules work in conjunction with a javascript function that
+     * will change the `position` from `relative` (default) to `absolute`.
+     */
+    
+    /* When position is absolute, this element will shrink-to-fit horizontally. 
+     * That looks weird, so force this element to grow-to-fit horizontally.
+     */
     width: 100%;
     width: -webkit-fill-available;
     width: -moz-fill-available;
     width: fill-available;
-    overflow-y: scroll;
+    /* We don't want the content to be too wide, so this is a safety check. */
+    max-width: 936px; /* 1000px (standard max-width) - 60px (padded 30px on left and 30px on right) - 4px (Ummm... borders?) */
+    
     /* Let the content breath! */
     line-height: 2;
-    /* `.page` is changed from a `position` of `relative` (default) to `absolute`. 
-     * Set `bottom` to `0` to avoid setting an explicit height (so that the page is resize-friendly)
-     * (`top` is dynamically set automatically)
+    
+    /*
+     * The javascript function sets the `top` dynamically.
+     * The `bottom` is always `0`; this avoids setting `height` explicitly.
+     * This approach is resize-friendly (e.g., for a desktop browser).
      */
     bottom: 0;
+    
+    /* Overflow `scroll` is necessary to scroll within this element! */
+    overflow-y: scroll;
 }
 
 [data-uri] {
