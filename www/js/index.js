@@ -84,11 +84,6 @@ app.navigate = (function () {
         return navigate.rootPath + uri;
     }
 
-    // This tracks the number of pixels the content is offset vs. the fixed header.
-    const navElement = document.getElementById("nav");
-    const navOffsetElement = document.getElementById("nav-offset");
-    let offsetHeight = 0;
-
     /**
      * Takes a URI (e.g., "/events/index.html") and generates an object `{hash, title}` that contains text suitable for
      * the hash component of a URL (e.g., localhost:3000/#events) and a title (e.g., "Pedi Crisis | events")
@@ -184,22 +179,6 @@ app.navigate = (function () {
                 return;
             }
 
-            // Transform the URI to an absolute path.
-            var fullUri = createAbsoluteUri(uri);
-            //$(container).load(fullUri);
-            //$(contentElement).html(container);
-            $(contentElement).load(fullUri);
-
-            headerElement.innerText = header || defaultHeader;
-
-            if (title) {
-                try {
-                    document.getElementsByTagName('title')[0].innerHTML = title.replace('<', '&lt;').replace('>', '&gt;').replace(' & ', ' &amp; ');
-                }
-                catch (Exception) { }
-                document.title = title;
-            }
-
             // When a navigation change occurs, add or remove emphasis to pertinent header buttons.
             let isEvent = uri.includes("html/events/");
             let isPhone = uri.includes("html/phone/");
@@ -223,15 +202,39 @@ app.navigate = (function () {
                 weightButton.classList.remove("emphasis");
             }
 
-            // The header may have grown or shrunk vertically, so move the spacer div appropriately.
-            
-            const newOffsetHeight = navElement.offsetHeight;
-            // Prevent reflows
-            if (newOffsetHeight !== offsetHeight) {
-                navOffsetElement.style.height = newOffsetHeight + "px";
-                offsetHeight = newOffsetHeight;
+            // This special handling of event pages applies to all events, so it's implemented globally here.
+            // What does this do?
+            // 1. Absolute positioning allows for context-relative scrolling (which is impemented in our CSS rules; see ".page::-webkit-scrollbar")
+            // 2. Event sub-menu looks like it is fixed-positioned (because it doesn't move when the page scrolls)
+            const callback = !isEvent ? 
+                function () { } :
+                function () {
+                    // Make the page absolute-positioned.
+                    const pages = document.getElementsByClassName("page");
+                    if (pages && pages.length) {
+                        for (let i = 0; i < pages.length; i++) {
+                            const page = pages[i];
+                            const style = page.style;
+                            style.top = page.offsetTop + "px";
+                            style.position = "absolute";
+                            // Note: This `.page` already has values for `bottom` and `overflow-y` via CSS rules.
+                        }
+                    }
+                };
+
+            // Transform the URI to an absolute path.
+            var fullUri = createAbsoluteUri(uri);
+            $(contentElement).load(fullUri, undefined, callback);
+
+            headerElement.innerText = header || defaultHeader;
+
+            if (title) {
+                try {
+                    document.getElementsByTagName('title')[0].innerHTML = title.replace('<', '&lt;').replace('>', '&gt;').replace(' & ', ' &amp; ');
+                }
+                catch (Exception) { }
+                document.title = title;
             }
-            
         },
     }
 
@@ -419,7 +422,7 @@ app.navigate = (function () {
         while (index > minDecimalPlaces + decimalPlace && longValue.charAt(index) === "0") {
             index -= 1;
         }
-        
+
         // This would *truncate* the number. Instead, run toFixed (again) to *round* the number.
         //return longNumber.substring(0, index + 1);
         return value.toFixed(index - decimalPlace);

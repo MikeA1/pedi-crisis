@@ -1,5 +1,5 @@
-<div class="page">
-    <div class="event-nav button-group">
+<div class="event-nav">
+    <div class="button-group">
         <div class="button-container">
               <button data-uri="/html/events/last-dx.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-red">Dx</button>
         </div>
@@ -20,6 +20,8 @@
         </div>
     </div>
     <div class="bg-purple event-title">Crisis Management (if Severe)</div>
+</div>
+<div class="page">
     <ul>
         <li>Notify surgeon, call for help and code cart</li>
         <li>Check pulse. If cardiac instability occurs:
@@ -35,13 +37,13 @@
 </div>
 
 <script>
-if (app.weight > 0) {
-    // We'll fill in the weight ranges here.
+    if (app.weight > 0) {
+        // We'll fill in the weight ranges here.
 
-    // 1-10 MICROgrams/kg
-    const calculatedRange1a = app.printNumber(app.weight, 0, 2);
-    const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
-    document.getElementById("weight-range-1").innerText = calculatedRange1a + "-" + calculatedRange1b;
+        // 1-10 MICROgrams/kg
+        const calculatedRange1a = app.printNumber(app.weight, 0, 2);
+        const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
+        document.getElementById("weight-range-1").innerText = calculatedRange1a + "-" + calculatedRange1b;
 
-}
+    }
 </script>

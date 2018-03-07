@@ -1,5 +1,5 @@
-<div class="page">
-    <div class="event-nav button-group">
+<div class="event-nav">
+    <div class="button-group">
         <div class="button-container">
             <button data-uri="/html/events/bronchospasm-dx.html" data-title="Bronchospasm" class="bg-red">Dx</button>
         </div>
@@ -16,7 +16,10 @@
             <button data-uri="/html/events/bronchospasm-crisis.html" data-title="Bronchospasm" class="bg-purple">Crisis</button>
         </div>
     </div>
-    <div class="bg-green event-title">TREATMENT: INTUBATED PATIENT</div>
+</div>
+
+<div class="page">
+    <div class="bg-green event-title">TREATMENT: INTUBATED PATIENT</div>    
     <ul>
         <li>Auscultate the chest
             <ul>
@@ -78,6 +81,7 @@
         // Note: use `Math.min()` to apply "MAX 1 mg" logic.
         const calculatedRange4a = app.printNumber(Math.min(app.weight, 1000));
         const calculatedRange4b = app.printNumber(Math.min(app.weight * 2, 1000));
-        document.getElementById("weight-range-1").innerText = calculatedRange4a === calculatedRange4b ? calculatedRange4a : calculatedRange4a + "-" + calculatedRange4b;
+        document.getElementById("weight-range-4").innerText = calculatedRange4a === calculatedRange4b ? calculatedRange4a : calculatedRange4a + "-" + calculatedRange4b;
     }
+
 </script>
