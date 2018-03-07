@@ -281,11 +281,7 @@ app.navigate = (function () {
     // (e.g., with a pure browser experience).
     navigate.updateRootPath();
 
-    // Capture `click` for desktop and `touchstart` for mobile.
-    // https://stackoverflow.com/a/11507558/772086
-    $(document).on("touchstart click", "[data-uri]", function (event) {
-        event.stopPropagation();
-        event.preventDefault();
+    $(document).on("click", "[data-uri]", function (event) {
         // `currentTarget` is the "the element to which the event handler has been attached".
         let attributes = (event.currentTarget || event.target).attributes;
         let uri = attributes.getNamedItem("data-uri").value;
@@ -298,9 +294,7 @@ app.navigate = (function () {
         event.handled = true;
     });
 
-    $(document).on("touchstart click", "[data-prev]", function (event) {
-        event.stopPropagation();
-        event.preventDefault();
+    $(document).on("click", "[data-prev]", function (event) {
         navigate.prev();
         event.handled = true;
     });
@@ -334,9 +328,16 @@ app.navigate = (function () {
     "use strict";
     function onDeviceReady() {
         if (device.platform.toLowerCase() === "ios") {
+            // iOS doesn't have a physcial back button, so add one to the app.
+            // Note: button visibility is driven via CSS rules.
             document.body.classList.add("display-virtual-back-button");
+            // Use FastClick (https://github.com/ftlabs/fastclick) to eliminate 300ms delay on `Click` events.
+            // Why just iOS? Cordova uses UIWebView rather than (newer) WKWebView (see https://github.com/ftlabs/fastclick/issues/514#issuecomment-368019416).
+            FastClick.attach(document.body, {tapDelay: 5});
         }
-        // Try to update the root path.
+        // Try to update the root path. It's important that this happens during `deviceready` for iOS.
+        // It seems that Android can detect the root path before this `deviceready` event is fired,
+        // but always fire `updateRootPath` in case that's not the case for all versions of Android.
         app.navigate.updateRootPath();
     }
     document.addEventListener("deviceready", onDeviceReady, false);

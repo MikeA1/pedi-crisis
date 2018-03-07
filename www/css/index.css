@@ -369,6 +369,7 @@ aside ul {
 
 /* Always show scrollbars in pages 
  * Source: https://stackoverflow.com/a/7855592/772086 
+ * Note: This destroys smooth scrolling! Setting `-webkit-overflow-scrolling` to `touch` will undo all of the below settings.
  */
 .page::-webkit-scrollbar {
     -webkit-appearance: none;

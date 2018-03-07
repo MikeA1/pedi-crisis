@@ -4,27 +4,30 @@
         <span>kgs</span>
     </div>
     <div>
-        <button id="weight-ok">OK</button>
+        <button id="weight-ok" type="submit">OK</button>
         <button id="weight-cancel">Cancel</button>
     </div>
 </form>
 
 <script>
-    var input = document.getElementById("weight-input");
-    var weight = window.app.weight;
-
+    // The input element is used multiple times. So, get a reference to it.
+    const input = document.getElementById("weight-input");
+    
     // This is the first time loading the screen, so set the weight input.
+    const weight = window.app.weight;
     if (weight) {
-        input.value = weight;
+        input.value = app.printNumber(weight, 0, 4);
     }
 
     // The `autofocus` attribute on the input works on *page load* for Chrome, but not in this single-page app context.
     // So, if the element does not already have focus, set the focus.
     // It's important to check `document.hasFocus` in order to avoid removing focus from an already-displayed keyboard!
-    if (document.hasFocus && document.activeElement !== input) input.focus();
+    if (document.hasFocus && document.activeElement !== input) {
+        input.focus();
+    }
 
     function updateWeight(event) {
-        // Probably only need to call 
+        // Only really need to call `preventDefault` and/or `stopImmediatePropagation` for the `submit` event.
         if (event.stopImmediatePropagation) event.stopImmediatePropagation();
         if (event.preventDefault) event.preventDefault();
         // The "+" is important because it converts the string to a number!
@@ -32,20 +35,15 @@
         app.navigate.prev();
     }
 
-    var form = document.getElementById("weight-form");
-    form.addEventListener("submit", updateWeight);
-
-    var okButton = document.getElementById("weight-ok");
-    okButton.addEventListener("click", updateWeight);
-    okButton.addEventListener("touchstart", updateWeight);
-
     function cancelWeight(event) {
         // Prevent double-events (touchstart and click) from firing with `preventDefault`.
         if (event.preventDefault) event.preventDefault();
         app.navigate.prev();
         return false; // This probably doesn't do anything, but why not?
     }
-    var cancelButton = document.getElementById("weight-cancel")
-    cancelButton.addEventListener("click", cancelWeight);
-    cancelButton.addEventListener("touchstart", cancelWeight);
+
+    document.getElementById("weight-form").addEventListener("submit", updateWeight);
+    document.getElementById("weight-ok").addEventListener("click", updateWeight);
+    document.getElementById("weight-cancel").addEventListener("click", cancelWeight);
+
 </script>
