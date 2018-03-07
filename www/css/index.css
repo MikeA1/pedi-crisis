@@ -72,6 +72,11 @@ body {
     font-size: 1rem;
 }
 
+#header {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
 .page {
     /* Make the page *look* like a page */
     background-color: #f7f7f7;
@@ -201,6 +206,19 @@ body.no-weight .has-weight {
     font-size: 0.8em;
 }
 
+/* First bullet point is a filled circle (default); 
+ * this rule sets the second-level bullet point to a dash ("-")  
+ * Why? Via Barbara Burian, "the human eye tries to interpret open bullets as letters (like a or o)"
+ */
+li li {
+  list-style-type: none;
+}
+
+li li:before {
+  content: "-";
+  padding-right: 5px;
+}
+
 /* CSS for the back button */
 
 /* The default for all platforms: the back button is not displayed. */
@@ -243,12 +261,22 @@ button.bg-red:hover, button.bg-red.emphasis {
     background-color: #ecb3c0;
 }
 
+button.bg-red.emphasis {
+    border-color: #f1053a;
+    box-shadow: 0 0 4px #f1053a;
+  }
+
 .bg-orange {
     background-color: #f1d2c7;
 }
 
 button.bg-orange:hover, button.bg-orange.emphasis {
     background-color: #ecc2b3;
+}
+
+button.bg-orange.emphasis {
+    border-color: #f34705;
+    box-shadow: 0 0 4px #f34705;
 }
 
 .bg-yellow {
@@ -267,12 +295,22 @@ button.bg-green:hover, button.bg-green.emphasis {
     background-color: #d3f1c1;
 }
 
+button.bg-green.emphasis {
+    border-color: #4ac109;
+    box-shadow: 0 0 4px #4ac109;
+}
+  
 .bg-blue {
     background-color: #c7e6f1;
 }
 
 button.bg-blue:hover, button.bg-blue.emphasis {
     background-color: #b3ddec;
+}
+
+button.bg-blue.emphasis {
+    border-color: #08a0d6;
+    box-shadow: 0 0 4px #08a0d6;
 }
 
 .bg-purple {
@@ -283,12 +321,22 @@ button.bg-purple:hover, button.bg-purple.emphasis {
     background-color: #b3c0ec;
 }
 
+button.bg-purple.emphasis {
+    border-color: #0837da;
+    box-shadow: 0 0 4px #0837da;
+}
+
 .bg-violet {
     background-color: #d2c7f1;
 }
 
-button.bg-violet:hover {
+button.bg-violet:hover, button.bg-violet.emphasis {
     background-color: #c2b3ec;
+}
+
+button.bg-violet.emphasis {
+    border-color: #4007ea;
+    box-shadow: 0 0 4px #4007ea;
 }
 
 .uri {
