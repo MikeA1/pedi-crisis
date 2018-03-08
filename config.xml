@@ -9,8 +9,10 @@
         Society for Pediatric Anesthesia
     </author>
     <content src="index.html" />
+    <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <icon src="www/img/logo.png" />
+    <splash src="www/img/Default@2x~universal~anyany.png" />
     <engine name="ios" spec="~4.5.4" />
     <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-globalization" spec="~1.0.7" />
