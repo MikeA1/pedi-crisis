@@ -2,10 +2,11 @@
     <div style="padding-bottom: 1em;">
         <input id="weight-input" type="number" inputmode="numeric" pattern="[0-9.]*" step="0.1" placeholder="Patient Weight" autofocus>
         <span>kgs</span>
+        <button id="weight-clear" type="button">Clear</button>
     </div>
     <div>
-        <button id="weight-ok" type="submit">OK</button>
-        <button id="weight-cancel">Cancel</button>
+        <button id="weight-ok" type="submit">Save</button>
+        <button id="weight-cancel" type="button">Cancel</button>
     </div>
 </form>
 
@@ -27,23 +28,28 @@
     }
 
     function updateWeight(event) {
-        // Only really need to call `preventDefault` and/or `stopImmediatePropagation` for the `submit` event.
-        if (event.stopImmediatePropagation) event.stopImmediatePropagation();
-        if (event.preventDefault) event.preventDefault();
         // The "+" is important because it converts the string to a number!
         app.weight = +input.value;
         app.navigate.prev();
+        // Don't allow the form to send an actual POST to a non-existent server.
+        if (event.preventDefault) event.preventDefault();
     }
 
     function cancelWeight(event) {
-        // Prevent double-events (touchstart and click) from firing with `preventDefault`.
-        if (event.preventDefault) event.preventDefault();
         app.navigate.prev();
-        return false; // This probably doesn't do anything, but why not?
+        // Prevent event bubbling (otherwise the form will submit)
+        if (event.preventDefault) event.preventDefault();
+    }
+
+    function clearWeight(event) {
+        input.value = null;
+        // Prevent event bubbling (otherwise the form will submit)
+        if (event.preventDefault) event.preventDefault();
     }
 
     document.getElementById("weight-form").addEventListener("submit", updateWeight);
     document.getElementById("weight-ok").addEventListener("click", updateWeight);
     document.getElementById("weight-cancel").addEventListener("click", cancelWeight);
+    document.getElementById("weight-clear").addEventListener("click", clearWeight);
 
 </script>

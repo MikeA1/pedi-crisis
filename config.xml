@@ -9,7 +9,6 @@
         Society for Pediatric Anesthesia
     </author>
     <content src="index.html" />
-    <preference name="DisallowOverscroll" value="false" />
     <preference name="android-minSdkVersion" value="14" />
     <icon src="www/img/logo.png" />
     <engine name="ios" spec="~4.5.4" />
