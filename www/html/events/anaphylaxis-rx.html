@@ -25,9 +25,9 @@
             <span class="no-weight">1-10 MICROgrams/kg IV/IO, may need infusion 0.02-0.2 MICROgrams/kg/min IV</span>
             <span class="has-weight">
                 <span id="weight-range-1"></span> MICROgrams
-                <span class="per-kg-weight">(1-10 MICROgrams/kg)</span> IV/IO, may need infusion
-                <span id="weight-range-2"></span> MICROgrams/min
-                <span class="per-kg-weight">(0.02-0.2 MICROgrams/kg/min)</span> IV</span>
+                <span class="per-kg-weight">(1-10 MICROgrams/kg)</span> IV/IO,
+                may need infusion 0.02-0.2 MICROgrams/kg/min IV
+            </span>
         </li>
 
         <li>
@@ -35,7 +35,8 @@
             <span class="no-weight">10 MICROunits/kg IV</span>
             <span class="has-weight">
                 <span id="weight-range-3"></span> MICROunits
-                <span class="per-kg-weight">(10 MICROunits/kg)</span> IV</span>
+                <span class="per-kg-weight">(10 MICROunits/kg)</span> IV
+            </span>
         </li>
 
         <li>
@@ -75,11 +76,6 @@
         const calculatedRange1a = app.printNumber(app.weight, 0, 2);
         const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
         document.getElementById("weight-range-1").innerText = (calculatedRange1a + "-" + calculatedRange1b);
-
-        // 0.02-0.2 MICROgrams/kg/min
-        const calculatedRange2a = app.printNumber(app.weight * 0.02, 0, 2);
-        const calculatedRange2b = app.printNumber(app.weight * 0.2, 0, 2);
-        document.getElementById("weight-range-2").innerText = calculatedRange2a + "-" + calculatedRange2b;
 
         // 10 MICROunits/kg
         const calculatedRange3 = app.printNumber(app.weight * 10);
