@@ -114,6 +114,14 @@ body {
     overflow-y: scroll;
 }
 
+/* `width: fill-available` does not have great support yet, so use this class instead. */
+.fill-available {
+    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-fill-available;
+    width: fill-available;
+}
+
 [data-uri] {
     cursor: pointer;
 }
@@ -349,7 +357,7 @@ a {
   text-decoration: none;
 }
 
-/* Styling for aside boxes on page */
+/* Styling for aside boxes on page. */
 .subhet {
     font-weight: 600;
 }
@@ -397,7 +405,16 @@ aside ul {
     border-radius: 8px; 
 }
 
+/* These elements appear at the top of each event page. */
 .event-nav {
     padding: .5em 1em 0 1em;
 }
 
+/* Used primarily in edit screens like "phone" and "weight". */
+.section {
+    border: 1px solid #ccc;
+    border-left-width: 4px;
+    background-color: #f2f2f2;
+    margin-bottom: 1em;
+    padding: .5em;
+}
