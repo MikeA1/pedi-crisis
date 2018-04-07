@@ -1,5 +1,5 @@
 <form id="weight-form" class="page">
-    <div style="padding-bottom: 1em;">
+    <div class="section">
         <input id="weight-input" type="number" inputmode="numeric" pattern="[0-9.]*" step="0.1" placeholder="Patient Weight" autofocus>
         <span>kgs</span>
         <button id="weight-clear" type="button">Clear</button>
@@ -27,7 +27,7 @@
         input.focus();
     }
 
-    function updateWeight(event) {
+    const updateWeight = (event) => {
         // The "+" is important because it converts the string to a number!
         app.weight = +input.value;
         app.navigate.prev();
@@ -35,13 +35,13 @@
         if (event.preventDefault) event.preventDefault();
     }
 
-    function cancelWeight(event) {
+    const cancelWeight = (event) => {
         app.navigate.prev();
         // Prevent event bubbling (otherwise the form will submit)
         if (event.preventDefault) event.preventDefault();
     }
 
-    function clearWeight(event) {
+    const clearWeight = (event) => {
         input.value = null;
         // Prevent event bubbling (otherwise the form will submit)
         if (event.preventDefault) event.preventDefault();
