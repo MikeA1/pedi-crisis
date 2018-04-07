@@ -62,8 +62,8 @@
     // This function determines whether the screen is in edit mode.
     const setEditMode = (isEditMode) => {
         const editSection = document.getElementById("edit-section");
-        editSection.style.display =  isEditMode ? "inline-block" : "none";
-        document.getElementById("display-section").style.display = isEditMode ? "none" : "inline-block";
+        editSection.style.display =  isEditMode ? "block" : "none";
+        document.getElementById("display-section").style.display = isEditMode ? "none" : "block";
         const editPhoneNumbers = document.getElementById("edit-phone-numbers");
         const phoneNumbers = getPhoneNumbers() || {};
         if (isEditMode) {
