@@ -186,10 +186,9 @@ input {
     font-size: 1em;
 }
 
-/* Buttons are styled very lightly so that the native styles may be applied. */
 button.emphasis {
     background-color:#dfdfdf;
-    box-shadow: 0 0 4px #777;
+    box-shadow: 0 0 4px #000;
 }
 
 .button-container button {
