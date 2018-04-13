@@ -75,23 +75,23 @@
         // 1-10 MICROgrams/kg
         const calculatedRange1a = app.printNumber(app.weight, 0, 2);
         const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
-        document.getElementById("weight-range-1").innerText = (calculatedRange1a + "-" + calculatedRange1b);
+        document.getElementById("weight-range-1").textContent = (calculatedRange1a + "-" + calculatedRange1b);
 
         // 10 MICROunits/kg
         const calculatedRange3 = app.printNumber(app.weight * 10);
-        document.getElementById("weight-range-3").innerText = calculatedRange3;
+        document.getElementById("weight-range-3").textContent = calculatedRange3;
 
         // 2 mg/kg, MAX 100 mg
         const calculatedRange4 = app.printNumber(Math.min(app.weight * 2, 100), 0, 2);
-        document.getElementById("weight-range-4").innerText = calculatedRange4;
+        document.getElementById("weight-range-4").textContent = calculatedRange4;
 
         // 1 mg/kg, MAX 50 mg
         const calculatedRange5 = app.printNumber(Math.min(app.weight * 2, 50), 0, 2);
-        document.getElementById("weight-range-5").innerText = calculatedRange5;
+        document.getElementById("weight-range-5").textContent = calculatedRange5;
 
         // 0.25 mg/kg, MAX 20 mg
         const calculatedRange6 = app.printNumber(Math.min(app.weight * 0.25, 20), 0, 2);
-        document.getElementById("weight-range-6").innerText = calculatedRange6;
+        document.getElementById("weight-range-6").textContent = calculatedRange6;
 
     }
 </script>

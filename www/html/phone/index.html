@@ -92,7 +92,7 @@
             removeChildren(displayPhoneNumbers);
             if (keys.length === 0) {
                 // Display Mode and no phone numbers are assigned
-                displayPhoneNumbers.innerText = "You have not yet added phone numbers. Click the 'Edit Phone Numbers' button to customize this screen!";
+                displayPhoneNumbers.textContent = "You have not yet added phone numbers. Click the 'Edit Phone Numbers' button to customize this screen!";
             } else {
                 keys.forEach((description) => {
                     let data = phoneNumbers[description];
@@ -107,8 +107,8 @@
      * Removes the content of all children.
      */
     const removeChildren = node => {
-        if (node.innerText) {
-            node.innerText = "";
+        if (node.textContent) {
+            node.textContent = "";
         }
         if (node.children) {
             while (node.children.length > 0) {
@@ -125,18 +125,18 @@
         container.classList = "section";
         
         const description = document.createElement("strong");
-        description.innerText = data.description;
+        description.textContent = data.description;
         description.style.display = "block";
         container.appendChild(description);
 
         if (data.isHyperlink) {
             const link = document.createElement("a");
             link.href="tel:" + data.number;
-            link.innerText = data.number;
+            link.textContent = data.number;
             container.appendChild(link);
         } else {
             const number = document.createElement("div");
-            number.innerText = data.number;
+            number.textContent = data.number;
             container.appendChild(number);
         }
         return container;
@@ -158,7 +158,7 @@
         let description;
         if (data.isSystem) {
             description = document.createElement("strong");
-            description.innerText = data.description; 
+            description.textContent = data.description; 
         } else {
             description = document.createElement("input");
             description.style.display = "inline";
@@ -189,13 +189,13 @@
         checkboxWrapper.appendChild(isHyperlink);
 
         const label = document.createElement("label");
-        label.innerText = "Create hyperlink?";
+        label.textContent = "Create hyperlink?";
 
         checkboxWrapper.appendChild(label);
 
         if (!data.isSystem) {
             const deleteButton = document.createElement("button");
-            deleteButton.innerText = "Delete";
+            deleteButton.textContent = "Delete";
             deleteButton.style.float = "right";
             deleteButton.addEventListener("click", event => {
                 container.remove();

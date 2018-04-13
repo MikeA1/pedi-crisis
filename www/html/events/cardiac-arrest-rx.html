@@ -34,14 +34,14 @@
 
         // 10 MICROgrams/kg, MAX 1 mg
         const calculatedRange1 = app.printNumber(Math.min(app.weight * 10, 1000), 0, 2);
-        document.getElementById("weight-range-1").innerText = calculatedRange1;
+        document.getElementById("weight-range-1").textContent = calculatedRange1;
 
         // 1 mg/kg, MAX 100 mg
         const calculatedRange2 = app.printNumber(Math.min(app.weight, 100), 0, 2);
-        document.getElementById("weight-range-2").innerText = calculatedRange2;
+        document.getElementById("weight-range-2").textContent = calculatedRange2;
 
         // 5 mg/kg, MAX 300 mg
         const calculatedRange3 = app.printNumber(Math.min(app.weight * 5, 300), 0, 2);
-        document.getElementById("weight-range-3").innerText = calculatedRange3;
+        document.getElementById("weight-range-3").textContent = calculatedRange3;
     }
 </script>

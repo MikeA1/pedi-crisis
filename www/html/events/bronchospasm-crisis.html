@@ -39,6 +39,6 @@ if (app.weight > 0) {
     // 1-10 MICROgrams/kg
     const calculatedRange1a = app.printNumber(app.weight, 0, 2); 
     const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
-    document.getElementById("weight-range-1").innerText = calculatedRange1a + "-" + calculatedRange1b;
+    document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
 }
 </script>

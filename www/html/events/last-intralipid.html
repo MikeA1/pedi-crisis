@@ -46,18 +46,18 @@ if (app.weight > 0) {
     
     // 1.5 Milliliters/kg
     const calculatedRange1 = app.printNumber(app.weight * 1.5, 0, 2);
-    document.getElementById("weight-range-1").innerText = calculatedRange1;
+    document.getElementById("weight-range-1").textContent = calculatedRange1;
     
     // 0.25 mL/kg/min
     const calculatedRange2 = app.printNumber(app.weight * 0.25, 0, 2);
-    document.getElementById("weight-range-2").innerText = calculatedRange2;
+    document.getElementById("weight-range-2").textContent = calculatedRange2;
     
     // 0.5 mL/kg/min
     const calculatedRange3 = app.printNumber(app.weight * 0.5, 0, 2);
-    document.getElementById("weight-range-3").innerText = calculatedRange3;
+    document.getElementById("weight-range-3").textContent = calculatedRange3;
     
     // 10 mL/kg
     const calculatedRange4 = app.printNumber(app.weight * 10, 0, 2);
-    document.getElementById("weight-range-4").innerText = calculatedRange4;
+    document.getElementById("weight-range-4").textContent = calculatedRange4;
 }
 </script>

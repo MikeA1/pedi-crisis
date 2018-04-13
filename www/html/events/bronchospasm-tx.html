@@ -64,24 +64,24 @@
         //1-2 mg/kg
         const calculatedRange1a = app.printNumber(app.weight); 
         const calculatedRange1b = app.printNumber(app.weight * 2);
-        document.getElementById("weight-range-1").innerText = calculatedRange1a + "-" + calculatedRange1b;
+        document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
 
         // 1-2 MICROgrams/kg IV (MAX 1 mg)
         // Note: use `Math.min()` to apply "MAX 1 mg" logic.
         const calculatedRange2a = app.printNumber(Math.min(app.weight, 1000));
         const calculatedRange2b = app.printNumber(Math.min(app.weight * 2, 1000));
-        document.getElementById("weight-range-2").innerText = calculatedRange2a === calculatedRange2b ? calculatedRange2a : calculatedRange2a + "-" + calculatedRange2b;
+        document.getElementById("weight-range-2").textContent = calculatedRange2a === calculatedRange2b ? calculatedRange2a : calculatedRange2a + "-" + calculatedRange2b;
 
         // 50-75 mg/kg, MAX 2 grams
         const calculatedRange3a = app.printNumber(Math.min(app.weight * 50, 2000), 0, 1);
         const calculatedRange3b = app.printNumber(Math.min(app.weight * 75, 2000), 0, 1);
-        document.getElementById("weight-range-3").innerText = calculatedRange3a + "-" + calculatedRange3b;
+        document.getElementById("weight-range-3").textContent = calculatedRange3a + "-" + calculatedRange3b;
 
         // 1-2 MICROgrams/kg, MAX 1 mg
         // Note: use `Math.min()` to apply "MAX 1 mg" logic.
         const calculatedRange4a = app.printNumber(Math.min(app.weight, 1000));
         const calculatedRange4b = app.printNumber(Math.min(app.weight * 2, 1000));
-        document.getElementById("weight-range-4").innerText = calculatedRange4a === calculatedRange4b ? calculatedRange4a : calculatedRange4a + "-" + calculatedRange4b;
+        document.getElementById("weight-range-4").textContent = calculatedRange4a === calculatedRange4b ? calculatedRange4a : calculatedRange4a + "-" + calculatedRange4b;
     }
 
 </script>

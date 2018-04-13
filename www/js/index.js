@@ -223,7 +223,7 @@
                 var fullUri = createAbsoluteUri(uri);
                 $(contentElement).load(fullUri, undefined, callback);
 
-                headerElement.innerText = header || defaultHeader;
+                headerElement.textContent = header || defaultHeader;
 
                 if (title) {
                     try {

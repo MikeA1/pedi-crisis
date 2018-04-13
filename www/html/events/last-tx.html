@@ -53,11 +53,11 @@
         // 0.05-0.1 mg/kg
         const calculatedRange1a = app.printNumber(app.weight * 0.05, 0, 2);
         const calculatedRange1b = app.printNumber(app.weight * 0.1, 0, 2);
-        document.getElementById("weight-range-1").innerText = calculatedRange1a + "-" + calculatedRange1b;
+        document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
 
         // 1 MICROgram/kg
         const calculatedRange2 = app.printNumber(app.weight, 0, 2);
-        document.getElementById("weight-range-2").innerText = calculatedRange2;
+        document.getElementById("weight-range-2").textContent = calculatedRange2;
 
     }
 </script>
