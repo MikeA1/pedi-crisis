@@ -417,7 +417,6 @@
     /**
      * Creates an accordion: up to one item is visible in an accordion.
      * @param [{button, content}] items is an array of objects with two properties: button and content.
-     * Remarks: Assumes that contents are hidden by default: use the class "display-none" or the element style "display: none;".
      */
     app.createAccordion = (items) => {
         let currentIndex = null;
@@ -429,10 +428,13 @@
         items.forEach((item, idx) => {
             const index = idx;
             item.button.addEventListener("click", () => {
+                // This next statement just says "if currently open, then close it; otherwise, open it."
                 currentIndex = currentIndex === index ? null : index;
                 updateVisibility();
             })
-
+            // Hide all content elements by default. So, as long as the button-content pair
+            // is accurate, there should be one or less content elements visible at one time.
+            item.content.style.display = "none";
         });
     };
 

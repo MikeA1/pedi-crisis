@@ -78,12 +78,12 @@
 
     (() => {
 
-        const buttonIntubated = document.getElementById("button-intubated");
-        const listIntubated = document.getElementById("list-intubated");
-        const buttonNonIntubated = document.getElementById("button-non-intubated");
-        const listNonIntubated = document.getElementById("list-non-intubated");
-
-        app.createAccordion([{button: buttonIntubated, content: listIntubated}, {button: buttonNonIntubated, content: listNonIntubated}]);
+        // The "pick one" section uses the accordion paradigm to show only relevant data.
+        const get = (name => document.getElementById(name)); // (this is a helper function)
+        app.createAccordion([
+            {button: get("button-intubated"), content: get("list-intubated")}, 
+            {button: get("button-non-intubated"), content: get("list-non-intubated")}
+        ]);
 
         if (app.weight > 0) {
             //1-2 mg/kg
