@@ -171,10 +171,18 @@ button {
 	border-radius:8px;
 	border:1px solid #dcdcdc;
 	display:inline-block;
-	cursor:pointer;
-	text-decoration:none;
-    text-shadow:0px 1px 0px #ffffff;
+    cursor:pointer;
+    text-decoration:none;
     height: 2rem;
+}
+
+#nav button {
+    text-shadow: 0px 1px 0px #ffffff;
+}
+
+.event-nav button {
+    text-shadow: none;
+    color: white;
 }
 
 button:active {
@@ -188,7 +196,8 @@ input {
 
 button.emphasis {
     background-color:#dfdfdf;
-    box-shadow: 0 0 4px #000;
+    box-shadow: 0 0 1px 1px #000;
+    border: 1px solid #000;
 }
 
 .button-container button {
@@ -208,6 +217,7 @@ button.emphasis {
 .event-title {
     border-radius: 4px;
     padding: .5em;
+    color: white;
 }
 
 /* These weight-related CSS classes will hide or display select items. */
@@ -288,74 +298,86 @@ ul {
     -webkit-padding-start: 20px;
 }
 
-.bg-red {
-    background-color: #f1c7d1;
+/* Used this site to determine lighter and heavier shades of colors:
+ * http://www.0to255.com/455e0c
+ * "lighter" is two shades lighter than the base color.
+ * "heavier" is two shades heavier than the base color.
+ */
+
+ /* green */
+.bg-dx {
+    background-color: #455e0c; /* base color */
 }
 
-button.bg-red.emphasis {
-    background-color: #ecb3c0;
-    border-color: #f1053a;
-    box-shadow: 0 0 4px #f1053a;
+button.bg-dx.emphasis {
+    background-color: #5b7c10; /* lighter */
+    border: 1px solid #2f4008; /* heavier */
+    box-shadow: 0 0 1px 1px #2f4008; /* heavier */
 }
 
-.bg-orange {
-    background-color: #f1d2c7;
+/* tan */
+.bg-ddx {
+    background-color: #b98021;
 }
 
-button.bg-orange.emphasis {
-    background-color: #ecc2b3;
-    border-color: #f34705;
-    box-shadow: 0 0 4px #f34705;
+button.bg-ddx.emphasis {
+    background-color: #d69326;
+    border-color: #9d6c1b;
+    box-shadow: 0 0 1px 1px #9d6c1b;
+}
+
+/* purple */
+.bg-tx {
+    background-color: #8c01a3;
+}
+
+button.bg-tx.emphasis {
+    background-color: #a901c5;
+    border-color: #6f0181;
+    box-shadow: 0 0 1px 1px #6f0181;
+}
+
+/* blue */
+.bg-rx {
+    background-color: #0113dc;
+}
+
+button.bg-rx.emphasis {
+    background-color: #0116fe;
+    border-color: #0110ba;
+    box-shadow: 0 0 1px 1px #0110ba;
+}
+
+/* red */
+.bg-crisis {
+    background-color: #be251b;
+}
+
+button.bg-crisis.emphasis {
+    background-color: #dc2b1f;
+    border-color: #a01f17;
+    box-shadow: 0 0 1px 1px #a01f17;
+}
+
+/* orange */
+.bg-misc {
+    background-color: #e4550b;
+}
+
+button.bg-misc:hover, button.bg-misc.emphasis {
+    background-color: #f4661d;
+    border-color: #c44909;
+    box-shadow: 0 0 1px 1px #c44909;
 }
 
 .bg-yellow {
-    background-color: #FCF8E4;
+    background-color: #fcf8e4;
 }
 
 button.bg-yellow.emphasis {
     background-color: #f9f0c6;
     border-color: #b9b066;
-    box-shadow: 0 0 4px #b9b066;
-}
-
-.bg-green {
-    background-color: #e2f6d6;
-}
-
-button.bg-green.emphasis {
-    background-color: #d3f1c1;
-    border-color: #4ac109;
-    box-shadow: 0 0 4px #4ac109;
-}
-  
-.bg-blue {
-    background-color: #c7e6f1;
-}
-
-button.bg-blue.emphasis {
-    background-color: #b3ddec;
-    border-color: #08a0d6;
-    box-shadow: 0 0 4px #08a0d6;
-}
-
-.bg-purple {
-    background-color: #c7d1f1;
-}
-
-button.bg-purple.emphasis {
-    background-color: #b3c0ec;
-    border-color: #0837da;
-    box-shadow: 0 0 4px #0837da;
-}
-
-.bg-violet {
-    background-color: #d2c7f1;
-}
-
-button.bg-violet:hover, button.bg-violet.emphasis {
-    background-color: #c2b3ec;
-    border-color: #4007ea;
-    box-shadow: 0 0 4px #4007ea;
+    box-shadow: 0 0 1px 1px #b9b066;
 }
 
 .uri {
