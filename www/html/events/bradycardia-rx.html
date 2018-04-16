@@ -1,0 +1,61 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/bradycardia-dx.html" data-title="Bradycardia" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/bradycardia-tx.html" data-title="Bradycardia" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/bradycardia-rx.html" data-title="Bradycardia" class="bg-rx emphasis">Rx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/bradycardia-misc.html" data-title="Bradycardia" class="bg-misc">Misc</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/bradycardia-crisis.html" data-title="Bradycardia" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-rx event-title">Drug / Dosage Summary</div>
+</div>
+<div class="page">
+    <ul>
+        <li class="no-weight"><strong>Atropine</strong> 0.01-0.02 mg/kg IV</li>
+        <li class="has-weight"><strong>Atropine</strong> <span id="weight-range-2"></span> mg <span class="per-kg-weight">(0.01-0.02 mg/kg)</span> IV</li>
+
+        <li class="no-weight"><strong>Calcium chloride</strong> 10-20 mg/kg IV or <strong>calcium gluconate</strong> 50 mg/kg.</li>
+        <li class="has-weight"><strong>Calcium chloride</strong> <span id="weight-range-3"></span> mg <span class="per-kg-weight">(10-20 mg/kg)</span> IV
+            or <strong>calcium gluconate</strong> <span id="weight-range-4"></span> mg <span class="per-kg-weight">(50 mg/kg)</span>
+        </li>
+
+        <li class="no-weight"><strong>Glucagon</strong> 50 MICROgrams/kg IV, then 0.07 mg/kg/hour IV infusion (MAX 5 mg/hr)</li>
+        <li class="has-weight"><strong>Glucagon</strong> <span id="weight-range-5"></span> MICROgrams <span class="per-kg-weight">(50 MICROgrams/kg)</span> IV,
+            then 0.07 mg/kg/hour IV infusion (MAX 5 mg/hr)
+        </li>
+
+    </ul>
+</div>
+
+<script>
+    if (app.weight > 0) {
+        // We'll fill in the weight ranges here.
+
+        // 0.01-0.02 mg/kg
+        const calculatedRange2a = app.printNumber(app.weight * 0.01, 0, 2); 
+        const calculatedRange2b = app.printNumber(app.weight * 0.02, 0, 2); 
+        document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;
+
+        // 10-20 mg/kg
+        const calculatedRange3a = app.printNumber(app.weight * 10, 0, 2); 
+        const calculatedRange3b = app.printNumber(app.weight * 20, 0, 2); 
+        document.getElementById("weight-range-3").textContent = calculatedRange3a + "-" + calculatedRange3b;
+
+        // 50 mg/kg
+        const calculatedRange4 = app.printNumber(app.weight * 50, 0, 2); 
+        document.getElementById("weight-range-4").textContent = calculatedRange4;
+
+        // 50 MICROgrams/kg
+        const calculatedRange5 = app.printNumber(app.weight * 50, 0, 2); 
+        document.getElementById("weight-range-5").textContent = calculatedRange4;
+    }
+</script>
