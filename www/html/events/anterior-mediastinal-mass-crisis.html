@@ -10,13 +10,13 @@
           <button data-uri="/html/events/anterior-mediastinal-mass-crisis.html" data-title="Anterior Mediastinal Mass" class="bg-crisis emphasis">Crisis</button>
       </div>
   </div>
-    <div class="bg-purple event-title">Crisis Management (If Severe)</div>
+    <div class="bg-crisis event-title">Crisis Management (If Severe)</div>
 </div>
 <div class="page">
     <ul>
         <li>Notify surgeon, call for help and code cart</li>
         <li>Call for echocardiography</li>
-        <li>Check pulse. If no pulse or HR<30:
+        <li>Check pulse. If no pulse or HR&lt;30:
             <ul>
               <li>Start chest compressions</li>
               <li>Give EPINEPHrine <span id="weight-range-1"></span> MICROgrams <span class="per-kg-weight">(1-10 MICROgrams/kg)</span> IV/IO</li>
@@ -28,9 +28,9 @@
 
 <script>
 if (app.weight > 0) {
-  // 1-10 MICROgrams/kg
-  const calculatedRange1a = app.printNumber(app.weight, 0, 2);
-  const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
-  document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
+    // 1-10 MICROgrams/kg
+    const calculatedRange1a = app.printNumber(app.weight, 0, 2);
+    const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
+    document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
 }
 </script>
