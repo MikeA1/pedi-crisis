@@ -19,7 +19,8 @@
 </div>
 
 <div class="page">
-    <div class="bg-tx event-title">TREATMENT: INTUBATED PATIENT</div>    
+    <strong>Pick One:</strong>
+    <div class="bg-tx event-title plus">TREATMENT: INTUBATED PATIENT</div>
     <ul>
         <li>Auscultate the chest
             <ul>
@@ -60,9 +61,21 @@
 </div>
 
 <script>
+
+$(function(){
+
+  $('.event-title + ul').hide();
+
+  $('.event-title').on("click", function() {
+    $(this).next('ul').show();
+
+  });
+
+});
+
     if (app.weight > 0) {
         //1-2 mg/kg
-        const calculatedRange1a = app.printNumber(app.weight); 
+        const calculatedRange1a = app.printNumber(app.weight);
         const calculatedRange1b = app.printNumber(app.weight * 2);
         document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
 

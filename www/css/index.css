@@ -73,7 +73,7 @@ body {
     border-bottom: 1px solid #777;
 
     /* iOS requires the prefix -webkit- */
-    position: -webkit-sticky; 
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     max-width: 1000px; /* This matches the same rule on html */
@@ -101,8 +101,8 @@ body {
     /* The following CSS rules work in conjunction with a javascript function that
      * will change the `position` from `relative` (default) to `absolute`.
      */
-    
-    /* When position is absolute, this element will shrink-to-fit horizontally. 
+
+    /* When position is absolute, this element will shrink-to-fit horizontally.
      * That looks weird, so force this element to grow-to-fit horizontally.
      */
     width: 100%;
@@ -111,17 +111,17 @@ body {
     width: fill-available;
     /* We don't want the content to be too wide, so this is a safety check. */
     max-width: 936px; /* 1000px (standard max-width) - 60px (padded 30px on left and 30px on right) - 4px (Ummm... borders?) */
-    
+
     /* Let the content breath! */
     line-height: 2;
-    
+
     /*
      * The javascript function sets the `top` dynamically.
      * The `bottom` is always `0`; this avoids setting `height` explicitly.
      * This approach is resize-friendly (e.g., for a desktop browser).
      */
     bottom: 0;
-    
+
     /* Overflow `scroll` is necessary to scroll within this element! */
     overflow-y: scroll;
 }
@@ -411,8 +411,8 @@ aside ul {
 }
 
 
-/* Always show scrollbars in pages 
- * Source: https://stackoverflow.com/a/7855592/772086 
+/* Always show scrollbars in pages
+ * Source: https://stackoverflow.com/a/7855592/772086
  * Note: This destroys smooth scrolling! Setting `-webkit-overflow-scrolling` to `touch` will undo all of the below settings.
  */
 .page::-webkit-scrollbar {
@@ -433,9 +433,9 @@ aside ul {
     background-color: rgba(0, 0, 0, .5);
 }
 
-.page::-webkit-scrollbar-track { 
-    background-color: #f7f7f7; 
-    border-radius: 8px; 
+.page::-webkit-scrollbar-track {
+    background-color: #f7f7f7;
+    border-radius: 8px;
 }
 
 /* These elements appear at the top of each event page. */
@@ -450,4 +450,9 @@ aside ul {
     background-color: #f2f2f2;
     margin-bottom: 1em;
     padding: .5em;
+}
+
+/* Styling for hidden lists below an Event Title */
+.plus {
+  margin-bottom: 1em;
 }
