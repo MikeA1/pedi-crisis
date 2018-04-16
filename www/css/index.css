@@ -425,8 +425,22 @@ aside ul {
 }
 
 /* Styling for hidden lists below an Event Title */
-.plus {
+.display-none {
+    display: none;
+}
+
+/* These are bootstrap-style margin indicators. */
+.m-t-1 {
+    margin-top: 1em;
+}
+.m-r-1 {
+    margin-right: 1em;
+}
+.m-b-1 {
     margin-bottom: 1em;
+}
+.m-l-1 {
+    margin-left: 1em;
 }
 
 /* Always show scrollbars in pages

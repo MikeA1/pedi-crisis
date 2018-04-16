@@ -413,5 +413,27 @@
         //return longNumber.substring(0, index + 1);
         return value.toFixed(index - decimalPlace);
     }
+    
+    /**
+     * Creates an accordion: up to one item is visible in an accordion.
+     * @param [{button, content}] items is an array of objects with two properties: button and content.
+     * Remarks: Assumes that contents are hidden by default: use the class "display-none" or the element style "display: none;".
+     */
+    app.createAccordion = (items) => {
+        let currentIndex = null;
+        const updateVisibility = () => {
+            items.forEach((item, idx) => {
+                item.content.style.display = currentIndex === idx ? "block" : "none";
+            });
+        }
+        items.forEach((item, idx) => {
+            const index = idx;
+            item.button.addEventListener("click", () => {
+                currentIndex = currentIndex === index ? null : index;
+                updateVisibility();
+            })
+
+        });
+    };
 
 })();
