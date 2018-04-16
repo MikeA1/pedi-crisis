@@ -361,13 +361,13 @@ button.bg-crisis.emphasis {
 
 /* orange */
 .bg-misc {
-    background-color: #e4550b;
+    background-color: #f5712d;
 }
 
 button.bg-misc:hover, button.bg-misc.emphasis {
-    background-color: #f4661d;
-    border-color: #c44909;
-    box-shadow: 0 0 1px 1px #c44909;
+    background-color: #f7874d;
+    border-color: #f35b0d;
+    box-shadow: 0 0 1px 1px #f35b0d;
 }
 
 .bg-yellow {
@@ -410,6 +410,24 @@ aside ul {
     padding-left: 2rem;
 }
 
+/* These elements appear at the top of each event page. */
+.event-nav {
+    padding: .5em 1em 0 1em;
+}
+
+/* Used primarily in edit screens like "phone" and "weight". */
+.section {
+    border: 1px solid #ccc;
+    border-left-width: 4px;
+    background-color: #f2f2f2;
+    margin-bottom: 1em;
+    padding: .5em;
+}
+
+/* Styling for hidden lists below an Event Title */
+.plus {
+    margin-bottom: 1em;
+}
 
 /* Always show scrollbars in pages
  * Source: https://stackoverflow.com/a/7855592/772086
@@ -436,23 +454,4 @@ aside ul {
 .page::-webkit-scrollbar-track {
     background-color: #f7f7f7;
     border-radius: 8px;
-}
-
-/* These elements appear at the top of each event page. */
-.event-nav {
-    padding: .5em 1em 0 1em;
-}
-
-/* Used primarily in edit screens like "phone" and "weight". */
-.section {
-    border: 1px solid #ccc;
-    border-left-width: 4px;
-    background-color: #f2f2f2;
-    margin-bottom: 1em;
-    padding: .5em;
-}
-
-/* Styling for hidden lists below an Event Title */
-.plus {
-  margin-bottom: 1em;
 }
