@@ -1,0 +1,33 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/difficult-airway-tx.html" data-title="Difficult Airway" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/difficult-airway-rx.html" data-title="Difficult Airway" class="bg-rx emphasis">Rx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/difficult-airway-misc.html" data-title="Difficult Airway" class="bg-misc">Misc</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/difficult-airway-crisis.html" data-title="Difficult Airway" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-rx event-title">DRUG / DOSAGE SUMMARY</div>
+</div>
+<div class="page">
+    <ul>
+        <li class="no-weight"><strong>Sugammadex</strong> 16 mg/kg</li>
+        <li class="has-weight"><strong>Sugammadex</strong> <span id="weight-range-1"></span> mg <span class="per-kg-weight">(16 mg/kg)</span></li>
+    </ul>
+</div>
+
+<script>
+    if (app.weight > 0) {
+        // We'll fill in the weight ranges here.
+
+        // 16 mg/kg
+        const calculatedRange1 = app.printNumber(app.weight * 16, 0, 2); 
+        document.getElementById("weight-range-1").textContent = calculatedRange1;
+    }
+</script>
