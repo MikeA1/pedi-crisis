@@ -1,0 +1,63 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/myocardial-ischemia-dx.html" data-title="Myocardial Ischemia" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/myocardial-ischemia-tx.html" data-title="Myocardial Ischemia" class="bg-tx emphasis">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/myocardial-ischemia-ddx.html" data-title="Myocardial Ischemia" class="bg-ddx">DDx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/myocardial-ischemia-crisis.html" data-title="Myocardial Ischemia" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-tx event-title">Treatment</div>
+</div>
+<div class="page">
+    <ul>
+        <li>Improve O<sub>2</sub> Supply:
+            <ul>
+                <li>Give 100% O<sub>2</sub></li>
+                <li>Correct anemia</li>
+                <li>Correct hypotension</li>
+            </ul>
+        </li>
+        
+        <li>Decrease O<sub>2</sub> Demand:
+            <ul>
+                <li>Reduce heart rate</li>
+                <li>Correct hypertension</li>
+                <li>Restore sinus rhythm</li>
+            </ul>
+        </li>
+        
+        <li>Drug therapy (rarely needed in peds, consult a pediatric cardiac expert):
+            <ul>
+                <li class="no-weight">NitroGLYCERIN 0.5-5 MICROgrams/kg/min</li>
+                <li class="has-weight">NitroGLYCERIN <span id="weight-range-1"></span> MICROgrams/min <span class="per-kg-weight">(0.5-5 MICROgrams/kg/min)</span></li>
+                <li class="no-weight">Consider heparin infusion 10 Units/kg bolus, then 10 Units/kg/hour</li>
+                <li class="has-weight">Consider heparin infusion <span id="weight-range-2"></span> Units <span class="per-kg-weight">(10 Units/kg)</span> bolus, 
+                    then <span id="weight-range-3"></span> Units/hour <span class="per-kg-weight">(10 Units/kg/hour)</span></li>
+            </ul>
+        </li>
+        
+    </ul>
+</div>
+
+<script>
+    if (app.weight) {
+        const get = (id) => document.getElementById(id);
+
+        // 0.5-5 MICROgrams/kg/min
+        get("weight-range-1").textContent = app.printNumber(app.weight * 0.5, 0, 2) + "-" + app.printNumber(app.weight * 5, 0, 2);
+
+        // 10 Units/kg
+        get("weight-range-2").textContent = app.printNumber(app.weight * 10, 0, 2);
+
+        // 10 Units/kg/hour
+        get("weight-range-3").textContent = app.printNumber(app.weight * 10, 0, 2);
+
+    }
+</script>
