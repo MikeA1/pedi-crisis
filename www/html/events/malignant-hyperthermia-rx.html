@@ -1,0 +1,62 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/malignant-hyperthermia-dx.html" data-title="Malignant Hyperthermia" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/malignant-hyperthermia-tx.html" data-title="Malignant Hyperthermia" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/malignant-hyperthermia-rx.html" data-title="Malignant Hyperthermia" class="bg-dx emphasis">Rx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/malignant-hyperthermia-ddx.html" data-title="Malignant Hyperthermia" class="bg-ddx">DDx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/malignant-hyperthermia-crisis.html" data-title="Malignant Hyperthermia" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-rx event-title">DRUG / DOSAGE SUMMARY</div>
+</div>
+<div class="page">
+    <ul>
+        <li class="no-weight"><strong>Dantrolene</strong> 2.5 mg/kg IV, q5 min as needed</li>
+        <li class="has-weight"><strong>Dantrolene</strong> <span id="weight-range-1"></span> mg <span class="per-kg-weight">(2.5 mg/kg)</span> IV, q5 min as needed</li>
+
+        <li class="no-weight"><strong>Sodium bicarbonate</strong> 1-2 mEq/kg IV</li>
+        <li class="has-weight"><strong>Sodium bicarbonate</strong> <span id="weight-range-2"></span> mEq <span class="per-kg-weight">(1-2 mEq/kg)</span> IV</li>
+
+        <li class="no-weight"><strong>Calcium gluconate</strong> 30 mg/kg IV</li>
+        <li class="has-weight"><strong>Calcium gluconate</strong> <span id="weight-range-3"></span> mg <span class="per-kg-weight">(30 mg/kg)</span> IV</li>
+
+        <li class="no-weight"><strong>Calcium chloride</strong> 10 mg/kg IV</li>
+        <li class="has-weight"><strong>Calcium chloride</strong> <span id="weight-range-4"></span> mg <span class="per-kg-weight">(10 mg/kg)</span> IV</li>
+
+        <li class="no-weight"><strong>Insulin </strong> 0.1 units/kg IV (MAX 10 units) and dextrose 0.5-1 g/kg</li>
+        <li class="has-weight"><strong>Insulin </strong> <span id="weight-range-5"></span> units <span class="per-kg-weight">(0.1 units/kg)</span> IV (MAX 10 units) and 
+            dextrose <span id="weight-range-6"></span> g <span class="per-kg-weight">(0.5-1 g/kg)</span></li>
+    </ul>
+</div>
+<script>
+    if (app.weight) {
+        const get = (id) => document.getElementById(id);
+
+        // 2.5 mg/kg
+        get("weight-range-1").textContent = app.printNumber(app.weight * 2.5, 0, 2);
+
+        // 1-2 mEq/kg
+        get("weight-range-2").textContent = app.printNumber(app.weight, 0, 2) + "-" + app.printNumber(app.weight * 2, 0, 2);
+
+        // 30 mg/kg
+        get("weight-range-3").textContent = app.printNumber(app.weight * 30, 0, 2);
+
+        // 10 mg/kg
+        get("weight-range-4").textContent = app.printNumber(app.weight * 10, 0, 2);
+
+        // 0.1 units/kg IV (MAX 10 units)
+        get("weight-range-5").textContent = app.printNumber(Math.min(app.weight * 0.1, 10), 0, 2);
+
+        // 0.5-1 g/kg
+        get("weight-range-6").textContent = app.printNumber(app.weight * 0.5, 0, 2) + "-" + app.printNumber(app.weight, 0, 2);
+    }
+</script>
