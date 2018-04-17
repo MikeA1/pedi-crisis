@@ -16,11 +16,11 @@
             <button data-uri="/html/events/bronchospasm-crisis.html" data-title="Bronchospasm" class="bg-crisis">Crisis</button>
         </div>
     </div>
+    <div class="bg-tx event-title">TREATMENT</div>
 </div>
 
 <div class="page">
-    <div class="bg-tx event-title">TREATMENT</div>
-    
+   
     <strong>Pick One:</strong>
 
     <div id="button-non-intubated" class="button-group">
@@ -29,13 +29,13 @@
         </div>
     </div>
     <ul id="list-non-intubated" class="display-none m-l-1">
+        <li class="no-weight">If severe, consider intravenous EPINEPHrine 1-2 MICROgrams/kg IV (MAX 1 mg)</li>
+        <li class="has-weight">If severe, consider intravenous EPINEPHrine <span id="weight-range-4"></span> MICROgrams <span class="per-kg-weight">(1-2 MICROgrams/kg, MAX 1 mg)</span> IV</li>
         <li>Administer supplemental oxygen</li>
         <li>Auscultate the chest, differentiate from stridor/extrathoracic airway obstruction</li>
         <li>Consider inhaled albuterol (with spacer)</li>
         <li>Consider chest radiograph</li>
         <li>Consider IV steroids</li>
-        <li class="no-weight">If severe, consider intravenous EPINEPHrine 1-2 MICROgrams/kg IV (MAX 1 mg)</li>
-        <li class="has-weight">If severe, consider intravenous EPINEPHrine <span id="weight-range-4"></span> MICROgrams <span class="per-kg-weight">(1-2 MICROgrams/kg, MAX 1 mg)</span> IV</li>
         <li>If severe, consider ICU and/or advanced airway management</li>
     </ul>
 
@@ -45,6 +45,10 @@
         </div>
     </div>
     <ul id="list-intubated" class="display-none m-l-1">
+        <li class="no-weight">If severe, consider EPINEPHrine 1-2 MICROgrams/kg IV (MAX 1 mg)</li>
+        <li class="has-weight">If severe, consider EPINEPHrine <span id="weight-range-2"></span> MICROgrams <span class="per-kg-weight">(1-2 MICROgrams/kg, MAX 1 mg)</span> IV</li>
+        <li>Consider inhaled albuterol</li>
+        <li>Consider deepening anesthetic</li>
         <li>Auscultate the chest
             <ul>
                 <li>Equal breath sounds?</li>
@@ -58,12 +62,9 @@
                 <li>Secretions/blood in the ETT? Need for suctioning?</li>
             </ul>
         </li>
-        <li>Consider inhaled albuterol</li>
-        <li>Consider deepening anesthetic</li>
         <li class="no-weight">If needed, give ketamine 1-2 mg/kg IV</li>
         <li class="has-weight">If needed, give ketamine <span id="weight-range-1"></span> mg <span class="per-kg-weight">(1-2 mg/kg)</span> IV</li>
-        <li class="no-weight">If severe, consider EPINEPHrine 1-2 MICROgrams/kg IV (MAX 1 mg)</li>
-        <li class="has-weight">If severe, consider EPINEPHrine <span id="weight-range-2"></span> MICROgrams <span class="per-kg-weight">(1-2 MICROgrams/kg, MAX 1 mg)</span> IV </li>
+        
         <li>Consider IV steroids</li>
         <li>Consider chest radiograph</li>
         <li class="no-weight">For refractory bronchospasm, consider magnesium 50-75 mg/kg (MAX 2 grams) bolused over 20 minutes, (CAUTION, may
@@ -71,42 +72,37 @@
         <li class="has-weight">For refractory bronchospasm, consider magnesium <span id="weight-range-3"></span> mg <span class="per-kg-weight">(50-75 mg/kg, MAX 2 grams)</span> bolused over 20 minutes, (CAUTION, may cause hypotension)</li>
     </ul>
     
-
 </div>
 
 <script>
+    // The "pick one" section uses the accordion paradigm to show only relevant data.
+    const get = (name => document.getElementById(name)); // (this is a helper function)
+    app.createAccordion([
+        {button: get("button-intubated"), content: get("list-intubated")}, 
+        {button: get("button-non-intubated"), content: get("list-non-intubated")}
+    ]);
 
-    (() => {
+    if (app.weight > 0) {
+        //1-2 mg/kg
+        const calculatedRange1a = app.printNumber(app.weight);
+        const calculatedRange1b = app.printNumber(app.weight * 2);
+        document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
 
-        // The "pick one" section uses the accordion paradigm to show only relevant data.
-        const get = (name => document.getElementById(name)); // (this is a helper function)
-        app.createAccordion([
-            {button: get("button-intubated"), content: get("list-intubated")}, 
-            {button: get("button-non-intubated"), content: get("list-non-intubated")}
-        ]);
+        // 1-2 MICROgrams/kg IV (MAX 1 mg)
+        // Note: use `Math.min()` to apply "MAX 1 mg" logic.
+        const calculatedRange2a = app.printNumber(Math.min(app.weight, 1000));
+        const calculatedRange2b = app.printNumber(Math.min(app.weight * 2, 1000));
+        document.getElementById("weight-range-2").textContent = calculatedRange2a === calculatedRange2b ? calculatedRange2a : calculatedRange2a + "-" + calculatedRange2b;
 
-        if (app.weight > 0) {
-            //1-2 mg/kg
-            const calculatedRange1a = app.printNumber(app.weight);
-            const calculatedRange1b = app.printNumber(app.weight * 2);
-            document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
+        // 50-75 mg/kg, MAX 2 grams
+        const calculatedRange3a = app.printNumber(Math.min(app.weight * 50, 2000), 0, 1);
+        const calculatedRange3b = app.printNumber(Math.min(app.weight * 75, 2000), 0, 1);
+        document.getElementById("weight-range-3").textContent = calculatedRange3a + "-" + calculatedRange3b;
 
-            // 1-2 MICROgrams/kg IV (MAX 1 mg)
-            // Note: use `Math.min()` to apply "MAX 1 mg" logic.
-            const calculatedRange2a = app.printNumber(Math.min(app.weight, 1000));
-            const calculatedRange2b = app.printNumber(Math.min(app.weight * 2, 1000));
-            document.getElementById("weight-range-2").textContent = calculatedRange2a === calculatedRange2b ? calculatedRange2a : calculatedRange2a + "-" + calculatedRange2b;
-
-            // 50-75 mg/kg, MAX 2 grams
-            const calculatedRange3a = app.printNumber(Math.min(app.weight * 50, 2000), 0, 1);
-            const calculatedRange3b = app.printNumber(Math.min(app.weight * 75, 2000), 0, 1);
-            document.getElementById("weight-range-3").textContent = calculatedRange3a + "-" + calculatedRange3b;
-
-            // 1-2 MICROgrams/kg, MAX 1 mg
-            // Note: use `Math.min()` to apply "MAX 1 mg" logic.
-            const calculatedRange4a = app.printNumber(Math.min(app.weight, 1000));
-            const calculatedRange4b = app.printNumber(Math.min(app.weight * 2, 1000));
-            document.getElementById("weight-range-4").textContent = calculatedRange4a === calculatedRange4b ? calculatedRange4a : calculatedRange4a + "-" + calculatedRange4b;
-        }
-    })();
+        // 1-2 MICROgrams/kg, MAX 1 mg
+        // Note: use `Math.min()` to apply "MAX 1 mg" logic.
+        const calculatedRange4a = app.printNumber(Math.min(app.weight, 1000));
+        const calculatedRange4b = app.printNumber(Math.min(app.weight * 2, 1000));
+        document.getElementById("weight-range-4").textContent = calculatedRange4a === calculatedRange4b ? calculatedRange4a : calculatedRange4a + "-" + calculatedRange4b;
+    }
 </script>
