@@ -20,9 +20,11 @@
 </div>
 <div class="page">
     <ul>
-        <li class="no-weight"><strong>Epinephrine</strong> 1 MICROgram/kg IV/IO</li>
-        <li class="has-weight"><strong>Epinephrine</strong> <span id="weight-range-1"></span> MICROgrams <span class="per-kg-weight">(1 MICROgram/kg)</span> IV/IO</li>
-
+        <li class="no-weight"><strong>Epinephrine</strong> 1 MICROgram/kg IV/IO, may need infusion 0.02-0.2 MICROgrams/kg/min </li> 
+        <li class="has-weight"><strong>Epinephrine</strong> <span id="weight-range-1"></span> MICROgrams
+             <span class="per-kg-weight">(1 MICROgram/kg)</span> IV/IO, may need infusion <span id="weight-range-1b"></span> MICROgrams/min 
+             <span class="per-kg-weight">(0.02-0.2 MICROgrams/kg/min)</span> </li>
+        
         <li class="no-weight"><strong>Midazolam</strong> 0.05-0.1 mg/kg IV</li>
         <li class="has-weight"><strong>Midazolam</strong> <span id="weight-range-2"></span> mg <span class="per-kg-weight">(0.05-0.1 mg/kg)</span> IV</li>
     </ul>
@@ -52,7 +54,12 @@
 
         // 1 MICROgram/kg
         const calculatedRange1 = app.printNumber(app.weight, 0, 2);
-        document.getElementById("weight-range-1").textContent = calculatedRange2;
+        document.getElementById("weight-range-1").textContent = calculatedRange1;
+
+        // 0.02-0.2 MICROgrams/kg/min
+        const calculatedRange1ba = app.printNumber(app.weight * 0.02, 0, 2);
+        const calculatedRange1bb = app.printNumber(app.weight * 0.2, 0, 2);
+        document.getElementById("weight-range-1b").textContent = calculatedRange1ba + "-" + calculatedRange1bb;
 
         // 0.05-0.1 mg/kg
         const calculatedRange2a = app.printNumber(app.weight * 0.05, 0, 2);
