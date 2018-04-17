@@ -1,0 +1,83 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/hypoxia-tx.html" data-title="Hypoxia" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/hypoxia-dx.html" data-title="Hypoxia" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/hypoxia-ddx.html" data-title="Hypoxia" class="bg-ddx emphasis">DDx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/hypoxia-crisis.html" data-title="Hypoxia" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-ddx event-title">Differential (Partial)</div>
+</div>
+<div class="page">
+ 
+        <strong>Pick One:</strong>
+
+        <div id="button-suspect" class="button-group">
+            <div class="button-container">
+                <button>YES, Airway Cause IS Suspected</button>
+            </div>
+        </div>
+        <ul id="list-suspect" class="display-none m-l-1">
+            <li><strong>Lungs</strong>
+                <ul>
+                    <li><span data-uri="/html/events/bronchospasm-tx.html" data-title="Bronchospasm" class="uri">BRONCHOSPASM</span></li>
+                    <li>Atelectasis</li>
+                    <li>Aspiration</li>
+                    <li data-uri="/html/events/not-implemented.html" data-title="Tension Pneumothorax" class="uri">TENSION PNEUMOTHORAX</li>
+                    <li>Pulmonary Edema</li>
+                </ul>
+            </li>
+            <li><strong>ETT</strong>
+                <ul>
+                    <li>Mainstem intubation</li>
+                    <li>Mucous Plug</li>
+                    <li>ETT kinked or dislodged</li>                    
+                </ul>
+            </li>
+            <li><strong>Machine</strong>
+                <ul>
+                    <li>Ventilator settings: RR, TV, I:E ratio, auto-PEEP</li>
+                    <li>Machine malfunction</li>
+                </ul>
+            </li>
+        </ul>
+
+        <div id="button-not-suspect" class="button-group">
+            <div class="button-container">
+                <button>NO, Airway Cause IS NOT Suspected</button>
+            </div>
+        </div>
+        <ul id="list-not-suspect" class="display-none m-l-1">
+            <li><strong>Drugs/Allergy</strong>
+                <ul>
+                    <li>Recent drugs given</li>
+                    <li>Allergy/<span data-uri="/html/events/anaphylaxis-tx.html" data-title="Anaphylaxis" class="uri">ANAPHYLAXIS</span>/dose error</li>
+                    <li>Methylene blue/dyes or methemoglobinemia</li>
+                </ul>
+            </li>
+            <li><strong>Circulation</strong>
+                <ul>
+                    <li>Embolism – <span data-uri="/html/events/air-embolism-tx.html" data-title="Air Embolism" class="uri">AIR EMBOLUS</span>, fat, CO2, pulmonary, septic, MI, CHF, cardiac tamponade</li>
+                    <li>Severe sepsis</li>
+                    <li data-uri="/html/events/not-implemented.html" data-title="Hypotension" class="uri">HYPOTENSION</li>
+                </ul>
+            </li>
+        </ul>
+    
+</div>
+
+<script>
+    // The "pick one" section uses the accordion paradigm to show only relevant data.
+    const get = (name => document.getElementById(name)); // (this is a helper function)
+    app.createAccordion([
+        {button: get("button-suspect"), content: get("list-suspect")}, 
+        {button: get("button-not-suspect"), content: get("list-not-suspect")}
+    ]);
+</script>
