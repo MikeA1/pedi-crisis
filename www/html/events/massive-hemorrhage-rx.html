@@ -1,0 +1,38 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/massive-hemorrhage-dx.html" data-title="Massive Hemorrhage" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/massive-hemorrhage-tx.html" data-title="Massive Hemorrhage" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/massive-hemorrhage-rx.html" data-title="Massive Hemorrhage" class="bg-rx emphasis">Rx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/massive-hemorrhage-crisis.html" data-title="Massive Hemorrhage" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-rx event-title">DRUG / DOSAGE SUMMARY</div>
+</div>
+<div class="page">
+    <ul>
+        <li class="no-weight"><strong>Calcium gluconate</strong> 60 mg/kg IV</li>
+        <li class="has-weight"><strong>Calcium gluconate</strong> <span id="weight-range-1"></span> mg <span class="per-kg-weight">(60 mg/kg)</span> IV</li>
+
+        <li class="no-weight"><strong>Calcium chloride</strong> 20 mg/kg IV</li>
+        <li class="has-weight"><strong>Calcium chloride</strong> <span id="weight-range-2"></span> mg <span class="per-kg-weight">(20 mg/kg)</span> IV</li>
+    </ul>
+</div>
+<script>
+    if (app.weight) {
+        const get = (id) => document.getElementById(id);
+
+        // 60 mg/kg
+        get("weight-range-1").textContent = app.printNumber(app.weight * 60, 0, 2);
+
+        // 20 mg/kg IV
+        get("weight-range-2").textContent = app.printNumber(app.weight * 20, 0, 2);
+
+    }
+</script>
