@@ -1,0 +1,61 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/transfusion-reactions-dx.html" data-title="Transfusion Reactions" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/transfusion-reactions-ddx.html" data-title="Transfusion Reactions" class="bg-ddx">Ddx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/transfusion-reactions-tx.html" data-title="Transfusion Reactions" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/transfusion-reactions-rx.html" data-title="Transfusion Reactions" class="bg-rx emphasis">Rx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/transfusion-reactions-crisis.html" data-title="Transfusion Reactions" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-rx event-title">DRUG / DOSAGE SUMMARY</div>
+</div>
+<div class="page">
+    <ul>
+        <li class="no-weight"><strong>Furosemide</strong> 1-2 mg/kg (MAX 40 mg)</li>
+        <li class="has-weight"><strong>Furosemide</strong> <span id="weight-range-1"></span> mg <span class="per-kg-weight">(1-2 mg/kg, MAX 40 mg)</span></li>
+        
+        <li class="no-weight"><strong>Mannitol</strong> 0.25-1 g/kg</li>
+        <li class="has-weight"><strong>Mannitol</strong> <span id="weight-range-2"></span> g <span class="per-kg-weight">(0.25-1 g/kg)</span></li>
+        
+        <li class="no-weight"><strong>EPINEPHrine</strong> 1-10 MICROgrams/kg IV</li>
+        <li class="has-weight"><strong>EPINEPHrine</strong> <span id="weight-range-3"></span> MICROgrams <span class="per-kg-weight">(1-10 MICROgrams/kg)</span> IV</li>
+
+        <li class="no-weight"><strong>DiphenhydrAMINE</strong> 1 mg/kg IV (MAX 50 mg)</li>
+        <li class="has-weight"><strong>DiphenhydrAMINE</strong> <span id="weight-range-4"></span> mg <span class="per-kg-weight">(1 mg/kg, MAX 50 mg)</span> IV</li>
+        
+        <li class="no-weight"><strong>MethylPREDNISolone</strong> 2 mg/kg IV (MAX 60 mg)</li>
+        <li class="has-weight"><strong>MethylPREDNISolone</strong> <span id="weight-range-5"></span> mg <span class="per-kg-weight">(2 mg/kg, MAX 60 mg)</span> IV</li>
+    </ul>
+</div>
+
+<script>
+    if (app.weight) {
+        const get = (id) => document.getElementById(id);
+
+        // 1-2 mg/kg, MAX 40 mg
+        const weight1a = app.printNumber(Math.min(app.weight, 40), 0, 2);
+        const weight1b = app.printNumber(Math.min(app.weight * 2, 40), 0, 2);
+        get("weight-range-1").textContent = weight1a === weight1b ? weight1a : weight1a + "-" + weight1b;
+
+        // 0.25-1 g/kg
+        get("weight-range-2").textContent = app.printNumber(app.weight * .25, 0, 2) + "-" + app.printNumber(app.weight, 0, 2);
+
+        // 1-10 MICROgrams/kg
+        get("weight-range-3").textContent = app.printNumber(app.weight, 0, 2) + "-" + app.printNumber(app.weight * 10, 0, 2);;
+
+        // 1 mg/kg, MAX 50 mg
+        get("weight-range-4").textContent = app.printNumber(Math.min(app.weight, 50), 0, 2);
+
+        // 2 mg/kg, MAX 60 mg
+        get("weight-range-5").textContent = app.printNumber(Math.min(app.weight * 2, 60), 0, 2);
+    }
+</script>
