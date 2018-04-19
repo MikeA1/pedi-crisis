@@ -7,7 +7,7 @@
             <!-- phone numbers go here! -->
         </div>
         <h3>Notify surgeon.</h3>
-        <button id="edit-button">Edit Phone Numbers</button>
+        <button type="button" id="edit-button">Edit Phone Numbers</button>
     </div>
 
     <!-- This area is visible when in edit mode -->
@@ -65,13 +65,13 @@
         editSection.style.display =  isEditMode ? "block" : "none";
         document.getElementById("display-section").style.display = isEditMode ? "none" : "block";
         const editPhoneNumbers = document.getElementById("edit-phone-numbers");
-        const phoneNumbers = getPhoneNumbers() || {};
+        const phoneNumbers = app.phoneNumbers.get();
         if (isEditMode) {
             editSection.reset();
             // Remove existing elements. Otherwise they are duplicated when flipping in and out of display mode.
             removeChildren(editPhoneNumbers);
             // Always show system phone numbers.
-            const systemDescriptions = {"Code Team": "Code Team", "PICU": "PICU", "Fire": "Fire", "Overhead STAT": "Overhead STAT", "ECMO": "ECMO"};
+            const systemDescriptions = app.phoneNumbers.systemDescriptions;
             Object.keys(systemDescriptions).forEach(description => {
                 let data = phoneNumbers[description] || {description, isHyperlink: true, number: "", isSystem: true};
                 let element = createEditModePhoneNumberElement(data);
@@ -197,6 +197,7 @@
             const deleteButton = document.createElement("button");
             deleteButton.textContent = "Delete";
             deleteButton.style.float = "right";
+            deleteButton.type = "button";
             deleteButton.addEventListener("click", event => {
                 container.remove();
             });
@@ -207,24 +208,6 @@
 
         return container;
     };
-
-    /***
-     * Simple helper for retrieving phone numbers.
-     */
-    const getPhoneNumbers = () => {
-        const stringData = localStorage.getItem("phone-numbers");
-        return stringData ? JSON.parse(stringData) : {};
-    }
-
-    /***
-     * Simple helper for saving phone numbers.
-     */
-    const setPhoneNumbers = (phoneNumbers) => {
-        if (phoneNumbers.length) {
-            console.warn("Oops - phoneNumbers should be an associative array.");
-        }
-        localStorage.setItem("phone-numbers", JSON.stringify(phoneNumbers));
-    }
 
     /***
      * For each HTML element assigned the class "section", extract elements related to phone numbers.
@@ -284,7 +267,7 @@
             }
         }
 
-        setPhoneNumbers(phoneNumbers);
+        app.phoneNumbers.set(phoneNumbers);
         setEditMode(false);
     };
     

@@ -21,7 +21,8 @@
         </li>
         <li>Maintain ventilation. Assess for inhalation injury</li>
         <li>Consider input from ENT, pulmonary, plastic surgery</li>
-        <li>Consider PICU</li>
+        <li>Consider <span data-phone-number="PICU">PICU</span></li>
+        <li id="phone-number-fire" class="display-none">Consider <span data-phone-number="Fire">Fire Phone Number</span></li>
         <li>Shut off gases to affected OR
             <ul>
                 <li>Verify gases are not shut off to adjacent rooms</li>
@@ -30,3 +31,9 @@
         <li>Impound all equipment and supplies for later inspection</li>
     </ul>
 </div>
+<script>
+    // If we have a phone number for "Fire", then show the pertinent list item!
+    if (app.phoneNumbers.get().Fire) {
+        document.getElementById("phone-number-fire").style.display = "list-item";
+    }
+</script>
