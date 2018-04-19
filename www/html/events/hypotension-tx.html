@@ -1,0 +1,72 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/hypotension-dx.html" data-title="Hypotension" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/hypotension-tx.html" data-title="Hypotension" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/hypotension-crisis.html" data-title="Hypotension" class="bg-crisis emphasis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-tx event-title">Treatment</div>
+</div>
+<div class="page">
+    <ul>
+        <li>In pediatrics, hypotension is almost always treated by correcting hypovolemia or decreasing the anesthetic agent</li>
+        <li>Ensure oxygenation/ ventilation
+        <li>Turn anesthetic agents down or off</li>
+        <li>Check cuff size and transducer position</li>
+        <li>If severe and/or persistent, consider placing arterial line if not already present</li>                
+        </li>
+    </ul>
+
+    <strong>Etiology (Pick One):</strong>
+
+     <div id="button-group-1" class="button-group">
+        <div class="button-container">
+            <button>Decreased preload</button>
+        </div>
+    </div>
+    <ul id="list-group-1" class="display-none m-l-1">
+        <li>Expand circulating blood volume (administer fluids rapidly, consider albumin)</li>
+        <li>Trendelenberg position</li>
+        <li>Place or replace IV; consider intraosseous line</li>
+        <li>Causes: hypovolemia, vasodilation, impaired venous return, tamponade, and pulmonary embolism`</li>
+    </ul>
+
+    <div id="button-group-2" class="button-group">
+        <div class="button-container">
+            <button>Decreased contractility</button>
+        </div>
+    </div>
+    <ul id="list-group-2" class="display-none m-l-1">
+        <li>Start inotrope infusion (DOPamine, EPINEPHrine), as needed</li>
+        <li>Consider calcium IV</li>
+        <li>Review ECG for rhythm disturbances or ischemia</li>
+        <li>Send ABG, Hgb, electrolytes</li>
+        <li>Causes: negative inotropic drugs (anesthetic agents), arrhythmias, <span data-uri="/html/events/hypoxia-tx.html" data-title="Hypoxia" class="uri">HYPOXIA</span>, and heart failure (ischemia)</li>
+    </ul>
+
+
+    <div id="button-group-3" class="button-group">
+        <div class="button-container">
+            <button>Decreased afterload</button>
+        </div>
+    </div>
+    <ul id="list-group-3" class="display-none m-l-1">
+        <li>Start vasopressor infusion: phenylephrine, norepinephrine</li>
+        <li>Administer steroids for endocrine crisis</li>
+        <li>Causes: drug-induced vasodilation, sepsis, <span data-uri="/html/events/anaphylaxis-tx.html" data-title="Anaphylaxis" class="uri">ANAPHYLAXIS</span>, endocrine crisis</li>
+    </ul>
+</div>
+<script>
+    // The "pick one" section uses the accordion paradigm to show only relevant data.
+    const get = (name => document.getElementById(name)); // (this is a helper function)
+    app.createAccordion([
+        {button: get("button-group-1"), content: get("list-group-1")}, 
+        {button: get("button-group-2"), content: get("list-group-2")},
+        {button: get("button-group-3"), content: get("list-group-3")}
+    ]);
+</script>
