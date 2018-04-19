@@ -1,0 +1,74 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/maternal-postpartum-hemorrhage-dx.html" data-title="MATERNAL Postpartum Hemorrhage" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/maternal-postpartum-hemorrhage-tx.html" data-title="MATERNAL Postpartum Hemorrhage" class="bg-tx emphasis">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/maternal-postpartum-hemorrhage-rx.html" data-title="MATERNAL Postpartum Hemorrhage" class="bg-rx">Rx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/maternal-postpartum-hemorrhage-crisis.html" data-title="MATERNAL Postpartum Hemorrhage" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-tx event-title">Treatment</div>
+</div>
+<div class="page">
+    <ul>
+        <li><strong>ATTENTION</strong>: This checklist is for <strong>ADULT-SIZED</strong> maternal patients ONLY</li>
+        <li>Prepare for crystalloid and blood product resuscitation</li>
+        <li>Obtain vascular access with 2 large-bore IVs</li>
+        <li>Call Blood Bank to activate Massive Transfusion with PRBC:FFP:platelet in a 4:2:1 ratio. Ask blood bank to prepare next round when each round is picked up.
+            <ul>
+                <li>Give calcium chloride ADULT DOSE 200-500mg/Unit PRBCs, in separate line. Monitor for hyperkalemia</li>
+                <li>Consider giving tranexamic acid early</li>
+                <li>If refractory hemorrhage, consider fVIIa and cryoprecipitate or fibrinogen concentrate</li>
+            </ul>
+        </li>
+        
+        <li>Consider Uterotonics:
+            <ul>
+                <li>Methylergonovine (Methergine) ADULT DOSE 0.2mg IM <strong>NOT IV</strong>, may repeat in 2 hours  (AVOID in HTN and pre-eclampsia)</li>
+                <li>Carboprost (Hemabate) ADULT DOSE 0.25mg IM <strong>NOT IV</strong>, may repeat q 15 minutes up to 8 doses (AVOID in asthma, pulmonary hypertension) </li>
+                <li>Misoprostol ADULT DOSE 800-1000 mg rectal</li>
+            </ul>
+        </li>
+        
+        <li>Call for rapid transfuser or pressure bags</li>
+        <li>Warm room, patient and fluids (NOT platelets)</li>
+        <li>Send CBC, PT/PTT/INR, fibrinogen, calcium, K, ABG</li>
+        <li>Consider Hemostatics:
+            <ul>
+                <li>Tranexamic acid ADULT DOSE 1g</li>
+                <li>If low fibrinogen, give cryoprecipitate ADULT DOSE 10 units or Fibrinogen concentrate</li>
+                <li class="no-weight">If refractory hemorrhage, consider factor VIIa 90 MICROgrams/kg, up to 3 doses</li>
+                <li class="has-weight">If refractory hemorrhage, consider factor VIIa <span id="weight-range-1"></span> MICROgrams <span class="per-kg-weight">(90 MICROgrams/kg)</span>, up to 3 doses</li>
+            </ul>
+        </li>
+        <li>Consider:
+            <ul>
+                <li>Arterial line</li>
+                <li>If awake, convert to general anesthesia</li>
+                <li>Embolization in IR</li>
+                <li>TEG/ROTEM monitoring</li>
+            </ul>
+        </li>
+        
+        <li>Possible OB interventions
+            <ul>
+                <li>Intrauterine balloon</li>
+                <li>External uterine compression sutures</li>
+                <li>Uterine artery ligation </li>
+                <li>Hysterectomy</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script>
+    if (app.weight) {
+        // 90 MICROgrams/kg
+        document.getElementById("weight-range-1").textContent = app.printNumber(app.weight * 90, 0, 2);
+    }
+</script>
