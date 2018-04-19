@@ -216,7 +216,7 @@
                                 style.position = "absolute";
                                 // Note: This `.page` already has values for `bottom` and `overflow-y` via CSS rules.
 
-                                // 
+                                // Since we're already messing around with pages, let's insert phone numbers too.
                                 app.phoneNumbers.updateElements(page);
                             }
                         }
@@ -479,14 +479,28 @@
          * elements with the attribute "data-phone-number";
          */
         updateElements: (parent) => {
+            let phoneNumbers = null;
             Array.from((parent ||document).querySelectorAll("[data-phone-number]")).forEach(element => {
-                const storedPhoneNumbers = localStorage.getItem("phone-numbers");
-                const phoneNumbers = storedPhoneNumbers !== null ? JSON.parse(storedPhoneNumbers) : {};
-                const description = element.dataset.phoneNumber; // Note the automatic conversion from "phone-number" to "phoneNumber"!
+                if (phoneNumbers === null) {
+                    // This `if` statement was created to lazy-load the `phoneNumbers` object.
+                    const storedPhoneNumbers = localStorage.getItem("phone-numbers");
+                    phoneNumbers = storedPhoneNumbers !== null ? JSON.parse(storedPhoneNumbers) : {};
+                }
+                // Here `element.dataset.phoneNumber` is something like "ECMO" from an element like `<span data-phone-number="ECMO">`
+                // Also, note the funky automatic conversion from "data-phone-number" (data-attribute) to "phoneNumber" (dataset)!
+                const description = element.dataset.phoneNumber;
                 const phoneNumber = phoneNumbers[description];
                 if (phoneNumber !== undefined && phoneNumber.number !== undefined) {
                     const number = phoneNumber.number.trim();
                     if (phoneNumber.isHyperlink) {
+                        // If the element looks like this:
+                        //     <span data-phone-number="ECMO">ECMO</span>
+                        // and we have a phone number defined as this:
+                        //     {description: "ECMO", number: "555-555-5555", isHyperlink: true}
+                        // then the amended element will look like this
+                        //     <span data-phone-number="ECMO">ECMO <a href="tel:555-555-5555">#555-555-5555</a></span>
+                        // which to the user is displayed like this:
+                        //    ECMO #555-555-5555
                         const link = document.createElement("a");
                         link.href="tel:" + number;
                         link.textContent = " #" + number;
