@@ -1,0 +1,47 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/trauma-dx.html" data-title="Trauma" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/trauma-tx.html" data-title="Trauma" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/trauma-rx.html" data-title="Trauma" class="bg-rx emphasis">Rx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/trauma-crisis.html" data-title="Trauma" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-rx event-title">DRUG / DOSAGE SUMMARY</div>
+</div>
+<div class="page">
+    <ul>
+        <li class="no-weight"><strong>LR or NS</strong> 20 mL/kg (repeat x 2)</li>
+        <li class="has-weight"><strong>LR or NS</strong> <span id="weight-range-1"></span> mL <span class="per-kg-weight">(20 mL/kg)</span> (repeat x 2)</li>
+
+        <li style="list-style: none;">and/or</li>
+
+        <li class="no-weight"><strong>RBCs</strong> 10 mL/kg</li>
+        <li class="has-weight"><strong>RBCs</strong> <span id="weight-range-2"></span> mL <span class="per-kg-weight">(10 mL/kg)</span></li>
+        
+        <li style="list-style: none;">or</li>
+
+        <li class="no-weight"><strong>Whole blood</strong> 20 mL/kg</li>
+        <li class="has-weight"><strong>Whole blood</strong> <span id="weight-range-3"></span> mL <span class="per-kg-weight">(20 mL/kg)</span></li>
+    </ul>
+</div>
+<script>
+    if (app.weight) {
+        const get = (id) => document.getElementById(id);
+
+        // 20 mL/kg
+        get("weight-range-1").textContent = app.printNumber(app.weight * 20, 0, 2);
+
+        // 10 mL/kg
+        get("weight-range-2").textContent = app.printNumber(app.weight * 10, 0, 2);
+
+        // 20 mL/kg
+        get("weight-range-3").textContent = app.printNumber(app.weight * 20, 0, 2);
+    }
+</script>

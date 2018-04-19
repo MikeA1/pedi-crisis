@@ -1,0 +1,42 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/trauma-dx.html" data-title="Trauma" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/trauma-tx.html" data-title="Trauma" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/trauma-rx.html" data-title="Trauma" class="bg-rx">Rx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/trauma-crisis.html" data-title="Trauma" class="bg-crisis emphasis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-crisis event-title">Crisis Management (if Severe)</div>
+</div>
+<div class="page">
+    <ul>
+        <li>Notify surgeon, call for help and code cart</li>
+        <li>Call for echocardiography</li>
+        <li>Check pulse. If no pulse or HR&lt;30:
+        <ul>
+            <li>Start chest compressions</li>
+            <li class="no-weight">Give EPINEPHrine 1-10 MICROgrams/kg IV/IO</li>
+            <li class="has-weight">Give EPINEPHrine <span id="weight-range-1"></span> MICROgrams <span class="per-kg-weight">(1-10 MICROgrams/kg)</span> IV/IO</li>
+            <li>If cardiac arrest, go to <span data-uri="/html/events/cardiac-arrest-dx.html" data-title="Cardiac Arrest" class="uri">CARDIAC ARREST</span></li>
+            <li>Consider ECMO</li>
+        </ul>
+    </ul>
+</div>
+
+<script>
+    if (app.weight > 0) {
+        // We'll fill in the weight ranges here.
+
+        // 1-10 MICROgrams/kg
+        const calculatedRange1a = app.printNumber(app.weight, 0, 2); 
+        const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
+        document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
+    }
+</script>
