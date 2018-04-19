@@ -1,0 +1,52 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/loss-of-evoked-potentials-dx.html" data-title="Loss of Evoked Potentials" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/loss-of-evoked-potentials-ddx.html" data-title="Loss of Evoked Potentials" class="bg-ddx">Ddx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/loss-of-evoked-potentials-tx.html" data-title="Loss of Evoked Potentials" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/loss-of-evoked-potentials-rx.html" data-title="Loss of Evoked Potentials" class="bg-rx emphasis">Rx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/loss-of-evoked-potentials-crisis.html" data-title="Loss of Evoked Potentials" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-rx event-title">DRUG / DOSAGE SUMMARY</div>
+</div>
+<div class="page">
+    <ul>
+        <li class="no-weight"><strong>ePHEDrine</strong> 0.1 mg/kg IV (MAX 10 mg/dose)</li>
+        <li class="has-weight"><strong>ePHEDrine</strong> <span id="weight-range-1"></span> mg <span class="per-kg-weight">(0.1 mg/kg, MAX 10 mg/dose)</span> IV</li>
+        
+        <li class="no-weight"><strong>phenylephrine</strong> 0.3-1 MICROgrams/kg IV (MAX 100 MICROgrams/dose)</li>
+        <li class="has-weight"><strong>phenylephrine</strong> <span id="weight-range-2"></span> MICROgrams <span class="per-kg-weight">(0.3-1 MICROgrams/kg, MAX 100 MICROgrams/dose)</span> IV</li>
+
+        <li class="no-weight"><strong>MethylPREDNISolone</strong> 30 mg/kg IV over one hour, then 5.4 mg/kg/hour IV for 23 hours</li>
+        <li class="has-weight"><strong>MethylPREDNISolone</strong> <span id="weight-range-3"></span> mg <span class="per-kg-weight">(30 mg/kg)</span> IV over one hour,
+            then <span id="weight-range-4"></span> mg/hour <span class="per-kg-weight">(5.4 mg/kg/hour)</span> IV for 23 hours</li>
+    </ul>
+</div>
+<script>
+    if (app.weight) {
+        const get = (id) => document.getElementById(id);
+
+        // 0.1 mg/kg, MAX 10 mg/dose
+        get("weight-range-1").textContent = app.printNumber(Math.min(app.weight * 0.1, 10), 0, 2);
+
+        // 0.3-1 MICROgrams/kg, MAX 100 MICROgrams/dose
+        const weight2a = app.printNumber(Math.min(app.weight * 0.3, 100), 0, 2);
+        const weight2b = app.printNumber(Math.min(app.weight, 100), 0, 2);
+        get("weight-range-2").textContent = weight2a === weight2b ? weight2a : weight2a + "-" + weight2b;
+        
+        // 30 mg/kg
+        get("weight-range-3").textContent = app.printNumber(app.weight * 30, 0, 2);
+
+        // 5.4 mg/kg/hour
+        get("weight-range-4").textContent = app.printNumber(app.weight * 5.4, 0, 2);
+    }
+</script>

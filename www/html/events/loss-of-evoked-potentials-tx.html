@@ -1,0 +1,85 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/loss-of-evoked-potentials-dx.html" data-title="Loss of Evoked Potentials" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/loss-of-evoked-potentials-ddx.html" data-title="Loss of Evoked Potentials" class="bg-ddx">Ddx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/loss-of-evoked-potentials-tx.html" data-title="Loss of Evoked Potentials" class="bg-tx emphasis">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/loss-of-evoked-potentials-rx.html" data-title="Loss of Evoked Potentials" class="bg-rx">Rx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/loss-of-evoked-potentials-crisis.html" data-title="Loss of Evoked Potentials" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-tx event-title">TREATMENT</div>
+</div>
+<div class="page">
+    <ul>
+
+        <li>Notify all members of health care team. Call a “time out"</li>
+        <li>Loss of evoked potentials (EP) requires definitive steps to re-establish perfusion/remove mechanical cause; MEP loss for &gt; 40 min may increase possibility of long term injury
+            <ul>
+                <li>Assure presence of attending surgeon, attending anesthesiologist, senior neurologist or neurophysiologist, and experienced nurse</li>
+                <li>Each service: review situation, report on management and corrective actions taken
+                    <ul>
+                        <li>Surgeon: rule out mechanical causes for loss/change</li>
+                        <li>EP technologist: rule out technical causes for loss/change</li>
+                        <li>Anesthesiologist: assure no neuromuscular blockade is present; reverse NMB if necessary</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>Check patient positioning (neck, upper and lower extremities)</li>
+        <li>Review anesthetic and consider improving spinal cord perfusion by modifying:
+            <ul>
+                    <li class="no-weight">Mean arterial pressure: MAP &gt; 65 mmHg using ePHEDrine 0.1 mg/kg IV (MAX 10 mg/dose) and/or phenylephrine 0.3-1 MICROgrams/kg IV (MAX 100 MICROgrams/dose), with repeated doses as needed</li>
+                    <li class="has-weight">Mean arterial pressure: MAP &gt; 65 mmHg using ePHEDrine <span id="weight-range-1"></span> mg <span class="per-kg-weight">(0.1 mg/kg, MAX 10 mg/dose)</span> IV 
+                        and/or phenylephrine <span id="weight-range-2"></span> MICROgrams <span class="per-kg-weight">(0.3-1 MICROgrams/kg, MAX 100 MICROgrams/dose)</span> IV, with repeated doses as needed</li>
+                    <li>Hemoglobin: if anemic, transfuse RBC to improve oxygen delivery</li>
+                    <li>pH and PaCO<sub>2</sub>: ensure normocarbia or slight hypercarbia (↑ I/E ratio, ↓ PEEP)</li>
+                    <li>Temperature: ensure normothermia</li>
+                    <li>Check for “unintended” drugs given (e.g. neuromuscular blocker)</li>
+                    <li>Decrease depth of anesthetic</li>
+            </ul>
+        </li>
+        
+        <li>Discuss feasibility of a useful wake-up test:
+            <ul>
+                <li>Patient is appropriate candidate if capable of following verbal commands</li>
+            </ul>
+        </li>
+        
+        <li>Consider high-dose steroid if no improvement:
+            <ul>
+                <li class="no-weight">MethylPREDNISolone 30 mg/kg IV over one hour, then 5.4 mg/kg/hour IV for 23 hours</li>
+                <li class="has-weight">MethylPREDNISolone <span id="weight-range-3"></span> mg <span class="per-kg-weight">(30 mg/kg)</span> IV over one hour,
+                    then <span id="weight-range-4"></span> mg/hour <span class="per-kg-weight">(5.4 mg/kg/hour)</span> IV for 23 hours</li>
+            </ul>
+        </li>
+        
+    </ul>
+</div>
+<script>
+    if (app.weight) {
+        const get = (id) => document.getElementById(id);
+
+        // 0.1 mg/kg, MAX 10 mg/dose
+        get("weight-range-1").textContent = app.printNumber(Math.min(app.weight * 0.1, 10), 0, 2);
+
+        // 0.3-1 MICROgrams/kg, MAX 100 MICROgrams/dose
+        const weight2a = app.printNumber(Math.min(app.weight * 0.3, 100), 0, 2);
+        const weight2b = app.printNumber(Math.min(app.weight, 100), 0, 2);
+        get("weight-range-2").textContent = weight2a === weight2b ? weight2a : weight2a + "-" + weight2b;
+        
+        // 30 mg/kg
+        get("weight-range-3").textContent = app.printNumber(app.weight * 30, 0, 2);
+
+        // 5.4 mg/kg/hour
+        get("weight-range-4").textContent = app.printNumber(app.weight * 5.4, 0, 2);
+    }
+</script>
