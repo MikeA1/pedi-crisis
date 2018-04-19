@@ -1,0 +1,93 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/increased-intracranial-pressure-tx.html" data-title="Increased Intracranial Pressure" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/increased-intracranial-pressure-dx.html" data-title="Increased Intracranial Pressure" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/increased-intracranial-pressure-rx.html" data-title="Increased Intracranial Pressure" class="bg-rx">Rx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/increased-intracranial-pressure-crisis.html" data-title="Increased Intracranial Pressure" class="bg-crisis emphasis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-tx event-title">Treatment</div>
+</div>
+<div class="page">
+    <ul>
+        <li>If GCS &lt; 9, respiratory distress, hemodynamic instability:
+            <ul>
+                <li>Secure airway</li>
+                <li>Provide sedation prior to transport</li>        
+            </ul>
+
+        </li>
+        
+        <li>Keep PaCO<sub>2</sub> 30-35 mmHg and PaO<sub>2</sub> &gt; 60 mmHg</li>
+        <li>Maintain cerebral perfusion pressure (discuss goal CPP with team)</li>
+        <li>Discuss target ICP with neurosurgery, will often want ICP &gt; 20</li>
+        <li>Use vasopressors (phenylephrine or NOREPInephrine) as needed to maintain BP and CPP</li>
+        <li>Consider head of bed at 30&deg;</li>
+        <li>
+            <span class="no-weight">Hypertonic saline (3% saline via central venous catheter) 1-5 mL/kg over 20 min, then 0.1-2 mL/kg/hour; goal ICP &lt; 20 mmHg</span>
+            <span class="has-weight">Hypertonic saline (3% saline via central venous catheter) <span id="weight-range-0"></span> mL <span class="per-kg-weight">(1-5 mL/kg)</span> over 20 min, 
+                then <span id="weight-range-1"></span> mL/hour <span class="per-kg-weight">(0.1-2 mL/kg/hour)</span>; goal ICP &lt; 20 mmHg</span>
+            <ul>
+                <li>Monitor serum sodium</li>
+                <li>Keep osmolarity &lt; 360 mOsm/L</li>
+            </ul>
+
+        </li>
+        
+        <li class="no-weight">If hypertonic saline not available, can give mannitol 0.25-1 g/kg, over 20 minutes to decrease ICP</li>
+        <li class="has-weight">If hypertonic saline not available, can give mannitol <span id="weight-range-2"></span> g <span class="per-kg-weight">(0.25-1 g/kg)</span>, over 20 minutes to decrease ICP</li>
+
+        <li class="no-weight">Consider furosemide 1-2 mg/kg (starting MAX 20 mg) to decrease ICP</li>
+        <li class="has-weight">Consider furosemide <span id="weight-range-3"></span> mg <span class="per-kg-weight">(1-2 mg/kg, starting MAX 20 mg)</span> to decrease ICP</li>
+
+        <li class="no-weight">Consider seizure prophylaxis: Keppra (levetiracetam) 10-30 mg/kg IV (MAX 2500 mg)</li>
+        <li class="has-weight">Consider seizure prophylaxis: Keppra (levetiracetam) <span id="weight-range-4"></span> mg <span class="per-kg-weight">(10-30 mg/kg, MAX 2500 mg)</span> IV</li>
+
+        <li>Refractory elevated ICP treatment, consider:
+            <ul>
+                <li>Barbiturate coma</li>
+                <li>Paralysis with non-depolarizing agent</li>
+            </ul>
+        </li>
+        
+        <li><strong>AVOID:</strong>
+            <ul>
+                <li>Compression of neck vessels</li>
+                <li>Hyperthermia</li>
+                <li>Hyperglycemia &amp; dextrose containing solutions (maintain glucose level &lt; 200 mg/dL)</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<script>
+    if (app.weight) {
+        const get = (id) => document.getElementById(id);
+
+        // 1-5 mL/kg
+        get("weight-range-0").textContent = app.printNumber(app.weight, 0, 2) + "-" + app.printNumber(app.weight * 5, 0, 2);
+
+        // (0.1-2 mL/kg/hour
+        get("weight-range-1").textContent = app.printNumber(app.weight * 0.1, 0, 2) + "-" + app.printNumber(app.weight * 2, 0, 2);
+
+        // (0.25-1 g/kg
+        get("weight-range-2").textContent = app.printNumber(app.weight * 0.25, 0, 2) + "-" + app.printNumber(app.weight, 0, 2);
+
+        // 1-2 mg/kg, starting MAX 20 mg
+        const weight3a = app.printNumber(Math.min(app.weight, 20), 0, 2);
+        const weight3b = app.printNumber(Math.min(app.weight * 2, 20), 0, 2);
+        get("weight-range-3").textContent = weight3a === weight3b ? weight3a : weight3a + "-" + weight3b;
+
+        // 10-30 mg/kg, MAX 2500 mg
+        const weight4a = app.printNumber(Math.min(app.weight * 10, 2500), 0, 2);
+        const weight4b = app.printNumber(Math.min(app.weight * 30, 2500), 0, 2);
+        get("weight-range-4").textContent = weight4a === weight4b ? weight4a : weight4a + "-" + weight4b;
+    }
+</script>
