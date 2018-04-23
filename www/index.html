@@ -28,7 +28,73 @@
     <title>Pedi Crisis</title>
 </head>
 
-<body>
+<body class="hasVisibleScrollbar">
+    <style>
+        #nav {
+            /* This is needed to prevent text from being visible when it scrolls behind the header. */
+            background-color: #f4f4f4;
+
+            border-bottom: 1px solid #777;
+
+            /* iOS requires the prefix -webkit- */
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            max-width: 1000px; /* This matches the same rule on html */
+        }
+
+        /* These two rules pad the left and right side of the nav buttons. */
+        #nav .button-group {
+            padding-left: 1rem;
+        }
+        #nav .button-container {
+            padding-right: 1rem;
+        }
+
+        #content {
+            background-color: #efefef;
+        }
+
+        #title {
+            font-size: 1rem;
+        }
+
+        #header {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+                
+        #nav button {
+            text-shadow: 0px 1px 0px #ffffff;
+        }
+
+        /* CSS for the back button */
+
+        /* The default for all platforms: the back button is not displayed. */
+        #back-button {
+            display: none;
+        }
+
+        /* The default for iOS: the back button occupies space, but it is invisible. */
+        body.display-virtual-back-button #back-button {
+            display: inherit;
+            opacity: 0;
+        }
+
+        /* For iOS: the back button appears when there is history. */
+        body.display-virtual-back-button.has-history #back-button {
+            animation-name: fade-in;
+            -webkit-animation-name: fade-in;
+
+            animation-duration: 0.2s;
+            -webkit-animation-duration: 0.2s;
+
+            animation-timing-function: ease-in-out;
+            -webkit-animation-timing-function: ease-in-out;
+
+            opacity: 1;
+        }
+    </style>
     <div id="nav">
         <div class="button-group" style="padding-top:.5rem">
             <div style="align-self: center; padding-right: 1rem;">

@@ -66,32 +66,6 @@ body {
     }
 }
 
-#nav {
-    /* This is needed to prevent text from being visible when it scrolls behind the header. */
-    background-color: #f4f4f4;
-
-    border-bottom: 1px solid #777;
-
-    /* iOS requires the prefix -webkit- */
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    max-width: 1000px; /* This matches the same rule on html */
-}
-
-#content {
-    background-color: #efefef;
-}
-
-#title {
-    font-size: 1rem;
-}
-
-#header {
-    font-size: 1.2rem;
-    font-weight: 700;
-}
-
 .page {
     /* Make the page *look* like a page */
     background-color: #f7f7f7;
@@ -134,19 +108,6 @@ body {
     width: fill-available;
 }
 
-[data-uri] {
-    cursor: pointer;
-}
-
-/* These two rules pad the left and right side of the nav buttons. */
-#nav .button-group {
-    padding-left: 1rem;
-}
-
-#nav .button-container {
-    padding-right: 1rem;
-}
-
 /* button-group is the parent of button-container */
 .button-group {
     display: flex;
@@ -176,15 +137,9 @@ button {
     height: 2rem;
 }
 
-#nav button {
-    text-shadow: 0px 1px 0px #ffffff;
-}
-
-.event-nav button {
-    text-shadow: none;
-    color: white;
-}
-
+/* Buttons move down 1px when they are clicked/touched.
+ * This visually simulates the press of a physical button.
+ */
 button:active {
 	position:relative;
 	top:1px;
@@ -204,14 +159,9 @@ button.emphasis {
     width: 100%;
 }
 
-.event-row {
-    padding-bottom: 1em;
-}
-
-.event-number {
-    display: inline-block;
-    padding: 0.4em 1.15em;
-    border-radius: 4px;
+.event-nav button {
+    text-shadow: none;
+    color: white;
 }
 
 .event-title {
@@ -264,32 +214,6 @@ li li:before {
   margin-left: -10px; /* Move this dash a little to the left. This allows line-wrapped content to look roughly correct. */
 }
 
-/* CSS for the back button */
-
-/* The default for all platforms: the back button is not displayed. */
-#back-button {
-    display: none;
-}
-
-/* The default for iOS: the back button occupies space, but it is invisible. */
-body.display-virtual-back-button #back-button {
-    display: inherit;
-    opacity: 0;
-}
-
-/* For iOS: the back button appears when there is history. */
-body.display-virtual-back-button.has-history #back-button {
-    animation-name: fade-in;
-    -webkit-animation-name: fade-in;
-
-    animation-duration: 0.2s;
-	  -webkit-animation-duration: 0.2s;
-
-	  animation-timing-function: ease-in-out;
-    -webkit-animation-timing-function: ease-in-out;
-
-    opacity: 1;
-}
 
 /* Decrease the size of padding-left to fit more horizontally on a (relatively) small mobile screen. */
 ul {
@@ -380,34 +304,30 @@ button.bg-yellow.emphasis {
     box-shadow: 0 0 1px 1px #b9b066;
 }
 
-.uri {
-    color: #33aa33;
+/* In practice, `attn` is applied along with `bg-yellow` */
+.attn {
+    padding: 1rem;
+    padding-left: 2rem;
 }
 
-/* Telephone numbers */
+/* Telephone numbers use anchor elements (e.g., <a href="tel:555-555-5555">)
+ * These are used in the Phone Number screen and various Event screens 
+ */
 a {
   color: #33aa33;
   text-decoration: none;
 }
 
-/* Styling for aside boxes on page. */
-.subhet {
-    font-weight: 600;
+/* For non-anchor elements that act like links  */
+[data-uri] {
+    cursor: pointer;
 }
 
-aside {
-  border-radius: px;
-  padding: .5em;
-}
-
-aside ul {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.attn {
-    padding: 1rem;
-    padding-left: 2rem;
+/* Not all links should be green (e.g., event names in the Events screen.)
+ * So, only elements with this class are styled green.
+ */
+.uri {
+    color: #33aa33;    
 }
 
 /* These elements appear at the top of each event page. */
@@ -424,7 +344,7 @@ aside ul {
     padding: .5em;
 }
 
-/* Styling for hidden lists below an Event Title */
+/* Used primarily in "pick one" lists */
 .display-none {
     display: none;
 }
@@ -443,33 +363,30 @@ aside ul {
     margin-left: 1em;
 }
 
-.c-white {
-    color: #fff;
-}
-
-/* Always show scrollbars in pages
+/* Always show scrollbars in pages.
  * Source: https://stackoverflow.com/a/7855592/772086
  * Note: This destroys smooth scrolling! Setting `-webkit-overflow-scrolling` to `touch` will undo all of the below settings.
  */
-.page::-webkit-scrollbar {
+
+body.hasVisibleScrollbar .page::-webkit-scrollbar {
     -webkit-appearance: none;
 }
 
-.page::-webkit-scrollbar:vertical {
+body.hasVisibleScrollbar .page::-webkit-scrollbar:vertical {
     width: 11px;
 }
 
-.page::-webkit-scrollbar:horizontal {
+body.hasVisibleScrollbar .page::-webkit-scrollbar:horizontal {
     height: 11px;
 }
 
-.page::-webkit-scrollbar-thumb {
+body.hasVisibleScrollbar .page::-webkit-scrollbar-thumb {
     border-radius: 8px;
     border: 2px solid #f7f7f7; /* should match background, can't be transparent */
     background-color: rgba(0, 0, 0, .5);
 }
 
-.page::-webkit-scrollbar-track {
+body.hasVisibleScrollbar .page::-webkit-scrollbar-track {
     background-color: #f7f7f7;
     border-radius: 8px;
 }
