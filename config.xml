@@ -15,6 +15,7 @@
     <icon src="www/img/logo.png" />
     <splash src="www/img/Default@2x~universal~anyany.png" />
     <allow-intent href="tel:*" />
+    <allow-intent href="mailto:*" />
     <engine name="ios" spec="~4.5.4" />
     <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-globalization" spec="~1.0.7" />

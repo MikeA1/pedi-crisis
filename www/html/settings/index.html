@@ -1,0 +1,78 @@
+<style>
+    .active {
+        color: #fff;
+    }
+    .on.active {
+        background-color: green;
+    }
+    .off.active {
+        background-color: red;
+    }
+</style>
+<div class="page">
+    <div><strong>Hello, Beta Tester!</strong></div>
+    <div>The following settings allow you to test different features of this Pedi Crisis app. We would love to receive your feedback! Please <a href="mailto:aclebone@dacc.uchicago.edu">send feedback</a> to Anna Clebone.</div>
+    <div class="m-b-1"><strong>Thank You!</strong></div>
+    <div class="section" data-setting-name="hasVisibleScrollbar">
+        <div><strong>Visible Scrollbar</strong></div>
+        <div class="description">
+            <div>When on, the scrollbar is always visible.</div>
+            <div>When off, the scrollbar is only visible while scrolling.</div>
+        </div>
+        <button class="on">On</button>
+        <button class="off">Off</button>
+    </div>
+    <div class="section" data-setting-name="hasEventDiagnosis">
+        <div><strong>Show Event Diagnosis</strong></div>
+        <div class="description">When on, the event list displays select diagnoses.</div>
+        <button class="on">On</button>
+        <button class="off">Off</button>
+    </div>
+    <div class="section" data-setting-name="hasNavigationAnimation">
+        <div><strong>Navigation Animation</strong></div>
+        <div class="description">When on, navigating between screens will show a "swipe" animation.</div>
+        <button class="on">On</button>
+        <button class="off">Off</button>
+    </div>
+    <div class="section" data-setting-name="hasSwipeNavigation">
+        <div><strong>Navigation Gestures</strong></div>
+        <div class="description">When on, navigate to the previous screen by swiping from left-to-right; if you have moved backward, you can also move forward by swiping form right-to-left.</div>
+        <button class="on">On</button>
+        <button class="off">Off</button>
+    </div>
+
+</div>
+<script>
+    const setValue = (settingName, onButton, offButton) => {
+        const value = localStorage.getItem(settingName);
+        if (value === "on") {
+            // This conditional is intentionally setup to set each setting to "off" by default.
+            document.body.classList.add(settingName);
+            onButton.classList.add("active");
+            offButton.classList.remove("active");
+        } else {
+            document.body.classList.remove(settingName);            
+            onButton.classList.remove("active");
+            offButton.classList.add("active");
+        }
+    };
+    const sections = document.getElementsByClassName("section");
+    // Initial setup
+    Array.from(sections).forEach(section => {
+        const settingName = section.dataset.settingName;
+        if (!app.settings.names.includes(settingName)) {
+            console.warn(`Hey, developer, you need to add to "app.settings.names" the value "${settingName}".`);
+        }
+        const onButton = section.getElementsByClassName("on").item(0);
+        const offButton = section.getElementsByClassName("off").item(0);
+        setValue(settingName, onButton, offButton);
+        onButton.addEventListener("click", () => {
+            localStorage.setItem(settingName, "on");
+            setValue(settingName, onButton, offButton);
+        });
+        offButton.addEventListener("click", () => {
+            localStorage.setItem(settingName, "off");
+            setValue(settingName, onButton, offButton);
+        })
+    });
+</script>

@@ -208,6 +208,7 @@
                 const callback = () => {
                         // Make the page absolute-positioned.
                         const pages = document.getElementsByClassName("page");
+                        const hasNavigationAnimation = document.body.classList.contains("hasNavigationAnimation");
                         if (pages && pages.length) {
                             for (let i = 0; i < pages.length; i++) {
                                 const page = pages[i];
@@ -218,6 +219,11 @@
 
                                 // Since we're already messing around with pages, let's insert phone numbers too.
                                 app.phoneNumbers.updateElements(page);
+
+                                // Apply animation, if it makes sense to do so.
+                                if (hasNavigationAnimation && addClass) {
+                                    page.classList.add(addClass);
+                                }
                             }
                         }
                     };
@@ -225,7 +231,6 @@
                 // Transform the URI to an absolute path.
                 var fullUri = createAbsoluteUri(uri);
                 $(contentElement).load(fullUri, undefined, callback);
-
                 headerElement.textContent = header || defaultHeader;
 
                 if (title) {
@@ -516,5 +521,75 @@
         systemDescriptions: {"Code Team": "Code Team", "PICU": "PICU", "Fire": "Fire", "Overhead STAT": "Overhead STAT", "ECMO": "ECMO"}
     };
 
+    app.settings = {
+        names: ["hasVisibleScrollbar", "hasEventDiagnosis", "hasNavigationAnimation", "hasSwipeNavigation"],
+        initSettings: () => {
+            // Purpose: the names of settings are the names of CSS classes. These are used
+            // for feature detection throughout the app. Note that the list of settings names
+            // in `app.settings.names` should stay in sync with the settings listed in
+            // "www/html/settings/index.html".
+            app.settings.names.forEach(name => {
+                const value = localStorage.getItem(name);
+                if (value === "on") {
+                    document.body.classList.add(name);
+                }
+            });
+        },
+        initLogoHandler: () => {
+            // Purpose: go to the settings screen if the logo is pressed for > 1000 seconds
+            const logo = document.getElementById("logo");
+            // Divide by 1000 to get seconds. 
+            const getUtcTime = () => (new Date()).getTime() / 1000;
+            let cancelHandle = null;
+            let timer = null;
+            logo.addEventListener("touchstart", () => {
+                timer = getUtcTime();
+                cancelHandle = setTimeout(() => {
+                    // Just for fun, spin the logo after a second.
+                    // This is a visual aid to let the user know that they will enter the Settings screen.
+                    logo.classList.add("spin");
+                }, 1000)
+            });
+            logo.addEventListener("touchend", () => {
+                clearTimeout(cancelHandle);
+                logo.classList.remove("spin");
+                /* Did the user hit the timer for more than one second? Cool, let's go to settings. */
+                if (getUtcTime() - timer > 1) {
+                    const uri = "/html/settings/index.html", header = "Settings";
+                    app.navigate.next(uri, header);
+                }
+            });
+        },
+        init: () => {
+            app.settings.initSettings();
+            app.settings.initLogoHandler();
+        },
+    };
+
+    app.settings.init();
+
+    // Swipe to move back-and-forth in history
+    let touchstartX;
+    let touchstartY;
+    document.body.addEventListener("touchstart", (event) => {
+        touchstartX = event.changedTouches[0].screenX;
+        touchstartY = event.changedTouches[0].screenY;
+    });
+    document.body.addEventListener("touchend", (event) => {
+        const touchendX = event.changedTouches[0].screenX;
+        const touchendY = event.changedTouches[0].screenY;
+
+        const dx = touchstartX - touchendX;
+        const dy = touchstartY - touchendY;
+        if (Math.abs(dx) > Math.abs(dy)) {
+            // Horizontal movement is greater than vertical movement.
+            if (dx < -200) {
+                history.back();
+            } else if (dx > 200) {
+                history.forward();
+            }
+        }
+
+    });
 
 })();
