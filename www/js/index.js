@@ -576,6 +576,9 @@
         touchstartY = event.changedTouches[0].screenY;
     });
     document.body.addEventListener("touchend", (event) => {
+        if (!document.body.classList.contains("hasSwipeNavigation")) {
+            return;
+        }
         const touchendX = event.changedTouches[0].screenX;
         const touchendY = event.changedTouches[0].screenY;
 
