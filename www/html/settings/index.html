@@ -40,7 +40,11 @@
         <button class="on">On</button>
         <button class="off">Off</button>
     </div>
-
+    <div class="section">
+        <div><strong>Walkthrough</strong></div>
+        <div class="description">Want to step through the walkthrough again? Let's go!</div>
+        <button data-uri="/html/settings/walkthrough.html" data-title="Pedi Crisis">Go</button>
+    </div>
 </div>
 <script>
     const setValue = (settingName, onButton, offButton) => {
@@ -60,6 +64,10 @@
     // Initial setup
     Array.from(sections).forEach(section => {
         const settingName = section.dataset.settingName;
+        if (!settingName) {
+            // Bail if this section does not contain a real setting (like Walkthrough).
+            return;
+        }
         if (!app.settings.names.includes(settingName)) {
             console.warn(`Hey, developer, you need to add to "app.settings.names" the value "${settingName}".`);
         }
