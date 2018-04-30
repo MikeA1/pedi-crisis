@@ -49,9 +49,9 @@
         <li class="has-weight">Furosemide IV <span id="weight-range-8"></span> mg <span class="per-kg-weight">(0.5-1 mg/kg)</span></li>
         
 
-        <li class="no-weight">Consider terbutaline 10 MICROgrams/kg load, then 0.1-10 MICROgrams/kg/min</li>
+        <li class="no-weight">Consider terbutaline 10 MICROgrams/kg load, then 0.1-10 MICROgrams/kg/min infusion</li>
         <li class="has-weight">Consider Terbutaline <span id="weight-range-6"></span> MICROgrams <span class="per-kg-weight">(10 MICROgrams/kg)</span> load, 
-            then <span id="weight-range-7"></span> MICROgrams/min <span class="per-kg-weight">(0.1-10 MICROgrams/kg/min)</span></li>
+            then 0.1-10 MICROgrams/kg/min infusion</li>
 
         <li>If <span data-uri="/html/events/cardiac-arrest-dx.html" data-title="Cardiac Arrest" class="uri">CARDIAC ARREST</span> &gt; 6 min, activate <span data-phone-number="ECMO">ECMO</span></li>
         <li>Dialysis if refractory to treatment</li>
@@ -82,9 +82,6 @@
 
         // 10 MICROgrams/kg
         get("weight-range-6").textContent = app.printNumber(app.weight * 10, 0, 2);
-        
-        // 0.1-10 MICROgrams/kg/min
-        get("weight-range-7").textContent = app.printNumber(app.weight * .1, 0, 2) + "-" + app.printNumber(app.weight * 10, 0, 2);
 
         //0.5-1 mg/kg
         get("weight-range-8").textContent = app.printNumber(app.weight * .5, 0, 2) + "-" + app.printNumber(app.weight, 0, 2);

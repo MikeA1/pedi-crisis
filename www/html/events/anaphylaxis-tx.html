@@ -30,8 +30,12 @@
         <li class="no-weight">To restore intravascular volume: give NS or LR 10-30 mL/kg IV/IO rapidly</li>
         <li class="has-weight">To restore intravascular volume: give NS or LR <span id="weight-range-1"></span> mL <span class="per-kg-weight">(10-30 mL/kg)</span> IV/IO rapidly</li>
 
-        <li class="no-weight">To restore BP and ↓ mediator release: give EPINEPHrine 1-10 MICROgrams/kg IV/IO, as needed, may need infusion 0.02-0.2 MICROgrams/kg/min</li>
-        <li class="has-weight">To restore BP and ↓ mediator release: give EPINEPHrine <span id="weight-range-2"></span> MICROgrams <span class="per-kg-weight">(1-10 MICROgrams/kg)</span> IV/IO, as needed, may need infusion <span id="weight-range-3"></span> MICROgrams/min <span class="per-kg-weight">(0.02-0.2 MICROgrams/kg/min)</span></li>
+        <li class="no-weight">To restore BP and ↓ mediator release: give EPINEPHrine 1-10 MICROgrams/kg IV/IO,
+                as needed, may need infusion 0.02-0.2 MICROgrams/kg/min
+        </li>
+        <li class="has-weight">To restore BP and ↓ mediator release: give EPINEPHrine <span id="weight-range-2"></span> MICROgrams <span class="per-kg-weight">(1-10 MICROgrams/kg)</span> IV/IO,
+            as needed, may need infusion 0.02-0.2 MICROgrams/kg/min
+        </li>
 
         <li class="no-weight">To ↓ histamine-mediated effects: give diphenhydrAMINE 1 mg/kg IV/IO (MAX 50 mg)</li>
         <li class="has-weight">To ↓ histamine-mediated effects: give diphenhydrAMINE <span id="weight-range-4"></span> mg <span class="per-kg-weight">(1 mg/kg, MAX 50 mg)</span> IV/IO</li>
@@ -72,11 +76,6 @@
         const calculatedRange2a = app.printNumber(app.weight, 0, 2);
         const calculatedRange2b = app.printNumber(app.weight * 10, 0, 2);
         document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;
-
-        // 0.02-0.2 MICROgrams/kg/min
-        const calculatedRange3a = app.printNumber(app.weight * 0.02, 0, 2);
-        const calculatedRange3b = app.printNumber(app.weight * 0.2, 0, 2);
-        document.getElementById("weight-range-3").textContent = calculatedRange3a + "-" + calculatedRange3b;
 
         // 1 mg/kg, MAX 50 mg
         const calculatedRange4a = app.printNumber(Math.min(app.weight, 50), 0, 2);

@@ -27,12 +27,12 @@
         
         <li>Keep PaCO<sub>2</sub> 30-35 mmHg and PaO<sub>2</sub> &gt; 60 mmHg</li>
         <li>Maintain cerebral perfusion pressure (discuss goal CPP with team)</li>
-        <li>Discuss target ICP with neurosurgery, will often want ICP &gt; 20</li>
+        <li>Discuss target ICP with neurosurgery, will often want ICP &lt; 20</li>
         <li>Use vasopressors (phenylephrine or NOREPInephrine) as needed to maintain BP and CPP</li>
         <li>Consider head of bed at 30&deg;</li>
         <li>
             <span class="no-weight">Hypertonic saline (3% saline via central venous catheter) 1-5 mL/kg over 20 min, then 0.1-2 mL/kg/hour; goal ICP &lt; 20 mmHg</span>
-            <span class="has-weight">Hypertonic saline (3% saline via central venous catheter) <span id="weight-range-0"></span> mL <span class="per-kg-weight">(1-5 mL/kg)</span> over 20 min, 
+            <span class="has-weight">Hypertonic saline (3% saline via central venous catheter) 1-5 mL/kg over 20 min, 
                 then <span id="weight-range-1"></span> mL/hour <span class="per-kg-weight">(0.1-2 mL/kg/hour)</span>; goal ICP &lt; 20 mmHg</span>
             <ul>
                 <li>Monitor serum sodium</li>
@@ -70,9 +70,6 @@
 <script>
     if (app.weight) {
         const get = (id) => document.getElementById(id);
-
-        // 1-5 mL/kg
-        get("weight-range-0").textContent = app.printNumber(app.weight, 0, 2) + "-" + app.printNumber(app.weight * 5, 0, 2);
 
         // (0.1-2 mL/kg/hour
         get("weight-range-1").textContent = app.printNumber(app.weight * 0.1, 0, 2) + "-" + app.printNumber(app.weight * 2, 0, 2);

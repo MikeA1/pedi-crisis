@@ -28,7 +28,7 @@
 
         <li class="no-weight"><strong>MethylPREDNISolone</strong> 30 mg/kg IV over one hour, then 5.4 mg/kg/hour IV for 23 hours</li>
         <li class="has-weight"><strong>MethylPREDNISolone</strong> <span id="weight-range-3"></span> mg <span class="per-kg-weight">(30 mg/kg)</span> IV over one hour,
-            then <span id="weight-range-4"></span> mg/hour <span class="per-kg-weight">(5.4 mg/kg/hour)</span> IV for 23 hours</li>
+            then 5.4 mg/kg/hour IV for 23 hours</li>
     </ul>
 </div>
 <script>
@@ -45,8 +45,5 @@
         
         // 30 mg/kg
         get("weight-range-3").textContent = app.printNumber(app.weight * 30, 0, 2);
-
-        // 5.4 mg/kg/hour
-        get("weight-range-4").textContent = app.printNumber(app.weight * 5.4, 0, 2);
     }
 </script>
