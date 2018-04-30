@@ -568,28 +568,53 @@
 
     app.settings.init();
 
-    // Swipe to move back-and-forth in history
-    let touchstartX;
-    let touchstartY;
-    document.body.addEventListener("touchstart", (event) => {
-        touchstartX = event.changedTouches[0].screenX;
-        touchstartY = event.changedTouches[0].screenY;
-    });
-    document.body.addEventListener("touchend", (event) => {
-        const touchendX = event.changedTouches[0].screenX;
-        const touchendY = event.changedTouches[0].screenY;
+    app.swipe = {
+        init: () => {
+            // Swipe to move back-and-forth in history
+            let touchstartX;
+            let touchstartY;
+            document.body.addEventListener("touchstart", (event) => {
+                touchstartX = event.changedTouches[0].screenX;
+                touchstartY = event.changedTouches[0].screenY;
+            });
+            document.body.addEventListener("touchend", (event) => {
+                if (!document.body.classList.contains("hasSwipeNavigation")) {
+                    return;
+                }
+                const touchendX = event.changedTouches[0].screenX;
+                const touchendY = event.changedTouches[0].screenY;
 
-        const dx = touchstartX - touchendX;
-        const dy = touchstartY - touchendY;
-        if (Math.abs(dx) > Math.abs(dy)) {
-            // Horizontal movement is greater than vertical movement.
-            if (dx < -200) {
-                history.back();
-            } else if (dx > 200) {
-                history.forward();
-            }
+                const dx = touchstartX - touchendX;
+                const dy = touchstartY - touchendY;
+                if (Math.abs(dx) > Math.abs(dy)) {
+                    // Horizontal movement is greater than vertical movement.
+                    if (dx < -200) {
+                        history.back();
+                    } else if (dx > 200) {
+                        history.forward();
+                    }
+                }
+            });
         }
+    }
 
-    });
+    app.swipe.init();
+
+    app.walkthrough = {
+        init: () => {
+            const key = "last-open-time";
+            const lastOpenTime = localStorage.getItem(key);
+            if (!lastOpenTime) {
+                const uri = "/html/settings/walkthrough.html";
+                app.navigate.next(uri);
+            }
+            // This is the unix epoch timestamp measured in seconds. 
+            // For example, "Apr 1 2018 at midnight" has a value of 1522540800.
+            const time = Math.round((new Date).getTime() / 1000);
+            localStorage.setItem(key, time)
+        }
+    }
+
+    app.walkthrough.init();
 
 })();

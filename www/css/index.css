@@ -9,7 +9,7 @@ html {
     /* Center the body */
     margin:    0 auto;
     max-width: 1000px;
-    color: #666666;
+    color: #666;
     /* font-size: 1.2rem; */
 
     /* Force the Content div to expand to occupy the remainder of the screen. */
@@ -17,11 +17,11 @@ html {
     flex-flow: column;
     height: 100%;
 
-    background-color: #fafafa;
+    background-color: #f4f4f4;
     background-image: repeating-linear-gradient(-45deg,
         transparent 1px,
         transparent 1px,
-        #fafafa 3px,
+        #f4f4f4 3px,
         #eee 6px
     );
 
@@ -36,9 +36,6 @@ body {
 
     /* prevent webkit from resizing text to fit */
     -webkit-text-size-adjust: none;
-
-    /* Always use floaty/touch scrolling */
-    -webkit-overflow-scrolling: touch;
 
     /* prevent copy paste */
     user-select: none;
@@ -103,6 +100,9 @@ body {
      * Note that this is overridden with the setting "hasVisibleScrollbar".
      */
     overflow-y: auto;
+    
+    /* Use floaty/touch scrolling */
+    -webkit-overflow-scrolling: touch;
 }
 
 /* `width: fill-available` does not have great support yet, so use this class instead. */
@@ -370,7 +370,6 @@ a {
 
 /* Always show scrollbars in pages.
  * Source: https://stackoverflow.com/a/7855592/772086
- * Note: This destroys smooth scrolling! Setting `-webkit-overflow-scrolling` to `touch` will undo all of the below settings.
  */
 
 body.hasVisibleScrollbar .page::-webkit-scrollbar {
@@ -379,6 +378,8 @@ body.hasVisibleScrollbar .page::-webkit-scrollbar {
 
 body.hasVisibleScrollbar .page {
     overflow-y: scroll;
+    /* Setting `-webkit-overflow-scrolling` to `touch` will undo all of the below settings. This destroys smooth scrolling! */
+    -webkit-overflow-scrolling: auto;
 }
 
 body.hasVisibleScrollbar .page::-webkit-scrollbar:vertical {
