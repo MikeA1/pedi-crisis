@@ -21,7 +21,7 @@
                     document.body.classList.remove("no-weight");
                 }
                 weightValue = value;
-                weightButton.innerHTML = "<strong>" + value + "</strong> kgs";
+                weightButton.innerHTML = "<strong>" + value + "</strong> kg";
             } else if (value === null || value <= 0) {
                 // User cleared the input
 
