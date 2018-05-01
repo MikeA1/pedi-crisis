@@ -2,18 +2,18 @@
 
     <!-- This area is visible when NOT in edit mode -->
     <div id="display-section" style="display: inline-block;">
-        <h3>Call for help!</h3>
         <div id="display-phone-numbers">
             <!-- phone numbers go here! -->
         </div>
-        <h3>Notify surgeon.</h3>
-        <button type="button" id="edit-button">Edit Phone Numbers</button>
+        <button id="edit-button" type="button">Edit Phone Numbers</button>
     </div>
 
     <!-- This area is visible when in edit mode -->
     <form id="edit-section" style="display: none;">
-        <h3>Edit Phone Numbers</h3>
-        <div class="section">
+        <div><strong style="font-size:1.1em">Edit Phone Numbers</strong></div>
+        <button id="button-view-instructions" type="button" class="m-b-1">View Instructions</button>
+        
+        <div id="view-instructions" class="section">
             <p>There are five default phone numbers. Each are listed when you provide a <i>Phone Number</i> and then <i>Save</i>.</p>
             <p>You can start a phone call if <i>Create hyperlink?</i> is checked. For best results, provide a phone number in the format <i>555-555-5555</i>.</p>
             <p>If your phone number is not reachable by your device then you can prevent hyperlinks from showing up in events by unchecking <i>Create hyperlink?</i></p>
@@ -61,6 +61,11 @@
 
     app.swipe.left = () => app.navigate.next("/html/events/index.html", "Pedi Crisis", "swipe-left");
     app.swipe.right = () => app.navigate.next("/html/weight/index.html", "Pedi Crisis", "swipe-right");
+
+    // The "View Instructions" button uses the accordion paradigm to expand/collapse instructions.
+    app.createAccordion([
+        {button: document.getElementById("button-view-instructions"), content: document.getElementById("view-instructions")}, 
+    ]);
 
     // This function determines whether the screen is in edit mode.
     const setEditMode = (isEditMode) => {
