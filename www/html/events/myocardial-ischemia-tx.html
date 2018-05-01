@@ -35,11 +35,10 @@
         
         <li>Drug therapy (rarely needed in peds, consult a pediatric cardiac expert):
             <ul>
-                <li class="no-weight">NitroGLYCERIN 0.5-5 MICROgrams/kg/min</li>
-                <li class="has-weight">NitroGLYCERIN <span id="weight-range-1"></span> MICROgrams/min <span class="per-kg-weight">(0.5-5 MICROgrams/kg/min)</span></li>
-                <li class="no-weight">Consider heparin infusion 10 Units/kg bolus, then 10 Units/kg/hour</li>
-                <li class="has-weight">Consider heparin infusion <span id="weight-range-2"></span> Units <span class="per-kg-weight">(10 Units/kg)</span> bolus, 
-                    then <span id="weight-range-3"></span> Units/hour <span class="per-kg-weight">(10 Units/kg/hour)</span></li>
+                <li class="no-weight">NitroGLYCERIN 0.5-5 MICROgrams/kg/min infusion</li>
+                <li class="no-weight">Consider heparin 10 Units/kg bolus, then 10 Units/kg/hour infusion</li>
+                <li class="has-weight">Consider heparin <span id="weight-range-1"></span> Units <span class="per-kg-weight">(10 Units/kg)</span> bolus, 
+                    then 10 Units/kg/hour infusion</li>
             </ul>
         </li>
         
@@ -50,14 +49,8 @@
     if (app.weight) {
         const get = (id) => document.getElementById(id);
 
-        // 0.5-5 MICROgrams/kg/min
-        get("weight-range-1").textContent = app.printNumber(app.weight * 0.5, 0, 2) + "-" + app.printNumber(app.weight * 5, 0, 2);
-
         // 10 Units/kg
-        get("weight-range-2").textContent = app.printNumber(app.weight * 10, 0, 2);
-
-        // 10 Units/kg/hour
-        get("weight-range-3").textContent = app.printNumber(app.weight * 10, 0, 2);
+        get("weight-range-1").textContent = app.printNumber(app.weight * 10, 0, 2);
 
     }
 </script>

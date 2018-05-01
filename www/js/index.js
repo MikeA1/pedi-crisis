@@ -39,11 +39,11 @@
         "use strict";
 
         // The header is updated when a "data-uri" attribute is accompanied by a "data-title" attribute.
-        let defaultHeader = "Pedi Crisis";
-        let headerElement = document.getElementById("header");
+        const defaultHeader = "Pedi Crisis";
+        const headerElement = document.getElementById("header");
 
         // The inner HTML of this element is updated during a page transition.
-        let contentElement = document.getElementById("content");
+        const contentElement = document.getElementById("content");
 
 
         // `historyIndex` determines which screen we are on in history.
@@ -231,7 +231,16 @@
                 // Transform the URI to an absolute path.
                 var fullUri = createAbsoluteUri(uri);
                 $(contentElement).load(fullUri, undefined, callback);
-                headerElement.textContent = header || defaultHeader;
+                const nextHeader = header || defaultHeader;
+                if (nextHeader === "Pedi Crisis") {
+                    headerElement.textContent = "Pedi Crisis ";
+                    const sup = document.createElement("sup");
+                    sup.textContent = "beta";
+                    sup.style.color = "#aaa";
+                    headerElement.appendChild(sup);
+                } else {
+                    headerElement.textContent = nextHeader;
+                }
 
                 if (title) {
                     try {
@@ -523,7 +532,7 @@
 
     app.settings = {
         names: ["hasVisibleScrollbar", "hasEventDiagnosis", "hasNavigationAnimation", "hasSwipeNavigation"],
-        initSettings: () => {
+        init: () => {
             // Purpose: the names of settings are the names of CSS classes. These are used
             // for feature detection throughout the app. Note that the list of settings names
             // in `app.settings.names` should stay in sync with the settings listed in
@@ -534,35 +543,6 @@
                     document.body.classList.add(name);
                 }
             });
-        },
-        initLogoHandler: () => {
-            // Purpose: go to the settings screen if the logo is pressed for > 1000 seconds
-            const logo = document.getElementById("logo");
-            // Divide by 1000 to get seconds. 
-            const getUtcTime = () => (new Date()).getTime() / 1000;
-            let cancelHandle = null;
-            let timer = null;
-            logo.addEventListener("touchstart", () => {
-                timer = getUtcTime();
-                cancelHandle = setTimeout(() => {
-                    // Just for fun, spin the logo after a second.
-                    // This is a visual aid to let the user know that they will enter the Settings screen.
-                    logo.classList.add("spin");
-                }, 1000)
-            });
-            logo.addEventListener("touchend", () => {
-                clearTimeout(cancelHandle);
-                logo.classList.remove("spin");
-                /* Did the user hit the timer for more than one second? Cool, let's go to settings. */
-                if (getUtcTime() - timer > 1) {
-                    const uri = "/html/settings/index.html", header = "Settings";
-                    app.navigate.next(uri, header);
-                }
-            });
-        },
-        init: () => {
-            app.settings.initSettings();
-            app.settings.initLogoHandler();
         },
     };
 

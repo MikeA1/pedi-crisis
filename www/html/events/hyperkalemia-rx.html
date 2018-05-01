@@ -36,7 +36,7 @@
 
         <li class="no-weight"><strong>Terbutaline</strong> 10 MICROgrams/kg load, then 0.1-10 MICROgrams/kg/min</li>
         <li class="has-weight"><strong>Terbutaline</strong> <span id="weight-range-6"></span> MICROgrams <span class="per-kg-weight">(10 MICROgrams/kg)</span> load, 
-            then <span id="weight-range-7"></span> MICROgrams/min <span class="per-kg-weight">(0.1-10 MICROgrams/kg/min)</span></li>
+            then 0.1-10 MICROgrams/kg/min</li>
 
         <li class="no-weight"><strong>Furosemide</strong> 0.5-1 mg/kg IV</li>
         <li class="has-weight"><strong>Furosemide</strong> <span id="weight-range-8"></span> mg <span class="per-kg-weight">(0.5-1 mg/kg)</span> IV</li>
@@ -68,9 +68,6 @@
         // 10 MICROgrams/kg
         get("weight-range-6").textContent = app.printNumber(app.weight * 10, 0, 2);
         
-        // 0.1-10 MICROgrams/kg/min
-        get("weight-range-7").textContent = app.printNumber(app.weight * .1, 0, 2) + "-" + app.printNumber(app.weight * 10, 0, 2);
-
         //0.5-1 mg/kg
         get("weight-range-8").textContent = app.printNumber(app.weight * .5, 0, 2) + "-" + app.printNumber(app.weight, 0, 2);
 

@@ -47,13 +47,13 @@
         <li>
             Hemodynamic support if hypotensive:
             <ul>
-                <li class="no-weight">Give EPINEPHrine 1-10 MICROgrams/kg, followed by infusion of EPINEPHrine 0.02-1 MICROgrams/kg/min or NOREPInephrine
+                <li class="no-weight">Give EPINEPHrine 1-10 MICROgrams/kg, 
+                    followed by infusion of EPINEPHrine 0.02-1 MICROgrams/kg/min or NOREPInephrine
                     0.05-2 MICROgrams/kg/min</li>
                 <li class="has-weight">
-                    Give EPINEPHrine <span id="weight-range-1"></span> MICROgrams <span class="per-kg-weight">(1-10 MICROgrams/kg)</span>, followed by infusion
-                    of EPINEPHrine <span id="weight-range-2"></span> MICROgrams/min <span class="per-kg-weight">(0.02-1 MICROgrams/kg/min)</span> 
-                    or NOREPInephrine <span id="weight-range-3"></span> MICROgrams/min <span class="per-kg-weight">(0.05-2 MICROgrams/kg/min)</span> 
-                </li>
+                    Give EPINEPHrine <span id="weight-range-1"></span> MICROgrams <span class="per-kg-weight">(1-10 MICROgrams/kg)</span>, 
+                    followed by infusion of EPINEPHrine 0.02-1 MICROgrams/kg/min or NOREPInephrine
+                    0.05-2 MICROgrams/kg/min</li>
                 <li>Chest compressions: 100-120/min to force air through lock, even if not in cardiac arrest</li>
                 <li>If available, call for transesophageal echocardiography</li>
             </ul>
@@ -70,14 +70,5 @@
         const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
         document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
 
-        // 0.02-1 MICROgrams/kg/min
-        const calculatedRange2a = app.printNumber(app.weight * 0.02, 0, 2); 
-        const calculatedRange2b = app.printNumber(app.weight, 0, 2);
-        document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;
-
-        // 0.05-2 MICROgrams/kg/min
-        const calculatedRange3a = app.printNumber(app.weight * 0.05, 0, 2); 
-        const calculatedRange3b = app.printNumber(app.weight * 2, 0, 2);
-        document.getElementById("weight-range-3").textContent = calculatedRange3a + "-" + calculatedRange3b;
     }
 </script>

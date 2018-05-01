@@ -18,7 +18,7 @@
 <div class="page">
     <ul>
         <li class="no-weight"><strong>3% Saline</strong> 1-5 mL/kg over 20 min, then 0.1-2 mL/kg/hour</li>
-        <li class="has-weight"><strong>3% Saline</strong> <span id="weight-range-0"></span> mL <span class="per-kg-weight">(1-5 mL/kg)</span> over 20 min, 
+        <li class="has-weight"><strong>3% Saline</strong>  1-5 mL/kg over 20 min, 
             then <span id="weight-range-1"></span> mL/hour <span class="per-kg-weight">(0.1-2 mL/kg/hour)</span></li>
 
         <li class="no-weight"><strong>Mannitol</strong> 0.25-1 g/kg over 20 min</li>
@@ -34,9 +34,6 @@
 <script>
     if (app.weight) {
         const get = (id) => document.getElementById(id);
-
-        // 1-5 mL/kg
-        get("weight-range-0").textContent = app.printNumber(app.weight, 0, 2) + "-" + app.printNumber(app.weight * 5, 0, 2);
 
         // (0.1-2 mL/kg/hour
         get("weight-range-1").textContent = app.printNumber(app.weight * 0.1, 0, 2) + "-" + app.printNumber(app.weight * 2, 0, 2);
