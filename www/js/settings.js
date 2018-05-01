@@ -5,7 +5,7 @@
     "use strict";
 
     app.settings = {
-        names: ["hasVisibleScrollbar", "hasEventDiagnosis", "hasNavigationAnimation", "hasSwipeNavigation"],
+        names: ["hasVisibleScrollbar", "hasEventDiagnosis", "hasSwipeNavigation"],
     };
 
     // Init: the names of settings are the names of CSS classes. These are used

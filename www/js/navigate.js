@@ -176,6 +176,10 @@
                     // Make the page absolute-positioned.
                     const pages = document.getElementsByClassName("page");
                     if (pages && pages.length) {
+                        // This works when there's one page (i.e., `pages.length === 1`), 
+                        // but multiple pages will overlap. 
+                        // Q: In what situation would multiple pages be okay?
+                        // A: When only one page is visible at a time. See `/html/settings/walkthrough.html` for an example.
                         for (let i = 0; i < pages.length; i++) {
                             const page = pages[i];
                             const style = page.style;
@@ -186,9 +190,70 @@
                             // Since we're already messing around with pages, let's insert phone numbers too.
                             app.phoneNumbers.updateElements(page);
 
-                            // Apply animation, if it makes sense to do so.
+                            // Apply class (in practice, this is a page transition animation).
                             if (addClass) {
                                 page.classList.add(addClass);
+                            }
+
+                            // Set the slide left/right functions if this is an event.
+                            // This is done here to avoid a ton of duplicate, manual code.
+                            if (isEvent) {
+                                // The expected DOM structure looks like this:
+
+                                // <div class="event-nav">
+                                //     <div class="button-group">
+                                //         <div class="button-container">
+                                //             <button data-uri="/html/events/air-embolism-dx.html" data-title="Air Embolism" class="bg-dx">Dx</button>
+                                //         </div>
+                                //         <div class="button-container">
+                                //             <button data-uri="/html/events/air-embolism-ddx.html" data-title="Air Embolism" class="bg-ddx">DDx</button>
+                                //         </div>
+                                //         <div class="button-container">
+                                //             <button data-uri="/html/events/air-embolism-tx.html" data-title="Air Embolism" class="bg-tx">Tx</button>
+                                //         </div>
+                                //         <div class="button-container">
+                                //             <button data-uri="/html/events/air-embolism-rx.html" data-title="Air Embolism" class="bg-rx">Rx</button>
+                                //         </div>
+                                //         <div class="button-container">
+                                //             <button data-uri="/html/events/air-embolism-crisis.html" data-title="Air Embolism" class="bg-crisis emphasis">Crisis</button>
+                                //         </div>
+                                //     </div>
+                                //     <div class="bg-crisis event-title">Crisis Management</div>
+                                // </div>
+
+                                const eventNavs = document.getElementsByClassName("event-nav");
+                                // Bail if there are zero or many eventNavs (the latter is unexpected to happen, but better to be safe than broken.)
+                                if (eventNavs.length !== 1) {
+                                    continue;
+                                }
+                                // For easier usage, convert elements with attributes [data-uri] (and [data-title])
+                                // into an array of objects that looks like this:
+                                // [
+                                //     {uri: "/html/events/air-embolism-dx.html", title: "Air Embolism"}, 
+                                //     {uri: "/html/events/air-embolism-ddx.html", title: "Air Embolism"}, 
+                                //     ...
+                                // ]
+                                const links = Array.from(eventNavs[0].querySelectorAll("[data-uri]")).map(element => {
+                                    return {
+                                        uri: element.dataset.uri,
+                                        title: element.dataset.title // may be `undefined`
+                                    };
+                                });
+                                const currentUri = history.state.uri;
+                                for (let j = 0; j < links.length; j++) {
+                                    const link = links[j];
+                                    if (link.uri === currentUri) {
+                                        // Currently on this link.
+                                        if (j > 0) {
+                                            const prevLink = links[j - 1];
+                                            app.swipe.left = () => app.navigate.next(prevLink.uri, prevLink.title, "swipe-left");
+                                        }
+                                        if (j < links.length - 1) {
+                                            const nextLink = links[j + 1];
+                                            app.swipe.right = () => app.navigate.next(nextLink.uri, nextLink.title, "swipe-right");
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

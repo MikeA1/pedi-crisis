@@ -18,6 +18,8 @@
         left: 5%;
         max-width: 1000px; /* Just like its container. */
         padding-top: 10px; 
+        /* Swipe animations should be visible only within the walkthrough container. */
+        overflow-x: hidden;
     }
 
     .page {
@@ -116,29 +118,45 @@
     const pages = Array.from(document.getElementById("walkthrough").getElementsByClassName("page"));
     const selectors = document.getElementById("selectors");
     const next = document.getElementById("next");
-    let currentIndex = 0;
-    let currentEventListener = "next"; // or "done"
+    let currentIndex = 0; // tracks the current page
+    let swipeDirection = null; // for page transition animation
+    
+    const handlePrev = () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+        }
+        onNavigate();
+    };
 
     const handleNext = () => {
         currentIndex++;
         onNavigate();
     };
 
-    const handleDone = () => {
-        const uri = "/html/events/index.html";
-        const header = "Pedi Crisis";
-        app.navigate.next(uri, header);
-    }
-
     const onNavigate = () => {
+        // Quit if navigating past the last page.
+        if (currentIndex >= pages.length) {
+            const uri = "/html/events/index.html";
+            const header = "Pedi Crisis";
+            app.navigate.next(uri, header);
+        }
         // Clear existing selectors.
         selectors.innerHTML = "";
         // Change page display/visibility; add pertinent selectors.
         pages.forEach((page, index) => {
+            
+            // If swiping then add a page transition.
+            if (index === currentIndex && swipeDirection) {
+                page.classList.add("swipe-" + swipeDirection);
+            } else {
+                page.classList.remove("swipe-left","swipe-right");
+            }
+
             page.style.display = index === currentIndex ? "block" : "none";
+
             const selector = document.createElement("span");
             selector.textContent = (index === currentIndex ? "◉" : "○") + (index === pages.length - 1 ? "" : " ");
-            selector.addEventListener("click", () => {currentIndex = index; onNavigate();})
+            selector.addEventListener("click", () => {swipeDirection = null; currentIndex = index; onNavigate();})
             selectors.appendChild(selector);
         });
 
@@ -146,21 +164,17 @@
         // We change the text from "Next" to "Done" for a better user experience.
         // Also, need to handle the situation where the user jumps around on the page selector 
         // (bullet/navigation tracker), so we track which event listener is currently in use.
-        if (currentIndex === pages.length - 1 && currentEventListener === "next") {
-            next.removeEventListener("click", handleNext);
-            next.addEventListener("click", handleDone);
+        if (currentIndex === pages.length - 1 && next.textContent === "Next") {
             next.textContent = "Done";
-            currentEventListener = "done";
-        } else if (currentEventListener === "done") {
-            next.removeEventListener("click", handleDone);
-            next.addEventListener("click", handleNext);
+        } else if (next.textContent === "Done") {
             next.textContent = "Next";
-            currentEventListener = "next";
         }
     }
 
     // Init
-    next.addEventListener("click", handleNext);
+    next.addEventListener("click", () => {swipeDirection = null; handleNext();});
+    app.swipe.left = () => {swipeDirection = "left"; handlePrev();}
+    app.swipe.right = () => {swipeDirection = "right"; handleNext(); }
     onNavigate();
 
 </script>

@@ -59,6 +59,9 @@
 (() => {
     "use strict";
 
+    app.swipe.left = () => app.navigate.next("/html/events/index.html", "Pedi Crisis", "swipe-left");
+    app.swipe.right = () => app.navigate.next("/html/weight/index.html", "Pedi Crisis", "swipe-right");
+
     // This function determines whether the screen is in edit mode.
     const setEditMode = (isEditMode) => {
         const editSection = document.getElementById("edit-section");
