@@ -19,7 +19,7 @@
             <p>If your phone number is not reachable by your device then you can prevent hyperlinks from showing up in events by unchecking <i>Create hyperlink?</i></p>
         </div>
         <div id="edit-phone-numbers"></div>
-        <div class="section">
+        <div class="section" style="background-color: #dfd">
             <strong>Add a Phone Number</strong>
             <input type="text" class="fill-available" placeholder="Description" data-role="description" style="display: inline;">
             <input type="text" class="fill-available" placeholder="Phone Number" data-role="number" class="fill-available">
@@ -73,9 +73,11 @@
             // Always show system phone numbers.
             const systemDescriptions = app.phoneNumbers.systemDescriptions;
             Object.keys(systemDescriptions).forEach(description => {
-                let data = phoneNumbers[description] || {description, isHyperlink: true, number: "", isSystem: true};
+                let data = phoneNumbers[description] || {description, isHyperlink: true, number: ""};
+                data.isSystem = true;
                 let element = createEditModePhoneNumberElement(data);
                 editPhoneNumbers.appendChild(element);
+                console.log(data);
             });
             // Now do the same for non-system phone numbers.
             Object.keys(phoneNumbers).forEach((description) => {
@@ -193,17 +195,22 @@
 
         checkboxWrapper.appendChild(label);
 
-        if (!data.isSystem) {
-            const deleteButton = document.createElement("button");
-            deleteButton.textContent = "Delete";
-            deleteButton.style.float = "right";
-            deleteButton.type = "button";
+        const clearButton = document.createElement("button");
+        clearButton.style.float = "right";
+        clearButton.type = "button";
+        if (data.isSystem) {
+            clearButton.textContent = "Clear";
+            clearButton.addEventListener("click", event => {
+                number.value = null;
+            });
+        } else {
+            clearButton.textContent = "Delete";
             deleteButton.addEventListener("click", event => {
                 container.remove();
             });
-            checkboxWrapper.appendChild(deleteButton);
         }
-
+        checkboxWrapper.appendChild(clearButton);
+        
         container.appendChild(checkboxWrapper);
 
         return container;
