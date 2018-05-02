@@ -38,8 +38,7 @@
                 <li class="has-weight">Esmolol <span id="weight-range-2"></span> MICROgrams <span class="per-kg-weight">(100-500 MICROgrams/kg)</span> over 5 min, then 25-300 MICROgrams/kg/min infusion</li>
                 <li class="no-weight">Labetalol (also α effect) 0.2-1 mg/kg q 10 min; 0.4-3 mg/kg/hour infusion</li>
                 <li class="has-weight">Labetalol (also α effect) <span id="weight-range-3"></span> mg <span class="per-kg-weight">(0.2-1 mg/kg)</span> q 10 min; 0.4-3 mg/kg/hour infusion</li>
-                <li class="no-weight">Propranolol 10-100 MICROgrams/kg slow push (adult bolus dose 1-5 mg)</li>
-                <li class="has-weight">Propranolol <span id="weight-range-4"></span> MICROgrams <span class="per-kg-weight">( 10-100 MICROgrams/kg)</span> slow push (adult bolus dose 1-5 mg)</li>
+                
             </ul>
         </li>
         <li>For calcium channel blockade, consider
@@ -74,11 +73,6 @@
         const calculatedRange5a = app.printNumber(app.weight * 0.2, 0, 2);
         const calculatedRange5b = app.printNumber(app.weight, 0, 2);
         document.getElementById("weight-range-3").textContent = calculatedRange5a + "-" + calculatedRange5b
-
-        // 10-100 MICROgrams/kg
-        const calculatedRange6a = app.printNumber(app.weight * 10, 0, 2);
-        const calculatedRange6b = app.printNumber(app.weight * 100, 0, 2);
-        document.getElementById("weight-range-4").textContent = calculatedRange6a + "-" + calculatedRange6b
 
     }
 </script>
