@@ -53,6 +53,8 @@
 
         #content {
             background-color: #efefef;
+            /* Hide animations that bleed outside of a page */
+            overflow-x: hidden;
         }
 
         #title {
@@ -106,7 +108,7 @@
             <div data-uri="/html/settings/index.html" id="settings" style="align-self: center; padding-right: 1rem">
                 <button>⚙</button>
             </div>
-            <div id="back-button" style="align-self: center; flex-grow: 1; padding-right: 1rem">
+            <div id="back-button" style="align-self: center; padding-right: 1rem">
                 <button data-prev style="width:100%">Back</button>
             </div>
         </div>

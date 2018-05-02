@@ -27,11 +27,11 @@
         const dy = touchstartY - touchendY;
         if (Math.abs(dx) > Math.abs(dy)) {
             // Horizontal movement is greater than vertical movement.
-            if (dx < -200) {
+            if (dx < -150) {
                 if (app.swipe.left) {
                     app.swipe.left();
                 } 
-            } else if (dx > 200) {
+            } else if (dx > 150) {
                 if (app.swipe.right) {
                     app.swipe.right();
                 } 
