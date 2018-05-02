@@ -218,7 +218,7 @@
                                 //             <button data-uri="/html/events/air-embolism-crisis.html" data-title="Air Embolism" class="bg-crisis emphasis">Crisis</button>
                                 //         </div>
                                 //     </div>
-                                //     <div class="bg-crisis event-title">Crisis Management</div>
+                                //     <div class="bg-crisis event-title">CRISIS MANAGEMENT</div>
                                 // </div>
 
                                 const eventNavs = document.getElementsByClassName("event-nav");
