@@ -1,7 +1,7 @@
 <form id="weight-form" class="page">
     <div class="section">
         <input id="weight-input" type="number" inputmode="numeric" pattern="[0-9.]*" step="0.1" placeholder="Patient Weight" autofocus>
-        <span>kgs</span>
+        <span>kg</span>
         <button id="weight-clear" type="button">Clear</button>
     </div>
     <div>
@@ -11,6 +11,12 @@
 </form>
 
 <script>
+
+(() => {
+    "use strict";
+
+    app.swipe.left = () => app.navigate.next("/html/phone/index.html", "Pedi Crisis", "swipe-left");
+
     // The input element is used multiple times. So, get a reference to it.
     const input = document.getElementById("weight-input");
     
@@ -51,5 +57,7 @@
     document.getElementById("weight-ok").addEventListener("click", updateWeight);
     document.getElementById("weight-cancel").addEventListener("click", cancelWeight);
     document.getElementById("weight-clear").addEventListener("click", clearWeight);
+
+})();
 
 </script>

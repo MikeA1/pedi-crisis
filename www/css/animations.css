@@ -1,8 +1,8 @@
 /* Tweaked from www.justinaguilar.com/animations */
 
-.slide-left{
-	animation-name: slide-left;
-	-webkit-animation-name: slide-left;	
+.swipe-right{
+	animation-name: swipe-right;
+	-webkit-animation-name: swipe-right;	
 
 	animation-duration: 0.2s;	
 	-webkit-animation-duration: 0.2s;
@@ -13,7 +13,7 @@
 	visibility: visible !important;
 }
 
-@keyframes slide-left {
+@keyframes swipe-right {
 	0% {
 		transform: translateX(150%);
 	}
@@ -25,7 +25,7 @@
 	}
 }
 
-@-webkit-keyframes slide-left {
+@-webkit-keyframes swipe-right {
 	0% {
 		-webkit-transform: translateX(150%);
 	}
@@ -37,9 +37,9 @@
 	}
 }
 
-.slide-right{
-	animation-name: slide-right;
-	-webkit-animation-name: slide-right;	
+.swipe-left{
+	animation-name: swipe-left;
+	-webkit-animation-name: swipe-left;	
 
 	animation-duration: 0.2s;	
 	-webkit-animation-duration: 0.2s;
@@ -50,7 +50,7 @@
 	visibility: visible !important;	
 }
 
-@keyframes slide-right {
+@keyframes swipe-left {
 	0% {
 		transform: translateX(-150%);
 	}
@@ -62,7 +62,7 @@
 	}	
 }
 
-@-webkit-keyframes slide-right {
+@-webkit-keyframes swipe-left {
 	0% {
 		-webkit-transform: translateX(-150%);
 	}
