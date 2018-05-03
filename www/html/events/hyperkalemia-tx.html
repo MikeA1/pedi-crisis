@@ -72,6 +72,9 @@
         const weight4b = app.printNumber(Math.min(app.weight, 50), 0, 2);
         get("weight-range-4").textContent = weight4a === weight4b ? weight4a : weight4a + "-" + weight4b;
 
+        // 0.1 Unit/kg, MAX 10 Units
+        get("weight-range-5").textContent = app.printNumber(Math.min(app.weight * .1, 10), 0, 2);
+
         //0.5-1 mg/kg
         get("weight-range-8").textContent = app.printNumber(app.weight * .5, 0, 2) + "-" + app.printNumber(app.weight, 0, 2);
 
