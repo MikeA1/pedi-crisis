@@ -21,25 +21,17 @@
 <div class="page">
     <ul>
         <li>Notify surgeon, call for help and code cart</li>
-        <li>Check pulse. If no pulse or HR &lt; 30:
-            <ul>
-                <li>Start chest compressions</li>
-            <li class="no-weight">Give epinephrine 1-10 MICROgrams/kg IV</li>
-            <li class="has-weight">Give epinephrine
-                <span id="weight-range-1"></span> MICROgrams
-                <span class="per-kg-weight">(1-10 MICROgrams/kg)</span> IV</li>
-            </ul>
-        </li>
+        <li>Call for transesophageal echocardiography</li>
+        <li>Start chest compressions</li>
+        <li class="no-weight">Give epinephrine 10 MICROgrams/kg IV/IO</li>
+        <li class="has-weight">Give epinephrine <span id="weight-range-1"></span> MICROgrams <span class="per-kg-weight">(10 MICROgrams/kg)</span> IV/IO</li>
         <li>If cardiac arrest, go to <span data-uri="/html/events/cardiac-arrest-dx.html" data-title="Cardiac Arrest" class="uri">CARDIAC ARREST</span></li>
         <li>Consider <span data-phone-number="ECMO">ECMO</span></li>
     </ul>
 </div>
-
 <script>
     if (app.weight > 0) {
-        // 1-10 MICROgrams/kg
-        const calculatedRange1a = app.printNumber(app.weight, 0, 2);
-        const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
-        document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
+        // 10 MICROgrams/kg
+        document.getElementById("weight-range-1").textContent = app.printNumber(app.weight * 10, 0, 2);
     }
 </script>

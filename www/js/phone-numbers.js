@@ -73,7 +73,7 @@
                 }
             });
         },
-        systemDescriptions: {"Code Team": "Code Team", "PICU": "PICU", "Fire": "Fire", "Overhead STAT": "Overhead STAT", "ECMO": "ECMO"}
+        systemDescriptions: {"Code Team": "Code Team", "PICU": "PICU", "Fire": "Fire", "Overhead STAT": "Overhead STAT", "ECMO": "ECMO", "Blood Bank": "Blood Bank"}
     };
         
 })();
