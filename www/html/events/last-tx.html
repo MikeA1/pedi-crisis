@@ -24,7 +24,15 @@
         <li>Stop local anesthetic
             <ul>
                 <li>What was given? Drug, dose, site? Does this = a crisis or not?</li>
-                <li>If crisis, <strong>request intralipid</strong></li>
+                <li>If crisis, <strong>request intralipid</strong>
+                    <ul>
+                        <li>
+                            <span class="no-weight">Bolus Intralipid 20% 1.5 mL/kg IV over 1 min.</span>
+                            <span class="has-weight">Bolus Intralipid 20% <span id="weight-range-3"></span> mL <span class="per-kg-weight">(1.5 mL/kg)</span> IV over 1 minute</span>
+                        </li>
+                        <li> <span data-uri="/html/events/last-rx.html" data-title="Local Anesthetic Systemic Toxicity" class="uri">Further dosing</span></li>
+                    </ul>
+                </li>
             </ul>
         </li>
         <li>Ensure adequate IV access, monitoring of continuous ECG, BP, and SaO<sub>2</sub></li>
@@ -56,5 +64,9 @@
         const calculatedRange2 = app.printNumber(app.weight, 0, 2);
         document.getElementById("weight-range-2").textContent = calculatedRange2;
 
+        // 1.5 mL/kg
+        const calculatedRange3 = app.printNumber(app.weight * 1.5, 0, 2);
+        document.getElementById("weight-range-3").textContent = calculatedRange3;
+        
     }
 </script>

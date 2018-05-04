@@ -32,7 +32,7 @@
     <div class="bg-yellow attn">
         <ul>
             <li class="no-weight">Bolus <strong>Intralipid 20%</strong> 1.5 mL/kg IV over 1 minute. Repeat every 3-5 minutes, until hemodynamically stable</li>
-            <li class="has-weight">Bolus <strong>Intralipid 20% <span id="weight-range-3"></span> mL <span class="per-kg-weight">(1.5 mL/kg)</span> IV</strong> over 1 minute. Repeat every 3-5 minutes, until hemodynamically stable</li>
+            <li class="has-weight">Bolus <strong>Intralipid 20%</strong> <span id="weight-range-3"></span> mL <span class="per-kg-weight">(1.5 mL/kg)</span> IV over 1 minute. Repeat every 3-5 minutes, until hemodynamically stable</li>
             <li>Start infusion <strong>0.25 mL/kg/min</strong>, increase as needed to 0.5 mL/kg/min</li>
             <li><strong>Continue infusion for at least 10 min</strong> after hemodynamic stability is restored.</li>
             <li class="no-weight">Max dose of intralipid 20% is 10 mL/kg over first 30 min. If not responding, reconsider if other diagnosis or inadequate resuscitation</li>
@@ -55,7 +55,7 @@
         const calculatedRange2b = app.printNumber(app.weight * 0.1, 0, 2);
         document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;
 
-        // 1.5 Milliliters/kg
+        // 1.5 mL/kg
         const calculatedRange3 = app.printNumber(app.weight * 1.5, 0, 2);
         document.getElementById("weight-range-3").textContent = calculatedRange3;
         
