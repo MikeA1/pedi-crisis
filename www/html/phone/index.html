@@ -80,14 +80,14 @@
             removeChildren(editPhoneNumbers);
             // Always show system phone numbers.
             const systemDescriptions = app.phoneNumbers.systemDescriptions;
-            Object.keys(systemDescriptions).forEach(description => {
+            Object.keys(systemDescriptions).sort(app.phoneNumbers.sortCaseInsensitive).forEach(description => {
                 let data = phoneNumbers[description] || {description, isHyperlink: true, number: ""};
                 data.isSystem = true;
                 let element = createEditModePhoneNumberElement(data);
                 editPhoneNumbers.appendChild(element);
             });
             // Now do the same for non-system phone numbers.
-            Object.keys(phoneNumbers).forEach((description) => {
+            Object.keys(phoneNumbers).sort(app.phoneNumbers.sortCaseInsensitive).forEach((description) => {
                 // Skip system phone numbers.
                 if (!systemDescriptions[description]) {
                     let data = phoneNumbers[description];
@@ -103,7 +103,7 @@
                 // Display Mode and no phone numbers are assigned
                 displayPhoneNumbers.textContent = "You have not yet added phone numbers. Click the 'Edit Phone Numbers' button to customize this screen!";
             } else {
-                keys.forEach((description) => {
+                keys.sort(app.phoneNumbers.sortCaseInsensitive).forEach((description) => {
                     let data = phoneNumbers[description];
                     let element = createDisplayModePhoneNumberElement(data);
                     displayPhoneNumbers.appendChild(element);
