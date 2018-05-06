@@ -74,7 +74,17 @@
             });
         },
         // This associative array contains all of the "system" phone number descriptions (which are basically keys).
-        systemDescriptions: {"Code Team": "Code Team", "PICU": "PICU", "Fire": "Fire", "Overhead STAT": "Overhead STAT", "ECMO": "ECMO", "Blood Bank": "Blood Bank"},
+        systemDescriptions: {
+            "Blood Bank": "Blood Bank",
+            "Code Team": "Code Team",
+            "Echo": "Echo",
+            "ECMO": "ECMO",
+            "Intraoperative Electrophysiology": "Intraoperative Electrophysiology",
+            "Fire": "Fire",
+            "Overhead STAT": "Overhead STAT",
+            "PICU": "PICU",
+            "Respiratory Therapy": "Respiratory Therapy",
+        },
         // This function could be used elsewhere, but it's really only needed by "phone/index.html" at this time.
         sortCaseInsensitive: (a, b) => (a.localeCompare(b, 'en', {'sensitivity': 'base'})),
     };
