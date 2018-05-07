@@ -208,7 +208,7 @@ body.no-weight .has-weight {
 }
 
 /* The default root/parent bullet point is a filled circle; the default second-level bullet point is an open circle.
- * Change second-level (and deeper) bullet points to a dash ("-").
+ * Change second-level (and deeper) bullet points to a black small square ("▪", &#9642, or &#25aa).
  * Why? According to Barbara Burian, "the human eye tries to interpret open bullets as letters (like a or o)".
  */
 li li {
@@ -216,9 +216,9 @@ li li {
 }
 
 li li:before {
-  content: "-";
-  padding-right: 5px; /* Give a little space between this dash and content */
-  margin-left: -10px; /* Move this dash a little to the left. This allows line-wrapped content to look roughly correct. */
+  content: "▪";
+  padding-right: 5px; /* Give a little space between this bullet and content */
+  margin-left: -10px; /* Move this bullet a little to the left. This allows line-wrapped content to look roughly correct. */
 }
 
 
