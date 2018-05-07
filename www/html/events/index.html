@@ -19,17 +19,18 @@
             padding-bottom: 1em;
         }
         .event-number {
-            display: inline-block;
+            /* display: inline-block; */
             width: 2em;
             border-radius: 4px;
             text-align: center;
+            padding: 0.5rem 0;
         }
         /* This class is used when the background color is dark. */
         .c-white {
             color: #fff;
         }
 
-        td.event-diagnosis {
+        .event-diagnosis {
             display: none;
         }
 
@@ -38,36 +39,32 @@
          * but for links to work correctly, the attributes `data-uri` and `data-title` must be
          * applied to both the primary "event row" and the secondary "event diagnosis row".
          */
-        body.hasEventDiagnosis td.event-diagnosis {
-            /* `table-cell` is basically `td` */
-            display: table-cell; 
+        body.hasEventDiagnosis .event-diagnosis {
+            display: block;
             /* override app's default line-height of 2 */
             line-height: 1;
             /* The `color` and `font-size` props match the rule for "per-kg-weight" */
             color: #aaa;
             font-size: 0.8em;
-            /* Edge the description closer to the name */
-            position: relative;
-            top: -0.8em;
         }
 
     </style>
-    <table>
+    <table style="line-height:1.5">
         <tr class="event-row" data-uri="/html/events/air-embolism-dx.html" data-title="Air Embolism">
             <td class="event-number c-white" style="background-color:rgb(221,31,0);">1</td>
-            <td class="event-name">Air Embolus</td>
-        </tr>
-        <tr data-uri="/html/events/air-embolism-dx.html" data-title="Air Embolism">
-            <td></td>
-            <td class="event-diagnosis">↓ EtCO<sub>2</sub> ↓ SaO<sub>2</sub> ↓ BP</td>
+            <td class="event-name">Air Embolus
+                <div class="event-diagnosis">
+                    ↓ EtCO<sub>2</sub> ↓ SaO<sub>2</sub> ↓ BP
+                </div>
+            </td>
         </tr>
         <tr class="event-row" data-uri="/html/events/anaphylaxis-dx.html" data-title="Anaphylaxis">
             <td class="event-number c-white" style="background-color:rgb(255,116,62)">2</td> 
-            <td>Anaphylaxis</td>
-        </tr>
-        <tr data-uri="/html/events/anaphylaxis-dx.html" data-title="Anaphylaxis">
-            <td></td>
-            <td class="event-diagnosis">Rash, bronchospasm, hypotension</td>
+            <td>Anaphylaxis
+                <div class="event-diagnosis">
+                    Rash, bronchospasm, hypotension
+                </div>
+            </td>
         </tr>
         <tr class="event-row" data-uri="/html/events/anterior-mediastinal-mass-dx.html" data-title="Anterior Mediastinal Mass">
             <td class="event-number c-white" style="background-color:rgb(255,131,0)">3</td>
@@ -80,13 +77,11 @@
         </tr>
         <tr class="event-row" data-uri="/html/events/bronchospasm-dx.html" data-title="Bronchospasm">
             <td class="event-number" style="background-color:rgb(255,146,0)">5</td>
-            <td>Bronchospasm</td>
-        </tr>
-        <tr data-uri="/html/events/bronchospasm-dx.html" data-title="Bronchospasm">
-            <td></td>
-            <td class="event-diagnosis">
-                ↓ EtCO<sub>2</sub>, upslope stage III EtCO<sub>2</sub>,
-                ↑ airway pressures, ↓ SpO<sub>2</sub>
+            <td>Bronchospasm
+                <div class="event-diagnosis">
+                    ↓&nbsp;EtCO<sub>2</sub>, upslope stage III EtCO<sub>2</sub>,
+                    ↑&nbsp;airway pressures, ↓&nbsp;SpO<sub>2</sub>
+                </div>
             </td>
         </tr>
         <tr class="event-row" data-uri="/html/events/cardiac-arrest-dx.html" data-title="Cardiac Arrest">
@@ -131,11 +126,11 @@
         </tr>
         <tr class="event-row" data-uri="/html/events/last-dx.html" data-title="Local Anesthetic Systemic Toxicity">
             <td class="event-number c-white" style="background-color:rgb(170,137,248);">16</td>
-            <td>Local Anesthetic Systemic Toxicity</td>
-        </tr>
-        <tr data-uri="/html/events/last-dx.html" data-title="Local Anesthetic Systemic Toxicity">
-            <td></td>
-            <td class="event-diagnosis">Hypotension, rhythm disturbance, altered consciousness, seizures</td>
+            <td>Local Anesthetic Systemic Toxicity
+                <div class="event-diagnosis">
+                    Hypotension, rhythm disturbance, altered consciousness, seizures
+                </div>
+            </td>
         </tr>
         <tr class="event-row" data-uri="/html/events/loss-of-evoked-potentials-dx.html" data-title="Loss of Evoked Potentials">
             <td class="event-number" style="background-color:rgb(255,182,252)">17</td>
@@ -143,11 +138,9 @@
         </tr>
         <tr class="event-row" data-uri="/html/events/malignant-hyperthermia-dx.html" data-title="Malignant Hyperthermia">
             <td class="event-number c-white" style="background-color:rgb(255,96,248)">18</td>
-            <td>Malignant Hyperthermia</td>
-        </tr>
-        <tr data-uri="/html/events/malignant-hyperthermia-dx.html" data-title="Malignant Hyperthermia">
-            <td></td>
-            <td class="event-diagnosis">↑ Temp  ↑ HR  ↑ C<sub>2</sub>  acidosis</td>
+            <td>Malignant Hyperthermia
+                <div class="event-diagnosis">↑ Temp ↑ HR ↑ C<sub>2</sub> acidosis</div>
+            </td>
         </tr>
         <tr class="event-row" data-uri="/html/events/massive-hemorrhage-dx.html" data-title="Massive Hemorrhage">
             <td class="event-number c-white" style="background-color:rgb(243,34,187)">19</td>
@@ -167,11 +160,9 @@
         </tr>
         <tr class="event-row" data-uri="/html/events/tension-pneumothorax-dx.html" data-title="Tension Pneumothorax">
             <td class="event-number c-white" style="background-color:rgb(201,154,6)">23</td>
-            <td>Tension Pneumothorax</td>
-        </tr>
-        <tr data-uri="/html/events/tension-pneumothorax-dx.html" data-title="Tension Pneumothorax">
-            <td></td>
-            <td class="event-diagnosis">↑ HR, ↓ SpO<sub>2</sub>, ↓ BP, tracheal deviation, mediastinal shift</td>
+            <td>Tension Pneumothorax
+                <div class="event-diagnosis">↑ HR, ↓ SpO<sub>2</sub>, ↓ BP, tracheal deviation, mediastinal shift</div>
+            </td>
         </tr>
         <tr class="event-row" data-uri="/html/events/transfusion-reactions-dx.html" data-title="Transfusion Reactions">
             <td class="event-number c-white" style="background-color:rgb(75,71,46)">24</td>
