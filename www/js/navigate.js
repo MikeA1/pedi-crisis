@@ -19,9 +19,10 @@
 
         // These are the primary navigation buttons. They are always on the screen, so grab references to them once.
         // These elements are updated to indicate which screen is active.
-        let eventButton = document.getElementById("events");
-        let phoneButton = document.getElementById("phone");
-        let weightButton = document.getElementById("weight");
+        const eventButton = document.getElementById("events");
+        const phoneButton = document.getElementById("phone");
+        const weightButton = document.getElementById("weight");
+        const settingButton = document.getElementById("settings");
 
         /**
          * Takes a relative URI and converts it to an absolute URI (with respect to the root of the current location). 
@@ -148,6 +149,7 @@
                 let isEvent = uri.includes("html/events/");
                 let isPhone = uri.includes("html/phone/");
                 let isWeight = uri.includes("html/weight/");
+                let isSetting = uri.includes("html/settings/");
 
                 if (isEvent) {
                     eventButton.classList.add("emphasis");
@@ -165,6 +167,13 @@
                     weightButton.classList.add("emphasis");
                 } else {
                     weightButton.classList.remove("emphasis");
+                }
+
+                if (isSetting) {
+                    settingButton.classList.add("emphasis");
+                    console.log(settingButton);
+                } else {
+                    settingButton.classList.remove("emphasis");
                 }
 
                 // This special handling of "pages" applies to all screens that use the "page" class, so the special
