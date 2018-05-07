@@ -1,3 +1,18 @@
+<style>
+    #overhead-stat-container a {
+        /* By default, phone numbers are colored green; that's terrible on a red background. */
+        color: white !important;
+        
+    }
+</style>
+<!-- Use "no break space" (&nbsp) for better line-wrapping -->
+<div class="bg-crisis event-title" style="text-align: center">
+    <strong>Call&nbsp;for&nbsp;Help!&nbsp;</strong>
+    <strong>Notify&nbsp;Surgeon!</strong>
+    <div id="overhead-stat-container">
+        <strong data-phone-number="Overhead STAT"></strong>
+    </div>
+</div>
 <div class="page">
     <style>
         .event-row {
@@ -37,8 +52,6 @@
         }
 
     </style>
-    <!-- Use "no break space" (&nbsp) for better line-wrapping -->
-    <div class="bg-crisis event-title m-b-1" style="text-align: center"><strong>Call&nbsp;for&nbsp;Help!&nbsp; Notify&nbsp;Surgeon!</strong></div>
     <table>
         <tr class="event-row" data-uri="/html/events/air-embolism-dx.html" data-title="Air Embolism">
             <td class="event-number c-white" style="background-color:rgb(221,31,0);">1</td>
@@ -179,5 +192,8 @@
 (() => {
     "use strict";
     app.swipe.right = () => app.navigate.next("/html/phone/index.html", "Pedi Crisis", "swipe-right");
+    // The function `updateElements()` is executed automatically only for phone numbers that appear in
+    // an element with the class "page".
+    app.phoneNumbers.updateElements(document.getElementById("overhead-stat-container"));
 })();
 </script>

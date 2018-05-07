@@ -40,7 +40,7 @@
          */
         updateElements: (parent) => {
             let phoneNumbers = null;
-            Array.from((parent ||document).querySelectorAll("[data-phone-number]")).forEach(element => {
+            Array.from((parent || document.body).querySelectorAll("[data-phone-number]")).forEach(element => {
                 if (phoneNumbers === null) {
                     // This `if` statement was created to lazy-load the `phoneNumbers` object.
                     const storedPhoneNumbers = localStorage.getItem("phone-numbers");
