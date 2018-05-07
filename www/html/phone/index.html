@@ -1,3 +1,12 @@
+<style>
+    .call-for-help {
+        background-color: #be251b;
+        color: white;
+    }
+    .call-for-help a {
+        color: white;
+    }
+</style>
 <div class="page">
 
     <!-- This area is visible when NOT in edit mode -->
@@ -59,6 +68,9 @@
 (() => {
     "use strict";
 
+    // This is a special phone number that is listed first and has a special background color of red.
+    const callForHelp = "Call for Help";
+
     app.swipe.left = () => app.navigate.next("/html/events/index.html", "Pedi Crisis", "swipe-left");
     app.swipe.right = () => app.navigate.next("/html/weight/index.html", "Pedi Crisis", "swipe-right");
 
@@ -77,13 +89,18 @@
         if (isEditMode) {
             editSection.reset();
             // Remove existing elements. Otherwise they are duplicated when flipping in and out of display mode.
-            removeChildren(editPhoneNumbers);
-            // Always show system phone numbers.
+            editPhoneNumbers.textContent = "";
+            // Always show system phone numbers (even if there is not a saved phone number).
             const systemDescriptions = app.phoneNumbers.systemDescriptions;
-            Object.keys(systemDescriptions).sort(app.phoneNumbers.sortCaseInsensitive).forEach(description => {
+            let systemPhoneNumbers = Object.keys(systemDescriptions).sort(app.phoneNumbers.sortCaseInsensitive);
+            moveCallForHelpToFirstPosition(systemPhoneNumbers);
+            systemPhoneNumbers.forEach(description => {
                 let data = phoneNumbers[description] || {description, isHyperlink: true, number: ""};
                 data.isSystem = true;
                 let element = createEditModePhoneNumberElement(data);
+                if (data.description === callForHelp) {
+                    element.classList.add("call-for-help");
+                }
                 editPhoneNumbers.appendChild(element);
             });
             // Now do the same for non-system phone numbers.
@@ -96,33 +113,40 @@
                 }
             });
         } else {
-            const keys = Object.keys(phoneNumbers);
+            const descriptions = Object.keys(phoneNumbers);
             const displayPhoneNumbers = document.getElementById("display-phone-numbers");
-            removeChildren(displayPhoneNumbers);
-            if (keys.length === 0) {
+            if (descriptions.length === 0) {
                 // Display Mode and no phone numbers are assigned
                 displayPhoneNumbers.textContent = "You have not yet added phone numbers. Click the 'Edit Phone Numbers' button to customize this screen!";
             } else {
-                keys.sort(app.phoneNumbers.sortCaseInsensitive).forEach((description) => {
+                descriptions.sort(app.phoneNumbers.sortCaseInsensitive);
+                moveCallForHelpToFirstPosition(descriptions);
+                displayPhoneNumbers.textContent = "";
+                descriptions.forEach((description) => {
                     let data = phoneNumbers[description];
                     let element = createDisplayModePhoneNumberElement(data);
+                    if (data.description === callForHelp) {
+                        element.classList.add("call-for-help");
+                    }
                     displayPhoneNumbers.appendChild(element);
                 });
             }
         }
     };
 
-    /***
-     * Removes the content of all children.
+    /**
+     * Pupose: Find "Call for Help", remove it, then add it to the begining of the array.
+     *   Why? "Call for Help" has special handling due to its prominence in the Event List.
+     * @param keys is an array of strings.
      */
-    const removeChildren = node => {
-        if (node.textContent) {
-            node.textContent = "";
+    const moveCallForHelpToFirstPosition = descriptions => {
+        if (!descriptions || !descriptions.length) {
+            return;
         }
-        if (node.children) {
-            while (node.children.length > 0) {
-                node.children[0].remove();
-            }
+        const position = descriptions.indexOf(callForHelp);
+        if (position > 0) {
+            descriptions.splice(position, 1);
+            descriptions.unshift(callForHelp);
         }
     };
 

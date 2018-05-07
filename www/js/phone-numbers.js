@@ -75,13 +75,13 @@
         },
         // This associative array contains all of the "system" phone number descriptions (which are basically keys).
         systemDescriptions: {
+            "Call for Help": "Call for Help",
             "Blood Bank": "Blood Bank",
             "Code Team": "Code Team",
             "Echo": "Echo",
             "ECMO": "ECMO",
             "Intraoperative Electrophysiology": "Intraoperative Electrophysiology",
             "Fire": "Fire",
-            "Overhead STAT": "Overhead STAT",
             "PICU": "PICU",
             "Respiratory Therapy": "Respiratory Therapy",
         },
