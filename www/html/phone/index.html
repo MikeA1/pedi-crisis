@@ -1,20 +1,35 @@
 <style>
     .call-for-help {
         background-color: #be251b;
+        border-color: #810;
         color: white;
     }
     .call-for-help a {
         color: white;
     }
+
+    #action-buttons {
+        position: absolute;
+        bottom: 10px;
+        width: calc(100% - 30px);
+        padding: 0;
+        margin: 0 15px;
+        z-index: 30;
+    }
+
+    .page {
+        /* Give the action buttons some breathing room. */
+        margin-bottom: 50px; 
+    }
+
 </style>
-<div class="page">
+<div id="page" class="page">
 
     <!-- This area is visible when NOT in edit mode -->
     <div id="display-section" style="display: inline-block;">
         <div id="display-phone-numbers">
             <!-- phone numbers go here! -->
         </div>
-        <button id="edit-button" type="button">Edit Phone Numbers</button>
     </div>
 
     <!-- This area is visible when in edit mode -->
@@ -28,7 +43,7 @@
             <p>If your phone number is not reachable by your device then you can prevent hyperlinks from showing up in events by unchecking <i>Create hyperlink?</i></p>
         </div>
         <div id="edit-phone-numbers"></div>
-        <div class="section" style="background-color: #dfd">
+        <div class="section" style="background-color: #dfd; border-color: #ada">
             <strong>Add a Phone Number</strong>
             <input type="text" class="fill-available" placeholder="Description" data-role="description" style="display: inline;">
             <input type="text" class="fill-available" placeholder="Phone Number" data-role="number" class="fill-available">
@@ -37,15 +52,16 @@
                 <label>Create hyperlink?</label>
             </div>
         </div>
-            
-        <div>
-            <button id="save" type="submit">Save</button>
-            <button id="cancel" type="button">Cancel</button>
-        </div>
+
     </form>
 
 </div>
-
+            
+<div id="action-buttons">
+    <button id="save" type="submit">Save</button>
+    <button id="cancel" type="button">Cancel</button>
+    <button id="edit-button" type="button">Edit Phone Numbers</button>
+</div>
 <script>
 
 // This code is a bit tricky because it uses plain javascript in lieu of a templating engine.
@@ -81,8 +97,11 @@
 
     // This function determines whether the screen is in edit mode.
     const setEditMode = (isEditMode) => {
+        document.getElementById("save").style.display = isEditMode ? "unset" : "none";
+        document.getElementById("cancel").style.display = isEditMode ? "unset" : "none";
+        document.getElementById("edit-button").style.display = isEditMode ? "none" : "unset";
         const editSection = document.getElementById("edit-section");
-        editSection.style.display =  isEditMode ? "block" : "none";
+        editSection.style.display = isEditMode ? "block" : "none";
         document.getElementById("display-section").style.display = isEditMode ? "none" : "block";
         const editPhoneNumbers = document.getElementById("edit-phone-numbers");
         const phoneNumbers = app.phoneNumbers.get();
@@ -320,6 +339,7 @@
         return false;
     });
 
+    // Set events on the form and save button.
     document.getElementById("edit-section").addEventListener("submit", savePhoneNumbers);
     document.getElementById("save").addEventListener("click", savePhoneNumbers);
 
