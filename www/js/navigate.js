@@ -176,94 +176,110 @@
                     settingButton.classList.remove("emphasis");
                 }
 
-                // This special handling of "pages" applies to all screens that use the "page" class, so the special
-                // logic that enables a better scrolling experience is implemented here.
+                // This special handling of "pages" applies to all screens that use the "page" class, which is pretty much all of them.
                 // What does this do?
-                // 1. Absolute positioning allows for context-relative scrolling (which is impemented in our CSS rules; see ".page::-webkit-scrollbar")
-                // 2. Event sub-menu looks like it is fixed-positioned (because it doesn't move when the page scrolls)
+                // 1. If in an event, handle swipe gestures for events.
+                // 2. Add links to phone numbers.
+                // 3. Absolute positioning allows for context-relative scrolling (which is impemented in our CSS rules; see ".page::-webkit-scrollbar")
+                // 4. Event sub-menu looks like it is fixed-positioned (because it doesn't move when the page scrolls)
                 const callback = () => {
                     // Make the page absolute-positioned.
-                    const pages = document.getElementsByClassName("page");
+                    const pages = contentElement.getElementsByClassName("page");
                     if (pages && pages.length) {
-                        // This works when there's one page (i.e., `pages.length === 1`), 
-                        // but multiple pages will overlap. 
+                        // Normally there will be one page in this loop (i.e., `pages.length === 1`), 
+                        // but multiple pages are okay in special circumstances.
                         // Q: In what situation would multiple pages be okay?
                         // A: When only one page is visible at a time. See `/html/settings/walkthrough.html` for an example.
                         for (let i = 0; i < pages.length; i++) {
                             const page = pages[i];
-                            const style = page.style;
-                            style.top = page.offsetTop + "px";
-                            style.position = "absolute";
-                            // Note: This `.page` already has values for `bottom` and `overflow-y` via CSS rules.
+
+                            // Set the swipe/slide left/right functions if this is an event.
+                            // This is done here to avoid a ton of duplicate, manual code.
+                            if (isEvent) {
+                                const eventNavs = document.getElementsByClassName("event-nav");
+                                // Continue if there is exactly one eventNav (not sure what to do if there are multiple!)
+                                if (eventNavs.length > 1) {
+                                    console.warn("Hey, developer, there are multiple event navs detected. That's probably a mistake!")
+                                }
+                                if (eventNavs.length === 1) {
+
+                                    // The expected DOM structure of `eventNavs` looks like this:
+
+                                    // <div class="event-nav">
+                                    //     <div class="button-group">
+                                    //         <div class="button-container">
+                                    //             <button data-uri="/html/events/air-embolism-dx.html" data-title="Air Embolism" class="bg-dx">Dx</button>
+                                    //         </div>
+                                    //         <div class="button-container">
+                                    //             <button data-uri="/html/events/air-embolism-ddx.html" data-title="Air Embolism" class="bg-ddx">DDx</button>
+                                    //         </div>
+                                    //         <div class="button-container">
+                                    //             <button data-uri="/html/events/air-embolism-tx.html" data-title="Air Embolism" class="bg-tx">Tx</button>
+                                    //         </div>
+                                    //         <div class="button-container">
+                                    //             <button data-uri="/html/events/air-embolism-rx.html" data-title="Air Embolism" class="bg-rx">Rx</button>
+                                    //         </div>
+                                    //         <div class="button-container">
+                                    //             <button data-uri="/html/events/air-embolism-crisis.html" data-title="Air Embolism" class="bg-crisis emphasis">Crisis</button>
+                                    //         </div>
+                                    //     </div>
+                                    //     <div class="bg-crisis event-title">CRISIS MANAGEMENT</div>
+                                    // </div>
+
+                                    // Helper function to remove leading forward slashes (this is for more reliable uri comparison).
+                                    const removeLeadingForwardSlash = s => s.replace(/^\/+/, "");
+
+                                    // For easier usage, convert elements with attributes [data-uri] (and [data-title])
+                                    // into an array of objects that looks like this:
+                                    // [
+                                    //     {uri: "/html/events/air-embolism-dx.html", title: "Air Embolism"}, 
+                                    //     {uri: "/html/events/air-embolism-ddx.html", title: "Air Embolism"}, 
+                                    //     ...
+                                    // ]
+                                    const links = Array.from(eventNavs[0].querySelectorAll("[data-uri]")).map(element => {
+                                        return {
+                                            uri: removeLeadingForwardSlash(element.dataset.uri),
+                                            title: element.dataset.title // may be `undefined`
+                                        };
+                                    });
+
+                                    // Determine where we are in the set of links. 
+                                    // Example: if at index 2, then swipe-left will navigate to the link at index 1
+                                    // and swipe-right will navigate to the link at index 3 (if index 3 exists).
+                                    const currentUri = removeLeadingForwardSlash(history.state.uri);
+                                    for (let j = 0; j < links.length; j++) {
+                                        const link = links[j];
+                                        if (link.uri === currentUri) {
+                                            // Currently on this link.
+                                            if (j > 0) {
+                                                const prevLink = links[j - 1];
+                                                app.swipe.left = () => app.navigate.next(prevLink.uri, prevLink.title, "swipe-left");
+                                            }
+                                            if (j < links.length - 1) {
+                                                const nextLink = links[j + 1];
+                                                app.swipe.right = () => app.navigate.next(nextLink.uri, nextLink.title, "swipe-right");
+                                            }
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
 
                             // Since we're already messing around with pages, let's insert phone numbers too.
                             app.phoneNumbers.updateElements(page);
+
+                            // Absolute-position the page (would prefer "display: sticky", but that doesn't work well on iOS.)
+                            const style = page.style;
+                            // The property `offsetTop` creates a forced layout, so this should be one of the last actions taken per page.
+                            style.top = page.offsetTop + "px";
+                            style.position = "absolute";
+                            // Note: This `.page` already has values for `bottom` and `overflow-y` via CSS rules.
 
                             // Apply class (in practice, this is a page transition animation).
                             if (addClass) {
                                 page.classList.add(addClass);
                             }
 
-                            // Set the slide left/right functions if this is an event.
-                            // This is done here to avoid a ton of duplicate, manual code.
-                            if (isEvent) {
-                                // The expected DOM structure looks like this:
-
-                                // <div class="event-nav">
-                                //     <div class="button-group">
-                                //         <div class="button-container">
-                                //             <button data-uri="/html/events/air-embolism-dx.html" data-title="Air Embolism" class="bg-dx">Dx</button>
-                                //         </div>
-                                //         <div class="button-container">
-                                //             <button data-uri="/html/events/air-embolism-ddx.html" data-title="Air Embolism" class="bg-ddx">DDx</button>
-                                //         </div>
-                                //         <div class="button-container">
-                                //             <button data-uri="/html/events/air-embolism-tx.html" data-title="Air Embolism" class="bg-tx">Tx</button>
-                                //         </div>
-                                //         <div class="button-container">
-                                //             <button data-uri="/html/events/air-embolism-rx.html" data-title="Air Embolism" class="bg-rx">Rx</button>
-                                //         </div>
-                                //         <div class="button-container">
-                                //             <button data-uri="/html/events/air-embolism-crisis.html" data-title="Air Embolism" class="bg-crisis emphasis">Crisis</button>
-                                //         </div>
-                                //     </div>
-                                //     <div class="bg-crisis event-title">CRISIS MANAGEMENT</div>
-                                // </div>
-
-                                const eventNavs = document.getElementsByClassName("event-nav");
-                                // Bail if there are zero or many eventNavs (the latter is unexpected to happen, but better to be safe than broken.)
-                                if (eventNavs.length !== 1) {
-                                    continue;
-                                }
-                                // For easier usage, convert elements with attributes [data-uri] (and [data-title])
-                                // into an array of objects that looks like this:
-                                // [
-                                //     {uri: "/html/events/air-embolism-dx.html", title: "Air Embolism"}, 
-                                //     {uri: "/html/events/air-embolism-ddx.html", title: "Air Embolism"}, 
-                                //     ...
-                                // ]
-                                const links = Array.from(eventNavs[0].querySelectorAll("[data-uri]")).map(element => {
-                                    return {
-                                        uri: element.dataset.uri,
-                                        title: element.dataset.title // may be `undefined`
-                                    };
-                                });
-                                const currentUri = history.state.uri;
-                                for (let j = 0; j < links.length; j++) {
-                                    const link = links[j];
-                                    if (link.uri === currentUri) {
-                                        // Currently on this link.
-                                        if (j > 0) {
-                                            const prevLink = links[j - 1];
-                                            app.swipe.left = () => app.navigate.next(prevLink.uri, prevLink.title, "swipe-left");
-                                        }
-                                        if (j < links.length - 1) {
-                                            const nextLink = links[j + 1];
-                                            app.swipe.right = () => app.navigate.next(nextLink.uri, nextLink.title, "swipe-right");
-                                        }
-                                    }
-                                }
-                            }
                         }
                     }
                 };
