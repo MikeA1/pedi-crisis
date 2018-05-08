@@ -173,8 +173,6 @@ button.emphasis {
     border-radius: 4px;
     padding: .5em;
     color: white;
-    /* Force all title to uppercase, for consistency. */
-    text-transform: uppercase;
 }
 
 /* These weight-related CSS classes will hide or display select items. */

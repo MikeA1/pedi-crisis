@@ -223,7 +223,7 @@
                                     //             <button data-uri="/html/events/air-embolism-crisis.html" data-title="Air Embolism" class="bg-crisis emphasis">Crisis</button>
                                     //         </div>
                                     //     </div>
-                                    //     <div class="bg-crisis event-title">CRISIS MANAGEMENT</div>
+                                    //     <div class="bg-crisis event-title">Crisis Management (If Severe)</div>
                                     // </div>
 
                                     // Helper function to remove leading forward slashes (this is for more reliable uri comparison).
