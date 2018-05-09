@@ -87,7 +87,7 @@ body {
     max-width: 936px; /* 1000px (standard max-width) - 60px (padded 30px on left and 30px on right) - 4px (Ummm... borders?) */
 
     /* Let the content breathe! */
-    line-height: 1.6;
+    line-height: 1.8;
 
     /*
      * The javascript function sets the `top` dynamically.
@@ -105,6 +105,12 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
+/* For larger screens, let the content breathe!
+ * For reference, 
+ * iPhone X is 375 x 812 (w x h)
+ * Pixel 2 XL is 411 x 823
+ * iPad is 768 x 1024
+ */
 @media screen and (min-width: 600px) and (min-height: 900px)
 {
     .page {
