@@ -16,6 +16,26 @@
         // It seems that Android can detect the root path before this `deviceready` event is fired,
         // but always fire `updateRootPath` in case that's not the case for all versions of Android.
         app.navigate.updateRootPath();
+
+
+        // Need to load first page because the content container is empty on page load.
+        if (history.state) {
+            // If here, then the user hit "back button" on browser from another website. (This only makes sense for browser debugging.)
+            // Move to the last location in the app. Note that `event` mimics the data received from `window.onpopstate`.
+            let event = { state: history.state };
+            app.navigate.onHistoryChange(event);
+        } else {
+            // Automatically navigate to the event page.
+            let uri = "/html/events/index.html";
+            let header = "Pedi Crisis";
+            let title = "Pedi Crisis";
+            let hash = "#events";
+            // Use `change` instead of `next` because we do not want to log history.
+            app.navigate.change(uri, header, title);
+            // Use `replaceState` instead of `pushState` because the current (soon-to-be-previous) state 
+            // will show the nav bar but have blank contents.
+            history.replaceState({ index: 1, uri: uri, header: header, title: title }, title, hash);
+        }
     };
     document.addEventListener("deviceready", onDeviceReady, false);
 
