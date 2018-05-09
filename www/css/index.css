@@ -43,7 +43,7 @@ body {
     -ms-user-select: none;
 
     /* Keep the background color the same as the header for iPhoneX */
-    background-color:#efefef;
+    background-color:#f4f4f4;
 
     height: 100%;
     margin: 0px;
@@ -86,8 +86,8 @@ body {
     /* We don't want the content to be too wide, so this is a safety check. */
     max-width: 936px; /* 1000px (standard max-width) - 60px (padded 30px on left and 30px on right) - 4px (Ummm... borders?) */
 
-    /* Let the content breath! */
-    line-height: 2;
+    /* Let the content breathe! */
+    line-height: 1.6;
 
     /*
      * The javascript function sets the `top` dynamically.
@@ -103,6 +103,14 @@ body {
     
     /* Use floaty/touch scrolling */
     -webkit-overflow-scrolling: touch;
+}
+
+@media screen and (min-width: 600px) and (min-height: 900px)
+{
+    .page {
+        /* Let the content *really* breathe! */
+        line-height: 2;
+    }
 }
 
 /* `width: fill-available` does not have great support yet, so use this class instead. */
@@ -206,25 +214,17 @@ body.no-weight .has-weight {
 }
 
 /* The default root/parent bullet point is a filled circle; the default second-level bullet point is an open circle.
- * Change second-level (and deeper) bullet points to a black small square ("▪", &#9642, or &#25aa).
+ * Change second-level (and deeper) bullet points to a (filled) square.
  * Why? According to Barbara Burian, "the human eye tries to interpret open bullets as letters (like a or o)".
  */
-li li {
-  list-style-type: none;
+ul ul {
+    list-style-type: square;
 }
 
-li li:before {
-  content: "▪";
-  padding-right: 5px; /* Give a little space between this bullet and content */
-  margin-left: -10px; /* Move this bullet a little to the left. This allows line-wrapped content to look roughly correct. */
-}
-
-
-/* Decrease the size of padding-left to fit more horizontally on a (relatively) small mobile screen. */
-ul {
-    /* Default for `ul` is 40px in Chrome. */
-    padding-left: 20px;
-    -webkit-padding-start: 20px;
+/* Override webkit default margin and padding properties: defaults are a bit too much on smaller mobile screens */
+ul, ol {
+    padding-left: 20px; /* default is 40px */
+    margin-top: 0; /* default is 10px */
 }
 
 /* Used this site to determine lighter and heavier shades of colors:
