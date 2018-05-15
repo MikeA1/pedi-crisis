@@ -171,7 +171,6 @@
 
                 if (isSetting) {
                     settingButton.classList.add("emphasis");
-                    console.log(settingButton);
                 } else {
                     settingButton.classList.remove("emphasis");
                 }
