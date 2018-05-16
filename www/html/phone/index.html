@@ -223,7 +223,10 @@
         container.appendChild(description);
 
         const number = document.createElement("input");
-        number.type = "text";
+        // Mobile browsers use virtual keyboards that dynamically change depending upon the input type.
+        // If this "phone number" is a hyperlink, then use the telephone ("tel") keyboard.
+        // Otherwise, use the standard ("text") keyboard.
+        number.type = data.isHyperlink ? "tel" : "text";
         number.value = data.number;
         number.placeholder = "Phone Number"
         number.dataset.role = "number";
@@ -238,6 +241,9 @@
         isHyperlink.style.marginLeft = "0px";
         isHyperlink.checked = data.isHyperlink;
         isHyperlink.dataset.role = "isHyperlink";
+        isHyperlink.addEventListener("change", event => {
+            number.type = event.target.checked ? "tel" : "text";
+        });
         checkboxWrapper.appendChild(isHyperlink);
 
         const label = document.createElement("label");
