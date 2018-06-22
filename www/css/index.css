@@ -273,11 +273,11 @@ button.bg-tx.emphasis {
 }
 
 /* blue */
-.bg-rx {
+.bg-drugs {
     background-color: #0113dc;
 }
 
-button.bg-rx.emphasis {
+button.bg-drugs.emphasis {
     background-color: #0116fe;
     border-color: #0110ba;
     box-shadow: 0 0 1px 1px #0110ba;
