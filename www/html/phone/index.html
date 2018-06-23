@@ -19,7 +19,7 @@
 
     .page {
         /* Give the action buttons some breathing room. */
-        margin-bottom: 50px; 
+        margin-bottom: 2.5em; 
     }
 
 </style>
@@ -47,7 +47,7 @@
             <strong>Add a Phone Number</strong>
             <input type="text" class="fill-available" placeholder="Description" data-role="description" style="display: inline;">
             <input type="text" class="fill-available" placeholder="Phone Number" data-role="number" class="fill-available">
-            <div>
+            <div class="fill-available">
                 <input type="checkbox" data-role="isHyperlink" style="align-self: center;">
                 <label>Create hyperlink?</label>
             </div>
@@ -184,7 +184,7 @@
         if (data.isHyperlink) {
             const link = document.createElement("a");
             link.href="tel:" + data.number;
-            link.textContent = data.number;
+            link.textContent = "#" + data.number;
             container.appendChild(link);
         } else {
             const number = document.createElement("div");
@@ -233,7 +233,21 @@
         number.classList = "fill-available";
         container.appendChild(number);
 
-        const checkboxWrapper = document.createElement("div");
+        // Originally the Clear button was "float: right", but that did not work well 
+        // when the text "Create Hyperlink" was really wide (e.g., with accessibiliy mode on.)
+        // So, a table is used to keep element widths in proportion.
+        const checkboxTable = document.createElement("table");
+        checkboxTable.classList.add("fill-available");
+        const checkboxRow = document.createElement("tr");
+        // When "Create Hyperlink" line-wraps it looks silly; 
+        // this `line-height` adjustment at the row (i.e., `tr`) level fixes that.
+        checkboxRow.style.lineHeight = 1;
+        checkboxTable.appendChild(checkboxRow);
+        const checkboxColumn1 = document.createElement("td");
+        checkboxRow.appendChild(checkboxColumn1);
+        const checkboxColumn2 = document.createElement("td");
+        checkboxRow.appendChild(checkboxColumn2);
+        
         const isHyperlink = document.createElement("input");
         isHyperlink.type = "checkbox"
         isHyperlink.style.alignSelf = "center";
@@ -244,15 +258,15 @@
         isHyperlink.addEventListener("change", event => {
             number.type = event.target.checked ? "tel" : "text";
         });
-        checkboxWrapper.appendChild(isHyperlink);
+        
+        checkboxColumn1.appendChild(isHyperlink);
 
         const label = document.createElement("label");
         label.textContent = "Create hyperlink?";
 
-        checkboxWrapper.appendChild(label);
+        checkboxColumn1.appendChild(label);
 
         const clearButton = document.createElement("button");
-        clearButton.style.float = "right";
         clearButton.type = "button";
         if (data.isSystem) {
             clearButton.textContent = "Clear";
@@ -265,9 +279,9 @@
                 container.remove();
             });
         }
-        checkboxWrapper.appendChild(clearButton);
+        checkboxColumn2.appendChild(clearButton);
         
-        container.appendChild(checkboxWrapper);
+        container.appendChild(checkboxTable);
 
         return container;
     };

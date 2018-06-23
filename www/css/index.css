@@ -10,7 +10,6 @@ html {
     margin:    0 auto;
     max-width: 1000px;
     color: #666;
-    /* font-size: 1.2rem; */
 
     /* Force the Content div to expand to occupy the remainder of the screen. */
     display: flex;
@@ -30,6 +29,8 @@ html {
 }
 
 body {
+
+    font-size: 1.1rem;
 
     /* prevent callout to copy image, etc when tap to hold */
     -webkit-touch-callout: none;
@@ -52,6 +53,21 @@ body {
 
 }
 
+/* For larger screens, let the content breathe!
+ * For reference, 
+ * iPhone X is 375 x 812 (w x h)
+ * Pixel 2 XL is 411 x 823
+ * iPad is 768 x 1024
+ */
+ @media screen and (min-width: 600px) and (min-height: 900px)
+ {
+     body {
+         /* Let the content *really* breathe! */
+         font-size: 1.3rem;
+         line-height: 2;
+     }
+ }
+ 
 /* Mind the iPhone X gap */
 @media screen and (orientation: portrait) {
     body {
@@ -105,42 +121,32 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
-/* For larger screens, let the content breathe!
- * For reference, 
- * iPhone X is 375 x 812 (w x h)
- * Pixel 2 XL is 411 x 823
- * iPad is 768 x 1024
- */
-@media screen and (min-width: 600px) and (min-height: 900px)
-{
-    .page {
-        /* Let the content *really* breathe! */
-        line-height: 2;
-    }
-}
-
 /* `width: fill-available` does not have great support yet, so use this class instead. */
 .fill-available {
     width: 100%;
     width: -webkit-fill-available;
     width: -moz-fill-available;
     width: fill-available;
+    /* This `max-width` seems to fix an issue where an image 
+     * will overflow when its pre-styled width is wider than its container.
+     */
+    max-width: 100%;
 }
 
 /* button-group is the parent of button-container */
 .button-group {
     display: flex;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.5em;
 }
 
 .button-container {
     flex-grow: 1;
-    padding-right: 1rem;
+    padding-right: 4px;
 }
 
 /* For a non-nav button-container, don't pad the far left or far right side (the containing .page already has padding) */
 .button-container:last-child {
-    padding-right: 0rem;
+    padding-right: 0;
 }
 
 button {
@@ -152,8 +158,10 @@ button {
 	display:inline-block;
     cursor:pointer;
     text-decoration:none;
-    height: 2rem;
-    font-weight: bold;
+    -webkit-text-decoration:none;
+    /* Use `min-height` because normal `height` is too restrictive for very large font sizes. */
+    min-height: 2em;
+    font-size: 0.8em;
 }
 
 /* Buttons move down 1px when they are clicked/touched.
@@ -189,6 +197,61 @@ button.emphasis {
     color: white;
 }
 
+/* When in accessibility mode, font-size is larger and text is darker.
+ * Need to free up horizontal real estate to avoid squished content.
+ */
+body.hasAccessibility {
+    color: black;
+    font-size: 1.5rem;
+}
+
+/* On small screens (e.g., 250px wide), a font size >= `1.5 rem` may overflow
+ * a few horizontal features (particularly the header and event-nav!)
+ * So, use a (somewhat arbirtrary) width of 500px to reduce font size a tad.
+ */
+ @media screen and (max-width: 500px)
+ {
+    body.hasAccessibility {
+        font-size: 1.3rem;
+    }
+ }
+
+
+/* When in accessibility mode, the header and event navs have much less padding and margin. */
+body.hasAccessibility .event-nav {
+    padding: 4px 4px 0 4px;
+}
+
+/* Greatly reduce padding and margin when in accessibility mode so that more
+ * words fit per line. (This matches header and event-nav.)
+ */
+body.hasAccessibility .page {
+    padding: 4px;
+    margin: 0 4px;
+    max-width: 984px; /* 984 = Max Width (1000) - Padding (2 * 4) - Margin (2 * 4) */
+}
+
+/* When in accessibility mode, we should make virtually all text to black and normal-sized. */
+body.hasAccessibility .per-kg-weight {
+    color: black;
+    font-size: 1em;
+}
+
+/* For color-blind users, make links more obvious. 
+ * Important: do *not* use a generic [data-uri] selector because 
+ * a few buttons would look silly with underlined text!
+ */
+body.hasAccessibility span[data-uri], body.hasAccessibility li[data-uri], body.hasAccessibility a {
+    text-decoration: underline dotted;
+    /* The prefix "-webkit-" is needed for mobile Safari. */
+    -webkit-text-decoration: underline dotted;
+}
+
+.per-kg-weight {
+    color: #aaa;
+    font-size: 0.8em;
+}
+
 /* These weight-related CSS classes will hide or display select items. */
 body.has-weight .has-weight {
     display: unset;
@@ -214,11 +277,6 @@ body.no-weight .has-weight {
     display: none;
 }
 
-.per-kg-weight {
-    color: #aaa;
-    font-size: 0.8em;
-}
-
 /* The default root/parent bullet point is a filled circle; the default second-level bullet point is an open circle.
  * Change second-level (and deeper) bullet points to a (filled) square.
  * Why? According to Barbara Burian, "the human eye tries to interpret open bullets as letters (like a or o)".
@@ -227,16 +285,15 @@ ul ul {
     list-style-type: square;
 }
 
-/* Override webkit default margin and padding properties: defaults are a bit too much on smaller mobile screens */
+/* Override webkit default margin and padding properties: defaults are a bit too wide on smaller mobile screens */
 ul, ol {
-    padding-left: 20px; /* default is 40px */
+    padding-left: 24px; /* default is 40px */
     margin-top: 0; /* default is 10px */
 }
 
-/* Used this site to determine lighter and heavier shades of colors:
+/* Used this site to determine heavier shades of colors:
  * http://www.0to255.com/455e0c
- * "lighter" is two shades lighter than the base color.
- * "heavier" is two shades heavier than the base color.
+  * "darker" is two shades heavier than the base color.
  */
 
  /* green */
@@ -245,9 +302,9 @@ ul, ol {
 }
 
 button.bg-dx.emphasis {
-    background-color: #5b7c10; /* lighter */
-    border: 1px solid #2f4008; /* heavier */
-    box-shadow: 0 0 1px 1px #2f4008; /* heavier */
+    background-color: #455e0c; /* base color */
+    border: 1px solid #2f4008; /* darker */
+    box-shadow: 0 0 1px 1px #2f4008; /* darker */
 }
 
 /* tan */
@@ -256,7 +313,7 @@ button.bg-dx.emphasis {
 }
 
 button.bg-ddx.emphasis {
-    background-color: #d69326;
+    background-color: #b98021;
     border-color: #9d6c1b;
     box-shadow: 0 0 1px 1px #9d6c1b;
 }
@@ -267,7 +324,7 @@ button.bg-ddx.emphasis {
 }
 
 button.bg-tx.emphasis {
-    background-color: #a901c5;
+    background-color: #8c01a3;
     border-color: #6f0181;
     box-shadow: 0 0 1px 1px #6f0181;
 }
@@ -278,7 +335,7 @@ button.bg-tx.emphasis {
 }
 
 button.bg-drugs.emphasis {
-    background-color: #0116fe;
+    background-color: #0113dc;
     border-color: #0110ba;
     box-shadow: 0 0 1px 1px #0110ba;
 }
@@ -289,7 +346,7 @@ button.bg-drugs.emphasis {
 }
 
 button.bg-crisis.emphasis {
-    background-color: #dc2b1f;
+    background-color: #be251b;
     border-color: #a01f17;
     box-shadow: 0 0 1px 1px #a01f17;
 }
@@ -300,7 +357,7 @@ button.bg-crisis.emphasis {
 }
 
 button.bg-misc:hover, button.bg-misc.emphasis {
-    background-color: #f7874d;
+    background-color: #f5712d;
     border-color: #f35b0d;
     box-shadow: 0 0 1px 1px #f35b0d;
 }
@@ -310,15 +367,15 @@ button.bg-misc:hover, button.bg-misc.emphasis {
 }
 
 button.bg-yellow.emphasis {
-    background-color: #f9f0c6;
+    background-color: #fcf8e4;    
     border-color: #b9b066;
     box-shadow: 0 0 1px 1px #b9b066;
 }
 
 /* In practice, `attn` is applied along with `bg-yellow` */
 .attn {
-    padding: 1rem;
-    padding-left: 2rem;
+    padding: 1em;
+    padding-left: 2em;
 }
 
 /* Telephone numbers use anchor elements (e.g., <a href="tel:555-555-5555">)
@@ -327,6 +384,7 @@ button.bg-yellow.emphasis {
 a {
   color: #33aa33;
   text-decoration: none;
+  -webkit-text-decoration: none;
 }
 
 /* For non-anchor elements that act like links  */

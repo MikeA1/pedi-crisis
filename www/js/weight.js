@@ -21,7 +21,10 @@
                     document.body.classList.remove("no-weight");
                 }
                 weightValue = value;
-                weightButton.innerHTML = "<strong>" + value + "</strong> kg";
+                const strong = document.createElement("strong");
+                strong.textContent = value + " kg";
+                weightButton.textContent = "";
+                weightButton.appendChild(strong);
             } else if (value === null || value <= 0) {
                 // User cleared the input
 
@@ -32,7 +35,19 @@
                 }
 
                 weightValue = 0;
-                weightButton.innerHTML = "Pt Wt ---";
+                weightButton.textContent = "";
+                const span = document.createElement("span");
+                span.textContent = "Pt Wt ";
+                weightButton.appendChild(span);
+                // On smaller screens, the three hyphens may be line-wrapped like this:
+                //    Pt Wt --
+                //    -
+                // ...and that looks dumb. So, the hyphens are put in a special span
+                // to avoid an ugly line wrap.
+                const hyphens = document.createElement("span");
+                hyphens.style.whiteSpace = "nowrap";
+                hyphens.textContent = "---";
+                weightButton.appendChild(hyphens);
             } else {
                 console.warn("Value provided where weight '" + value + '" is not a number.');
             }

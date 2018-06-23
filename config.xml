@@ -11,6 +11,7 @@
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <access launch-external="yes" origin="tel:*" />
     <icon src="www/img/logo.png" />
     <splash src="www/img/Default@2x~universal~anyany.png" />

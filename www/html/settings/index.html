@@ -35,6 +35,12 @@
         <button class="on">On</button>
         <button class="off">Off</button>
     </div>
+    <div class="section" data-setting-name="hasAccessibility">
+        <div><strong>Accessibility Mode</strong></div>
+        <div class="description">When on, text is larger and darker.</div>
+        <button id="accessibility-on" class="on">On</button>
+        <button id="accessibility-off" class="off">Off</button>
+    </div>
     <div class="section">
         <div><strong>Walkthrough</strong></div>
         <div class="description">Want to step through the walkthrough again? Let's go!</div>
@@ -83,4 +89,36 @@
             setValue(settingName, onButton, offButton);
         })
     });
+
+    // When Accessibility is turned on, the header grows in height.
+    // This page is absolute-positioned, so the header height change is a problem.
+    // So, implement special handling so that this page does not overlap with the header.
+    const readjustPageTop = (event) => {
+        
+        const page = document.getElementsByClassName("page")[0];
+        const style = page.style;
+        // Page is positioned with "absolute" by the navigation code;
+        // temporarily change the position to "static" so that we can
+        // measure a proper value for `top`.
+        style.position = "static"; // Change for just a millisecond...
+        style.top = page.offsetTop + "px";
+        style.position = "absolute"; // ...and we're back!
+
+        // The scroll position is messed up when the `position` property is changed,
+        // so scroll the accessibility section into view.
+        const userAgent = window.navigator.userAgent;
+        // Mobile Safari detector via https://stackoverflow.com/a/35813965/772086
+        const isMobileSafari = /iP(ad|od|hone)/i.test(window.navigator.userAgent) && /WebKit/i.test(window.navigator.userAgent) && !(/(CriOS|FxiOS|OPiOS|mercury)/i.test(window.navigator.userAgent));
+        if (!isMobileSafari) {
+            // If here and the browser is Mobile Safari then the screen will 
+            // become unresponsive to taps/clicks until the *user* scrolls.
+            // So, the workaround is to *not* scrollIntoView if in mobile Safari.
+            event.target.parentElement.scrollIntoView();
+        }
+        
+    };
+
+    document.getElementById("accessibility-on").addEventListener("click", readjustPageTop);
+    document.getElementById("accessibility-off").addEventListener("click", readjustPageTop);
+
 </script>

@@ -6,7 +6,7 @@
     }
 </style>
 <!-- Use "no break space" (&nbsp) for better line-wrapping -->
-<div class="bg-crisis event-title" style="text-align: center">
+<div class="bg-crisis event-title" style="text-align: center; border-radius: 0;">
     <strong>Call&nbsp;for&nbsp;Help!&nbsp;</strong>
     <strong>Notify&nbsp;Surgeon!</strong>
     <div id="overhead-stat-container">
@@ -23,7 +23,7 @@
             width: 2em;
             border-radius: 4px;
             text-align: center;
-            padding: 0.5rem 0;
+            padding: 0.5em 0;
         }
         /* This class is used when the background color is dark. */
         .c-white {
@@ -46,6 +46,14 @@
             /* The `color` and `font-size` props match the rule for "per-kg-weight" */
             color: #aaa;
             font-size: 0.8em;
+        }
+
+        /* When in accessibility mode, we want text to be larger and black.
+         * In this case, it's okay if the text is slightly smaller, otherwise it 
+         * would be difficult to distinguish event titles and event diagnoses.
+         */
+        body.hasEventDiagnosis.hasAccessibility .event-diagnosis {
+            color: black !important;
         }
 
     </style>
