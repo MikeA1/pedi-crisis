@@ -106,13 +106,14 @@
 
         // The scroll position is messed up when the `position` property is changed,
         // so scroll the accessibility section into view.
-        const userAgent = window.navigator.userAgent;
-        // Mobile Safari detector via https://stackoverflow.com/a/35813965/772086
-        const isMobileSafari = /iP(ad|od|hone)/i.test(window.navigator.userAgent) && /WebKit/i.test(window.navigator.userAgent) && !(/(CriOS|FxiOS|OPiOS|mercury)/i.test(window.navigator.userAgent));
-        if (!isMobileSafari) {
-            // If here and the browser is Mobile Safari then the screen will 
-            // become unresponsive to taps/clicks until the *user* scrolls.
-            // So, the workaround is to *not* scrollIntoView if in mobile Safari.
+        // Note: Mobile Safari becomes unresponsive to tap/touch/click after
+        // `scrollIntoView` is executed... until the user scrolls up or down.
+        // It's a poor experience to require the user to scroll up or down before navigating 
+        // to the Patient Weight screen (via tapping the nav button), so this auto-scroll
+        // behavior is disabled in iOS.
+        if (!app.device.ios && !app.device.safari) {
+            // Here, `event.target` is the on/off button, so the `parentElement` is the 
+            // containing `.section` element.
             event.target.parentElement.scrollIntoView();
         }
         

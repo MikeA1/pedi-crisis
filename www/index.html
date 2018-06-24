@@ -56,9 +56,16 @@
         }
 
         #content {
-            background-color: #efefef;
+            background-color: #f7f7f7;
             /* Hide animations that bleed outside of a page */
             overflow-x: hidden;
+            /* When content does not fill entire height,
+             * hide the body's background-image (i.e., hide the striped background pattern).
+             */
+            height: 100%;
+            height: -webkit-fill-available;
+            height: -moz-fill-available;
+            height: fill-available;
         }
 
         #title {
@@ -129,7 +136,7 @@
                 <!-- The "no-transition" class prevents an animation/transition CSS class from being applied to the object. -->
                 <!-- In this case, the class is needed because iOS freaks out w.r.t. autofocus. -->
                 <!-- Another option is to use a different animation for this page (or perhaps all pages?) -->
-                <button id="weight" data-uri="/html/weight/index.html" data-title="Pedi Crisis" data-add-class="no-transition">Pt Wt ---</button>
+                <button id="weight" data-uri="/html/weight/index.html" data-title="Pedi Crisis" data-add-class="no-transition"><span>Pt Wt </span><span style="white-space: nowrap;">---</span></button>
             </div>
         </div>
     </div>

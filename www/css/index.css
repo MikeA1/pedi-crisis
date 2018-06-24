@@ -5,18 +5,27 @@
     outline: none !important;
 }
 
-html {
-    /* Center the body */
-    margin:    0 auto;
-    max-width: 1000px;
-    color: #666;
+html, body {
+    /* Center the body with `auto`; allow margin and padding to be controlled by child elements. */
+    margin: 0 auto;
+    padding: 0px;
+
+    /* Reserve pure black (#000) for very important text. */
+    color: #444;
 
     /* Force the Content div to expand to occupy the remainder of the screen. */
     display: flex;
     flex-flow: column;
     height: 100%;
 
+    /* Keep the background color the same as the #header (in "www/index.html") for iPhoneX */    
     background-color: #f4f4f4;
+
+    /* On larger screens, keep max-width limited to 1000px to enhance readability. */
+    width: 100%;
+    max-width: 1000px;
+    
+    /* On larger screens, give the background a little flair. (This creates a diagnoally-striped background) */
     background-image: repeating-linear-gradient(-45deg,
         transparent 1px,
         transparent 1px,
@@ -26,43 +35,40 @@ html {
 
     /* Native fonts; see https://bitsofco.de/the-new-system-font-stack/ */
     font-family: -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
 
-body {
-
+    /* Large standard font size for improved readability. 
+     * Note: font-size is increased for accessibility and large screens; see `body.hasAccessibility` and media queries!
+     */
     font-size: 1.1rem;
 
-    /* prevent callout to copy image, etc when tap to hold */
+    /* Prevent callout to copy image, etc when tap to hold */
     -webkit-touch-callout: none;
 
-    /* prevent webkit from resizing text to fit */
+    /* Prevent webkit from resizing text to fit */
     -webkit-text-size-adjust: none;
 
-    /* prevent copy paste */
+    /* Prevent unintended text selection; this also disables *intended* text selection, but the trade off is worthwhile to avoid poor UX. */
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
 
-    /* Keep the background color the same as the header for iPhoneX */
-    background-color:#f4f4f4;
-
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    width: 100%;
+    /* When scrolling to the bottom of the screen, do not pull down (overscroll/rubberband) the entire body/screen.
+     * Note: This property is set to `contain` for the `.page` elements.
+     * See: https://developers.google.com/web/updates/2017/11/overscroll-behavior
+     */
+    overscroll-behavior: none;
 
 }
 
 /* For larger screens, let the content breathe!
  * For reference, 
- * iPhone X is 375 x 812 (w x h)
- * Pixel 2 XL is 411 x 823
- * iPad is 768 x 1024
+ *   iPhone X is 375 x 812 (w x h)
+ *   Pixel 2 XL is 411 x 823
+ *   iPad is 768 x 1024
  */
- @media screen and (min-width: 600px) and (min-height: 900px)
+ @media screen and (min-width: 500px) and (min-height: 900px)
  {
      body {
-         /* Let the content *really* breathe! */
          font-size: 1.3rem;
          line-height: 2;
      }
@@ -86,7 +92,6 @@ body {
     /* Make the page *look* like a page */
     background-color: #f7f7f7;
     padding: 1em;
-    margin: 0 15px;
 
     /* The following CSS rules work in conjunction with a javascript function that
      * will change the `position` from `relative` (default) to `absolute`.
@@ -99,8 +104,9 @@ body {
     width: -webkit-fill-available;
     width: -moz-fill-available;
     width: fill-available;
+
     /* We don't want the content to be too wide, so this is a safety check. */
-    max-width: 936px; /* 1000px (standard max-width) - 60px (padded 30px on left and 30px on right) - 4px (Ummm... borders?) */
+    max-width: calc(1000px - 2em);
 
     /* Let the content breathe! */
     line-height: 1.8;
@@ -119,6 +125,12 @@ body {
     
     /* Use floaty/touch scrolling */
     -webkit-overflow-scrolling: touch;
+
+    /* When scrolling to the bottom of the page, do not pull down (overscroll/rubberband) the entire body/screen.
+     * Note: This property is set to `none` for the body.
+     * See: https://developers.google.com/web/updates/2017/11/overscroll-behavior
+     */
+    overscroll-behavior: contain;
 }
 
 /* `width: fill-available` does not have great support yet, so use this class instead. */
@@ -217,18 +229,17 @@ body.hasAccessibility {
  }
 
 
-/* When in accessibility mode, the header and event navs have much less padding and margin. */
+/* When in accessibility mode, the header and event navs have much less paddin. */
 body.hasAccessibility .event-nav {
-    padding: 4px 4px 0 4px;
+    padding: 8px 8px 0 8px;
 }
 
-/* Greatly reduce padding and margin when in accessibility mode so that more
+/* Greatly reduce padding when in accessibility mode so that more
  * words fit per line. (This matches header and event-nav.)
  */
 body.hasAccessibility .page {
-    padding: 4px;
-    margin: 0 4px;
-    max-width: 984px; /* 984 = Max Width (1000) - Padding (2 * 4) - Margin (2 * 4) */
+    padding: 8px;
+    max-width: 986px; /* 992px = Max-Width (1000px) - Padding-Left (8px) - Padding-Right (8px) */
 }
 
 /* When in accessibility mode, we should make virtually all text to black and normal-sized. */
@@ -248,7 +259,7 @@ body.hasAccessibility span[data-uri], body.hasAccessibility li[data-uri], body.h
 }
 
 .per-kg-weight {
-    color: #aaa;
+    color: #888;
     font-size: 0.8em;
 }
 
@@ -287,7 +298,7 @@ ul ul {
 
 /* Override webkit default margin and padding properties: defaults are a bit too wide on smaller mobile screens */
 ul, ol {
-    padding-left: 24px; /* default is 40px */
+    padding-left: 1.5em; /* default is 40px */
     margin-top: 0; /* default is 10px */
 }
 

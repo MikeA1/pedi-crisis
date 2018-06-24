@@ -272,7 +272,9 @@
                             // The property `offsetTop` creates a forced layout, so this should be one of the last actions taken per page.
                             style.top = page.offsetTop + "px";
                             style.position = "absolute";
-                            // Note: This `.page` already has values for `bottom` and `overflow-y` via CSS rules.
+                            // Note: This `.page` already has values for `bottom` and `overflow-y` via CSS rules; 
+                            // these properties may be overridden in certain screens, such as changing
+                            // `bottom` from `0` to `2.5em` to make room for edit buttons in the Phone Numbers screen.
 
                             // Apply class (in practice, this is a page transition animation).
                             if (addClass) {
@@ -291,7 +293,7 @@
                     headerElement.textContent = "Pedi Crisis ";
                     const sup = document.createElement("sup");
                     sup.textContent = "beta";
-                    sup.style.color = "#aaa";
+                    sup.style.color = "#888";
                     headerElement.appendChild(sup);
                 } else {
                     headerElement.textContent = nextHeader;
