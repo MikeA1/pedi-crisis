@@ -16,17 +16,30 @@
         bottom: 20px;
         z-index: 20;
         background-color: #fff;
-        width: 90%;
-        left: 5%;
-        max-width: 1000px; /* Just like its container. */
-        padding-top: 10px; 
+        width: 100%;
+        left: 0;
         /* Swipe animations should be visible only within the walkthrough container. */
         overflow-x: hidden;
+        max-width: 1000px;
+    }
+
+    @media screen and (min-width: 1000px) {
+        /* When the browser/view width is >= 1000px, then the width of #walkthrough is maxed at 1000px.
+         * Because the #walkthrough has an absolute position, we set `left` to a value that
+         * centers #walkthrough. Note that we cannot use this rule when the browser/screen width is < 1000px
+         * because that would result in a negative `left` value. So, we must keep the above @media query.
+         */
+        #walkthrough {
+            left: calc((100vw - 1000px)/2);
+        }
     }
 
     .page {
         /* Provides breathing room for the nav elements. */
         bottom: 2.5em;
+        
+        /* Override default max-width value (which is calculated based upon a max-width of 1000px). */
+        max-width: unset;
     }
 
     #nav-settings {
@@ -54,7 +67,7 @@
 <div id="walkthrough">
 
     <div class="page">
-        <h2 style="text-align: center">What is Pedi Crisis?</h2>
+        <h2 style="text-align: center">What is Pedi&nbsp;Crisis?</h2>
         <img src="img/logo.png" />
         <div>Pedi Crisis is a companion to the Critical Events Checklists created by the <em>Society for Pediatric Anesthesia</em>.</div>
         <div class="bg-yellow"><strong>This is a beta-version, for testing only, and this version SHOULD NOT be used in any way for actual patient care.</strong></div>
@@ -107,7 +120,7 @@
     </div>
 
     <div id="nav-settings" class="button-group">
-        <div data-uri="/html/events/index.html" class="button-container"><button>Skip</button></div>        
+        <div data-uri="html/events/index.html" class="button-container"><button>Skip</button></div>        
         <div id="selectors" class="button-container"style="align-self:center; text-align: center;">
             <!-- These elements are generated via javascript. Looks like this: -->
             <!-- <span>◉ </span><span>○ </span><span>○</span> -->
@@ -174,10 +187,15 @@
         }
     }
 
-    // Init
-    next.addEventListener("click", () => {swipeDirection = null; handleNext();});
+    // Swipe events are handled automatically for "event-nav" elements;
+    // the walkthrough does not contain an "event-nav" element, so we need 
+    // to hook up the swipe events manually.
     app.swipe.left = () => {swipeDirection = "left"; handlePrev();}
     app.swipe.right = () => {swipeDirection = "right"; handleNext(); }
+
+    next.addEventListener("click", () => {swipeDirection = null; handleNext();});
+    
+    // Init
     onNavigate();
 
 </script>

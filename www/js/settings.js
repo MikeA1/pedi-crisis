@@ -9,10 +9,8 @@
         names: ["hasVisibleScrollbar", "hasEventDiagnosis", "hasSwipeNavigation", "hasAccessibility"],
     };
 
-    // Pre-Init: Check if it's the first time we've opened the app. (Very similar to code in walkthrough.js!)
-    const lastOpenTime = localStorage.getItem("last-open-time");
-    if (!lastOpenTime) {
-        // Set default values.
+    if (!app.lastOpenTime) {
+        // Set settings that should be "on" by default.
         localStorage.setItem("hasSwipeNavigation", "on");
     }
 

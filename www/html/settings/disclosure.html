@@ -1,0 +1,86 @@
+<style>
+
+    #smoke-screen {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    #disclosure {
+        position: absolute;
+        top: 20px;
+        bottom: 20px;
+        z-index: 20;
+        background-color: #fff;
+        width: 100%;
+        left: 0;
+        /* Swipe animations should be visible only within the walkthrough container. */
+        overflow-x: hidden;
+        max-width: 1000px;
+    }
+
+    @media screen and (min-width: 1000px) {
+        /* When the browser/view width is >= 1000px, then the width of #walkthrough is maxed at 1000px.
+         * Because the #walkthrough has an absolute position, we set `left` to a value that
+         * centers #walkthrough. Note that we cannot use this rule when the browser/screen width is < 1000px
+         * because that would result in a negative `left` value. So, we must keep the above @media query.
+         */
+        #disclosure {
+            left: calc((100vw - 1000px)/2);
+        }
+    }
+
+    .page {
+        /* Provides breathing room for the nav elements. */
+        bottom: 2.5em;
+        
+        /* Override default max-width value (which is calculated based upon a max-width of 1000px). */
+        max-width: unset;
+    }
+
+    #nav-settings {
+        position: absolute;
+        bottom: 10px;
+        width: calc(100% - 30px);
+        padding: 0;
+        margin: 0 15px;
+        z-index: 30;
+    }
+    button:hover {
+        /* This prevents a weird bug that occurs when the button is pressed and position is absolute. */
+        top: unset !important;
+    }
+
+    img {
+        max-width:100%;
+        max-height: 70%;
+        display: block;
+        margin: 20px auto 20px auto;
+    }
+
+</style>
+<div id="smoke-screen"></div>
+<div id="disclosure">
+    <div class="page">
+        <h2 style="text-align: center">Pedi Crisis</h2>
+        <img src="img/logo.png" />
+        <h2 style="text-align: center">Disclosure</h2>
+        <div style="font-size: 1rem; font-family: monospace">
+            This Application and any information provided on or through this Application are not intended to constitute the practice of or furnishing of medical, nursing, or professional health care advice, diagnosis, consultation or treatment or services in any jurisdiction.
+            <p>
+            The Society for Pediatric Anesthesia (SPA) make no representations or warranties as to whether this Application and / or information provided on or through this Application is accurate, complete, or current and it is provided "AS-IS." Specifically, this Application and / or information provided on or through this Application are provided without warranty of merchantability or fitness for a particular purpose or any other warranty, express or implied. CHOP / SPA make no representation or warranty that the use of this Application and / or information provided on or through this Application will not infringe any patent or other proprietary right.
+            <p>  
+            You understand and agree that in no event shall SPA or its Trustees, officers, employees, agents, or medical staff be liable to you or any other user of this Application for any direct, indirect, incidental, consequential, special, exemplary, punitive, or any other monetary or other damages, fees, fines, penalties, loss of revenue or business liabilities arising out of or relating in any way to this application, and / or information provided on or through this Application.
+            <p>  
+            You acknowledge and agree that your sole and executive remedy for dissatisfaction with this Application is to stop using this Application.
+        </div>
+    </div>
+    
+    <div id="nav-settings" class="button-group">
+        <div data-uri="html/settings/walkthrough.html" class="button-container"><button>OK</button></div>        
+    </div>
+</div>
