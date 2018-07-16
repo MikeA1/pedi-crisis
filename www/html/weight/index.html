@@ -1,18 +1,12 @@
 <form id="weight-form" class="page">
     <div class="section">
         <strong>Patient Weight</strong>
-        <table class="fill-available">
-            <tr>
-                <!-- Why is input width 90%? Because the input is inexplicably too wide in Mobile Safari (e.g., if width is 100% or "fill-available"!) -->
-                <td><input id="weight-input" type="number" inputmode="numeric" pattern="[0-9.]*" step="0.1" placeholder="" autofocus style="width: 90%"></td>
-                <td style="padding: 0 4px"><span>kg</span></td>
-                <td><button id="weight-clear" type="button">Clear</button></td>
-            </tr>
-        </table>
-    </div>
-    <div>
-        <button id="weight-ok" type="submit">Save</button>
-        <button id="weight-cancel" type="button">Cancel</button>
+        <div class="fill-available">
+            <input id="weight-input" type="number" inputmode="numeric" pattern="[0-9.]*" step="0.1" placeholder="" autofocus style="width: 100px" ></td>
+            <button id="weight-ok" type="submit">Save</button>
+            <button id="weight-cancel" type="button">Cancel</button>
+            <button id="weight-clear" type="button" style="display:none">Clear</button>
+        </div>
     </div>
 </form>
 
