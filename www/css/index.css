@@ -383,12 +383,6 @@ button.bg-yellow.emphasis {
     box-shadow: 0 0 1px 1px #b9b066;
 }
 
-/* In practice, `attn` is applied along with `bg-yellow` */
-.attn {
-    padding: 1em;
-    padding-left: 2em;
-}
-
 /* Telephone numbers use anchor elements (e.g., <a href="tel:555-555-5555">)
  * These are used in the Phone Number screen and various Event screens 
  */
@@ -398,7 +392,7 @@ a {
   -webkit-text-decoration: none;
 }
 
-/* For non-anchor elements that act like links  */
+/* For non-anchor elements that act like links */
 [data-uri] {
     cursor: pointer;
 }
