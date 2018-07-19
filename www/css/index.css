@@ -242,12 +242,6 @@ body.hasAccessibility .page {
     max-width: 986px; /* 992px = Max-Width (1000px) - Padding-Left (8px) - Padding-Right (8px) */
 }
 
-/* When in accessibility mode, we should make virtually all text to black and normal-sized. */
-body.hasAccessibility .has-weight .per-kg-weight {
-    color: black;
-    font-size: 1em;
-}
-
 /* For color-blind users, make links more obvious. 
  * Important: do *not* use a generic [data-uri] selector because 
  * a few buttons would look silly with underlined text!
@@ -256,11 +250,6 @@ body.hasAccessibility span[data-uri], body.hasAccessibility li[data-uri], body.h
     text-decoration: underline dotted;
     /* The prefix "-webkit-" is needed for mobile Safari. */
     -webkit-text-decoration: underline dotted;
-}
-
-.has-weight .per-kg-weight {
-    color: #888;
-    font-size: 0.8em;
 }
 
 /* These weight-related CSS classes will hide or display select items. */
@@ -286,6 +275,25 @@ body.no-weight li.no-weight {
 
 body.no-weight .has-weight {
     display: none;
+}
+
+/* This rule is used on screens other than the event-drugs. 
+ * In practice, `.dose-definition` is a descendent of `.has-weight`.*/
+.dose-definition {
+    color: #888;
+    font-size: 0.8em;
+}
+
+/* When in accessibility mode, we should make virtually all text to black and normal-sized. */
+body.hasAccessibility .dose-definition {
+    color: black;
+    font-size: 1em;
+}
+
+/* This is another special case where `.dose-definition` is displayed black and normal-sized. */
+ body.no-weight ul.drugs div.dose-definition {
+    color: black;
+    font-size: 1em;
 }
 
 /* Used by the Drugs section of an event. Target HTML structure looks like this:
@@ -319,24 +327,6 @@ body.no-weight .has-weight {
 /* This rule will make a drug name bold. */
 ul.drugs > li > span {
     font-weight: bold;
-}
-
-/* If patient weight is a positive number, 
- * then the weight-independent dosage (e.g., "10 mg/kg") is
- * displayed with less emphasis and surrounded with parentheses
- * (e.g., "(10 mg/kg)").
- */
-body.has-weight ul.drugs div.dose-definition {
-    color: #888;
-    font-size: 0.8em;
-}
-
-/* If in accessibility mode, the weight-independent dosage
- * is no longer displayed with less emphasis.
- */
-body.hasAccessibility.has-weight ul.drugs div.dose-definition {
-    color: black;
-    font-size: 1em;
 }
 
 body.has-weight ul.drugs div.dose-definition span::before{
