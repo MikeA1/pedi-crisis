@@ -18,83 +18,73 @@
     </div>
     <div class="bg-drugs event-title">Drug / Dosage Summary</div>
 </div>
-<style>
-    ul.tight-list > li {
-        /* Tighten up the distance between the patient-weight-dosage and the per-kg-dosage. */
-        line-height: 1.2;
-        /* When there are two list items (li), give them a little breathing room
-         * (otherwise they will have a line height of 2.)
-         */
-        margin-bottom: .4em;
-    }
-</style>
 <div class="page">
-    <ul>
+    <ul class="drugs">
         <li>
-            <strong>Epinephrine</strong>
-            <ul class="tight-list">
-                <li class="no-weight">1-10 MICROgrams/kg IV/IO</li>
-                <li class="has-weight"><span id="weight-range-1"></span> MICROgrams IV/IO
-                    <br /><span class="per-kg-weight">(1-10 MICROgrams/kg IV/IO)</span>
+            <span>Epinephrine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgrams IV/IO</div>
+                    <div class="dose-definition"><span>1-10 MICROgrams/kg IV/IO</span></div>
                 </li>
                 <li>Consider infusion 0.02-0.2 MICROgrams/kg/min IV</li>
             </ul>
         </li>
 
         <li>
-            <strong>Vasopressin</strong>
-            <ul class="tight-list">
-                <li class="no-weight">10 MICROunits/kg IV</li>
-                <li class="has-weight"><span id="weight-range-3"></span> MICROunits IV
-                    <br /><span class="per-kg-weight">(10 MICROunits/kg IV)</span>
+            <span>Vasopressin</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> MICROunits IV</div>
+                    <div class="dose-definition"><span>10 MICROunits/kg IV</span></div>
                 </li>
             </ul>
         </li>
 
         <li>
-            <strong>Albuterol</strong>
-            <ul class="tight-list">
+            <span>Albuterol</span>
+            <ul>
                 <li>4-10 puffs or more if needed</li>
             </ul>
         </li>
 
         <li>
-            <strong>Methylprednisolone</strong>
-            <ul class="tight-list">
-                <li class="no-weight">2 mg/kg IV/IO, MAX 100 mg</li>
-                <li class="has-weight"><span id="weight-range-4"></span> mg IV/IO
-                    <br /><span class="per-kg-weight">(2 mg/kg IV/IO, MAX 100 mg)</span>
+            <span>Methylprednisolone</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-4"></span> mg IV/IO</div>
+                    <div class="dose-definition"><span>2 mg/kg IV/IO, MAX 100 mg</span></div>
                 </li>
             </ul>
         </li>
 
         <li>
-            <strong>Diphenhydramine</strong>
-            <ul class="tight-list">
-                <li class="no-weight">1 mg/kg IV/IO MAX 50 mg</li>
-                <li class="has-weight"><span id="weight-range-5"></span> mg IV/IO
-                    <br /><span class="per-kg-weight">(1 mg/kg IV/IO, MAX 50 mg)</span>
+            <span>Diphenhydramine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-5"></span> mg IV/IO</div>
+                    <div class="dose-definition"><span>1 mg/kg IV/IO MAX 50 mg</span></div>
                 </li>
             </ul>
         </li>
 
         <li>
-            <strong>Famotidine</strong>
-            <ul class="tight-list">
-                <li class="no-weight">0.25 mg/kg IV MAX 20 mg</li>
-                <li class="has-weight"><span id="weight-range-6"></span> mg IV
-                    <br /><span class="per-kg-weight">(0.25 mg/kg IV, MAX 20 mg)</span>
+            <span>Famotidine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-6"></span> mg IV</div>
+                    <div class="dose-definition"><span>0.25 mg/kg IV MAX 20 mg</span></div>
                 </li>
             </ul>
         </li>
      
         <li>
-            <strong>Ranitidine</strong>
-            <ul class="tight-list">
-            <li class="no-weight">1 mg/kg IV MAX 50 mg</li>
-            <li class="has-weight"><span id="weight-range-7"></span> mg IV
-                <br /><span class="per-kg-weight">(1 mg/kg IV, MAX 50 mg)</span>
-            </li>
+            <span>Ranitidine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-7"></span> mg IV</div>
+                    <div class="dose-definition"><span>1 mg/kg IV MAX 50 mg</span></div>
+                </li>
             </ul>
         </li>
     </ul>

@@ -18,31 +18,21 @@
     </div>
     <div class="bg-drugs event-title">Drug / Dosage Summary</div>
 </div>
-<style>
-    ul.tight-list > li {
-        /* Tighten up the distance between the patient-weight-dosage and the per-kg-dosage. */
-        line-height: 1.2;
-        /* When there are two list items (li), give them a little breathing room
-            * (otherwise they will have a line height of 2.)
-            */
-        margin-bottom: .4em;
-    }
-</style>
 <div class="page">
-    <ul>
-        <li><strong>Epinephrine</strong>
-            <ul class="tight-list">
-                <li class="no-weight">1-10 MICROgrams/kg IV/IO</li>
-                <li class="has-weight"><span id="weight-range-1"></span> MICROgrams IV/IO
-                    </br><span class="per-kg-weight">(1-10 MICROgrams/kg IV/IO)</span>
+    <ul class="drugs">
+        <li><span>Epinephrine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgrams IV/IO</div>
+                    <div class="dose-definition"><span>1-10 MICROgrams/kg IV/IO</span></div>
                 </li>
                 <li>Consider infusion 0.02-1 MICROgrams/kg/min IV</li>
             </ul>
         </li>
-        <li><strong>Norepinephrine</strong> 
-            <ul class="tight-list">
+        <li><span>Norepinephrine</span> 
+            <ul>
                 <li>Infusion 0.05-2 MICROgrams/kg/min IV</li>
-            </li>
+            </ul>
         </li>
     </ul>
 </div>

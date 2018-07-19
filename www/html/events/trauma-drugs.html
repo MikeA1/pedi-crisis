@@ -16,19 +16,41 @@
     <div class="bg-drugs event-title">Drug / Dosage Summary</div>
 </div>
 <div class="page">
-    <ul>
-        <li class="no-weight"><strong>LR or NS</strong> 20 mL/kg (repeat x 2)</li>
-        <li class="has-weight"><strong>LR or NS</strong> <span id="weight-range-1"></span> mL <span class="per-kg-weight">(20 mL/kg)</span> (repeat x 2)</li>
+    <ul class="drugs">
+        <li><span>LR or NS</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> mL, repeat&nbsp;x&nbsp;2</div>
+                    <div class="dose-definition"><span>20 mL/kg, repeat x 2</span></div>
+                </li>
+            </ul>
+        </li>
+    </ul>
 
-        <li style="list-style: none;">and/or</li>
+    <div class="m-b-1"><strong>and/or</strong></div>
 
-        <li class="no-weight"><strong>RBCs</strong> 10 mL/kg</li>
-        <li class="has-weight"><strong>RBCs</strong> <span id="weight-range-2"></span> mL <span class="per-kg-weight">(10 mL/kg)</span></li>
-        
-        <li style="list-style: none;">or</li>
+    <ul class="drugs">
+        <li><span>RBCs</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> mL</div>
+                    <div class="dose-definition"><span>10 mL/kg</span></div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    
+    <div class="m-b-1"><strong>or</strong></div>
 
-        <li class="no-weight"><strong>Whole blood</strong> 20 mL/kg</li>
-        <li class="has-weight"><strong>Whole blood</strong> <span id="weight-range-3"></span> mL <span class="per-kg-weight">(20 mL/kg)</span></li>
+    <ul class="drugs">
+        <li><span>Whole blood</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> m</div>
+                    <div class="dose-definition"><span>20 mL/kg</span></div>
+                </li>
+            </ul>
+        </li>
     </ul>
 </div>
 <script>

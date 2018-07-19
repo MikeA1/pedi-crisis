@@ -219,7 +219,7 @@ body.hasAccessibility {
 
 /* On small screens (e.g., 250px wide), a font size >= `1.5 rem` may overflow
  * a few horizontal features (particularly the header and event-nav!)
- * So, use a (somewhat arbirtrary) width of 500px to reduce font size a tad.
+ * So, use a (somewhat arbitrary) width of 500px to reduce font size a tad.
  */
  @media screen and (max-width: 500px)
  {
@@ -243,7 +243,7 @@ body.hasAccessibility .page {
 }
 
 /* When in accessibility mode, we should make virtually all text to black and normal-sized. */
-body.hasAccessibility .per-kg-weight {
+body.hasAccessibility .has-weight .per-kg-weight {
     color: black;
     font-size: 1em;
 }
@@ -258,7 +258,7 @@ body.hasAccessibility span[data-uri], body.hasAccessibility li[data-uri], body.h
     -webkit-text-decoration: underline dotted;
 }
 
-.per-kg-weight {
+.has-weight .per-kg-weight {
     color: #888;
     font-size: 0.8em;
 }
@@ -285,6 +285,69 @@ body.no-weight li.no-weight {
 }
 
 body.no-weight .has-weight {
+    display: none;
+}
+
+/* Used by the Drugs section of an event. Target HTML structure looks like this:
+ *
+ *    <ul class="drugs">
+ *        <li><span>Epinephrine</span>
+ *            <ul>
+ *                <li>
+ *                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgrams IV/IO</div>
+ *                    <div class="dose-definition"><span>1-10 MICROgrams/kg IV/IO</span></div>
+ *                </li>
+ *                <li>Consider infusion 0.02-1 MICROgrams/kg/min IV</li>
+ *            </ul>
+ *        </li>
+ *        <li><span>Norepinephrine</span> 
+ *            <ul>
+ *                <li>Infusion 0.05-2 MICROgrams/kg/min IV</li>
+ *            </ul>
+ *        </li>
+ *    </ul>
+ */
+ ul.drugs ul li {
+    /* Tighten up the distance between the patient-weight-dosage and the per-kg-dosage. */
+    line-height: 1.2;
+    /* When there are two list items (li), give them a little breathing room
+    * (otherwise they will have a line height of 2.)
+    */
+    margin-bottom: .4em;
+}
+
+/* This rule will make a drug name bold. */
+ul.drugs > li > span {
+    font-weight: bold;
+}
+
+/* If patient weight is a positive number, 
+ * then the weight-independent dosage (e.g., "10 mg/kg") is
+ * displayed with less emphasis and surrounded with parentheses
+ * (e.g., "(10 mg/kg)").
+ */
+body.has-weight ul.drugs div.dose-definition {
+    color: #888;
+    font-size: 0.8em;
+}
+
+/* If in accessibility mode, the weight-independent dosage
+ * is no longer displayed with less emphasis.
+ */
+body.hasAccessibility.has-weight ul.drugs div.dose-definition {
+    color: black;
+    font-size: 1em;
+}
+
+body.has-weight ul.drugs div.dose-definition span::before{
+    content: "(";
+}
+
+body.has-weight ul.drugs div.dose-definition span::after{
+    content: ")";
+}
+
+body.no-weight ul.drugs div.dose-calculation {
     display: none;
 }
 

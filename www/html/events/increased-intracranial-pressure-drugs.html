@@ -16,29 +16,55 @@
     <div class="bg-drugs event-title">Drug / Dosage Summary</div>
 </div>
 <div class="page">
-    <ul>
-        <li class="no-weight"><strong>3% Saline</strong> 1-5 mL/kg over 20 min, then 0.1-2 mL/kg/hour</li>
-        <li class="has-weight"><strong>3% Saline</strong>  1-5 mL/kg over 20 min, 
-            then <span id="weight-range-1"></span> mL/hour <span class="per-kg-weight">(0.1-2 mL/kg/hour)</span></li>
+    <ul class="drugs">
 
-        <li class="no-weight"><strong>Mannitol</strong> 0.25-1 g/kg over 20 min</li>
-        <li class="has-weight"><strong>Mannitol</strong> <span id="weight-range-2"></span> g <span class="per-kg-weight">(0.25-1 g/kg)</span> over 20 min</li>
+        <li><span>3% Saline</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> mL over 20 min</div>
+                    <div class="dose-definition"><span>1-5 mL/kg over 20 min</span></div>
+                </li>
+                <li>Then infusion 0.1-2 mL/kg/hour</li>
+            </ul>
+        </li>
 
-        <li class="no-weight"><strong>Furosemide</strong> 1-2 mg/kg (starting MAX 20 mg)</li>
-        <li class="has-weight"><strong>Furosemide</strong> <span id="weight-range-3"></span> mg <span class="per-kg-weight">(1-2 mg/kg, starting MAX 20 mg)</span></li>
+        <li><span>Mannitol</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> g over 20 min</div>
+                    <div class="dose-definition"><span>0.25-1 g/kg over 20 min</span></div>
+                </li>
+            </ul>
+        </li>
 
-        <li class="no-weight"><strong>Keppra (levetiracetam)</strong> 10-30 mg/kg IV (MAX 2500 mg)</li>
-        <li class="has-weight"><strong>Keppra (levetiracetam)</strong> <span id="weight-range-4"></span> mg <span class="per-kg-weight">(10-30 mg/kg, MAX 2500 mg)</span> IV</li>
+        <li><span>Furosemide</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> mg</div>
+                    <div class="dose-definition"><span>1-2 mg/kg, starting MAX 20 mg</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Keppra (levetiracetam)</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-4"></span> mg</div>
+                    <div class="dose-definition"><span>10-30 mg/kg IV, MAX 2500 mg</span></div>
+                </li>
+            </ul>
+        </li>
+
     </ul>
 </div>
 <script>
     if (app.weight) {
         const get = (id) => document.getElementById(id);
 
-        // (0.1-2 mL/kg/hour
-        get("weight-range-1").textContent = app.printNumber(app.weight * 0.1, 0, 2) + "-" + app.printNumber(app.weight * 2, 0, 2);
+        // 1-5 mL/kg over 20 min
+        get("weight-range-1").textContent = app.printNumber(app.weight, 0, 2) + "-" + app.printNumber(app.weight * 5, 0, 2);
 
-        // (0.25-1 g/kg
+        // 0.25-1 g/kg
         get("weight-range-2").textContent = app.printNumber(app.weight * 0.25, 0, 2) + "-" + app.printNumber(app.weight, 0, 2);
 
         // 1-2 mg/kg, starting MAX 20 mg

@@ -19,13 +19,27 @@
     <div class="bg-drugs event-title">Drug / Dosage Summary</div>
 </div>
 <div class="page">
-    <ul>
-        <li class="no-weight"><strong>Epinephrine</strong> 1 MICROgram/kg IV/IO, may need infusion 0.02-0.2 MICROgrams/kg/min </li> 
-        <li class="has-weight"><strong>Epinephrine</strong> <span id="weight-range-1"></span> MICROgrams
-             <span class="per-kg-weight">(1 MICROgram/kg)</span> IV/IO, may need infusion 0.02-0.2 MICROgrams/kg/min</li>
-        
-        <li class="no-weight"><strong>Midazolam</strong> 0.05-0.1 mg/kg IV</li>
-        <li class="has-weight"><strong>Midazolam</strong> <span id="weight-range-2"></span> mg <span class="per-kg-weight">(0.05-0.1 mg/kg)</span> IV</li>
+    <ul class="drugs">
+
+        <li><span>Epinephrine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgrams IV/IO</div>
+                    <div class="dose-definition"><span>1 MICROgram/kg IV/IO</span></div>
+                </li>
+                <li>May need infusion 0.02-0.2 MICROgrams/kg/min</li>
+            </ul>
+        </li>
+
+        <li><span>Midazolam</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> mg IV</div>
+                    <div class="dose-definition"><span>0.05-0.1 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
     </ul>
 
     <div class="bg-drugs event-title">Intralipid Dosing</div>    
