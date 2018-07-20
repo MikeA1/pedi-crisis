@@ -5,6 +5,16 @@
     outline: none !important;
 }
 
+html {
+    /* On larger screens, give the background a little flair. (This creates a diagnoally-striped background) */
+    background-image: repeating-linear-gradient(-45deg,
+        transparent 1px,
+        transparent 1px,
+        #f4f4f4 3px,
+        #eee 6px
+    );
+}
+
 html, body {
     /* Center the body with `auto`; allow margin and padding to be controlled by child elements. */
     margin: 0 auto;
@@ -25,13 +35,7 @@ html, body {
     width: 100%;
     max-width: 1000px;
     
-    /* On larger screens, give the background a little flair. (This creates a diagnoally-striped background) */
-    background-image: repeating-linear-gradient(-45deg,
-        transparent 1px,
-        transparent 1px,
-        #f4f4f4 3px,
-        #eee 6px
-    );
+
 
     /* Native fonts; see https://bitsofco.de/the-new-system-font-stack/ */
     font-family: -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
