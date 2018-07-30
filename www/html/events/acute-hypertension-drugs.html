@@ -1,0 +1,100 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/acute-hypertension-dx.html" data-title="Acute Hypertension" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/acute-hypertension-tx.html" data-title="Acute Hypertension" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/acute-hypertension-drugs.html" data-title="Acute Hypertension" class="bg-drugs emphasis">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/acute-hypertension-crisis.html" data-title="Acute Hypertension" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+</div>
+<div class="page">
+    <ul class="drugs">
+        <li><span>CAUTION:</span> Anti-hypertensive drugs are almost never needed for routine pediatric cases.
+            These medications are almost exclusively used for specialized cardiac, neurosurgical, or endocrine (pheochromocytoma) cases. Consult an expert before use.
+        </li>
+
+        <li><span>Sodium nitroprusside</span>
+            <ul>
+                <li>0.5-10 MICROgrams/kg/min</li>
+            </ul>
+        </li>
+
+        <li><span>Hydralazine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> mg</div>
+                    <div class="dose-definition"><span>0.1-0.2 mg/kg (adult dose 5-10 mg)</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Esmolol</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> MICROgrams</div>
+                    <div class="dose-definition"><span>100-500 MICROgrams/kg over 5 min</span></div>
+                </li>
+                <li>Then infusion 25-300 MICROgrams/kg/min</li>
+            </ul>
+        </li>
+
+        <li><span>Labetalol</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> mg q 10 min</div>
+                    <div class="dose-definition"><span>0.2-1 mg/kg q 10 min</span></div>
+                </li>
+                <li>Then infusion 0.4-3 mg/kg/hour</li>
+            </ul>
+        </li>
+
+        <li><span>Nicardapine</span>
+            <ul>
+                <li>0.5-5 MICROgrams/kg/min</li>
+            </ul>
+        </li>
+
+        <li><span>Clevidipine</span>
+            <ul>
+                <li>0.5-3.5 MICROgrams/kg/min</li>
+            </ul>
+        </li>
+
+        <li><span>Fenoldopam</span>
+            <ul>
+                <li>0.2-0.8 MICROgrams/kg/min</li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+
+<script>
+    if (app.weight > 0) {
+        // We'll fill in the weight ranges here.
+
+        // 0.1-0.2 mg/kg
+        const calculatedRange2a = app.printNumber(app.weight * 0.1, 0, 2);
+        const calculatedRange2b = app.printNumber(app.weight * 0.2, 0, 2);
+        document.getElementById("weight-range-1").textContent = calculatedRange2a + "-" + calculatedRange2b;
+
+        // 100-500 MICROgrams/kg
+        const calculatedRange3a = app.printNumber(app.weight * 100, 0, 2);
+        const calculatedRange3b = app.printNumber(app.weight * 500, 0, 2);
+        document.getElementById("weight-range-2").textContent = calculatedRange3a + "-" + calculatedRange3b;
+
+        // 0.2-1 mg/kg q 10 min
+        const calculatedRange5a = app.printNumber(app.weight * 0.2, 0, 2);
+        const calculatedRange5b = app.printNumber(app.weight, 0, 2);
+        document.getElementById("weight-range-3").textContent = calculatedRange5a + "-" + calculatedRange5b
+
+    }
+</script>

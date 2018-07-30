@@ -1,20 +1,35 @@
 <style>
     .call-for-help {
         background-color: #be251b;
+        border-color: #810;
         color: white;
     }
     .call-for-help a {
         color: white;
     }
+
+    #action-buttons {
+        position: absolute;
+        bottom: 10px;
+        width: calc(100% - 30px);
+        padding: 0;
+        margin: 0 15px;
+        z-index: 30;
+    }
+
+    .page {
+        /* Give the action buttons some breathing room. */
+        bottom: 2.5em; 
+    }
+
 </style>
-<div class="page">
+<div id="page" class="page">
 
     <!-- This area is visible when NOT in edit mode -->
     <div id="display-section" style="display: inline-block;">
         <div id="display-phone-numbers">
             <!-- phone numbers go here! -->
         </div>
-        <button id="edit-button" type="button">Edit Phone Numbers</button>
     </div>
 
     <!-- This area is visible when in edit mode -->
@@ -28,24 +43,25 @@
             <p>If your phone number is not reachable by your device then you can prevent hyperlinks from showing up in events by unchecking <i>Create hyperlink?</i></p>
         </div>
         <div id="edit-phone-numbers"></div>
-        <div class="section" style="background-color: #dfd">
+        <div class="section" style="background-color: #dfd; border-color: #ada">
             <strong>Add a Phone Number</strong>
             <input type="text" class="fill-available" placeholder="Description" data-role="description" style="display: inline;">
             <input type="text" class="fill-available" placeholder="Phone Number" data-role="number" class="fill-available">
-            <div>
+            <div class="fill-available">
                 <input type="checkbox" data-role="isHyperlink" style="align-self: center;">
                 <label>Create hyperlink?</label>
             </div>
         </div>
-            
-        <div>
-            <button id="save" type="submit">Save</button>
-            <button id="cancel" type="button">Cancel</button>
-        </div>
+
     </form>
 
 </div>
-
+            
+<div id="action-buttons">
+    <button id="save" type="submit">Save</button>
+    <button id="cancel" type="button">Cancel</button>
+    <button id="edit-button" type="button">Edit Phone Numbers</button>
+</div>
 <script>
 
 // This code is a bit tricky because it uses plain javascript in lieu of a templating engine.
@@ -81,8 +97,11 @@
 
     // This function determines whether the screen is in edit mode.
     const setEditMode = (isEditMode) => {
+        document.getElementById("save").style.display = isEditMode ? "unset" : "none";
+        document.getElementById("cancel").style.display = isEditMode ? "unset" : "none";
+        document.getElementById("edit-button").style.display = isEditMode ? "none" : "unset";
         const editSection = document.getElementById("edit-section");
-        editSection.style.display =  isEditMode ? "block" : "none";
+        editSection.style.display = isEditMode ? "block" : "none";
         document.getElementById("display-section").style.display = isEditMode ? "none" : "block";
         const editPhoneNumbers = document.getElementById("edit-phone-numbers");
         const phoneNumbers = app.phoneNumbers.get();
@@ -165,7 +184,7 @@
         if (data.isHyperlink) {
             const link = document.createElement("a");
             link.href="tel:" + data.number;
-            link.textContent = data.number;
+            link.textContent = "#" + data.number;
             container.appendChild(link);
         } else {
             const number = document.createElement("div");
@@ -204,14 +223,31 @@
         container.appendChild(description);
 
         const number = document.createElement("input");
-        number.type = "text";
+        // Mobile browsers use virtual keyboards that dynamically change depending upon the input type.
+        // If this "phone number" is a hyperlink, then use the telephone ("tel") keyboard.
+        // Otherwise, use the standard ("text") keyboard.
+        number.type = data.isHyperlink ? "tel" : "text";
         number.value = data.number;
         number.placeholder = "Phone Number"
         number.dataset.role = "number";
         number.classList = "fill-available";
         container.appendChild(number);
 
-        const checkboxWrapper = document.createElement("div");
+        // Originally the Clear button was "float: right", but that did not work well 
+        // when the text "Create Hyperlink" was really wide (e.g., with accessibiliy mode on.)
+        // So, a table is used to keep element widths in proportion.
+        const checkboxTable = document.createElement("table");
+        checkboxTable.classList.add("fill-available");
+        const checkboxRow = document.createElement("tr");
+        // When "Create Hyperlink" line-wraps it looks silly; 
+        // this `line-height` adjustment at the row (i.e., `tr`) level fixes that.
+        checkboxRow.style.lineHeight = 1;
+        checkboxTable.appendChild(checkboxRow);
+        const checkboxColumn1 = document.createElement("td");
+        checkboxRow.appendChild(checkboxColumn1);
+        const checkboxColumn2 = document.createElement("td");
+        checkboxRow.appendChild(checkboxColumn2);
+        
         const isHyperlink = document.createElement("input");
         isHyperlink.type = "checkbox"
         isHyperlink.style.alignSelf = "center";
@@ -219,15 +255,18 @@
         isHyperlink.style.marginLeft = "0px";
         isHyperlink.checked = data.isHyperlink;
         isHyperlink.dataset.role = "isHyperlink";
-        checkboxWrapper.appendChild(isHyperlink);
+        isHyperlink.addEventListener("change", event => {
+            number.type = event.target.checked ? "tel" : "text";
+        });
+        
+        checkboxColumn1.appendChild(isHyperlink);
 
         const label = document.createElement("label");
         label.textContent = "Create hyperlink?";
 
-        checkboxWrapper.appendChild(label);
+        checkboxColumn1.appendChild(label);
 
         const clearButton = document.createElement("button");
-        clearButton.style.float = "right";
         clearButton.type = "button";
         if (data.isSystem) {
             clearButton.textContent = "Clear";
@@ -240,9 +279,9 @@
                 container.remove();
             });
         }
-        checkboxWrapper.appendChild(clearButton);
+        checkboxColumn2.appendChild(clearButton);
         
-        container.appendChild(checkboxWrapper);
+        container.appendChild(checkboxTable);
 
         return container;
     };
@@ -320,6 +359,7 @@
         return false;
     });
 
+    // Set events on the form and save button.
     document.getElementById("edit-section").addEventListener("submit", savePhoneNumbers);
     document.getElementById("save").addEventListener("click", savePhoneNumbers);
 

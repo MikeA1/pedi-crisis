@@ -3,10 +3,16 @@
 // is in turn used by CSS rules and possibly other feature-detection logic.
 (() => {
     "use strict";
+    window.app = window.app || {};
 
     app.settings = {
-        names: ["hasVisibleScrollbar", "hasEventDiagnosis", "hasSwipeNavigation"],
+        names: ["hasVisibleScrollbar", "hasEventDiagnosis", "hasSwipeNavigation", "hasAccessibility"],
     };
+
+    if (!app.lastOpenTime) {
+        // Set settings that should be "on" by default.
+        localStorage.setItem("hasSwipeNavigation", "on");
+    }
 
     // Init: the names of settings are the names of CSS classes. These are used
     // for feature detection throughout the app.
@@ -18,4 +24,5 @@
             document.body.classList.add(name);
         }
     });
+
 })();

@@ -10,25 +10,45 @@
             <button data-uri="/html/events/loss-of-evoked-potentials-tx.html" data-title="Loss of Evoked Potentials" class="bg-tx">Tx</button>
         </div>
         <div class="button-container">
-            <button data-uri="/html/events/loss-of-evoked-potentials-rx.html" data-title="Loss of Evoked Potentials" class="bg-rx emphasis">Rx</button>
+            <button data-uri="/html/events/loss-of-evoked-potentials-drugs.html" data-title="Loss of Evoked Potentials" class="bg-drugs emphasis">Drugs</button>
         </div>
         <div class="button-container">
             <button data-uri="/html/events/loss-of-evoked-potentials-crisis.html" data-title="Loss of Evoked Potentials" class="bg-crisis">Crisis</button>
         </div>
     </div>
-    <div class="bg-rx event-title">DRUG / DOSAGE SUMMARY</div>
+    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
 </div>
 <div class="page">
-    <ul>
-        <li class="no-weight"><strong>ephedrine</strong> 0.1 mg/kg IV (MAX 10 mg/dose)</li>
-        <li class="has-weight"><strong>ephedrine</strong> <span id="weight-range-1"></span> mg <span class="per-kg-weight">(0.1 mg/kg, MAX 10 mg/dose)</span> IV</li>
+    <ul class="drugs">
         
-        <li class="no-weight"><strong>phenylephrine</strong> 0.3-1 MICROgrams/kg IV (MAX 100 MICROgrams/dose)</li>
-        <li class="has-weight"><strong>phenylephrine</strong> <span id="weight-range-2"></span> MICROgrams <span class="per-kg-weight">(0.3-1 MICROgrams/kg, MAX 100 MICROgrams/dose)</span> IV</li>
+        <li><span>Ephedrine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> mg IV</div>
+                    <div class="dose-definition"><span>0.1 mg/kg IV, MAX 10 mg</span></div>
+                </li>
+            </ul>
+        </li>
 
-        <li class="no-weight"><strong>Methylprednisolone</strong> 30 mg/kg IV over one hour, then 5.4 mg/kg/hour IV for 23 hours</li>
-        <li class="has-weight"><strong>Methylprednisolone</strong> <span id="weight-range-3"></span> mg <span class="per-kg-weight">(30 mg/kg)</span> IV over one hour,
-            then 5.4 mg/kg/hour IV for 23 hours</li>
+        <li><span>Phenylephrine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> MICROgrams IV</div>
+                    <div class="dose-definition"><span>0.3-1 MICROgrams/kg IV, MAX 100 MICROgrams</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Methylprednisolone</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> mg IV over one hour</div>
+                    <div class="dose-definition"><span>30 mg/kg IV over one hour</span></div>
+                </li>
+                <li>Then infusion 5.4 mg/kg/hour IV for 23 hours</li>
+            </ul>
+        </li>
+
     </ul>
 </div>
 <script>

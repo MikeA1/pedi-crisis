@@ -7,7 +7,7 @@
             <button data-uri="/html/events/bradycardia-tx.html" data-title="Bradycardia" class="bg-tx emphasis">Tx</button>
         </div>
         <div class="button-container">
-            <button data-uri="/html/events/bradycardia-rx.html" data-title="Bradycardia" class="bg-rx">Rx</button>
+            <button data-uri="/html/events/bradycardia-drugs.html" data-title="Bradycardia" class="bg-drugs">Drugs</button>
         </div>
         <div class="button-container">
             <button data-uri="/html/events/bradycardia-misc.html" data-title="Bradycardia" class="bg-misc">Misc</button>
@@ -19,27 +19,44 @@
     <div class="bg-tx event-title">Treatment</div>
 </div>
 <div class="page">
-    <ul>
-        <li>If hypotensive, pulseless, or poor perfusion, start chest compressions, go to <span data-uri="/html/events/cardiac-arrest-dx.html" data-title="Cardiac Arrest" class="uri">CARDIAC ARREST</span>
+
+    <strong>Pick One:</strong>
+
+    <div id="button-group-1" class="button-group">
+        <div class="button-container">
+            <button>Hypotensive, pulseless, or poor perfusion</button>
+        </div>
+    </div>
+    <ul id="list-group-1" class="display-none m-l-1">
+        <li>Start chest compressions, go to <span data-uri="/html/events/cardiac-arrest-dx.html" data-title="Cardiac Arrest" class="uri">CARDIAC ARREST</span>
             <ul>
                 <li class="no-weight">Epinephrine 10 MICROgrams/kg IV</li>
-                <li class="has-weight">Epinephrine <span id="weight-range-1"></span> MICROgrams <span class="per-kg-weight">(10 MICROgrams/kg)</span> IV</li>
+                <li class="has-weight">Epinephrine <span id="weight-range-1"></span> MICROgrams <span class="dose-definition">(10 MICROgrams/kg)</span> IV</li>
+                <li>Confirm NSR. If heart block or slow junction/ventricular, call <span data-phone-number="Intraoperative Electrophysiology">Intraoperative Electrophysiology</span></li>
                 <li>Call for transcutaneous pacer (go to <span data-uri="/html/events/bradycardia-misc.html" data-title="Bradycardia" class="uri">INSTRUCTIONS FOR PACING</span> and start when available)</li>
                 <li>Consider <span data-phone-number="ECMO">ECMO</span></li>
             </ul>
         </li>
-        <li>If NOT hypotensive or pulseless, treat underlying etiology:
+    </ul>
+    
+    <div id="button-group-2" class="button-group">
+        <div class="button-container">
+            <button>NOT hypotensive, pulseless, or poor perfusion</button>
+        </div>
+    </div>
+    <ul id="list-group-2" class="display-none m-l-1">
+        <li>Treat underlying etiology:
             <ul>
                 <li>If hypoxia (common): Give 100% O<sub>2</sub>, ensure ventilation, and go to <span data-uri="/html/events/hypoxia-dx.html" data-title="Hypoxia" class="uri">HYPOXIA</span></li>
                 <li class="no-weight">If vagal: Atropine 0.01-0.02 mg/kg IV</li>
-                <li class="has-weight">If vagal: Atropine <span id="weight-range-2"></span> mg <span class="per-kg-weight">(0.01-0.02 mg/kg)</span> IV</li>
+                <li class="has-weight">If vagal: Atropine <span id="weight-range-2"></span> mg <span class="dose-definition">(0.01-0.02 mg/kg)</span> IV</li>
                 <li>If Surgical Stimulation: Stop simulation and If laparoscopy, desufflate</li>
                 <li class="no-weight">If Ca-Channel Blocker Overdose: Calcium chloride 10-20 mg/kg IV or Calcium gluconate 50 mg/kg IV. If ineffective, Glucagon as dosed below</li>
-                <li class="has-weight">If Ca-Channel Blocker Overdose: Calcium chloride <span id="weight-range-3"></span> mg IV <span class="per-kg-weight">(10-20 mg/kg)</span> IV
-                    or Calcium gluconate <span id="weight-range-4"></span> mg <span class="per-kg-weight">(50 mg/kg)</span>. If ineffective, Glucagon as dosed below
+                <li class="has-weight">If Ca-Channel Blocker Overdose: Calcium chloride <span id="weight-range-3"></span> mg IV <span class="dose-definition">(10-20 mg/kg)</span> IV
+                    or Calcium gluconate <span id="weight-range-4"></span> mg <span class="dose-definition">(50 mg/kg)</span>. If ineffective, Glucagon as dosed below
                 </li>
                 <li class="no-weight">If Beta-Blocker Overdose: Glucagon 50 MICROgrams/kg IV, then 0.07 mg/kg/hour IV infusion (MAX 5 mg/hr) and check blood sugar</li>
-                <li class="has-weight">If Beta-Blocker Overdose: Glucagon <span id="weight-range-5"></span> MICROgrams <span class="per-kg-weight">(50 MICROgrams/kg)</span> IV,
+                <li class="has-weight">If Beta-Blocker Overdose: Glucagon <span id="weight-range-5"></span> MICROgrams <span class="dose-definition">(50 MICROgrams/kg)</span> IV,
                     then 0.07 mg/kg/hour IV infusion (MAX 5 mg/hr) and check blood sugar
                 </li>
             </ul>
@@ -48,6 +65,14 @@
 </div>
 
 <script>
+
+    // The "pick one" section uses the accordion paradigm to show only relevant data.
+    const get = (id => document.getElementById(id)); // (this is a helper function)
+    app.createAccordion([
+        {button: get("button-group-1"), content: get("list-group-1")}, 
+        {button: get("button-group-2"), content: get("list-group-2")},
+    ]);
+
     if (app.weight > 0) {
         // We'll fill in the weight ranges here.
 

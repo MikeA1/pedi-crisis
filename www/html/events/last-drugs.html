@@ -10,33 +10,47 @@
             <button data-uri="/html/events/last-tx.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-tx">Tx</button>
         </div>
         <div class="button-container">
-            <button data-uri="/html/events/last-rx.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-rx emphasis">Rx</button>
+            <button data-uri="/html/events/last-drugs.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-drugs emphasis">Drugs</button>
         </div>
         <div class="button-container">
             <button data-uri="/html/events/last-crisis.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-crisis">Crisis</button>
         </div>
     </div>
-    <div class="bg-rx event-title">Drug / Dosage Summary</div>
+    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
 </div>
 <div class="page">
-    <ul>
-        <li class="no-weight"><strong>Epinephrine</strong> 1 MICROgram/kg IV/IO, may need infusion 0.02-0.2 MICROgrams/kg/min </li> 
-        <li class="has-weight"><strong>Epinephrine</strong> <span id="weight-range-1"></span> MICROgrams
-             <span class="per-kg-weight">(1 MICROgram/kg)</span> IV/IO, may need infusion 0.02-0.2 MICROgrams/kg/min</li>
-        
-        <li class="no-weight"><strong>Midazolam</strong> 0.05-0.1 mg/kg IV</li>
-        <li class="has-weight"><strong>Midazolam</strong> <span id="weight-range-2"></span> mg <span class="per-kg-weight">(0.05-0.1 mg/kg)</span> IV</li>
+    <ul class="drugs">
+
+        <li><span>Epinephrine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgrams IV/IO</div>
+                    <div class="dose-definition"><span>1 MICROgram/kg IV/IO</span></div>
+                </li>
+                <li>May need infusion 0.02-0.2 MICROgrams/kg/min</li>
+            </ul>
+        </li>
+
+        <li><span>Midazolam</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> mg IV</div>
+                    <div class="dose-definition"><span>0.05-0.1 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
     </ul>
 
-    <div class="bg-rx event-title">Intralipid Dosing</div>    
-    <div class="bg-yellow attn">
+    <div class="bg-drugs event-title">Intralipid Dosing</div>    
+    <div>
         <ul>
             <li class="no-weight">Bolus <strong>Intralipid 20%</strong> 1.5 mL/kg IV over 1 minute. Repeat every 3-5 minutes, until hemodynamically stable</li>
-            <li class="has-weight">Bolus <strong>Intralipid 20%</strong> <span id="weight-range-3"></span> mL <span class="per-kg-weight">(1.5 mL/kg)</span> IV over 1 minute. Repeat every 3-5 minutes, until hemodynamically stable</li>
+            <li class="has-weight">Bolus <strong>Intralipid 20%</strong> <span id="weight-range-3"></span> mL <span class="dose-definition">(1.5 mL/kg)</span> IV over 1 minute. Repeat every 3-5 minutes, until hemodynamically stable</li>
             <li>Start infusion <strong>0.25 mL/kg/min</strong>, increase as needed to 0.5 mL/kg/min</li>
             <li><strong>Continue infusion for at least 10 min</strong> after hemodynamic stability is restored.</li>
             <li class="no-weight">Max dose of intralipid 20% is 10 mL/kg over first 30 min. If not responding, reconsider if other diagnosis or inadequate resuscitation</li>
-            <li class="has-weight">Max dose of intralipid 20% is <span id="weight-range-4"></span> mL <span class="per-kg-weight">(10 mL/kg)</span> over first 30 min. If not responding, reconsider if other diagnosis or inadequate resuscitation</li>
+            <li class="has-weight">Max dose of intralipid 20% is <span id="weight-range-4"></span> mL <span class="dose-definition">(10 mL/kg)</span> over first 30 min. If not responding, reconsider if other diagnosis or inadequate resuscitation</li>
         </ul>
     </div>
     

@@ -6,7 +6,7 @@
     }
 </style>
 <!-- Use "no break space" (&nbsp) for better line-wrapping -->
-<div class="bg-crisis event-title" style="text-align: center">
+<div class="bg-crisis event-title" style="text-align: center; border-radius: 0;">
     <strong>Call&nbsp;for&nbsp;Help!&nbsp;</strong>
     <strong>Notify&nbsp;Surgeon!</strong>
     <div id="overhead-stat-container">
@@ -23,7 +23,7 @@
             width: 2em;
             border-radius: 4px;
             text-align: center;
-            padding: 0.5rem 0;
+            padding: 0.5em 0;
         }
         /* This class is used when the background color is dark. */
         .c-white {
@@ -43,13 +43,21 @@
             display: block;
             /* override app's default line-height of 2 */
             line-height: 1;
-            /* The `color` and `font-size` props match the rule for "per-kg-weight" */
-            color: #aaa;
+            /* The `color` and `font-size` props match the rule for "dose-definition" */
+            color: #888;
             font-size: 0.8em;
         }
 
+        /* When in accessibility mode, we want text to be larger and black.
+         * In this case, it's okay if the text is slightly smaller, otherwise it 
+         * would be difficult to distinguish event titles and event diagnoses.
+         */
+        body.hasEventDiagnosis.hasAccessibility .event-diagnosis {
+            color: black !important;
+        }
+
     </style>
-    <table style="line-height:1.5">
+    <table>
         <tr class="event-row" data-uri="/html/events/air-embolism-dx.html" data-title="Air Embolism">
             <td class="event-number c-white" style="background-color:rgb(221,31,0);">1</td>
             <td class="event-name">Air Embolus
@@ -173,7 +181,7 @@
             <td>Trauma</td>
         </tr>
         <tr class="event-row" data-uri="/html/events/maternal-postpartum-hemorrhage-dx.html" data-title="MATERNAL Postpartum Hemorrhage">
-            <td class="event-number c-white" style="background-color:rgb(110,22,63)">27</td>
+            <td class="event-number c-white" style="background-color:rgb(110,22,63)">26</td>
             <td>MATERNAL Postpartum Hemorrhage</td>
         </tr>    
     </table>

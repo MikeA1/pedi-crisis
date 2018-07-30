@@ -6,52 +6,78 @@
 }
 
 html {
-    /* Center the body */
-    margin:    0 auto;
-    max-width: 1000px;
-    color: #666;
-    /* font-size: 1.2rem; */
-
-    /* Force the Content div to expand to occupy the remainder of the screen. */
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-
-    background-color: #f4f4f4;
+    /* On larger screens, give the background a little flair. (This creates a diagnoally-striped background) */
     background-image: repeating-linear-gradient(-45deg,
         transparent 1px,
         transparent 1px,
         #f4f4f4 3px,
         #eee 6px
     );
+}
+
+html, body {
+    /* Center the body with `auto`; allow margin and padding to be controlled by child elements. */
+    margin: 0 auto;
+    padding: 0px;
+
+    /* Reserve pure black (#000) for very important text. */
+    color: #444;
+
+    /* Force the Content div to expand to occupy the remainder of the screen. */
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+
+    /* Keep the background color the same as the #header (in "www/index.html") for iPhoneX */    
+    background-color: #f4f4f4;
+
+    /* On larger screens, keep max-width limited to 1000px to enhance readability. */
+    width: 100%;
+    max-width: 1000px;
+    
+
 
     /* Native fonts; see https://bitsofco.de/the-new-system-font-stack/ */
     font-family: -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
 
-body {
+    /* Large standard font size for improved readability. 
+     * Note: font-size is increased for accessibility and large screens; see `body.hasAccessibility` and media queries!
+     */
+    font-size: 1.1rem;
 
-    /* prevent callout to copy image, etc when tap to hold */
+    /* Prevent callout to copy image, etc when tap to hold */
     -webkit-touch-callout: none;
 
-    /* prevent webkit from resizing text to fit */
+    /* Prevent webkit from resizing text to fit */
     -webkit-text-size-adjust: none;
 
-    /* prevent copy paste */
+    /* Prevent unintended text selection; this also disables *intended* text selection, but the trade off is worthwhile to avoid poor UX. */
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
 
-    /* Keep the background color the same as the header for iPhoneX */
-    background-color:#efefef;
-
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    width: 100%;
+    /* When scrolling to the bottom of the screen, do not pull down (overscroll/rubberband) the entire body/screen.
+     * Note: This property is set to `contain` for the `.page` elements.
+     * See: https://developers.google.com/web/updates/2017/11/overscroll-behavior
+     */
+    overscroll-behavior: none;
 
 }
 
+/* For larger screens, let the content breathe!
+ * For reference, 
+ *   iPhone X is 375 x 812 (w x h)
+ *   Pixel 2 XL is 411 x 823
+ *   iPad is 768 x 1024
+ */
+ @media screen and (min-width: 500px) and (min-height: 900px)
+ {
+     body {
+         font-size: 1.3rem;
+         line-height: 2;
+     }
+ }
+ 
 /* Mind the iPhone X gap */
 @media screen and (orientation: portrait) {
     body {
@@ -70,7 +96,6 @@ body {
     /* Make the page *look* like a page */
     background-color: #f7f7f7;
     padding: 1em;
-    margin: 0 15px;
 
     /* The following CSS rules work in conjunction with a javascript function that
      * will change the `position` from `relative` (default) to `absolute`.
@@ -83,11 +108,12 @@ body {
     width: -webkit-fill-available;
     width: -moz-fill-available;
     width: fill-available;
-    /* We don't want the content to be too wide, so this is a safety check. */
-    max-width: 936px; /* 1000px (standard max-width) - 60px (padded 30px on left and 30px on right) - 4px (Ummm... borders?) */
 
-    /* Let the content breath! */
-    line-height: 2;
+    /* We don't want the content to be too wide, so this is a safety check. */
+    max-width: calc(1000px - 2em);
+
+    /* Let the content breathe! */
+    line-height: 1.8;
 
     /*
      * The javascript function sets the `top` dynamically.
@@ -103,6 +129,12 @@ body {
     
     /* Use floaty/touch scrolling */
     -webkit-overflow-scrolling: touch;
+
+    /* When scrolling to the bottom of the page, do not pull down (overscroll/rubberband) the entire body/screen.
+     * Note: This property is set to `none` for the body.
+     * See: https://developers.google.com/web/updates/2017/11/overscroll-behavior
+     */
+    overscroll-behavior: contain;
 }
 
 /* `width: fill-available` does not have great support yet, so use this class instead. */
@@ -111,22 +143,26 @@ body {
     width: -webkit-fill-available;
     width: -moz-fill-available;
     width: fill-available;
+    /* This `max-width` seems to fix an issue where an image 
+     * will overflow when its pre-styled width is wider than its container.
+     */
+    max-width: 100%;
 }
 
 /* button-group is the parent of button-container */
 .button-group {
     display: flex;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.5em;
 }
 
 .button-container {
     flex-grow: 1;
-    padding-right: 1rem;
+    padding-right: 4px;
 }
 
 /* For a non-nav button-container, don't pad the far left or far right side (the containing .page already has padding) */
 .button-container:last-child {
-    padding-right: 0rem;
+    padding-right: 0;
 }
 
 button {
@@ -138,8 +174,10 @@ button {
 	display:inline-block;
     cursor:pointer;
     text-decoration:none;
-    height: 2rem;
-    font-weight: bold;
+    -webkit-text-decoration:none;
+    /* Use `min-height` because normal `height` is too restrictive for very large font sizes. */
+    min-height: 2em;
+    font-size: 0.8em;
 }
 
 /* Buttons move down 1px when they are clicked/touched.
@@ -173,8 +211,49 @@ button.emphasis {
     border-radius: 4px;
     padding: .5em;
     color: white;
-    /* Force all title to uppercase, for consistency. */
-    text-transform: uppercase;
+}
+
+/* When in accessibility mode, font-size is larger and text is darker.
+ * Need to free up horizontal real estate to avoid squished content.
+ */
+body.hasAccessibility {
+    color: black;
+    font-size: 1.5rem;
+}
+
+/* On small screens (e.g., 250px wide), a font size >= `1.5 rem` may overflow
+ * a few horizontal features (particularly the header and event-nav!)
+ * So, use a (somewhat arbitrary) width of 500px to reduce font size a tad.
+ */
+ @media screen and (max-width: 500px)
+ {
+    body.hasAccessibility {
+        font-size: 1.3rem;
+    }
+ }
+
+
+/* When in accessibility mode, the header and event navs have much less paddin. */
+body.hasAccessibility .event-nav {
+    padding: 8px 8px 0 8px;
+}
+
+/* Greatly reduce padding when in accessibility mode so that more
+ * words fit per line. (This matches header and event-nav.)
+ */
+body.hasAccessibility .page {
+    padding: 8px;
+    max-width: 986px; /* 992px = Max-Width (1000px) - Padding-Left (8px) - Padding-Right (8px) */
+}
+
+/* For color-blind users, make links more obvious. 
+ * Important: do *not* use a generic [data-uri] selector because 
+ * a few buttons would look silly with underlined text!
+ */
+body.hasAccessibility span[data-uri], body.hasAccessibility li[data-uri], body.hasAccessibility a {
+    text-decoration: underline dotted;
+    /* The prefix "-webkit-" is needed for mobile Safari. */
+    -webkit-text-decoration: underline dotted;
 }
 
 /* These weight-related CSS classes will hide or display select items. */
@@ -202,37 +281,87 @@ body.no-weight .has-weight {
     display: none;
 }
 
-.per-kg-weight {
-    color: #aaa;
+/* This rule is used on screens other than the event-drugs. 
+ * In practice, `.dose-definition` is a descendent of `.has-weight`.*/
+.dose-definition {
+    color: #888;
     font-size: 0.8em;
 }
 
+/* When in accessibility mode, we should make virtually all text to black and normal-sized. */
+body.hasAccessibility .dose-definition {
+    color: black;
+    font-size: 1em;
+}
+
+/* This is another special case where `.dose-definition` is displayed black and normal-sized. */
+ body.no-weight ul.drugs div.dose-definition {
+    color: black;
+    font-size: 1em;
+}
+
+/* Used by the Drugs section of an event. Target HTML structure looks like this:
+ *
+ *    <ul class="drugs">
+ *        <li><span>Epinephrine</span>
+ *            <ul>
+ *                <li>
+ *                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgrams IV/IO</div>
+ *                    <div class="dose-definition"><span>1-10 MICROgrams/kg IV/IO</span></div>
+ *                </li>
+ *                <li>Consider infusion 0.02-1 MICROgrams/kg/min IV</li>
+ *            </ul>
+ *        </li>
+ *        <li><span>Norepinephrine</span> 
+ *            <ul>
+ *                <li>Infusion 0.05-2 MICROgrams/kg/min IV</li>
+ *            </ul>
+ *        </li>
+ *    </ul>
+ */
+ ul.drugs ul li {
+    /* Tighten up the distance between the patient-weight-dosage and the per-kg-dosage. */
+    line-height: 1.2;
+    /* When there are two list items (li), give them a little breathing room
+    * (otherwise they will have a line height of 2.)
+    */
+    margin-bottom: .4em;
+}
+
+/* This rule will make a drug name bold. */
+ul.drugs > li > span {
+    font-weight: bold;
+}
+
+body.has-weight ul.drugs div.dose-definition span::before{
+    content: "(";
+}
+
+body.has-weight ul.drugs div.dose-definition span::after{
+    content: ")";
+}
+
+body.no-weight ul.drugs div.dose-calculation {
+    display: none;
+}
+
 /* The default root/parent bullet point is a filled circle; the default second-level bullet point is an open circle.
- * Change second-level (and deeper) bullet points to a black small square ("▪", &#9642, or &#25aa).
+ * Change second-level (and deeper) bullet points to a (filled) square.
  * Why? According to Barbara Burian, "the human eye tries to interpret open bullets as letters (like a or o)".
  */
-li li {
-  list-style-type: none;
+ul ul {
+    list-style-type: square;
 }
 
-li li:before {
-  content: "▪";
-  padding-right: 5px; /* Give a little space between this bullet and content */
-  margin-left: -10px; /* Move this bullet a little to the left. This allows line-wrapped content to look roughly correct. */
+/* Override webkit default margin and padding properties: defaults are a bit too wide on smaller mobile screens */
+ul, ol {
+    padding-left: 1.5em; /* default is 40px */
+    margin-top: 0; /* default is 10px */
 }
 
-
-/* Decrease the size of padding-left to fit more horizontally on a (relatively) small mobile screen. */
-ul {
-    /* Default for `ul` is 40px in Chrome. */
-    padding-left: 20px;
-    -webkit-padding-start: 20px;
-}
-
-/* Used this site to determine lighter and heavier shades of colors:
+/* Used this site to determine heavier shades of colors:
  * http://www.0to255.com/455e0c
- * "lighter" is two shades lighter than the base color.
- * "heavier" is two shades heavier than the base color.
+  * "darker" is two shades heavier than the base color.
  */
 
  /* green */
@@ -241,9 +370,9 @@ ul {
 }
 
 button.bg-dx.emphasis {
-    background-color: #5b7c10; /* lighter */
-    border: 1px solid #2f4008; /* heavier */
-    box-shadow: 0 0 1px 1px #2f4008; /* heavier */
+    background-color: #455e0c; /* base color */
+    border: 1px solid #2f4008; /* darker */
+    box-shadow: 0 0 1px 1px #2f4008; /* darker */
 }
 
 /* tan */
@@ -252,7 +381,7 @@ button.bg-dx.emphasis {
 }
 
 button.bg-ddx.emphasis {
-    background-color: #d69326;
+    background-color: #b98021;
     border-color: #9d6c1b;
     box-shadow: 0 0 1px 1px #9d6c1b;
 }
@@ -263,18 +392,18 @@ button.bg-ddx.emphasis {
 }
 
 button.bg-tx.emphasis {
-    background-color: #a901c5;
+    background-color: #8c01a3;
     border-color: #6f0181;
     box-shadow: 0 0 1px 1px #6f0181;
 }
 
 /* blue */
-.bg-rx {
+.bg-drugs {
     background-color: #0113dc;
 }
 
-button.bg-rx.emphasis {
-    background-color: #0116fe;
+button.bg-drugs.emphasis {
+    background-color: #0113dc;
     border-color: #0110ba;
     box-shadow: 0 0 1px 1px #0110ba;
 }
@@ -285,7 +414,7 @@ button.bg-rx.emphasis {
 }
 
 button.bg-crisis.emphasis {
-    background-color: #dc2b1f;
+    background-color: #be251b;
     border-color: #a01f17;
     box-shadow: 0 0 1px 1px #a01f17;
 }
@@ -296,7 +425,7 @@ button.bg-crisis.emphasis {
 }
 
 button.bg-misc:hover, button.bg-misc.emphasis {
-    background-color: #f7874d;
+    background-color: #f5712d;
     border-color: #f35b0d;
     box-shadow: 0 0 1px 1px #f35b0d;
 }
@@ -306,15 +435,9 @@ button.bg-misc:hover, button.bg-misc.emphasis {
 }
 
 button.bg-yellow.emphasis {
-    background-color: #f9f0c6;
+    background-color: #fcf8e4;    
     border-color: #b9b066;
     box-shadow: 0 0 1px 1px #b9b066;
-}
-
-/* In practice, `attn` is applied along with `bg-yellow` */
-.attn {
-    padding: 1rem;
-    padding-left: 2rem;
 }
 
 /* Telephone numbers use anchor elements (e.g., <a href="tel:555-555-5555">)
@@ -323,9 +446,10 @@ button.bg-yellow.emphasis {
 a {
   color: #33aa33;
   text-decoration: none;
+  -webkit-text-decoration: none;
 }
 
-/* For non-anchor elements that act like links  */
+/* For non-anchor elements that act like links */
 [data-uri] {
     cursor: pointer;
 }

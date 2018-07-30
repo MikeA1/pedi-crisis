@@ -10,30 +10,61 @@
             <button data-uri="/html/events/transfusion-reactions-tx.html" data-title="Transfusion Reactions" class="bg-tx">Tx</button>
         </div>
         <div class="button-container">
-            <button data-uri="/html/events/transfusion-reactions-rx.html" data-title="Transfusion Reactions" class="bg-rx emphasis">Rx</button>
+            <button data-uri="/html/events/transfusion-reactions-drugs.html" data-title="Transfusion Reactions" class="bg-drugs emphasis">Drugs</button>
         </div>
         <div class="button-container">
             <button data-uri="/html/events/transfusion-reactions-crisis.html" data-title="Transfusion Reactions" class="bg-crisis">Crisis</button>
         </div>
     </div>
-    <div class="bg-rx event-title">DRUG / DOSAGE SUMMARY</div>
+    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
 </div>
 <div class="page">
-    <ul>
-        <li class="no-weight"><strong>Furosemide</strong> 1-2 mg/kg (MAX 40 mg)</li>
-        <li class="has-weight"><strong>Furosemide</strong> <span id="weight-range-1"></span> mg <span class="per-kg-weight">(1-2 mg/kg, MAX 40 mg)</span></li>
-        
-        <li class="no-weight"><strong>Mannitol</strong> 0.25-1 g/kg</li>
-        <li class="has-weight"><strong>Mannitol</strong> <span id="weight-range-2"></span> g <span class="per-kg-weight">(0.25-1 g/kg)</span></li>
-        
-        <li class="no-weight"><strong>Epinephrine</strong> 1-10 MICROgrams/kg IV</li>
-        <li class="has-weight"><strong>Epinephrine</strong> <span id="weight-range-3"></span> MICROgrams <span class="per-kg-weight">(1-10 MICROgrams/kg)</span> IV</li>
+    <ul class="drugs">
 
-        <li class="no-weight"><strong>Diphenhydramine</strong> 1 mg/kg IV (MAX 50 mg)</li>
-        <li class="has-weight"><strong>Diphenhydramine</strong> <span id="weight-range-4"></span> mg <span class="per-kg-weight">(1 mg/kg, MAX 50 mg)</span> IV</li>
+        <li><span>Furosemide</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> mg</div>
+                    <div class="dose-definition"><span>1-2 mg/kg, MAX 40 mg</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Mannitol</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> g</div>
+                    <div class="dose-definition"><span>0.25-1 g/kg</span></div>
+                </li>
+            </ul>
+        </li>
         
-        <li class="no-weight"><strong>Methylprednisolone</strong> 2 mg/kg IV (MAX 60 mg)</li>
-        <li class="has-weight"><strong>Methylprednisolone</strong> <span id="weight-range-5"></span> mg <span class="per-kg-weight">(2 mg/kg, MAX 60 mg)</span> IV</li>
+        <li><span>Epinephrine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> MICROgrams IV</div>
+                    <div class="dose-definition"><span>1-10 MICROgrams/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Diphenhydramine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-4"></span> mg IV</div>
+                    <div class="dose-definition"><span>1 mg/kg IV, MAX 50 mg</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Methylprednisolone</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-5"></span> mg IV</div>
+                    <div class="dose-definition"><span>2 mg/kg IV, MAX 60 mg</span></div>
+                </li>
+            </ul>
+        </li>
     </ul>
 </div>
 

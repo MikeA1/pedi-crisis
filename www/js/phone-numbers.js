@@ -52,13 +52,23 @@
                 const phoneNumber = phoneNumbers[description];
                 if (phoneNumber !== undefined && phoneNumber.number !== undefined) {
                     const number = phoneNumber.number.trim();
+                    
+                    // Add a space between the description (e.g., "ECMO") and phone number (e.g., "#555-555-5555").
+                    // This space is not a part of the link because accessibility mode creates an underline for
+                    // anchors and the underline looks weird with the space.
+                    const space = document.createElement("span");
+                    space.textContent = " ";
+                    element.appendChild(space);
+
+                    // If it's a hyperlink, then assume it's a telephone number: prefix with a hashtag (i.e., "#").
+                    // Otherwise, use emphasis (i.e., "<em>") to distinguish the text as special.
                     if (phoneNumber.isHyperlink) {
                         // If the element looks like this:
                         //     <span data-phone-number="ECMO">ECMO</span>
                         // and we have a phone number defined as this:
                         //     {description: "ECMO", number: "555-555-5555", isHyperlink: true}
                         // then the amended element will look like this
-                        //     <span data-phone-number="ECMO">ECMO <a href="tel:555-555-5555">#555-555-5555</a></span>
+                        //     <span data-phone-number="ECMO">ECMO<span> </span><a href="tel:555-555-5555">#555-555-5555</a></span>
                         // which to the user is displayed like this:
                         //    ECMO #555-555-5555
                         const link = document.createElement("a");
@@ -66,9 +76,15 @@
                         link.textContent = " #" + number;
                         element.appendChild(link);
                     } else {
-                        const span = document.createElement("span");
-                        span.textContent = " #" + number;
-                        element.appendChild(span);
+                        // If the element looks like this:
+                        //     <span data-phone-number="ECMO">ECMO</span>
+                        // and we have a phone number defined as this:
+                        //     {description: "ECMO", number: "Yell For Help", isHyperlink: false}
+                        // then the amended element will look like this
+                        //     <span data-phone-number="ECMO">ECMO<span> </span><em>Yell For Help</em></span>
+                        const nonLink = document.createElement("em");
+                        nonLink.textContent = number;
+                        element.appendChild(nonLink);
                     }
                 }
             });

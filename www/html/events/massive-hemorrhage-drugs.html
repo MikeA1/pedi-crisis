@@ -7,21 +7,35 @@
             <button data-uri="/html/events/massive-hemorrhage-tx.html" data-title="Massive Hemorrhage" class="bg-tx">Tx</button>
         </div>
         <div class="button-container">
-            <button data-uri="/html/events/massive-hemorrhage-rx.html" data-title="Massive Hemorrhage" class="bg-rx emphasis">Rx</button>
+            <button data-uri="/html/events/massive-hemorrhage-drugs.html" data-title="Massive Hemorrhage" class="bg-drugs emphasis">Drugs</button>
         </div>
         <div class="button-container">
             <button data-uri="/html/events/massive-hemorrhage-crisis.html" data-title="Massive Hemorrhage" class="bg-crisis">Crisis</button>
         </div>
     </div>
-    <div class="bg-rx event-title">DRUG / DOSAGE SUMMARY</div>
+    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
 </div>
 <div class="page">
-    <ul>
-        <li class="no-weight"><strong>Calcium gluconate</strong> 60 mg/kg IV</li>
-        <li class="has-weight"><strong>Calcium gluconate</strong> <span id="weight-range-1"></span> mg <span class="per-kg-weight">(60 mg/kg)</span> IV</li>
+    <ul class="drugs">
 
-        <li class="no-weight"><strong>Calcium chloride</strong> 20 mg/kg IV</li>
-        <li class="has-weight"><strong>Calcium chloride</strong> <span id="weight-range-2"></span> mg <span class="per-kg-weight">(20 mg/kg)</span> IV</li>
+        <li><span>Calcium gluconate</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> mg IV</div>
+                    <div class="dose-definition"><span>60 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Calcium chloride</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> mg IV</div>
+                    <div class="dose-definition"><span>20 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
     </ul>
 </div>
 <script>
