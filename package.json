@@ -8,6 +8,7 @@
       "android"
     ],
     "plugins": {
+      "cordova-plugin-globalization": {},
       "cordova-plugin-device": {}
     }
   },
@@ -15,6 +16,7 @@
     "cordova-android": "^6.3.0",
     "cordova-ios": "~4.5.4",
     "cordova-plugin-device": "^2.0.1",
+    "cordova-plugin-globalization": "~1.0.7",
     "device": "^0.3.9",
     "requirements": "0.0.1"
   },
