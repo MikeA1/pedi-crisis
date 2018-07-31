@@ -170,7 +170,7 @@ button {
 	-moz-border-radius:8px;
 	-webkit-border-radius:8px;
 	border-radius:8px;
-	border:1px solid #dcdcdc;
+	border:1px solid #000;
 	display:inline-block;
     cursor:pointer;
     text-decoration:none;
@@ -366,13 +366,11 @@ ul, ol {
 
  /* green */
 .bg-dx {
-    background-color: #455e0c; /* base color */
+    background-color: #455e0c;
 }
 
 button.bg-dx.emphasis {
-    background-color: #455e0c; /* base color */
-    border: 1px solid #2f4008; /* darker */
-    box-shadow: 0 0 1px 1px #2f4008; /* darker */
+    background-color: #455e0c;
 }
 
 /* tan */
@@ -382,8 +380,6 @@ button.bg-dx.emphasis {
 
 button.bg-ddx.emphasis {
     background-color: #b98021;
-    border-color: #9d6c1b;
-    box-shadow: 0 0 1px 1px #9d6c1b;
 }
 
 /* purple */
@@ -393,8 +389,6 @@ button.bg-ddx.emphasis {
 
 button.bg-tx.emphasis {
     background-color: #8c01a3;
-    border-color: #6f0181;
-    box-shadow: 0 0 1px 1px #6f0181;
 }
 
 /* blue */
@@ -404,8 +398,6 @@ button.bg-tx.emphasis {
 
 button.bg-drugs.emphasis {
     background-color: #0113dc;
-    border-color: #0110ba;
-    box-shadow: 0 0 1px 1px #0110ba;
 }
 
 /* red */
@@ -415,8 +407,6 @@ button.bg-drugs.emphasis {
 
 button.bg-crisis.emphasis {
     background-color: #be251b;
-    border-color: #a01f17;
-    box-shadow: 0 0 1px 1px #a01f17;
 }
 
 /* orange */
@@ -424,20 +414,8 @@ button.bg-crisis.emphasis {
     background-color: #f5712d;
 }
 
-button.bg-misc:hover, button.bg-misc.emphasis {
+button.bg-misc.emphasis {
     background-color: #f5712d;
-    border-color: #f35b0d;
-    box-shadow: 0 0 1px 1px #f35b0d;
-}
-
-.bg-yellow {
-    background-color: #fcf8e4;
-}
-
-button.bg-yellow.emphasis {
-    background-color: #fcf8e4;    
-    border-color: #b9b066;
-    box-shadow: 0 0 1px 1px #b9b066;
 }
 
 /* Telephone numbers use anchor elements (e.g., <a href="tel:555-555-5555">)
