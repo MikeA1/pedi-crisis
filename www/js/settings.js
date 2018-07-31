@@ -6,12 +6,13 @@
     window.app = window.app || {};
 
     app.settings = {
-        names: ["hasVisibleScrollbar", "hasEventDiagnosis", "hasSwipeNavigation", "hasAccessibility"],
+        names: ["hasAccessibility", "hasEventDiagnosis"],
     };
 
     if (!app.lastOpenTime) {
-        // Set settings that should be "on" by default.
-        localStorage.setItem("hasSwipeNavigation", "on");
+        // Set default values for settings.
+        localStorage.setItem("hasAccessibility", "off");
+        localStorage.setItem("hasEventDiagnosis", "off");
     }
 
     // Init: the names of settings are the names of CSS classes. These are used
