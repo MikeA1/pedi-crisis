@@ -20,8 +20,8 @@ html, body {
     margin: 0 auto;
     padding: 0px;
 
-    /* Reserve pure black (#000) for very important text. */
-    color: #444;
+    /* Use black for better contrast */
+    color: #000;
 
     /* Force the Content div to expand to occupy the remainder of the screen. */
     display: flex;
@@ -199,20 +199,17 @@ button.emphasis {
 
 .event-nav button {
     text-shadow: none;
-    color: white;
+    color: #fff;
 }
 
 .event-title {
     border-radius: 4px;
     padding: .5em;
-    color: white;
+    color: #fff;
 }
 
-/* When in accessibility mode, font-size is larger and text is darker.
- * Need to free up horizontal real estate to avoid squished content.
- */
+/* When in accessibility mode, font-size is larger. */
 body.hasAccessibility {
-    color: black;
     font-size: 1.5rem;
 }
 
@@ -243,7 +240,7 @@ body.hasAccessibility .page {
 
 /* For color-blind users, make links more obvious. 
  * Important: do *not* use a generic [data-uri] selector because 
- * a few buttons would look silly with underlined text!
+ * buttons would look silly with underlined text!
  */
 body.hasAccessibility span[data-uri], body.hasAccessibility li[data-uri], body.hasAccessibility a {
     text-decoration: underline dotted;
@@ -285,13 +282,13 @@ body.no-weight .has-weight {
 
 /* When in accessibility mode, we should make virtually all text to black and normal-sized. */
 body.hasAccessibility .dose-definition {
-    color: black;
+    color: #000;
     font-size: 1em;
 }
 
 /* This is another special case where `.dose-definition` is displayed black and normal-sized. */
  body.no-weight ul.drugs div.dose-definition {
-    color: black;
+    color: #000;
     font-size: 1em;
 }
 
@@ -354,12 +351,7 @@ ul, ol {
     margin-top: 0; /* default is 10px */
 }
 
-/* Used this site to determine heavier shades of colors:
- * http://www.0to255.com/455e0c
-  * "darker" is two shades heavier than the base color.
- */
-
- /* green */
+/* green */
 .bg-dx {
     background-color: #455e0c;
 }
