@@ -51,19 +51,12 @@
             } else {
                 console.warn("Value provided where weight '" + value + '" is not a number.');
             }
-            localStorage.setItem("weight", weightValue);
         }
     });
 
-    // Init: Load the saved value of "weight".
-    const savedWeight = +localStorage.getItem("weight");
-    if (savedWeight) {
-        app.weight = +savedWeight;
-    } else {
-        // Only need to do this once because the default weight is zero, so setting it to 
-        // zero again will not cause the class list to change.
-        //app.weight = 0;
-        document.body.classList.add("no-weight");
-    }
+    // Init: Only need to do this once because the default weight is zero,
+    // so setting it to zero again will not cause the class list to change.
+    //app.weight = 0;
+    document.body.classList.add("no-weight");
 
 })();
