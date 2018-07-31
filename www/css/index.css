@@ -121,6 +121,9 @@ html, body {
      * This approach is resize-friendly (e.g., for a desktop browser).
      */
     bottom: 0;
+
+    /* This forces content to scroll within the `.page` element. Without this, the content would scroll over the nav. */
+    overflow-y: auto;
     
     /* Use floaty/touch scrolling */
     -webkit-overflow-scrolling: touch;
