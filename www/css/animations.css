@@ -92,11 +92,13 @@
     animation-name: fade-in;
     -webkit-animation-name: fade-in;
 
-    animation-duration: 0.2s;
-	-webkit-animation-duration: 0.2s;
+    animation-duration: 0.8s;
+	-webkit-animation-duration: 0.8s;
 
 	animation-timing-function: ease-in-out;	
-	-webkit-animation-timing-function: ease-in-out;		
+	-webkit-animation-timing-function: ease-in-out;
+
+	opacity: 1;
 }
 
 
@@ -122,11 +124,13 @@
     animation-name: fade-out;
     -webkit-animation-name: fade-out;
 
-    animation-duration: 0.2s;
-	-webkit-animation-duration: 0.2s;
+    animation-duration: 0.8s;
+	-webkit-animation-duration: 0.8s;
 
 	animation-timing-function: ease-in-out;	
-	-webkit-animation-timing-function: ease-in-out;		
+	-webkit-animation-timing-function: ease-in-out;
+
+	opacity: 0;
 }
 
 /* This is just for fun */
