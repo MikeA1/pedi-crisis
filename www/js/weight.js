@@ -7,6 +7,28 @@
     const weightButton = document.getElementById("weight");
     let weightValue = 0;
 
+    // This is the name of the class applied to `document.body` when a patient weight warning should be displayed.
+    // Search for CSS rules like ".display-patient-weight-warning" to see where it's used.
+    const className = "display-patient-weight-warning";
+    let timeoutId = 0;
+
+    const clearWarningTimer = () => {
+        document.body.classList.remove(className);
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = 0;
+        }
+    };
+
+    const startWarningTimer = () => {
+        clearWarningTimer();
+        // The timeout is expressed in milliseconds: (1000 milliseconds in a second) * (60 seconds in a minute) * 30 minutes
+        const timeout = 1000; 1000 * 60 * 30;
+        timeoutId = setTimeout(() => document.body.classList.add(className), timeout);
+    };
+
+    // Use a special setter and getter to automatically handle UI updates.
+    // Example usage: app.weight = 5.0;
     Object.defineProperty(window.app, "weight", {
         get() {
             return weightValue;
@@ -25,6 +47,7 @@
                 strong.textContent = value + " kg";
                 weightButton.textContent = "";
                 weightButton.appendChild(strong);
+                startWarningTimer();
             } else if (value === null || value <= 0) {
                 // User cleared the input
 
@@ -48,6 +71,7 @@
                 hyphens.style.whiteSpace = "nowrap";
                 hyphens.textContent = "---";
                 weightButton.appendChild(hyphens);
+                clearWarningTimer();
             } else {
                 console.warn("Value provided where weight '" + value + '" is not a number.');
             }

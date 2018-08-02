@@ -111,6 +111,23 @@
 
             opacity: 1;
         }
+
+        #weight {
+            /* Needed for "position:absolute" to work in "::after" rule. */
+            position: relative;
+        }
+        body.display-patient-weight-warning #weight::after {
+            content: " ";
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            width: 15px;
+            height: 15px;
+            border: 1px solid black;
+            border-radius: 50%;
+        }
+
     </style>
     <div id="nav">
         <div class="button-group" style="padding-top:.5em; padding-bottom:0;">

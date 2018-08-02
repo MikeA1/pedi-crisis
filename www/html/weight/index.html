@@ -1,11 +1,39 @@
+<style>
+    #weight-warning {
+        display: none;
+        /* Needed for "position:absolute" to work in "::after" rule. */
+        position: relative;
+        /* Slightly red to have it stand out. */
+        border-color: #f88;
+        background-color: #fee;
+    }
+    body.display-patient-weight-warning #weight-warning {
+        display: block;
+    }
+    #weight-warning::after {
+        content: " ";
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: red;
+        width: 15px;
+        height: 15px;
+        border: 1px solid black;
+        border-radius: 50%;
+    }
+</style>
 <form id="weight-form" class="page">
+    <div id="weight-warning" class="section">
+        <div>It looks like you have not updated the patient weight in a while. Is it still valid?</div>
+        <button id="weight-is-valid" type="button">Yes, keep it</button>
+        <button id="weight-is-invalid" type="button">No, remove it</button>
+    </div>
     <div class="section">
         <strong>Patient Weight</strong>
         <div class="fill-available">
-            <input id="weight-input" type="number" inputmode="numeric" pattern="[0-9.]*" step="0.1" placeholder="" autofocus style="width: 100px" ></td>
+            <input id="weight-input" type="number" inputmode="numeric" pattern="[0-9.]*" step="0.1" placeholder="" autofocus style="width: 100px"> kg
             <button id="weight-ok" type="submit">Save</button>
             <button id="weight-cancel" type="button">Cancel</button>
-            <button id="weight-clear" type="button" style="display:none">Clear</button>
         </div>
     </div>
 </form>
@@ -47,8 +75,18 @@
         if (event.preventDefault) event.preventDefault();
     }
 
-    const clearWeight = (event) => {
+    const validateWeight = (event) => {
+        // Setting weight to itself will clear the timer.
+        app.weight = app.weight;
+        // Move to the previous screen.
+        app.navigate.prev();
+        // Don't allow the form to send an actual POST to a non-existent server.
+        if (event.preventDefault) event.preventDefault();
+    }
+
+    const invalidateWeight = (event) => {
         input.value = null;
+        app.weight = 0;
         // Move focus from button to input after weight is cleared.
         input.focus();
         // Prevent event bubbling (otherwise the form will submit)
@@ -58,7 +96,8 @@
     document.getElementById("weight-form").addEventListener("submit", updateWeight);
     document.getElementById("weight-ok").addEventListener("click", updateWeight);
     document.getElementById("weight-cancel").addEventListener("click", cancelWeight);
-    document.getElementById("weight-clear").addEventListener("click", clearWeight);
+    document.getElementById("weight-is-valid").addEventListener("click", validateWeight);
+    document.getElementById("weight-is-invalid").addEventListener("click", invalidateWeight);
 
 })();
 
