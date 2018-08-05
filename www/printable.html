@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="viewport-fit=cover, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+    <link rel="icon" href="img/logo.png" />
+    <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
+    <title>Pedi Crisis</title>
+</head>
+<body class="no-weight">
+<style>
+
+    /* Many of these CSS rules were copied from the main "/css/index.css" file.
+     * A few overrides exist
+     */
+
+    /* Looks nicer when background of the disparate sections are uniformly white. */
+    html, body { 
+        font-family: -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 1.1rem;
+        background-color: #fff;
+        background-image: none;}
+
+    button {
+        background-color:#ededed;
+        -moz-border-radius:8px;
+        -webkit-border-radius:8px;
+        border-radius:8px;
+        border:1px solid #000;
+        display:inline-block;
+        cursor:pointer;
+        text-decoration:none;
+        -webkit-text-decoration:none;
+        /* Use `min-height` because normal `height` is too restrictive for very large font sizes. */
+        min-height: 2em;
+        
+        /* Special Print Rule: make the "PICK ONE" buttons look good. */
+        font-size: 1em;
+        width: 100%;
+        text-align: left;
+    }
+
+    /* green */
+    .bg-dx {
+        background-color: #455e0c;
+    }
+
+    /* tan */
+    .bg-ddx {
+        background-color: #b98021;
+    }
+
+    /* purple */
+    .bg-tx {
+        background-color: #8c01a3;
+    }
+
+    /* blue */
+    .bg-drugs {
+        background-color: #0113dc;
+    }
+
+    /* red */
+    .bg-crisis {
+        background-color: #be251b;
+    }
+
+    /* orange */
+    .bg-misc {
+        background-color: #f5712d;
+    }
+
+    /* Special Print Rule: Links do not work, but make them look like links. */
+        [data-uri] {
+        text-decoration: underline dotted;
+    }
+
+    /* Special Print Rule: show event section titles.
+     * Each event section (e.g., "Tx") has a navigation bar in `.event-nav`.
+     * That navigation bar has two elements: buttons (e.g., "Tx" and "Dx") and a title e.g, ("Treatment").
+     * We don't want to display the buttons for each section, but we *do* want to show the title.
+     * Otherwise, the user would not know where a Treatment section ends and a Drugs section begins.
+     */
+    .event-nav .button-group {
+        display: none !important;
+    }
+
+    .event-nav .event-title {
+        border-radius: 4px;
+        padding: .5em;
+        color: #fff;
+    }
+
+    /* Special Print Rule: slight margin around a page.
+     * By convention, each event section is located within a page.
+     * For each event section, a `.page` element normally follows an `.event-nav` element.
+     */
+     .page {
+        margin: .5em;
+    }
+        
+    /* Special Print Rule: show "Pick One" contents.
+     * By convention, this class is only used by the "Pick One" sections. 
+     * (Will need to refactor if this changes.)
+     * We actually want to show all of the pick one sections, so force their display.
+     */
+    .display-none {
+        display: block !important;
+    }
+
+    /* Special Print Rule: hide "calculated" dosages.
+     * In the app, these are updated by a script. This page does not run scripts, so 
+     * these sections will look like weird fragments. Hide them to prevent confusion.
+     */
+    .dose-calculation, .has-weight {
+        display: none;
+    }
+
+    /* Special Print Rule: smaller `h1` margins.
+     * Headers have a ridiculous default margin (at least in webkit). 
+     * So, this change is just to allow more content on the <screen>
+     */
+    h1 {
+        margin-top: 0px;
+        margin-bottom: 5px;
+    }
+    
+    /* Special Print Rule: add helpful page breaks and borders.
+     * This class is added by the following script. Note that the
+     * border is given a color in the script.
+     * The "page-break-after" rule is useful for printing.
+     */
+    .event-container {
+        page-break-after: always;
+        padding: 5px;
+        border-left: solid 5px;
+        margin-bottom: 5px;
+    }
+    .event-section-container {
+        page-break-inside: avoid;
+        margin-bottom: 5px;
+    }
+</style>
+<script>
+
+    // Purpose: load all events and their sections in one page.
+    // Method: load the events index, then load all of the event sections.
+    
+    // This is the main request that loads the events index. Note that all XHR code
+    // will handle logic in the event `onreadystatechange`.
+    const request = new XMLHttpRequest();
+    request.onreadystatechange = () => {
+        if(request.readyState === 4 && request.status === 200) {
+            const eventScreen = document.createElement("div");
+            eventScreen.innerHTML = request.responseText;
+            // Find this:
+            // <tr class="event-row" data-uri="/html/events/anterior-mediastinal-mass-dx.html" data-title="Anterior Mediastinal Mass">
+            //     <td class="event-number c-white" style="background-color:rgb(255,131,0)">3</td>
+            //     <td>Anterior Mediastinal Mass</td>
+            // </tr>
+            const eventRows = eventScreen.getElementsByClassName("event-row");
+            Array.from(eventRows).forEach((eventRow) => {
+                // Pull out the uri, title, and background color.
+                const uri = eventRow.attributes.getNamedItem("data-uri").value;
+                const title = eventRow.attributes.getNamedItem("data-title").value;
+                let backgroundColor = null;
+                Array.from(eventRow.getElementsByTagName("td")).forEach(eventColumn => {
+                    if (eventColumn.classList.contains("event-number")){ backgroundColor = eventColumn.style.backgroundColor; }
+                });
+                // Add the event to the `body`. Event content is handled in the function below.
+                document.body.appendChild(loadEvent(uri, title, backgroundColor));
+            });
+        }
+    };
+    request.open("GET", "/html/events/index.html", true);
+    request.send();
+
+    // Load the first screen of an event (usually a Dx, but sometimes something else like a Tx).
+    // Use information from the first screen to load the other screens; specifically, look for an `.event-nav` element.
+    const loadEvent = (uri, title, backgroundColor) => {
+        const wrapperEl = document.createElement("div");
+        wrapperEl.classList.add("event-container");
+        wrapperEl.style.borderColor = backgroundColor;
+
+        const titleEl = document.createElement("h1");
+        titleEl.textContent = title;
+        wrapperEl.appendChild(titleEl);
+
+        const eventRequest = new XMLHttpRequest();
+        eventRequest.onreadystatechange = () => {
+            if(eventRequest.readyState === 4 && eventRequest.status === 200) {
+
+                // This first screen is special because it contains an "event-nav" that is our link to the other related screens.
+                const firstScreen = document.createElement("div");
+                firstScreen.innerHTML = eventRequest.responseText;
+                firstScreen.classList.add("event-section-container");
+                // Find this: 
+                // <div class="event-nav">
+                //     <div class="button-group">
+                //         <div class="button-container">
+                //             <button data-uri="/html/events/last-dx.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-dx emphasis">Dx</button>
+                //         </div>
+                //         <div class="button-container">
+                //             <button data-uri="/html/events/last-ddx.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-ddx">DDx</button>
+                //         </div>
+                //     </div>
+                //     <div class="bg-dx event-title">Verify DX</div>
+                // </div>
+                const remainingUris = [];
+                // Not all events have a nav element (e.g., Fire Airway)
+                const nav = firstScreen.getElementsByClassName("event-nav");
+                if (nav.length === 1) {
+                    // Find this: <button data-uri="/html/events/air-embolism-dx.html" data-title="Air Embolism" class="bg-dx emphasis">Dx</button>
+                    const buttons = nav[0].getElementsByTagName("button");
+                    Array.from(buttons).forEach((button) => {
+                        if (!button.classList.contains("emphasis"))
+                        {
+                            remainingUris.push(button.attributes.getNamedItem("data-uri").value);
+                        }
+                    });
+                }
+                const screensEl = document.createElement("div");
+                screensEl.appendChild(firstScreen);
+                wrapperEl.appendChild(screensEl);
+                if (remainingUris.length > 0 ) loadRemainingScreens(screensEl, remainingUris);
+            }
+        };
+        eventRequest.open("GET", uri, true);
+        eventRequest.send();
+
+        // This loop will:
+        // 1. Load a screen from the string array `remainingUris`.
+        // 2. Append the screen to the container element `screensEl`.
+        // 3. Repeat until out of uris.
+        // Note: this is recursive (instead of a loop) because the XHR is asynchronous.
+        const loadRemainingScreens = (screensEl, remainingUris) => {
+            const uri = remainingUris.shift();
+            const screenRequest = new XMLHttpRequest();
+            screenRequest.onreadystatechange = () => {
+                if(screenRequest.readyState === 4 && screenRequest.status === 200) {
+                    const screen = document.createElement("div");
+                    screen.classList.add("event-section-container");
+                    screen.innerHTML = screenRequest.responseText;
+                    screensEl.appendChild(screen);
+                    if (remainingUris.length > 0) {
+                        loadRemainingScreens(screensEl, remainingUris);
+                    }
+                }
+            };
+            screenRequest.open("GET", uri, true);
+            screenRequest.send()
+        }
+
+        return wrapperEl;
+    };
+
+</script>
+</body>

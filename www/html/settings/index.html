@@ -44,8 +44,18 @@
         <div class="description">Want to view the copyright? Sure!</div>
         <button data-uri="/html/settings/licenses.html" data-title="Pedi Crisis">Go</button>
     </div>
+    <div id ="printable-view" class="section display-none">
+        <div><strong>Printable View</strong></div>
+        <div class="description">View all events in a single printable page.</div>
+        <a href="/printable.html" target="_blank"><button>Go</button></a>
+    </div>
 </div>
 <script>
+
+    if (device && device.platform === "browser") {
+        document.getElementById("printable-view").classList.remove("display-none");
+    }
+
     const setValue = (settingName, onButton, offButton) => {
         const value = localStorage.getItem(settingName);
         if (value === "on") {
