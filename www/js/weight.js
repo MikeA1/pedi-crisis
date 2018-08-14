@@ -23,7 +23,7 @@
     const startWarningTimer = () => {
         clearWarningTimer();
         // The timeout is expressed in milliseconds: (1000 milliseconds in a second) * (60 seconds in a minute) * 30 minutes
-        const timeout = 1000; 1000 * 60 * 30;
+        const timeout = 1000 * 60 * 30;
         timeoutId = setTimeout(() => document.body.classList.add(className), timeout);
     };
 
