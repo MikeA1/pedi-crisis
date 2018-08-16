@@ -34,30 +34,31 @@
         .bradycardia td {
             padding-left: 0.5em;
             padding-right: 0.5em;
-        }
-        .bradycardia td:nth-child(2) {
             border-right: 1px solid #888;
+        }
+        .bradycardia thead {
+            font-weight: bold;
         }
     </style>
     <!-- Formatting Note: added a bunch of no-break-spaces (&nbsp;) to control line wraps on smaller screen sizes (e.g., iPhone 5/SE). -->
     <table>
+        <thead>
+            <tr>
+                <td>Age</td>
+                <td>HR</td>
+            </tr>
+        </thead>
         <tbody>
             <tr>
-                <td style="padding-right: 0"><strong>Age</strong></td>
                 <td>&lt;&nbsp;30 days</td>
-                <td style="padding-right: 0"><strong>HR</strong></td>
                 <td>&lt;&nbsp;100</td>
             </tr>
             <tr>
-                <td></td>
                 <td>&ge;&nbsp;30&nbsp;days &lt;&nbsp;1&nbsp;yr</td>
-                <td></td>
                 <td>&lt;&nbsp;80</td>
             </tr>
             <tr>
-                <td></td>
                 <td>&ge;&nbsp;1&nbsp;yr</td>
-                <td></td>
                 <td>&lt;&nbsp;60</td>
             </tr>
         </tbody>
