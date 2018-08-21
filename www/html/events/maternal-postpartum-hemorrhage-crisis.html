@@ -18,17 +18,14 @@
 <div class="page">
     <ul>
         <li>Notify surgeon, call for help and code cart</li>
-        <li>Call for <span data-phone-number="Echo">Transesophageal Echocardiography</span></li>
+        <li>Position patient with left uterine displacement</li>
+        <li>Increase O<sub>2</sub> to 100%</li>
         <li>Start chest compressions 30:2 compression:ventilation ADULT RATIO (100-120 chest compressions/min)</li>
-        <li class="no-weight">Give epinephrine 10 MICROgrams/kg IV/IO</li>
+        <li>Give epinephrine 1 mg IV/IO</li>
         <li class="has-weight">Give epinephrine <span id="weight-range-1"></span> MICROgrams <span class="dose-definition">(10 MICROgrams/kg)</span> IV/IO</li>
-        <li>If cardiac arrest, go to <span data-uri="/html/events/cardiac-arrest-dx.html" data-title="Cardiac Arrest" class="uri">CARDIAC ARREST</span></li>
+        <li>If cardiac arrest persists for 4 minutes, then proceed with perimortem cesarean delivery or assisted vaginal delivery</li>
+        <li>Perform advanced cardiac life support including defibrillation if indicated</li>
+        <li>Call for <span data-phone-number="Echo">Transesophageal Echocardiography</span></li>
         <li>Consider <span data-phone-number="ECMO">ECMO</span></li>
     </ul>
 </div>
-<script>
-    if (app.weight > 0) {
-        // 10 MICROgrams/kg
-        document.getElementById("weight-range-1").textContent = app.printNumber(app.weight * 10, 0, 2);
-    }
-</script>
