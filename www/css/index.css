@@ -202,6 +202,8 @@ button.emphasis {
 .event-nav button {
     text-shadow: none;
     color: #fff;
+    /* Prevent width-overflow issue with accessibility mode. */
+    padding: 0;
 }
 
 .event-title {
