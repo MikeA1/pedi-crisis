@@ -283,6 +283,13 @@
 
                         }
                     }
+
+                    // Page should be loaded now. Update analytics.
+                    const analytics = window.ga
+                    if (analytics && analytics.trackView) {
+                        analytics.trackView(title);
+                    }
+
                 };
 
                 // Transform the URI to an absolute path.
