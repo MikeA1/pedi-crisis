@@ -34,7 +34,7 @@
         const analytics = window.ga;
         if (analytics) {
             const dispatchPeriod = 60; // seconds
-            analytics.startTrackerWithId("UA-124376403-1", dispatchPeriod);
+            analytics.startTrackerWithId("UA-124442751-1", dispatchPeriod);
         }
 
         // Need to load first page because the content container is empty on page load.
