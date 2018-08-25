@@ -10,7 +10,7 @@
         background-color: rgba(0,0,0,0.4);
     }
 
-    #disclosure {
+    #disclaimer {
         position: absolute;
         top: 20px;
         bottom: 20px;
@@ -29,9 +29,16 @@
          * centers #walkthrough. Note that we cannot use this rule when the browser/screen width is < 1000px
          * because that would result in a negative `left` value. So, we must keep the above @media query.
          */
-        #disclosure {
+        #disclaimer {
             left: calc((100vw - 1000px)/2);
         }
+    }
+
+    #disclaimer h2 {
+        text-align: center;
+        /* This slightly offsets the padding around the  */
+        margin: -15px -15px 10px -15px;
+        background-color: #eee;
     }
 
     .page {
@@ -50,25 +57,17 @@
         margin: 0 15px;
         z-index: 30;
     }
+
     button:hover {
         /* This prevents a weird bug that occurs when the button is pressed and position is absolute. */
         top: unset !important;
     }
 
-    img {
-        max-width:100%;
-        max-height: 70%;
-        display: block;
-        margin: 20px auto 20px auto;
-    }
-
 </style>
 <div id="smoke-screen"></div>
-<div id="disclosure">
+<div id="disclaimer">
     <div class="page">
-        <h2 style="text-align: center">Pedi Crisis</h2>
-        <img src="img/logo.png" />
-        <h2 style="text-align: center">Disclosure</h2>
+        <h2>DISCLAIMER</h2>
         <div style="font-size: 1rem; font-family: monospace">
             YOU ACKNOWLEDGE AND AGREE THAT, BY ACCESSING OR USING THE PEDICRISIS APPLICATION AND ITS CONTENT (INCLUDING ANY PRODUCTS OR SERVICES), YOU ARE INDICATING THAT YOU HAVE READ, UNDERSTAND, AND AGREE TO BE BOUND BY THESE TERMS, WHETHER OR NOT YOU HAVE REGISTERED VIA THE APPLICATION.
             <p>
@@ -94,8 +93,17 @@
             YOU WILL, AT YOUR SOLE EXPENSE, INDEMNIFY, DEFEND, AND HOLD HARMLESS THE COMPANY AND THE COMPANY’S OFFICERS, DIRECTORS, MANAGERS, MEMBERS, SHAREHOLDERS, AGENTS, REPRESENTATIVES, SUCCESSORS, AND ASSIGNS (THE "INDEMNIFIABLE PARTIES") FROM AND AGAINST ANY AND ALL LOSSES, DAMAGES, PENALTIES, EXPENSES, COSTS, FEES (INCLUDING REASONABLE ATTORNEYS’ FEES), AND LIABILITIES OF ANY KIND OR NATURE (INCLUDING CLAIMS FOR PERSONAL INJURY OR DEATH OF ANY PERSON OR THE DAMAGE TO PROPERTY) RESULTING FROM, ARISING OUT OF, OR RELATED TO (A) THE USE OF, THE RESULTS OF THE USE OF, OR THE INABILITY TO USE THE APP AND ITS CONTENT BY YOU OR ANY PERSON OR ENTITY CLAIMING THROUGH YOU; (B) ANY VIOLATION OF THE RIGHTS OF ANY THIRD PARTY BY YOU; OR (C) WILLFUL MISCONDUCT OR UNLAWFUL OR NEGLIGENT ACTS OR OMISSIONS BY YOU. THE COMPANY RESERVES THE RIGHT, AT THE COMPANY’S OWN EXPENSE, TO ASSUME THE EXCLUSIVE DEFENSE AND CONTROL OF ANY MATTER OTHERWISE SUBJECT TO INDEMNIFICATION BY YOU, IN WHICH EVENT YOU WILL COOPERATE WITH THE COMPANY IN ASSERTING ANY AVAILABLE DEFENSES.
         </div>
     </div>
-    
     <div id="nav-settings" class="button-group">
-        <div data-uri="html/settings/walkthrough.html" class="button-container"><button>OK</button></div>        
+        <div id="accept" data-uri="html/settings/walkthrough.html" class="button-container"><button>I Accept</button></div>        
     </div>
 </div>
+<script>
+    document.getElementById("accept").addEventListener("click", () => {
+        // App is now "opened" for the first time. Update local storage to prevent
+        // the disclaimer from appearing again.
+        // Note: See identical code in `www/js/last-open-time.js`
+        const lastOpenTimeKey = "last-open-time";
+        const time = Math.round((new Date).getTime() / 1000);
+        localStorage.setItem(lastOpenTimeKey, time);
+    })
+</script>

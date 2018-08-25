@@ -3,8 +3,8 @@
     "use strict";
 
     if (!app.lastOpenTime) {
-        // Load the disclosure, which navigates on to the walkthrough.
-        const uri = "/html/settings/disclosure.html";
+        // Load the disclaimer, which navigates on to the walkthrough.
+        const uri = "/html/settings/disclaimer.html";
         app.navigate.next(uri);
     }
 
