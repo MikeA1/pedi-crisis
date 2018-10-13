@@ -29,6 +29,12 @@
         <button id="accessibility-on" class="on">On</button>
         <button id="accessibility-off" class="off">Off</button>
     </div>
+    <div class="section" data-setting-name="hasDarkMode">
+        <div><strong>Dark Mode</strong></div>
+        <div class="description">When on, background is dark and text is light.</div>
+        <button id="accessibility-on" class="on">On</button>
+        <button id="accessibility-off" class="off">Off</button>
+    </div>
     <div class="section">
         <div><strong>Walkthrough</strong></div>
         <div class="description">Want to step through the walkthrough again? Let's go!</div>
@@ -59,12 +65,13 @@
     const setValue = (settingName, onButton, offButton) => {
         const value = localStorage.getItem(settingName);
         if (value === "on") {
-            // This conditional is intentionally setup to set each setting to "off" by default.
             document.body.classList.add(settingName);
+            document.body.parentElement.classList.add(settingName);
             onButton.classList.add("active");
             offButton.classList.remove("active");
         } else {
             document.body.classList.remove(settingName);            
+            document.body.parentElement.classList.remove(settingName);            
             onButton.classList.remove("active");
             offButton.classList.add("active");
         }

@@ -43,6 +43,11 @@
             max-width: 1000px; /* This matches the same rule on html */
         }
 
+        body.hasDarkMode #nav {
+            background-color: #222;
+            color: #fff;
+        }
+
         /* These two rules pad the left and right side of the nav buttons. */
         #nav .button-group {
             padding-left: 1em;
@@ -66,6 +71,10 @@
             height: -webkit-fill-available;
             height: -moz-fill-available;
             height: fill-available;
+        }
+
+        body.hasDarkMode #content {
+            background-color: #000;
         }
 
         #title {
