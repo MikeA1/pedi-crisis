@@ -68,8 +68,8 @@ html, body {
 
 
 body.hasDarkMode {
-    background: black;
-    color: white;
+    background: #000;
+    color: #fff;
 }
 
 /* For larger screens, let the content breathe!
@@ -144,7 +144,6 @@ body.hasDarkMode {
 
 body.hasDarkMode .page {
     background-color: #000;
-
 }
 
 /* `width: fill-available` does not have great support yet, so use this class instead. */
@@ -308,10 +307,19 @@ body.hasAccessibility .dose-definition {
     font-size: 1em;
 }
 
+body.hasDarkMode .dose-definition {
+    /* Use `!important` to ensure that `body.hasAccessibility` rules do not override `color`.*/
+    color: #ddd !important;
+}
+
 /* This is another special case where `.dose-definition` is displayed black and normal-sized. */
  body.no-weight ul.drugs div.dose-definition {
     color: #000;
     font-size: 1em;
+}
+
+body.no-weight.hasDarkMode ul.drugs div.dose-definition {
+    color: #fff;
 }
 
 /* Used by the Drugs section of an event. Target HTML structure looks like this:
@@ -373,57 +381,33 @@ ul, ol {
     margin-top: 0; /* default is 10px */
 }
 
-/* green */
-.bg-dx {
+/* Dx - Diagnosis - green */
+.bg-dx, button.bg-dx.emphasis {
     background-color: #455e0c;
 }
 
-button.bg-dx.emphasis {
-    background-color: #455e0c;
-}
-
-/* tan */
-.bg-ddx {
+/* DDx - Diagnosis Differential (Parital) - tan */
+.bg-ddx, button.bg-ddx.emphasis {
     background-color: #b98021;
 }
 
-button.bg-ddx.emphasis {
-    background-color: #b98021;
-}
-
-/* purple */
-.bg-tx {
+/* Tx - Treatment - purple */
+.bg-tx, button.bg-tx.emphasis {
     background-color: #8c01a3;
 }
 
-button.bg-tx.emphasis {
-    background-color: #8c01a3;
-}
-
-/* blue */
-.bg-drugs {
+/* Drugs - Drugs - blue */
+.bg-drugs, button.bg-drugs.emphasis {
     background-color: #0113dc;
 }
 
-button.bg-drugs.emphasis {
-    background-color: #0113dc;
-}
-
-/* red */
-.bg-crisis {
+/* Crisis - Crisis - red */
+.bg-crisis, button.bg-crisis.emphasis {
     background-color: #be251b;
 }
 
-button.bg-crisis.emphasis {
-    background-color: #be251b;
-}
-
-/* orange */
-.bg-misc {
-    background-color: #f5712d;
-}
-
-button.bg-misc.emphasis {
+/* Misc - Miscellaneous - orange */
+.bg-misc, button.bg-misc.emphasis {
     background-color: #f5712d;
 }
 

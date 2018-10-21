@@ -31,6 +31,9 @@
         .bradycardia tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+        body.hasDarkMode .bradycardia tr:nth-child(even) {
+            background-color: #222;
+        }
         .bradycardia td {
             padding-left: 0.5em;
             padding-right: 0.5em;
@@ -38,6 +41,10 @@
         }
         .bradycardia thead {
             font-weight: bold;
+            background-color: #ddd !important;
+        }
+        body.hasDarkMode .bradycardia thead {
+            background-color: #333 !important;
         }
     </style>
     <!-- Formatting Note: added a bunch of no-break-spaces (&nbsp;) to control line wraps on smaller screen sizes (e.g., iPhone 5/SE). -->

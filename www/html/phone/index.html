@@ -1,8 +1,9 @@
 <style>
     .call-for-help {
-        background-color: #be251b;
-        border-color: #810;
-        color: white;
+        /* Need `!important` to ensure CSS rules for `body.hasDarkMode do not override this color. */
+        background-color: #be251b !important;
+        border-color: #810 !important;
+        color: white !important;
     }
     .call-for-help a {
         color: white;
@@ -17,13 +18,28 @@
         z-index: 30;
     }
 
+    #add-a-phone-number {
+        background-color: #dfd;
+        border-color: #ada;
+    }
+
+    body.hasDarkMode #add-a-phone-number {
+        background-color: #455e0c;
+        border-color: #556e1c;
+    }
+
     .page {
         /* Give the action buttons some breathing room. */
         bottom: 2.5em; 
     }
 
+    body.hasDarkMode #phone-numbers input {
+        background-color: #aaa;
+        border: none;
+    }
+
 </style>
-<div id="page" class="page">
+<div id="phone-numbers" class="page">
 
     <!-- This area is visible when NOT in edit mode -->
     <div id="display-section" style="display: inline-block;">
@@ -43,7 +59,7 @@
             <p>If your phone number is not reachable by your device then you can prevent hyperlinks from showing up in events by unchecking <i>Create hyperlink?</i></p>
         </div>
         <div id="edit-phone-numbers"></div>
-        <div class="section" style="background-color: #dfd; border-color: #ada">
+        <div id="add-a-phone-number" class="section">
             <strong>Add a Phone Number</strong>
             <input type="text" class="fill-available" placeholder="Description" data-role="description" style="display: inline;">
             <input type="text" class="fill-available" placeholder="Phone Number" data-role="number" class="fill-available">
