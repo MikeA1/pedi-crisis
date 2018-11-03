@@ -6,13 +6,14 @@
     window.app = window.app || {};
 
     app.settings = {
-        names: ["hasAccessibility", "hasEventDiagnosis"],
+        names: ["hasAccessibility", "hasEventDiagnosis", "hasDarkMode"],
     };
 
     if (!app.lastOpenTime) {
         // Set default values for settings.
         localStorage.setItem("hasAccessibility", "off");
         localStorage.setItem("hasEventDiagnosis", "off");
+        localStorage.setItem("hasDarkMode", "off");
     }
 
     // Init: the names of settings are the names of CSS classes. These are used
@@ -23,6 +24,7 @@
         const value = localStorage.getItem(name);
         if (value === "on") {
             document.body.classList.add(name);
+            document.body.parentElement.classList.add(name);
         }
     });
 

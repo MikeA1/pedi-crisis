@@ -283,6 +283,13 @@
 
                         }
                     }
+
+                    // Page should be loaded now. Update analytics.
+                    const analytics = window.ga
+                    if (analytics && analytics.trackView) {
+                        analytics.trackView(title);
+                    }
+
                 };
 
                 // Transform the URI to an absolute path.
@@ -291,10 +298,10 @@
                 const nextHeader = header || defaultHeader;
                 if (nextHeader === "Pedi Crisis") {
                     headerElement.textContent = "Pedi Crisis ";
-                    // const sup = document.createElement("sup");
-                    // sup.textContent = "beta";
-                    // sup.style.color = "#888";
-                    // headerElement.appendChild(sup);
+                    const sup = document.createElement("sup");
+                    sup.textContent = "2.0";
+                    sup.style.color = "#888";
+                    headerElement.appendChild(sup);
                 } else {
                     headerElement.textContent = nextHeader;
                 }

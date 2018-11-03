@@ -43,6 +43,11 @@
             max-width: 1000px; /* This matches the same rule on html */
         }
 
+        body.hasDarkMode #nav {
+            background-color: #222;
+            color: #fff;
+        }
+
         /* These two rules pad the left and right side of the nav buttons. */
         #nav .button-group {
             padding-left: 1em;
@@ -66,6 +71,10 @@
             height: -webkit-fill-available;
             height: -moz-fill-available;
             height: fill-available;
+        }
+
+        body.hasDarkMode #content {
+            background-color: #000;
         }
 
         #title {
@@ -135,7 +144,7 @@
                 <img src="img/logo.png" height=50 width=50 />
             </div>
             <div style="align-self: center; flex: 8; padding-right: 4px;">
-                <span id="header">Pedi Crisis</span>
+                <span id="header">Pedi Crisis <sup style="color: #888">2.0</sup></span>
             </div>
             <div style="align-self: center; flex: 1;">
                 <button id="back-button" class="fill-available" style="height: 1.8em; margin: 4px 0;">Back</button>

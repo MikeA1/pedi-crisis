@@ -1,3 +1,13 @@
+<style>
+    .cardiac-arrest-tx #list-group-2 > ul {
+        background-color: #fcf8e4;
+        border: 1px solid #666
+    }
+    body.hasDarkMode .cardiac-arrest-tx #list-group-2 > ul {
+        background-color: #333;
+    }
+</style>
+
 <div class="event-nav">
     <div class="button-group">
         <div class="button-container">
@@ -15,7 +25,7 @@
     </div>
     <div class="bg-tx event-title">Treatment</div>
 </div>
-<div class="page">
+<div page="cardiac-arrest-tx page">
 
     <strong>Pick One:</strong>
 
@@ -31,7 +41,7 @@
         <li>Notify surgeon, call for help and code cart/defibrillator</li>
         <li>If ETT, 100-120 chest compressions/min + 10 breaths/min; avoid hyperventilation</li>
         <li>If no ETT, 15:2 compression:ventilation ratio (100-120 chest compressions/min + 8 breaths/min)</li>
-        <li>For chest compressions, maximize EtCO<sub>2</sub> &gt; 10 mmHg (go to <span data-uri="/html/events/cardiac-arrest-chest-compression-tx.html" data-title="Cardiac Arrest Supine/Prone Chest Compressions" class="uri">CARDIAC ARREST SUPINE/PRONE CHEST COMPRESSIONS</span>):
+        <li>For chest compressions, maximize EtCO<sub>2</sub> &gt; 10 mmHg (go to <span data-uri="/html/events/chest-compression-tx.html" data-title="Cardiac Arrest Supine/Prone Chest Compressions" class="uri">CHEST COMPRESSIONS: SUPINE/PRONE</span>)
             <ul>
                 <li>Switch compressor every 2 min</li>
                 <li>Use sudden increase in EtCO<sub>2</sub> for ROSC, Do NOT stop compressions for pulse check</li>
@@ -50,7 +60,7 @@
 
     <div id="list-group-2" class="display-none">
         <div>Repeat sequence below until return of spontaneous circulation:</div>
-        <ul style="background-color: #fcf8e4; border: 1px solid #666">
+        <ul>
             <li>If still in VF/VT, shock 4 joules/kg q2 min (up to 10 joules/kg on subsequent shocks)</li>
             <li>Resume chest compressions immediately regardless of rhythm</li>
 

@@ -14,6 +14,9 @@
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <access launch-external="yes" origin="tel:*" />
     <splash src="www/img/ios/Default@2x~universal~anyany.png" />
+    <platform name="ios">
+        <hook src="hooks/remove-idfa.js" type="after_build" />
+    </platform>
     <platform name="ios (disabled)">
         <icon height="180" src="www/img/ios/180x180.png" width="180" />
         <icon height="60" src="www/img/ios/60x60.png" width="60" />
@@ -36,7 +39,10 @@
     </platform>
     <allow-intent href="tel:*" />
     <allow-intent href="mailto:*" />
-    <engine name="ios" spec="4.5.5" />
+    <engine name="ios" spec="~4.5.4" />
     <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-device" spec="^2.0.1" />
+    <plugin name="cordova-plugin-google-analytics" spec="^1.8.6">
+        <variable name="GMS_VERSION" value="11.0.1" />
+    </plugin>
 </widget>

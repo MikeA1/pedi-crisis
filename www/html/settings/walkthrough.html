@@ -23,6 +23,11 @@
         max-width: 1000px;
     }
 
+    body.hasDarkMode #walkthrough {
+        background-color: #333;
+        color: #fff;
+    }
+
     @media screen and (min-width: 1000px) {
         /* When the browser/view width is >= 1000px, then the width of #walkthrough is maxed at 1000px.
          * Because the #walkthrough has an absolute position, we set `left` to a value that
@@ -107,6 +112,10 @@
         <div>
             Add important phone numbers for quick access during an emergency.
         </div>
+        <div>
+            Certain phone numbers will be displayed within event sections.
+        </div>
+        <img src="img/walkthrough-phone-numbers-detail.png" />
     </div>
 
     <div class="page">
@@ -116,6 +125,22 @@
             Provide a patient's weight to see patient-specific dosage measurements.
         </div>
         <img src="img/walkthrough-patient-weight-detail.png" />
+        <div>
+            After 30 minutes, a notificaiton bubble will appear on the patient weight button.
+        </div>
+        <img src="img/walkthrough-patient-weight-timeout.png" />
+        <div>
+            In the Patient Weight screen, if the patient weight is still valid, you may dismiss the notification bubble by tapping the "Yes, keep it" button.
+        </div>
+        <img src="img/walkthrough-patient-weight-timeout-message.png" />
+    </div>
+
+    <div class="page">
+        <h2 style="text-align: center">Settings</h2>        
+        <img src="img/walkthrough-settings.png" />
+        <div>
+            Tap the gear button in the upper-right corner of the screen to return to this walkthrough, toggle application features, and learn more about this app.
+        </div>
     </div>
 
     <div id="nav-settings" class="button-group">

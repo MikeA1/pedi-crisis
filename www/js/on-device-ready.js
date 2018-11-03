@@ -30,6 +30,12 @@
         // but always fire `updateRootPath` in case that's not the case for all versions of Android.
         app.navigate.updateRootPath();
 
+        // Setup Google Analytics
+        const analytics = window.ga;
+        if (analytics) {
+            const dispatchPeriod = 60; // seconds
+            analytics.startTrackerWithId("UA-124434075-1", dispatchPeriod);
+        }
 
         // Need to load first page because the content container is empty on page load.
         if (history.state) {
