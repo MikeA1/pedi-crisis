@@ -287,7 +287,12 @@
                     // Page should be loaded now. Update analytics.
                     const analytics = window.ga
                     if (analytics && analytics.trackView) {
-                        analytics.trackView(title);
+                        try {
+                            analytics.trackView(title);
+                        }
+                        catch (error) {
+                            console.error(error);
+                        }
                     }
 
                 };

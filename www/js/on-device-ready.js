@@ -34,7 +34,12 @@
         const analytics = window.ga;
         if (analytics) {
             const dispatchPeriod = 60; // seconds
-            analytics.startTrackerWithId("UA-124434075-1", dispatchPeriod);
+            try {
+                analytics.startTrackerWithId("UA-124434075-1", dispatchPeriod);
+            }
+            catch (error) {
+                console.error(error);
+            }
         }
 
         // Need to load first page because the content container is empty on page load.
