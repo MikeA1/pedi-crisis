@@ -1,0 +1,46 @@
+<div class="event-nav">
+        <div class="button-group">
+            <div class="button-container">
+                <button data-uri="/html/events/tamponade-cardiac-dx.html" data-title="Tamponade, Cardiac" class="bg-dx">Dx</button>
+            </div>
+            <div class="button-container">
+                <button data-uri="/html/events/tamponade-cardiac-ddx.html" data-title="Tamponade, Cardiac" class="bg-ddx">DDx</button>
+            </div>
+            <div class="button-container">
+                <button data-uri="/html/events/tamponade-cardiac-tx.html" data-title="Tamponade, Cardiac" class="bg-tx">Tx</button>
+            </div>
+            <div class="button-container">
+                <button data-uri="/html/events/tamponade-cardiac-drugs.html" data-title="Tamponade, Cardiac" class="bg-drugs emphasis">Drugs</button>
+            </div>
+            <div class="button-container">
+                <button data-uri="/html/events/tamponade-cardiac-crisis.html" data-title="Tamponade, Cardiac" class="bg-crisis">Crisis</button>
+            </div>
+        </div>
+        <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+    </div>
+    <div class="page">
+   
+       
+                <li class="no-weight">Ketamine 1-2 mg/kg IV</li>
+                <li class="has-weight">Ketamine <span id="weight-range-1"></span> mg <span class="dose-definition">(1-2 mg/kg)</span> IV</li>
+                
+                <li class="no-weight">Epinephrine 0.05-0.1 MICROgrams/kg IV bolus or infusion (0.01-0.1 MICROgrams/kg/min)</li>
+                <li class="has-weight">Epinephrine <span id="weight-range-2"></span> MICROgrams <span class="dose-definition">(0.05-0.1 MICROgrams/kg)</span> IV bolus or infusion (0.01-0.1 MICROgrams/kg/min)</li>
+
+    
+    <script>
+        if (app.weight > 0) {
+            // We'll fill in the weight ranges here.
+    
+            // 1-2 mg/kg
+            const calculatedRange1a = app.printNumber(app.weight * 1, 0, 2);
+            const calculatedRange1b = app.printNumber(app.weight * 2, 0, 2);
+            document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
+    
+           // 0.05-0.1
+           const calculatedRange2a = app.printNumber(app.weight * 0.05, 0, 2);
+            const calculatedRange2b = app.printNumber(app.weight * 0.1, 0, 2);
+            document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;
+   
+        }
+    </script>
