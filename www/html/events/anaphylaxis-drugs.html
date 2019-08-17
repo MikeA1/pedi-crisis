@@ -24,8 +24,8 @@
             <span>Epinephrine</span>
             <ul>
                 <li>
-                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgrams IV/IO</div>
-                    <div class="dose-definition"><span>1-10 MICROgrams/kg IV/IO</span></div>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgrams IV/IO or <span id="weight-range-9"></span> mg IM q5-15 min</div>
+                    <div class="dose-definition"><span>1-10 MICROgrams/kg IV/IO or 0.01 mg/kg IM q5-15 min</span></div>
                 </li>
                 <li>Consider infusion 0.02-0.2 MICROgrams/kg/min IV</li>
             </ul>
@@ -116,5 +116,8 @@
         // 1 mg/kg, MAX 50 mg
         const calculatedRange7 = app.printNumber(Math.min(app.weight * 1, 50), 0, 2);
         document.getElementById("weight-range-7").textContent = calculatedRange7;
+        
+        // 0.01 mg/kg
+        document.getElementById("weight-range-9").textContent = app.printNumber(app.weight * 0.01, 0, 2);
     }
 </script>
