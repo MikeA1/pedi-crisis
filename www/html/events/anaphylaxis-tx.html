@@ -43,8 +43,8 @@
         <li class="no-weight">To ↓&nbsp;mediator release: give methylprednisolone 2 mg/kg IV/IO (MAX 100 mg)</li>
         <li class="has-weight">To ↓&nbsp;mediator release: give methylprednisolone <span id="weight-range-5"></span> mg <span class="dose-definition">(2 mg/kg, MAX 100 mg)</span> IV/IO</li>
 
-        <li class="no-weight">For continued ↓&nbsp;BP: give vasopressin 10 MICROunits/kg IV</li>
-        <li class="has-weight">For continued ↓&nbsp;BP: give vasopressin <span id="weight-range-6"></span> MICROunits <span class="dose-definition">(10 MICROunits/kg)</span> IV</li>
+        <li class="no-weight">For continued ↓&nbsp;BP: give vasopressin 10 milliunits/kg IV</li>
+        <li class="has-weight">For continued ↓&nbsp;BP: give vasopressin <span id="weight-range-6"></span> milliunits <span class="dose-definition">(10 milliunits/kg)</span> IV</li>
 
         <li>To ↓&nbsp;bronchoconstriction: give albuterol 4-10 puffs, repeat as needed</li>
 
@@ -79,7 +79,7 @@
         // 2 mg/kg, MAX 100 mg
         document.getElementById("weight-range-5").textContent = app.printNumber(Math.min(app.weight * 2, 100), 0, 2);
 
-        // 10 MICROunits/kg
+        // 10 milliunits/kg
         document.getElementById("weight-range-6").textContent = app.printNumber(app.weight * 10, 0, 2);
 
         // 0.25 mg/kg, MAX 20 mg
