@@ -14,7 +14,7 @@ You can download the latest version of this app in the [iOS App Store](https://i
    - `git --version` 2.14 (or greater)
 2. Install [PhoneGap](http://docs.phonegap.com/getting-started/1-install-phonegap/cli/)
    - `npm install -g phonegap` (you may need to use `sudo` in linux/mac)
-   - `phonegap --version` 7.1.1 (or greater)
+   - `phonegap --version` 9.0.0 (or greater)
 3. Fork and Clone this repo 
    - Example: `git clone https://github.com/~your~account~name~/pedi-crisis.git`
    - (or just [download the project files](https://github.com/MikeA1/pedi-crisis/archive/master.zip))
@@ -35,18 +35,27 @@ This should work after Getting Started is completed. No additional steps needed!
 
 ### Android
 Follow [these steps](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#requirements-and-support):
-1. Install the [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) v8 or later.
-2. Install [Android Studio](https://developer.android.com/studio/index.html).
-   - In Android Studio, open preferences, then navigate Appearance & Behavior > System Settings > Android SDK. In the SDK Platforms tab, install API Level 26.
-3. Update the PATH variables `ANDROID_HOME` and `JAVA_HOME`. Follow [these instructions](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#setting-environment-variables).
-4. Build! `phonegap build android`
+1. Install [Android Studio](https://developer.android.com/studio/index.html).
+   - In Android Studio, open preferences, then navigate Appearance & Behavior > System Settings > Android SDK. In the SDK Platforms tab, install API Level 28.
+   - Create an environment variable for `ANDROID_HOME`, set the value to the location of your Android SDK installation.
+      - On Windows, this is something like `C:\Users\<UserName>\AppData\Local\Android\Sdk`
+   - Edit the PATH environment variable to contain the two Android SDK paths. 
+      - On Windows, this is like `C:\Users\<UserName>\AppData\Local\Android\Sdk\platform-tools` and `C:\Users\<UserName>\AppData\Local\Android\Sdk\tools`
+     (e.g., `/Android/SDK/platform-tools` and `/Android/SDK/tools`) and the Gradle `/bin` path to your PATH.
+   - Follow [these instructions](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#setting-environment-variables).
+2. Create an environment variable for `JAVA_HOME`.
+   - Option 1: use the JDK path already installed by Android Studio (e.g., on Windows, `C:\Program Files\Android\Android Studio\jre`)
+   - Option 2: download and extract OpenJdk v1.8.0; the path is the root directory of the extracted files
+      - For Windows, try [OpenJdk v1.8.0_232-1](https://github.com/ojdkbuild/ojdkbuild).
+3. Edit the PATH environment variable to contain the Gradle path.
+   - Download and extract [Gradle](https://gradle.org/install/) version 4.10.3; the path is the `\bin` directory of the extracted files
+5. Build! `phonegap build android`
    - Linux/Mac: If you receive the error "spawn: EACCES", then run the following command: 
    ```
    sudo chmod 777 "/Applications/Android Studio.app/Contents/gradle/gradle-4.1/bin/gradle"
    ```
    Watch the space in "Android Studio.app"! See [this GitHub comment](https://github.com/ionic-team/ionic-cli/issues/2835#issuecomment-340200015) for details.
-5. Open Android Studio. Follow [these instructions](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#opening-a-project-in-android-studio) to start debugging on a physical or emulated device. 
-   - If prompted to upgrade Gradle from 3.x to 4.x - don't do it! This appears to create dependency problems.
+6. Open Android Studio. Follow [these instructions](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#opening-a-project-in-android-studio) to start debugging on a physical or emulated device. 
 
 ### iOS
 Follow [these steps](https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html).
