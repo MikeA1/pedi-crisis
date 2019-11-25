@@ -30,18 +30,6 @@
         // but always fire `updateRootPath` in case that's not the case for all versions of Android.
         app.navigate.updateRootPath();
 
-        // Setup Google Analytics
-        const analytics = window.ga;
-        if (analytics) {
-            const dispatchPeriod = 60; // seconds
-            try {
-                analytics.startTrackerWithId("UA-124434075-1", dispatchPeriod);
-            }
-            catch (error) {
-                console.error(error);
-            }
-        }
-
         // Need to load first page because the content container is empty on page load.
         if (history.state) {
             // If here, then the user hit "back button" on browser from another website. (This only makes sense for browser debugging.)
