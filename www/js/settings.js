@@ -6,7 +6,7 @@
     window.app = window.app || {};
 
     app.settings = {
-        names: ["hasAccessibility", "hasEventDiagnosis", "hasDarkMode"],
+        names: ["hasAccessibility", "hasEventDiagnosis", "hasDarkMode", "hasInsomnia"],
     };
 
     if (!app.lastOpenTime) {
@@ -14,6 +14,7 @@
         localStorage.setItem("hasAccessibility", "off");
         localStorage.setItem("hasEventDiagnosis", "off");
         localStorage.setItem("hasDarkMode", "off");
+        localStorage.setItem("hasInsomnia", "on");
     }
 
     // Init: the names of settings are the names of CSS classes. These are used
