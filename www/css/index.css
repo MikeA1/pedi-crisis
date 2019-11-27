@@ -469,3 +469,7 @@ body.hasDarkMode .section {
 .m-l-1 {
     margin-left: 1em;
 }
+
+li.no-bullet {
+    list-style-type: none;
+}

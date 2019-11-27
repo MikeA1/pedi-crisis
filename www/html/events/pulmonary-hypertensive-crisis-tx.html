@@ -1,41 +1,126 @@
 <div class="event-nav">
     <div class="button-group">
         <div class="button-container">
-            <button data-uri="/html/events/pulmonary-hypertensive-crisis-dx.html" data-title="Pulmonary Hypertensive" class="bg-dx">Dx</button>
+            <button data-uri="/html/events/pulmonary-hypertensive-crisis-dx.html" data-title="Pulmonary Hypertensive"
+                class="bg-dx">Dx</button>
         </div>
         <div class="button-container">
-            <button data-uri="/html/events/pulmonary-hypertensive-crisis-tx.html" data-title="Pulmonary Hypertensive" class="bg-tx emphasis">Tx</button>
+            <button data-uri="/html/events/pulmonary-hypertensive-crisis-tx.html" data-title="Pulmonary Hypertensive"
+                class="bg-tx emphasis">Tx</button>
         </div>
         <div class="button-container">
-            <button data-uri="/html/events/pulmonary-hypertensive-crisis-crisis.html" data-title="Pulmonary Hypertensive" class="bg-crisis">Crisis</button>
+            <button data-uri="/html/events/pulmonary-hypertensive-crisis-crisis.html"
+                data-title="Pulmonary Hypertensive" class="bg-crisis">Crisis</button>
         </div>
     </div>
     <div class="bg-tx event-title">Treatment</div>
 </div>
 <div class="page">
-    
+
     <strong>Initial Management</strong>
     <ul>
-        <li>Increase O<sub>2</sub> to 100%, ASAP: Call <span data-phone-number="Respiratory Therapy">Respiratory Therapy</span> for inhaled nitric oxide (iNO) 20-40 ppm</li>
-        <li>Deepen anesthetic/sedation, administer narcotic, but avoid decreasing SVR</li>
+        <li>Give 100% O<sub>2</sub>.
+            <br />Call <span data-phone-number="Respiratory Therapy">Respiratory Therapy</span> for
+            inhaled nitric oxide (iNO) 20-40 ppm.
+            <br />↓&nbsp;O<sub>2</sub> saturation may not be immediate.
+        </li>
+        <li>Consider stat TEE and ECMO</li>
+
+        <li class="no-weight">
+            Deepen anesthetic/sedation, consider fentanyl 1 MICROgram/kg or ketamine 0.5-1 mg/kg
+        </li>
+        <li class="has-weight">
+            Deepen anesthetic/sedation, consider fentanyl
+            <span id="weight-range-1"></span> MICROgrams
+            <span class="dose-definition">(1&nbsp;MICROgram/kg)</span>
+            or ketamine
+            <span id="weight-range-2"></span> mg
+            <span class="dose-definition">(0.5-1&nbsp;mg/kg)</span>
+        </li>
+
+
         <li>Administer muscle relaxant</li>
+        <li>If poor perfusion, consider chest compressions early</li>
     </ul>
-    <strong>Maintain coronary perfusion and treat RV ischemia </strong>
+
+    <strong>Hypotension Management</strong>
     <ul>
-        <li>Administer NOREPInephrine, phenylephrine, vasopressin to maintain perfusion</li>
+        <li>If hypotensive, give vasopressin
+            <span class="no-weight">0.03 units/kg </span>
+            <span class="has-weight"><span id="weight-range-3"></span> units 
+            <span class="dose-definition">(0.03&nbsp;units/kg)</span></span>
+            bolus, then:
+            <ul>
+                <li>To maintain perfusion:</li>
+                <li class="no-bullet">Vasopressin
+                    0.17-0.67 milliunits/kg/minute =
+                    0.01-0.03 units/kg/hour
+                </li>
+                <li class="no-bullet"><strong>OR</strong></li>
+                <li class="no-bullet">norepinephrine 0.05-0.3 MICROgrams/kg/min</li>
+        </li>
     </ul>
+    </li>
+    </ul>
+
     <strong>Ventilation</strong>
     <ul>
-        <li>Ventilate with low airway pressures &amp; long expiratory phase to maintain adequate tidal volume to avoid atelectasis and preserve FRC</li>
-        <li>Maintain normocapnia or mild hypocapnia. Use PEEP with caution</li>
+        <li>Ventilate with low airway pressures & long expiratory phase to maintain adequate tidal volume, avoid
+            atelectasis and preserve FRC</li>
+        <li>Maintain normocapnia or mild hypocapnia</li>
+        <li>PEEP may worsen pulmonary hypertension</li>
     </ul>
-    <strong>Fluid management</strong>
+
+    <strong>Further Management</strong>
     <ul>
-        <li>Use judicious isotonic fluid administration to reduce acid load</li>
-        <li>Correct acidosis with sodium bicarbonate</li>
+        <li>Administer isotonic fluid to achieve normovolemia and to reduce acid load, correct acidosis with sodium
+            bicarbonate</li>
         <li>Maintain NSR and AV synchrony</li>
         <li>Temperature: ensure normothermia</li>
-        <li>If <span data-uri="/html/events/cardiac-arrest-dx.html" data-title="Cardiac Arrest" class="uri">CARDIAC ARREST</span> occurs,
-            begin CPR and consider <span data-phone-number="ECMO">ECMO</span> as CPR may be ineffective if no intracardiac communication</li>
+
     </ul>
+
+    <strong>Crisis Management</strong>
+    <ul>
+        <li class="no-weight">
+            If <span data-uri="/html/events/cardiac-arrest-dx.html" data-title="Cardiac Arrest" class="uri">
+                CARDIAC ARREST</span> occurs or is imminent, give epinephrine 1-10 MICROgrams/kg
+        </li>
+        <li class="has-weight">
+            If <span data-uri="/html/events/cardiac-arrest-dx.html" data-title="Cardiac Arrest" class="uri">
+                CARDIAC ARREST</span> occurs or is imminent, give epinephrine <span id="weight-range-4"></span>
+            MICROgrams
+            <span class="dose-definition">(1-10&nbsp;MICROgrams/kg)</span>
+        </li>
+
+        <li>If <span data-uri="/html/events/cardiac-arrest-dx.html" data-title="Cardiac Arrest" class="uri">
+                CARDIAC ARREST</span> occurs, begin CPR and call <span data-phone-number="ECMO">ECMO</span> as CPR may
+            be ineffective if no
+            intracardiac communication
+        </li>
+    </ul>
+
 </div>
+
+<script>
+    if (app.weight > 0) {
+        // 1 MICROgram/kg
+        const calculatedRange1 = app.printNumber(app.weight, 0, 2);
+        document.getElementById("weight-range-1").textContent = calculatedRange1;
+
+        // 0.5-1 mg/kg
+        const calculatedRange2a = app.printNumber(app.weight * 0.5, 0, 2);
+        const calculatedRange2b = app.printNumber(app.weight, 0, 2);
+        document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;
+
+        // 0.03 units/kg
+        const calculatedRange3 = app.printNumber(app.weight * 0.03, 0, 2);
+        document.getElementById("weight-range-3").textContent = calculatedRange3;
+
+        // 1-10 MICROgrams/kg
+        const calculatedRange4a = app.printNumber(app.weight, 0, 2);
+        const calculatedRange4b = app.printNumber(app.weight * 10, 0, 2);
+        document.getElementById("weight-range-4").textContent = calculatedRange4a + "-" + calculatedRange4b;
+
+    }
+</script>
