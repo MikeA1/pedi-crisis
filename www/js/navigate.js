@@ -285,12 +285,10 @@
                     }
 
                     // Page should be loaded now. Update analytics.
-                    const analytics = window.ga
-                    if (analytics && analytics.trackView) {
+                    if (app.logAction) {
                         try {
-                            analytics.trackView(title);
-                        }
-                        catch (error) {
+                            app.logAction(title);
+                        } catch (error) {
                             console.error(error);
                         }
                     }
