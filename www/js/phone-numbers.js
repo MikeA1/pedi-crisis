@@ -99,7 +99,7 @@
             "Intraoperative Electrophysiology": "Intraoperative Electrophysiology",
             "Fire": "Fire",
             "PICU": "PICU",
-            "Respiratory Therapy": "Respiratory Therapy",
+            "Request Nitric Oxide": "Request Nitric Oxide",
         },
         // This function could be used elsewhere, but it's really only needed by "phone/index.html" at this time.
         sortCaseInsensitive: (a, b) => (a.localeCompare(b, 'en', {'sensitivity': 'base'})),
