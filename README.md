@@ -41,14 +41,14 @@ Follow [these steps](https://cordova.apache.org/docs/en/latest/guide/platforms/a
       - On Windows, this is something like `C:\Users\<UserName>\AppData\Local\Android\Sdk`
    - Edit the PATH environment variable to contain the two Android SDK paths. 
       - On Windows, this is like `C:\Users\<UserName>\AppData\Local\Android\Sdk\platform-tools` and `C:\Users\<UserName>\AppData\Local\Android\Sdk\tools`
-     (e.g., `/Android/SDK/platform-tools` and `/Android/SDK/tools`) and the Gradle `/bin` path to your PATH.
+     (e.g., `/Android/SDK/platform-tools` and `/Android/SDK/tools`).
    - Follow [these instructions](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#setting-environment-variables).
 2. Create an environment variable for `JAVA_HOME`.
    - Option 1: use the JDK path already installed by Android Studio (e.g., on Windows, `C:\Program Files\Android\Android Studio\jre`)
    - Option 2: download and extract OpenJdk v1.8.0; the path is the root directory of the extracted files
       - For Windows, try [OpenJdk v1.8.0_232-1](https://github.com/ojdkbuild/ojdkbuild).
 3. Edit the PATH environment variable to contain the Gradle path.
-   - Download and extract [Gradle](https://gradle.org/install/) version 4.10.3; the path is the `\bin` directory of the extracted files
+   - Download and extract [Gradle](https://gradle.org/install/) [version 4.10.3](https://services.gradle.org/distributions/gradle-4.10.3-bin.zip); the path is the `\bin` directory of the extracted files
 5. Build! `phonegap build android`
    - Linux/Mac: If you receive the error "spawn: EACCES", then run the following command: 
    ```
