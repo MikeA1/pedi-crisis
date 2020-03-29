@@ -49,8 +49,8 @@
         <li>Start inotrope infusion, as needed
             <ul>
                 <li>Dopamine 2-20 MICROgrams/kg/min infusion IV</li>
-                <li class="no-weight">Bolus epinephrine 1-10 MICROgrams/kg IV, consider infusion 0.05-1 MICROgrams/kg/min IV</li>
-                <li class="has-weight">Bolus epinephrine <span id="weight-range-1"></span> MICROgrams IV/IO <span class="dose-definition">(1-10 MICROgrams/kg IV)</span>, consider infusion 0.05-1 MICROgrams/kg/min IV</li>
+                <li class="no-weight">Bolus epinephrine 1-10 MICROgrams/kg IV/IO, consider infusion 0.05-1 MICROgrams/kg/min IV</li>
+                <li class="has-weight">Bolus epinephrine <span id="weight-range-1"></span> MICROgrams IV/IO <span class="dose-definition">(1-10 MICROgrams/kg IV/IO)</span>, consider infusion 0.05-1 MICROgrams/kg/min IV</li>
             </ul>
         </li>
         <li>Consider calcium IV</li>
@@ -65,7 +65,14 @@
         </div>
     </div>
     <ul id="list-group-3" class="display-none m-l-1">
-        <li>Start vasopressor infusion: phenylephrine, norepinephrine</li>
+        <li>Start vasopressor infusion
+            <ul>
+                <li>Consider infusion of norepinephrine 0.05-2 MICROgrams/kg/min IV</li>
+                <li class="no-weight">Bolus phenylephrine 1-20 MICROgrams/kg IV/IO, consider infusion 0.1-2 MICROgrams/kg/min IV</li>
+                <li class="has-weight">Bolus phenylephrine <span id="weight-range-2"></span> MICROgrams IV/IO 
+                    <span class="dose-definition">(1-20 MICROgrams/kg)</span>, consider infusion 0.1-2 MICROgrams/kg/min IV</li>
+            </ul>
+        </li>
         <li>Administer steroids for adrenal crisis</li>
         <li>Causes: drug-induced vasodilation, sepsis, <span data-uri="/html/events/anaphylaxis-dx.html" data-title="Anaphylaxis" class="uri">ANAPHYLAXIS</span>, adrenal crisis,
             adrenal insufficiency, hypocalcemia, thyroid crisis</li>
@@ -85,5 +92,10 @@
         const calculatedRange1a = app.printNumber(app.weight, 0, 2);
         const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
         document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
+
+         // 1-20 MICROgrams/kg
+         const calculatedRange2a = app.printNumber(app.weight, 0, 2);
+        const calculatedRange2b = app.printNumber(app.weight * 20, 0, 2);
+        document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;
     }
 </script>
