@@ -1,0 +1,47 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/events/hypotension-dx.html" data-title="Hypotension" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/hypotension-tx.html" data-title="Hypotension" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/hypotension-drugs.html" data-title="Hypotension" class="bg-drugs emphasis">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/events/hypotension-crisis.html" data-title="Hypotension" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+</div>
+<div class="page">
+    <ul class="drugs">
+
+        <li><span>Dopamine</span> 
+            <ul>
+                <li>Infusion 2-20 MICROgrams/kg/min IV</li>
+            </ul>
+        </li>
+
+        <li><span>Epinephrine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgrams bolus IV/IO</div>
+                    <div class="dose-definition"><span>1-10 MICROgrams/kg bolus IV/IO</span></div>
+                </li>
+                <li>Consider infusion 0.05-1 MICROgrams/kg/min IV</li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+
+<script>
+    if (app.weight > 0) {
+        // 1-10 MICROgrams/kg
+        const calculatedRange1a = app.printNumber(app.weight, 0, 2);
+        const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
+        document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
+    }
+</script>

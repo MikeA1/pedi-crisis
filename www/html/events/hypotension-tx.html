@@ -7,6 +7,9 @@
             <button data-uri="/html/events/hypotension-tx.html" data-title="Hypotension" class="bg-tx emphasis">Tx</button>
         </div>
         <div class="button-container">
+            <button data-uri="/html/events/hypotension-drugs.html" data-title="Hypotension" class="bg-drugs">Drugs</button>
+        </div>
+        <div class="button-container">
             <button data-uri="/html/events/hypotension-crisis.html" data-title="Hypotension" class="bg-crisis">Crisis</button>
         </div>
     </div>
@@ -43,13 +46,18 @@
         </div>
     </div>
     <ul id="list-group-2" class="display-none m-l-1">
-        <li>Start inotrope infusion (dopamine, epinephrine), as needed</li>
+        <li>Start inotrope infusion, as needed
+            <ul>
+                <li>Dopamine 2-20 MICROgrams/kg/min infusion IV</li>
+                <li class="no-weight">Bolus epinephrine 1-10 MICROgrams/kg IV, consider infusion 0.05-1 MICROgrams/kg/min IV</li>
+                <li class="has-weight">Bolus epinephrine <span id="weight-range-1"></span> MICROgrams IV/IO <span class="dose-definition">(1-10 MICROgrams/kg IV)</span>, consider infusion 0.05-1 MICROgrams/kg/min IV</li>
+            </ul>
+        </li>
         <li>Consider calcium IV</li>
         <li>Review ECG for rhythm disturbances or ischemia</li>
         <li>Send ABG, Hgb, electrolytes</li>
         <li>Causes: negative inotropic drugs (anesthetic agents), arrhythmias, <span data-uri="/html/events/hypoxia-dx.html" data-title="Hypoxia" class="uri">HYPOXIA</span>, and heart failure (ischemia)</li>
     </ul>
-
 
     <div id="button-group-3" class="button-group">
         <div class="button-container">
@@ -71,4 +79,11 @@
         {button: get("button-group-2"), content: get("list-group-2")},
         {button: get("button-group-3"), content: get("list-group-3")}
     ]);
+
+    if (app.weight > 0) {
+        // 1-10 MICROgrams/kg
+        const calculatedRange1a = app.printNumber(app.weight, 0, 2);
+        const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
+        document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
+    }
 </script>
