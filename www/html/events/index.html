@@ -46,6 +46,7 @@
             /* The `color` and `font-size` props match the rule for "dose-definition" */
             color: #888;
             font-size: 0.8em;
+            padding-bottom: 0.5em;
         }
 
         /* When in accessibility mode, we want text to be larger and black.
@@ -64,12 +65,16 @@
             /* override app's default line-height of 2 */
             line-height: 2;
             /* The `color` and `font-size` props match the rule for "dose-definition" */
-            color: #888;
+            color: black;
             font-size: 0.8em;
         }
 
-        body.hasAccessibility .hs-and-ts{
-            color: black !important;
+        body.hasDarkMode .hs-and-ts{
+            color: white !important;
+        }
+
+        body.hasEventDiagnosis.hasAccessibility.hasDarkMode .hs-and-ts{
+            color: white !important;
         }
 
     </style>
