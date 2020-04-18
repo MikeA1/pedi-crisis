@@ -162,14 +162,17 @@
             const eventRows = eventScreen.getElementsByClassName("event-row");
             Array.from(eventRows).forEach((eventRow) => {
                 // Pull out the uri, title, and background color.
-                const uri = eventRow.attributes.getNamedItem("data-uri").value;
-                const title = eventRow.attributes.getNamedItem("data-title").value;
-                let backgroundColor = null;
-                Array.from(eventRow.getElementsByTagName("td")).forEach(eventColumn => {
-                    if (eventColumn.classList.contains("event-number")){ backgroundColor = eventColumn.style.backgroundColor; }
-                });
-                // Add the event to the `body`. Event content is handled in the function below.
-                document.body.appendChild(loadEvent(uri, title, backgroundColor));
+                const uriItem = eventRow.attributes.getNamedItem("data-uri");
+                if (uriItem) {
+                    const uri = uriItem.value;
+                    const title = eventRow.attributes.getNamedItem("data-title").value;
+                    let backgroundColor = null;
+                    Array.from(eventRow.getElementsByTagName("td")).forEach(eventColumn => {
+                        if (eventColumn.classList.contains("event-number")){ backgroundColor = eventColumn.style.backgroundColor; }
+                    });
+                    // Add the event to the `body`. Event content is handled in the function below.
+                    document.body.appendChild(loadEvent(uri, title, backgroundColor));
+                }
             });
         }
     };
