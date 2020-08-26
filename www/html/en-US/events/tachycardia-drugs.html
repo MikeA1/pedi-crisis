@@ -1,0 +1,106 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/tachycardia-dx.html" data-title="Tachycardia, Unstable" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/tachycardia-tx.html" data-title="Tachycardia, Unstable" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/tachycardia-drugs.html" data-title="Tachycardia, Unstable" class="bg-drugs emphasis">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/tachycardia-crisis.html" data-title="Tachycardia, Unstable" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+</div>
+<div class="page">
+    <ul class="drugs">
+        <li><span>Adenosine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation">1st dose <span id="weight-range-1"></span> mg IV, rapid push; 2nd dose <span id="weight-range-2"></span> mg IV</div>
+                    <div class="dose-definition"><span>1st dose 0.1 mg/kg IV, rapid push, 6 mg MAX; 2nd dose 0.2 mg/kg IV, 12 mg MAX</span></div>
+                </li>
+            </ul>
+        </li>
+        
+        <li><span>Amiodarone</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> mg IV bolus over 20-60 min</div>
+                    <div class="dose-definition"><span>5 mg/kg IV bolus over 20-60 min</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Procainamide</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-4"></span> mg IV bolus over 30-60 min</div>
+                    <div class="dose-definition"><span>15 mg/kg IV bolus over 30-60 min</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Magnesium sulfate</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-5"></span> mg IV/IO</div>
+                    <div class="dose-definition"><span>25-50 mg/kg IV/IO, MAX 2 g</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Lidocaine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-6"></span> mg IV</div>
+                    <div class="dose-definition"><span>1 mg/kg IV, MAX 100 mg</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Sodium bicarbonate</span> (for quinidine-related SVT)
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-7"></span> mEq IV</div>
+                    <div class="dose-definition"><span>1 mEq/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+
+<script>
+    if (app.weight) {
+        const get = (id) => document.getElementById(id);
+
+        // 0.1 mg/kg, 6 mg MAX
+        get("weight-range-1").textContent = app.printNumber(Math.min(app.weight * 0.1, 6), 0, 2);
+
+        // 0.2 mg/kg, 12 mg MAX
+        get("weight-range-2").textContent = app.printNumber(Math.min(app.weight * 0.2, 12), 0, 2);
+
+        // 5 mg/kg
+        get("weight-range-3").textContent = app.printNumber(app.weight * 5, 0, 2);
+
+        // 15 mg/kg
+        get("weight-range-4").textContent = app.printNumber(app.weight * 15, 0, 2);
+
+        // 25-50 mg/kg, MAX 2 g
+        // If the lower and upper bound dosage is the same due to "MAX 2 g", then display just one dosage.
+        const weight5a = app.printNumber(Math.min(app.weight * 25, 2000), 0, 2);
+        const weight5b = app.printNumber(Math.min(app.weight * 50, 2000), 0, 2)
+        get("weight-range-5").textContent = weight5a === weight5b ? weight5a : weight5a + "-" + weight5b;
+
+        // 1 mg/kg, MAX 100 mg
+        get("weight-range-6").textContent = app.printNumber(Math.min(app.weight, 100), 0, 2);
+
+        // 1 mEq/kg
+        get("weight-range-7").textContent = app.printNumber(app.weight, 0, 2);
+
+    }
+</script>

@@ -20,7 +20,7 @@
     // Init: the names of settings are the names of CSS classes. These are used
     // for feature detection throughout the app.
     // Important: the list of settings names in `app.settings.names` should stay
-    // in sync with the settings listed in "www/html/settings/index.html".
+    // in sync with the settings listed in "www/html/{lang}/settings/index.html".
     app.settings.names.forEach(name => {
         const value = localStorage.getItem(name);
         if (value === "on") {

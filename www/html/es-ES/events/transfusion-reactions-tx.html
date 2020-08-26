@@ -1,0 +1,124 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/transfusion-reactions-dx.html" data-title="Transfusion Reactions" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/transfusion-reactions-ddx.html" data-title="Transfusion Reactions" class="bg-ddx">DDx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/transfusion-reactions-tx.html" data-title="Transfusion Reactions" class="bg-tx emphasis">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/transfusion-reactions-drugs.html" data-title="Transfusion Reactions" class="bg-drugs">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/transfusion-reactions-crisis.html" data-title="Transfusion Reactions" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-tx event-title">Treatment</div>
+</div>
+<div class="page">
+    <div>For All Reactions:</div>
+    <ul>
+        <li>Stop transfusion</li>
+        <li>Disconnect donor product and IV tubing</li>
+        <li>Infuse normal saline through clean tubing</li>
+        <li>Examine blood product ID; determine correct pt</li>
+        <li>Send product to <span data-phone-number="Blood Bank">Blood Bank</span></li>
+        <li>Consider <span class="uri" data-uri="/html/{lang}/events/transfusion-reactions-ddx.html" data-title="Transfusion Reactions">DDx</span></li>
+    </ul>
+
+    <strong>Pick One:</strong>
+
+    <div id="button-group-1" class="button-group">
+        <div class="button-container">
+            <button><strong>Hemolytic Transfusion Reaction</strong></button>
+        </div>
+    </div>
+    <div id="list-group-1" class="display-none m-l-1">
+        <div>Signs: Hemoglobinemia, hemoglobinuria,  DIC, ↓&nbsp;BP, ↑&nbsp;HR, bronchospasm</div>
+        <ul>
+            <li class="no-weight">Furosemide 1-2 mg/kg (MAX 40 mg)</li>
+            <li class="has-weight">Furosemide <span id="weight-range-1"></span> mg <span class="dose-definition">(1-2 mg/kg, MAX 40 mg)</span></li>
+            <li class="no-weight">Mannitol 0.25-1 g/kg</li>
+            <li class="has-weight">Mannitol <span id="weight-range-2"></span> g <span class="dose-definition">(0.25-1 g/kg)</span></li>
+            <li>Support BP to maintain renal perfusion</li>
+            <li class="no-weight">Maintain urine output at least 1-2 mL/kg/hour</li>
+            <li class="has-weight">Maintain urine output at least <span id="urine-output"></span> mL/hour <span class="dose-definition">(1-2 mL/kg/hour)</span></li>
+            <li>Prepare for cardiovascular instability</li>
+            <li>Send blood and urine sample to laboratory</li>
+        </ul>
+    </div>
+
+    <div id="button-group-2" class="button-group">
+        <div class="button-container">
+            <button><strong>Non-Hemolytic Transfusion Reaction</strong></button>
+        </div>
+    </div>
+    <div id="list-group-2" class="display-none m-l-1">
+        <div>Signs: ↓&nbsp;BP,  bronchospasm, pulmonary edema,  fever,  rash</div>
+        <ul>
+            <li>Treat fever</li>
+            <li>Treat pulmonary edema</li>
+            <li>Observe for signs of hemolysis</li>
+        </ul>
+    </div>  
+
+    <div id="button-group-3" class="button-group">
+        <div class="button-container">
+            <button><strong>Anaphylactic Transfusion Reaction</strong></button>
+        </div>
+    </div>
+    <div id="list-group-3" class="display-none m-l-1">
+        <div>Signs: Erythema, urticaria, angioedema, bronchospasm, tachycardia, shock</div>
+        <ul>
+            <li>Support airway and circulation as necessary</li>
+
+            <li class="no-weight">Epinephrine 1-10 MICROgrams/kg IV</li>
+            <li class="has-weight">Epinephrine <span id="weight-range-3"></span> MICROgrams <span class="dose-definition">(1-10 MICROgrams/kg)</span> IV</li>
+
+            <li class="no-weight">Diphenhydramine 1 mg/kg IV (MAX 50 mg)</li>
+            <li class="has-weight">Diphenhydramine <span id="weight-range-4"></span> mg <span class="dose-definition">(1 mg/kg, MAX 50 mg)</span> IV</li>
+            
+            <li class="no-weight">Methylprednisolone 2 mg/kg IV (MAX 60 mg)</li>
+            <li class="has-weight">Methylprednisolone <span id="weight-range-5"></span> mg <span class="dose-definition">(2 mg/kg, MAX 60 mg)</span> IV</li>
+
+            <li>Maintain intravascular volume</li>
+        </ul>
+    </div>
+    
+</div>
+
+<script>
+    // The "pick one" section uses the accordion paradigm to show only relevant data.
+    const get = (id => document.getElementById(id)); // (this is a helper function)
+    app.createAccordion([
+        {button: get("button-group-1"), content: get("list-group-1")}, 
+        {button: get("button-group-2"), content: get("list-group-2")},
+        {button: get("button-group-3"), content: get("list-group-3")}
+    ]);
+
+    if (app.weight) {
+
+        // 1-2 mg/kg, MAX 40 mg
+        const weight1a = app.printNumber(Math.min(app.weight, 40), 0, 2);
+        const weight1b = app.printNumber(Math.min(app.weight * 2, 40), 0, 2);
+        get("weight-range-1").textContent = weight1a === weight1b ? weight1a : weight1a + "-" + weight1b;
+
+        // 0.25-1 g/kg
+        get("weight-range-2").textContent = app.printNumber(app.weight * .25, 0, 2) + "-" + app.printNumber(app.weight, 0, 2);
+
+        // 1-2 mL/kg/hour
+        get("urine-output").textContent = app.printNumber(app.weight, 0, 2) + "-" + app.printNumber(app.weight * 2, 0, 2);
+
+        // 1-10 MICROgrams/kg
+        get("weight-range-3").textContent = app.printNumber(app.weight, 0, 2) + "-" + app.printNumber(app.weight * 10, 0, 2);;
+
+        // 1 mg/kg, MAX 50 mg
+        get("weight-range-4").textContent = app.printNumber(Math.min(app.weight, 50), 0, 2);
+
+        // 2 mg/kg, MAX 60 mg
+        get("weight-range-5").textContent = app.printNumber(Math.min(app.weight * 2, 60), 0, 2);
+    }
+</script>

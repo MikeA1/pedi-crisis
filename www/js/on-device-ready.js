@@ -38,7 +38,7 @@
             app.navigate.onHistoryChange(event);
         } else {
             // Automatically navigate to the event page.
-            let uri = "/html/events/index.html";
+            let uri = "/html/{lang}/events/index.html";
             let header = "Pedi Crisis";
             let title = "Pedi Crisis";
             let hash = "#events";

@@ -137,7 +137,7 @@
     </style>
     <div id="nav">
         <div class="button-group" style="padding-top:.5em; padding-bottom:0;">
-            <div data-uri="/html/events/index.html" data-title="Pedi Crisis" style="align-self: center; padding-right: 4px;">
+            <div data-uri="/html/{lang}/events/index.html" data-title="Pedi Crisis" style="align-self: center; padding-right: 4px;">
                 <img src="img/logo.png" height=50 width=50 />
             </div>
             <div style="align-self: center; flex: 8; padding-right: 4px;">
@@ -145,21 +145,21 @@
             </div>
             <div style="align-self: center; flex: 1;">
                 <button id="back-button" class="fill-available" style="height: 1.8em; margin: 4px 0;">Back</button>
-                <button id="settings" class="fill-available" style="height: 1.8em;" data-uri="/html/settings/index.html" id="settings" style="margin-bottom: 4px;">⚙</button>
+                <button id="settings" class="fill-available" style="height: 1.8em;" data-uri="/html/{lang}/settings/index.html" id="settings" style="margin-bottom: 4px;">⚙</button>
             </div>
         </div>
         <div class="button-group" style="padding-top: 4px">
             <div class="button-container" style="padding-right: 6px;">
-                <button id="events" data-uri="/html/events/index.html" data-title="Pedi Crisis">Event List</button>
+                <button id="events" data-uri="/html/{lang}/events/index.html" data-title="Pedi Crisis">Event List</button>
             </div>
             <div class="button-container" style="padding-right: 6px;">
-                <button id="phone" data-uri="/html/phone/index.html" data-title="Pedi Crisis">Phone Numbers</button>
+                <button id="phone" data-uri="/html/{lang}/phone/index.html" data-title="Pedi Crisis">Phone Numbers</button>
             </div>
             <div class="button-container">
                 <!-- The "no-transition" class prevents an animation/transition CSS class from being applied to the object. -->
                 <!-- In this case, the class is needed because iOS freaks out w.r.t. autofocus. -->
                 <!-- Another option is to use a different animation for this page (or perhaps all pages?) -->
-                <button id="weight" data-uri="/html/weight/index.html" data-title="Pedi Crisis" data-add-class="no-transition"><span>Pt Wt </span><span style="white-space: nowrap;">---</span></button>
+                <button id="weight" data-uri="/html/{lang}/weight/index.html" data-title="Pedi Crisis" data-add-class="no-transition"><span>Pt Wt </span><span style="white-space: nowrap;">---</span></button>
             </div>
         </div>
     </div>
@@ -173,6 +173,7 @@
     <!-- Pedi Crisis scripts -->
     <script type="text/javascript" src="js/last-open-time.js"></script>
     <script type="text/javascript" src="js/settings.js"></script>
+    <script type="text/javascript" src="js/language.js"></script>
     <script type="text/javascript" src="js/insomnia.js"></script>
     <script type="text/javascript" src="js/weight.js"></script>
     <script type="text/javascript" src="js/swipe.js"></script>

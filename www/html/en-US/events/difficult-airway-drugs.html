@@ -1,0 +1,39 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/difficult-airway-tx.html" data-title="Difficult Airway" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/difficult-airway-drugs.html" data-title="Difficult Airway" class="bg-drugs emphasis">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/difficult-airway-misc.html" data-title="Difficult Airway" class="bg-misc">Misc</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/difficult-airway-crisis.html" data-title="Difficult Airway" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+</div>
+<div class="page">
+    <ul class="drugs">
+        <li><span>Sugammadex</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> mg</div>
+                    <div class="dose-definition"><span>16 mg/kg</span></div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<script>
+    if (app.weight > 0) {
+        // We'll fill in the weight ranges here.
+
+        // 16 mg/kg
+        const calculatedRange1 = app.printNumber(app.weight * 16, 0, 2); 
+        document.getElementById("weight-range-1").textContent = calculatedRange1;
+    }
+</script>

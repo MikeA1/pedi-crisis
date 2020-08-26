@@ -1,0 +1,81 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/increased-intracranial-pressure-dx.html" data-title="Increased Intracranial Pressure" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/increased-intracranial-pressure-tx.html" data-title="Increased Intracranial Pressure" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/increased-intracranial-pressure-drugs.html" data-title="Increased Intracranial Pressure" class="bg-drugs emphasis">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/increased-intracranial-pressure-crisis.html" data-title="Increased Intracranial Pressure" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+</div>
+<div class="page">
+    <ul class="drugs">
+
+        <li><span>3% Saline</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> mL over 20 min</div>
+                    <div class="dose-definition"><span>1-5 mL/kg over 20 min</span></div>
+                </li>
+                <li>Then infusion 0.1-2 mL/kg/hour</li>
+            </ul>
+        </li>
+
+        <li><span>Mannitol</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> g over 20 min</div>
+                    <div class="dose-definition"><span>0.25-1 g/kg over 20 min</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Furosemide</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> mg</div>
+                    <div class="dose-definition"><span>1-2 mg/kg, starting MAX 20 mg</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Keppra (levetiracetam)</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-4"></span> mg</div>
+                    <div class="dose-definition"><span>10-30 mg/kg IV, MAX 2500 mg</span></div>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+<script>
+    if (app.weight) {
+        const get = (id) => document.getElementById(id);
+
+        // 1-5 mL/kg over 20 min
+        get("weight-range-1").textContent = app.printNumber(app.weight, 0, 2) + "-" + app.printNumber(app.weight * 5, 0, 2);
+
+        // 0.25-1 g/kg
+        get("weight-range-2").textContent = app.printNumber(app.weight * 0.25, 0, 2) + "-" + app.printNumber(app.weight, 0, 2);
+
+        // 1-2 mg/kg, starting MAX 20 mg
+        const weight3a = app.printNumber(Math.min(app.weight, 20), 0, 2);
+        const weight3b = app.printNumber(Math.min(app.weight * 2, 20), 0, 2);
+        get("weight-range-3").textContent = weight3a === weight3b ? weight3a : weight3a + "-" + weight3b;
+
+        // 10-30 mg/kg, MAX 2500 mg
+        const weight4a = app.printNumber(Math.min(app.weight * 10, 2500), 0, 2);
+        const weight4b = app.printNumber(Math.min(app.weight * 30, 2500), 0, 2);
+        get("weight-range-4").textContent = weight4a === weight4b ? weight4a : weight4a + "-" + weight4b;
+    }
+</script>
+        

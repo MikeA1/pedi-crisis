@@ -414,7 +414,7 @@ ul, ol {
 /* Not all links should be green (e.g., event names in the Events screen.)
  * So, this rule is intended for these two situations:
  * 1. Elements with the class `.uri`
- *    Example: <span class="uri" data-uri="/html/events/air-embolism-ddx.html" data-title="Air Embolism">DDx</span
+ *    Example: <span class="uri" data-uri="/html/{lang}/events/air-embolism-ddx.html" data-title="Air Embolism">DDx</span
  * 2. Anchor elements. Telephone elements are used in the Phone Number screen and various Event screens.
  *    Example: <a href="tel:555-555-5555">
  */
@@ -426,7 +426,7 @@ a, .uri {
 }
 
 /* For non-anchor elements that act like links.
- * Example: <button data-uri="/html/events/air-embolism-dx.html" data-title="Air Embolism" class="bg-dx">Dx</button>
+ * Example: <button data-uri="/html/{lang}/events/air-embolism-dx.html" data-title="Air Embolism" class="bg-dx">Dx</button>
  */
 [data-uri] {
     cursor: pointer;

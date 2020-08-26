@@ -1,0 +1,73 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/bradycardia-dx.html" data-title="Bradycardia" class="bg-dx emphasis">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/bradycardia-tx.html" data-title="Bradycardia" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/bradycardia-drugs.html" data-title="Bradycardia" class="bg-drugs">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/bradycardia-misc.html" data-title="Bradycardia" class="bg-misc">Misc</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/bradycardia-crisis.html" data-title="Bradycardia" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-dx event-title">Verify DX</div>
+</div>
+<div class="page bradycardia">
+    <!-- Style for the following Age/HR table.-->
+    <style>
+        .bradycardia table {
+            border: 1px solid #888;
+            border-collapse: collapse;
+        }
+        .bradycardia tr {
+            border-bottom: 1px solid #888;
+        }
+        .bradycardia tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        body.hasDarkMode .bradycardia tr:nth-child(even) {
+            background-color: #222;
+        }
+        .bradycardia td {
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+            border-right: 1px solid #888;
+        }
+        .bradycardia thead {
+            font-weight: bold;
+            background-color: #ddd !important;
+        }
+        body.hasDarkMode .bradycardia thead {
+            background-color: #333 !important;
+        }
+    </style>
+    <!-- Formatting Note: added a bunch of no-break-spaces (&nbsp;) to control line wraps on smaller screen sizes (e.g., iPhone 5/SE). -->
+    <table>
+        <thead>
+            <tr>
+                <td>Age</td>
+                <td>HR</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>&lt;&nbsp;30 days</td>
+                <td>&lt;&nbsp;100</td>
+            </tr>
+            <tr>
+                <td>&ge;&nbsp;30&nbsp;days &lt;&nbsp;1&nbsp;yr</td>
+                <td>&lt;&nbsp;80</td>
+            </tr>
+            <tr>
+                <td>&ge;&nbsp;1&nbsp;yr</td>
+                <td>&lt;&nbsp;60</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

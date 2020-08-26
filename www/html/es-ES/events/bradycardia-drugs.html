@@ -1,0 +1,89 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/bradycardia-dx.html" data-title="Bradycardia" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/bradycardia-tx.html" data-title="Bradycardia" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/bradycardia-drugs.html" data-title="Bradycardia" class="bg-drugs emphasis">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/bradycardia-misc.html" data-title="Bradycardia" class="bg-misc">Misc</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/bradycardia-crisis.html" data-title="Bradycardia" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+</div>
+<div class="page">
+    <ul class="drugs">
+        <li>
+            <span>Atropine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> mg IV</div>
+                    <div class="dose-definition"><span>0.01-0.02 mg/kg IV</span></div>
+                </li>             
+            </ul>
+        </li>
+
+        <li>
+            <span>Calcium chloride</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> mg IV</div>
+                    <div class="dose-definition"><span>10-20 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <span>Calcium gluconate</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-4"></span> mg IV</div>
+                    <div class="dose-definition"><span>50 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <span>Glucagon</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-5"></span> MICROgrams IV</div>
+                    <div class="dose-definition"><span>50 MICROgrams/kg IV</div>
+                </li>
+                <li>Then infusion 0.07 mg/kg/hour IV, MAX 5 mg/hr</li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+
+<script>
+    if (app.weight > 0) {
+        // We'll fill in the weight ranges here.
+
+        // 0.01-0.02 mg/kg
+        const calculatedRange2a = app.printNumber(app.weight * 0.01, 0, 2); 
+        const calculatedRange2b = app.printNumber(app.weight * 0.02, 0, 2); 
+        document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;
+
+        // 10-20 mg/kg
+        const calculatedRange3a = app.printNumber(app.weight * 10, 0, 2); 
+        const calculatedRange3b = app.printNumber(app.weight * 20, 0, 2); 
+        document.getElementById("weight-range-3").textContent = calculatedRange3a + "-" + calculatedRange3b;
+
+        // 50 mg/kg
+        const calculatedRange4 = app.printNumber(app.weight * 50, 0, 2); 
+        document.getElementById("weight-range-4").textContent = calculatedRange4;
+
+        // 50 MICROgrams/kg
+        const calculatedRange5 = app.printNumber(app.weight * 50, 0, 2); 
+        document.getElementById("weight-range-5").textContent = calculatedRange5;
+    }
+</script>

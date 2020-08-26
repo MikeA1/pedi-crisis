@@ -4,7 +4,7 @@
 
     if (!app.lastOpenTime) {
         // Load the disclaimer, which navigates on to the walkthrough.
-        const uri = "/html/settings/disclaimer.html";
+        const uri = "/html/{lang}/settings/disclaimer.html";
         app.navigate.next(uri);
     }
 

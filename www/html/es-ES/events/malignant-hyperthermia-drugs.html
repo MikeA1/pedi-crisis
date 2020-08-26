@@ -1,0 +1,104 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/malignant-hyperthermia-dx.html" data-title="Malignant Hyperthermia" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/malignant-hyperthermia-ddx.html" data-title="Malignant Hyperthermia" class="bg-ddx">DDx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/malignant-hyperthermia-tx.html" data-title="Malignant Hyperthermia" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/malignant-hyperthermia-drugs.html" data-title="Malignant Hyperthermia" class="bg-drugs emphasis">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/malignant-hyperthermia-crisis.html" data-title="Malignant Hyperthermia" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+</div>
+<div class="page">
+    <ul class="drugs">
+
+        <li><span>Dantrolene</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> mg, q5 min as needed</div>
+                    <div class="dose-definition"><span>2.5 mg/kg IV, q5 min as needed</span></div>
+                    <li>Dantrium/Revonto: Assign dedicated person to mix 20 mg vial with 60 mL non-bacteriostatic sterile water</li>
+                    <li>Ryanodex: 250 mg mixed with 5 mL non-bacteriostatic sterile water</li>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Sodium bicarbonate</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> mEq IV</div>
+                    <div class="dose-definition"><span>1-2 mEq/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Calcium gluconate</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> mg IV</div>
+                    <div class="dose-definition"><span>30 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Calcium chloride</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-4"></span> mg IV</div>
+                    <div class="dose-definition"><span>10 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Insulin</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-5"></span> units IV</div>
+                    <div class="dose-definition"><span>0.1 units/kg IV, MAX 10 units</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Dextrose</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-6"></span> g</div>
+                    <div class="dose-definition"><span>0.5-1 g/kg</span></div>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+<script>
+    if (app.weight) {
+        const get = (id) => document.getElementById(id);
+
+        // 2.5 mg/kg
+        get("weight-range-1").textContent = app.printNumber(app.weight * 2.5, 0, 2);
+
+        // 1-2 mEq/kg
+        get("weight-range-2").textContent = app.printNumber(app.weight, 0, 2) + "-" + app.printNumber(app.weight * 2, 0, 2);
+
+        // 30 mg/kg
+        get("weight-range-3").textContent = app.printNumber(app.weight * 30, 0, 2);
+
+        // 10 mg/kg
+        get("weight-range-4").textContent = app.printNumber(app.weight * 10, 0, 2);
+
+        // 0.1 units/kg IV, MAX 10 units
+        get("weight-range-5").textContent = app.printNumber(Math.min(app.weight * 0.1, 10), 0, 2);
+
+        // 0.5-1 g/kg
+        get("weight-range-6").textContent = app.printNumber(app.weight * 0.5, 0, 2) + "-" + app.printNumber(app.weight, 0, 2);
+    }
+</script>

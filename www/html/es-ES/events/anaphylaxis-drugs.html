@@ -1,0 +1,123 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/anaphylaxis-dx.html" data-title="Anaphylaxis" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/anaphylaxis-ddx.html" data-title="Anaphylaxis" class="bg-ddx">DDx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/anaphylaxis-tx.html" data-title="Anaphylaxis" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/anaphylaxis-drugs.html" data-title="Anaphylaxis" class="bg-drugs emphasis">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/anaphylaxis-crisis.html" data-title="Anaphylaxis" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+</div>
+<div class="page">
+    <ul class="drugs">
+        <li>
+            <span>Epinephrine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgrams IV/IO or <span id="weight-range-9"></span> mg IM q5-15 min</div>
+                    <div class="dose-definition"><span>1-10 MICROgrams/kg IV/IO or 0.01 mg/kg IM q5-15 min</span></div>
+                </li>
+                <li>Consider infusion 0.02-1 MICROgrams/kg/min IV</li>
+            </ul>
+        </li>
+
+        <li>
+            <span>Vasopressin</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> milliunits IV</div>
+                    <div class="dose-definition"><span>10 milliunits/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <span>Albuterol</span>
+            <ul>
+                <li>4-10 puffs as needed</li>
+            </ul>
+        </li>
+
+        <li>
+            <span>Methylprednisolone</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-4"></span> mg IV/IO</div>
+                    <div class="dose-definition"><span>2 mg/kg IV/IO, MAX 100 mg</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <span>Diphenhydramine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-5"></span> mg IV/IO</div>
+                    <div class="dose-definition"><span>1 mg/kg IV/IO MAX 50 mg</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <span>Famotidine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-6"></span> mg IV</div>
+                    <div class="dose-definition"><span>0.25 mg/kg IV MAX 20 mg</span></div>
+                </li>
+            </ul>
+        </li>
+     
+        <li>
+            <span>Ranitidine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-7"></span> mg IV</div>
+                    <div class="dose-definition"><span>1 mg/kg IV MAX 50 mg</span></div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<script>
+    if (app.weight > 0) {
+        // 1-10 MICROgrams/kg
+        const calculatedRange1a = app.printNumber(app.weight, 0, 2);
+        const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
+        document.getElementById("weight-range-1").textContent = (calculatedRange1a + "-" + calculatedRange1b);
+
+        // 10 MICROunits/kg
+        const calculatedRange3 = app.printNumber(app.weight * 10);
+        document.getElementById("weight-range-3").textContent = calculatedRange3;
+
+        // 2 mg/kg, MAX 100 mg
+        const calculatedRange4 = app.printNumber(Math.min(app.weight * 2, 100), 0, 2);
+        document.getElementById("weight-range-4").textContent = calculatedRange4;
+
+        // 1 mg/kg, MAX 50 mg
+        const calculatedRange5 = app.printNumber(Math.min(app.weight * 2, 50), 0, 2);
+        document.getElementById("weight-range-5").textContent = calculatedRange5;
+
+        // 0.25 mg/kg, MAX 20 mg
+        const calculatedRange6 = app.printNumber(Math.min(app.weight * 0.25, 20), 0, 2);
+        document.getElementById("weight-range-6").textContent = calculatedRange6;
+
+        // 1 mg/kg, MAX 50 mg
+        const calculatedRange7 = app.printNumber(Math.min(app.weight * 1, 50), 0, 2);
+        document.getElementById("weight-range-7").textContent = calculatedRange7;
+        
+        // 0.01 mg/kg
+        document.getElementById("weight-range-9").textContent = app.printNumber(app.weight * 0.01, 0, 2);
+    }
+</script>

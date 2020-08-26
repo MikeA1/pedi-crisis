@@ -1,0 +1,95 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/trauma-dx.html" data-title="Trauma" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/trauma-tx.html" data-title="Trauma" class="bg-tx emphasis">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/trauma-drugs.html" data-title="Trauma" class="bg-drugs">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/trauma-crisis.html" data-title="Trauma" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-tx event-title">Treatment</div>
+</div>
+<div class="page">
+    <strong>Pick One:</strong>
+
+    <div id="button-group-1" class="button-group">
+        <div class="button-container">
+            <button>Set-up prior to patient arrival to OR</button>
+        </div>
+    </div>
+    <ul id="list-group-1" class="display-none m-l-1">
+        <li>Assemble team and assign roles</li>
+        <li>Estimate weight and prepare emergency drugs</li>
+        <li>Gather equipment:
+            <ul>
+                <li>Airway supplies</li>
+                <li>Line placement and monitoring devices</li>
+                <li>Fluid warmer/rapid infusion device</li>
+                <li>Code cart with programmed defibrillator</li>
+            </ul>
+        </li>
+        <li>Type and cross blood products. Activate massive transfusion protocol if indicated
+            <ul>
+                <li>Call <span data-phone-number="Blood Bank">Blood Bank</span></li>
+            </ul>
+        </li>
+    </ul>
+
+    <div id="button-group-2" class="button-group">
+        <div class="button-container">
+            <button>On patient arrival to OR</button>
+        </div>
+    </div>
+    <ul id="list-group-2" class="display-none m-l-1">
+        <li>Maintain c-spine precautions for transport</li>
+        <li>Secure/confirm airway (often aspiration risk, unstable c-spine)</li>
+        <li>Ensure adequate ventilation (maintain PIP &lt; 20 cm H<sub>2</sub>0)</li>
+        <li>Obtain/confirm large-bore IV access (central or intraosseous if peripheral unsuccessful)</li>
+        <li>Assess hemodynamic stability.  Pre-induction fluid bolus recommended if hypovolemic</li>
+        <li>
+            <span class="no-weight">20 mL/kg LR or NS (repeat x 2) and/or 10 mL/kg RBCs or 20 mL/kg whole blood.</span>
+            <span class="has-weight"><span id="weight-range-1"></span> mL <span class="dose-definition">(20 mL/kg)</span> LR or NS (repeat x 2)
+                and/or <span id="weight-range-2"></span> mL <span class="dose-definition">(10 mL/kg)</span> RBCs
+                or <span id="weight-range-3"></span> mL <span class="dose-definition">(20 mL/kg)</span> whole blood.
+            </span>
+            <ul>
+                <li>Call <span data-phone-number="Blood Bank">Blood Bank</span></li>
+                <li>If needed, go to <span data-uri="/html/{lang}/events/massive-hemorrhage-dx.html" data-title="Trauma" class="uri">MASSIVE HEMORRHAGE</span></li>
+            </ul>
+        </li>
+        <li>Arterial and central venous line placement if indicated</li>
+        <li>Maintain normothermia</li>
+        <li>Monitor and treat associated conditions
+            <ul>
+                <li>Anemia, coagulopathy, acidosis, electrolyte derangements</li>
+            </ul>
+        </li>
+        <li>Continuously assess for undiagnosed secondary and/or developing injuries, blood loss</li>
+    </ul>
+</div>
+<script>
+    // The "pick one" section uses the accordion paradigm to show only relevant data.
+    const get = (id => document.getElementById(id)); // (this is a helper function)
+    app.createAccordion([
+        {button: get("button-group-1"), content: get("list-group-1")}, 
+        {button: get("button-group-2"), content: get("list-group-2")}
+    ]);
+
+    if (app.weight) {
+        // 20 mL/kg
+        get("weight-range-1").textContent = app.printNumber(app.weight * 20, 0, 2);
+
+        // 10 mL/kg
+        get("weight-range-2").textContent = app.printNumber(app.weight * 10, 0, 2);
+
+        // 20 mL/kg
+        get("weight-range-3").textContent = app.printNumber(app.weight * 20, 0, 2);
+    }
+</script>
+    

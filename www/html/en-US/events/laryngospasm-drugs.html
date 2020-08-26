@@ -1,0 +1,100 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/laryngospasm-dx.html" data-title="Laryngospasm" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/laryngospasm-ddx.html" data-title="Laryngospasm" class="bg-ddx">DDx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/laryngospasm-tx.html" data-title="Laryngospasm" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/laryngospasm-drugs.html" data-title="Laryngospasm" class="bg-drugs emphasis">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/laryngospasm-crisis.html" data-title="Laryngospasm" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-drugs event-title">Drug/Dosage Summary</div>
+</div>
+<style>
+    body.no-weight div.dose-calculation.inline {
+        display: none;
+    }
+
+    body.has-weight div.dose-calculation.inline {
+        display: inline;
+    }
+
+    body.no-weight div.dose-definition.inline {
+        display: inline;
+    }
+
+    body.has-weight div.dose-definition.inline {
+        display: block;
+    }
+</style>
+<div class="page">
+    <ul class="drugs">
+        <li><span>Propofol</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> mg IV</div>
+                    <div class="dose-definition"><span>1-3 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+        <li><span>Succinylcholine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> mg IV/IO</div>
+                    <div class="dose-definition"><span>0.1-2 mg/kg IV/IO</span></div>
+                </li>
+                <li>If no IV: <div class="dose-calculation inline"><span id="weight-range-3"></span> mg IM</div>
+                    <div class="dose-definition inline"><span>2-4 mg/kg IM</span></div>
+                </li>
+            </ul>
+        </li>
+        <li><span>Atropine</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-4"></span> mg IV</div>
+                    <div class="dose-definition"><span>0.02 mg/kg IV</span></div>
+                </li>
+                <li>If no IV: <div class="dose-calculation inline"><span id="weight-range-5"></span> mg IM</div>
+                    <div class="dose-definition inline"><span>0.04 mg/kg IM</span></div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script>
+    if (app.weight > 0) {
+        // We'll fill in the weight ranges here.
+
+        // 1-3 mg/kg
+        const calculatedRange1a = app.printNumber(app.weight * 1, 0, 2);
+        const calculatedRange1b = app.printNumber(app.weight * 3, 0, 2);
+        document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
+
+        // 0.1-2 mg/kg
+        const calculatedRange2a = app.printNumber(app.weight * 0.1, 0, 2);
+        const calculatedRange2b = app.printNumber(app.weight * 2, 0, 2);
+        document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;
+
+        // 2-4 mg/kg
+        const calculatedRange3a = app.printNumber(app.weight * 2, 0, 2);
+        const calculatedRange3b = app.printNumber(app.weight * 4, 0, 2);
+        document.getElementById("weight-range-3").textContent = calculatedRange3a + "-" + calculatedRange3b;
+
+        // 0.02 mg/kg
+        const calculatedRange4 = app.printNumber(app.weight * 0.02, 0, 2);
+        document.getElementById("weight-range-4").textContent = calculatedRange4;
+
+        // 0.04 mg/kg
+        const calculatedRange5 = app.printNumber(app.weight * 0.04, 0, 2);
+        document.getElementById("weight-range-5").textContent = calculatedRange5;
+
+    }
+</script>

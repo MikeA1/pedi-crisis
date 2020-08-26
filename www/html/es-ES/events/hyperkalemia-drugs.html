@@ -1,0 +1,115 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/hyperkalemia-dx.html" data-title="Hyperkalemia" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/hyperkalemia-ddx.html" data-title="Hyperkalemia" class="bg-ddx">DDx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/hyperkalemia-tx.html" data-title="Hyperkalemia" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/hyperkalemia-drugs.html" data-title="Hyperkalemia" class="bg-drugs emphasis">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/hyperkalemia-crisis.html" data-title="Hyperkalemia" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+</div>
+<div class="page">
+    <ul class="drugs">
+
+        <li>
+            <span>Calcium chloride</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> mg IV</div>
+                    <div class="dose-definition"><span>20 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <span>Calcium gluconate</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> mg IV</div>
+                    <div class="dose-definition"><span>60-100 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+        
+        <li><span>Sodium bicarbonate</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> mEq IV</div>
+                    <div class="dose-definition"><span>1-2 mEq/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Albuterol</span>
+            <ul>
+                <li>4-10 puffs through ETT or nebulized</li>
+            </ul>
+        </li>
+
+        <li><span>Dextrose</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-4"></span> g IV</div>
+                    <div class="dose-definition"><span>0.5-1 g/kg IV, MAX 50 g</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Insulin</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-5"></span> Units IV</div>
+                    <div class="dose-definition"><span>0.1 Units/kg IV, MAX 10 Units</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Furosemide</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-8"></span> mg IV</div>
+                    <div class="dose-definition"><span>0.5-1 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+        
+    </ul>
+</div>
+
+<script>
+    if (app.weight) {
+        const get = (id) => document.getElementById(id);
+
+        // 60-100 mg/kg
+        get("weight-range-1").textContent = app.printNumber(app.weight * 60, 0, 2) + "-" + app.printNumber(app.weight * 100, 0, 2);
+
+        // 20 mg/kg
+        get("weight-range-2").textContent = app.printNumber(app.weight * 20, 0, 2);
+
+        // 1-2 mEq/kg
+        get("weight-range-3").textContent = app.printNumber(app.weight, 0, 2) + "-" + app.printNumber(app.weight * 2, 0, 2);
+
+        // 0.5-1 g/kg, MAX 50 g
+        const weight4a = app.printNumber(Math.min(app.weight * .5, 50), 0, 2);
+        const weight4b = app.printNumber(Math.min(app.weight, 50), 0, 2);
+        get("weight-range-4").textContent = weight4a === weight4b ? weight4a : weight4a + "-" + weight4b;
+
+        // 0.1 Unit/kg, MAX 10 Units
+        get("weight-range-5").textContent = app.printNumber(Math.min(app.weight * .1, 10), 0, 2);
+        
+        //0.5-1 mg/kg
+        get("weight-range-8").textContent = app.printNumber(app.weight * .5, 0, 2) + "-" + app.printNumber(app.weight, 0, 2);
+
+    }
+</script>
+    

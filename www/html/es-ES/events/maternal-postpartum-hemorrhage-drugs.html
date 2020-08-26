@@ -1,0 +1,80 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/maternal-postpartum-hemorrhage-dx.html" data-title="MATERNAL Postpartum Hemorrhage" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/maternal-postpartum-hemorrhage-tx.html" data-title="MATERNAL Postpartum Hemorrhage" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/maternal-postpartum-hemorrhage-drugs.html" data-title="MATERNAL Postpartum Hemorrhage" class="bg-drugs emphasis">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/maternal-postpartum-hemorrhage-crisis.html" data-title="MATERNAL Postpartum Hemorrhage" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-drugs event-title">ADULT Drug / Dosage Summary</div>
+</div>
+<div class="page">
+    <ul class="drugs">
+
+        <li><span>Calcium chloride</span> ADULT&nbsp;DOSE
+            <ul>
+                <li>200-500mg/Unit PRBCs</li>
+            </ul>
+        </li>
+        
+        <li><span>Oxytocin</span> ADULT&nbsp;DOSE
+            <ul>
+                <li>ADULT DOSE 3-5 Units rapid infusion, then start 40 Units slow infusion</li>
+            </ul>
+        </li>
+
+        <li><span>Methylergonovine (Methergine)</span> ADULT&nbsp;DOSE
+            <ul>
+                <li>0.2mg IM <strong>NOT IV</strong>, may repeat in 2 hours (AVOID in HTN and pre-eclampsia)</li>
+            </ul>
+        </li>
+
+        <li><span>Carboprost (Hemabate)</span> ADULT&nbsp;DOSE
+            <ul>
+                <li>0.25mg IM <strong>NOT IV</strong>, may repeat q 15 minutes up to 8 doses (AVOID in asthma, pulmonary hypertension) </li>
+            </ul>
+        </li>
+
+        <li><span>Misoprostol</span> ADULT&nbsp;DOSE
+            <ul>
+                <li>800-1000 MICROgrams rectal</li>
+            </ul>
+        </li>
+
+        <li><span>Tranexamic acid</span> ADULT&nbsp;DOSE
+            <ul>
+                <li>1g</li>
+            </ul>
+        </li>
+
+        <li><span>Cryoprecipitate</span> ADULT&nbsp;DOSE
+            <ul>
+                <li>10 units</li>
+            </ul>
+        </li>
+
+        <li><span>Factor VIIa</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgrams, up to 3 doses</div>
+                    <div class="dose-definition"><span>90 MICROgrams/kg, up to 3 doses</span></div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script>
+    if (app.weight) {
+        const get = (id) => document.getElementById(id);
+
+        // 90 MICROgrams/kg
+        get("weight-range-1").textContent = app.printNumber(app.weight * 90, 0, 2);
+    }
+</script>

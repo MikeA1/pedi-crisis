@@ -1,0 +1,51 @@
+<div class="event-nav">
+    <div class="bg-tx event-title">Treatment</div>
+</div>
+<div class="page">
+    Chest compression instructions (for full CPR instructions go to <span data-uri="/html/{lang}/events/cardiac-arrest-dx.html" data-title="Cardiac Arrest" class="uri">CARDIAC ARREST</span>):
+    <ul>
+        <li>Place patient on backboard, maintain good hand position; if prone, see instructions below</li>
+        <li>Maximize EtCO<sub>2</sub> &gt; 10 mmHg with force/depth of compressions</li>
+        <li>Allow full recoil between compressions</li>
+        <li>Switch compressor every 2 min</li>
+        <li>Use sudden increase in EtCO<sub>2</sub> for ROSC, Do NOT stop compressions for pulse check</li>
+    </ul>
+    <strong>Pick One:</strong>
+
+    <div id="button-group-prone-child" class="button-group">
+        <div class="button-container">
+            <button><strong>Prone: Child/Adolescent</strong></button>
+        </div>
+    </div>
+    <div id="list-group-prone-child" class="display-none m-l-1">
+        <ul>
+            <li>If NO midline incision: Compress with heel of hand on spine and second hand on top</li>
+            <li>If midline incision: Compress with heel of each hand under scapula</li>
+        </ul>
+    </div>
+
+    <div id="button-group-prone-infant" class="button-group">
+            <div class="button-container">
+                <button><strong>Prone: Infant</strong></button>
+            </div>
+        </div>
+        <div id="list-group-prone-infant" class="display-none m-l-1">
+            <ul>
+                <li>If no midline incision: thumbs midline</li>
+                <li>If midline incision: thumbs lateral to incision</li>
+                <li style="list-style: none;">
+                    <img class="fill-available" src="img/chest-compression-prone-infant.png" />
+                    <div><em>Artwork: Brooke Albright-Trainer, MD</em></div>
+                </li>
+            </ul>
+        </div>
+    
+</div>
+<script>
+        // The "pick one" section uses the accordion paradigm to show only relevant data.
+        const get = (id => document.getElementById(id)); // (this is a helper function)
+        app.createAccordion([
+            {button: get("button-group-prone-child"), content: get("list-group-prone-child")}, 
+            {button: get("button-group-prone-infant"), content: get("list-group-prone-infant")}
+        ]);
+</script>

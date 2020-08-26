@@ -1,0 +1,381 @@
+<style>
+    .call-for-help {
+        /* Need `!important` to ensure CSS rules for `body.hasDarkMode do not override this color. */
+        background-color: #be251b !important;
+        border-color: #810 !important;
+        color: white !important;
+    }
+    .call-for-help a {
+        color: white;
+    }
+
+    #action-buttons {
+        position: absolute;
+        bottom: 10px;
+        width: calc(100% - 30px);
+        padding: 0;
+        margin: 0 15px;
+        z-index: 30;
+    }
+
+    #add-a-phone-number {
+        background-color: #dfd;
+        border-color: #ada;
+    }
+
+    body.hasDarkMode #add-a-phone-number {
+        background-color: #455e0c;
+        border-color: #556e1c;
+    }
+
+    .page {
+        /* Give the action buttons some breathing room. */
+        bottom: 2.5em; 
+    }
+
+</style>
+<div id="phone-numbers" class="page">
+
+    <!-- This area is visible when NOT in edit mode -->
+    <div id="display-section" style="display: inline-block;">
+        <div id="display-phone-numbers">
+            <!-- phone numbers go here! -->
+        </div>
+    </div>
+
+    <!-- This area is visible when in edit mode -->
+    <form id="edit-section" style="display: none;">
+        <div><strong style="font-size:1.1em">Edit Phone Numbers</strong></div>
+        <button id="button-view-instructions" type="button" class="m-b-1">View Instructions</button>
+        
+        <div id="view-instructions" class="section">
+            <p>There are five default phone numbers. Each are listed when you provide a <i>Phone Number</i> and then <i>Save</i>.</p>
+            <p>You can start a phone call if <i>Create hyperlink?</i> is checked. For best results, provide a phone number in the format <i>555-555-5555</i>.</p>
+            <p>If your phone number is not reachable by your device then you can prevent hyperlinks from showing up in events by unchecking <i>Create hyperlink?</i></p>
+        </div>
+        <div id="edit-phone-numbers"></div>
+        <div id="add-a-phone-number" class="section">
+            <strong>Add a Phone Number</strong>
+            <input type="text" class="fill-available" placeholder="Description" data-role="description" style="display: inline;">
+            <input type="text" class="fill-available" placeholder="Phone Number" data-role="number" class="fill-available">
+            <div class="fill-available">
+                <input type="checkbox" data-role="isHyperlink" style="align-self: center;">
+                <label>Create hyperlink?</label>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+            
+<div id="action-buttons">
+    <button id="save" type="submit">Save</button>
+    <button id="cancel" type="button">Cancel</button>
+    <button id="edit-button" type="button">Edit Phone Numbers</button>
+</div>
+<script>
+
+// This code is a bit tricky because it uses plain javascript in lieu of a templating engine.
+
+// The data structure that is persisted in local storage is an associative array (i.e., "dictionary")
+// keyed on `description`:
+// {
+//   "Fire": {
+//     "description": "Fire",
+//     "number": "Yell Loudly",
+//     "isHyperlink": false
+//   },
+//   "My Custom Number": {
+//     "description": "My Custom Number",
+//     "number": "555-555-5555",
+//     "isHyperlink": true
+//   }
+// }
+
+(() => {
+    "use strict";
+
+    // This is a special phone number that is listed first and has a special background color of red.
+    const callForHelp = "Call for Help";
+
+    app.swipe.left = () => app.navigate.next("/html/{lang}/events/index.html", "Pedi Crisis", "swipe-left");
+    app.swipe.right = () => app.navigate.next("/html/{lang}/weight/index.html", "Pedi Crisis", "swipe-right");
+
+    // The "View Instructions" button uses the accordion paradigm to expand/collapse instructions.
+    app.createAccordion([
+        {button: document.getElementById("button-view-instructions"), content: document.getElementById("view-instructions")}, 
+    ]);
+
+    // This function determines whether the screen is in edit mode.
+    const setEditMode = (isEditMode) => {
+        document.getElementById("save").style.display = isEditMode ? "unset" : "none";
+        document.getElementById("cancel").style.display = isEditMode ? "unset" : "none";
+        document.getElementById("edit-button").style.display = isEditMode ? "none" : "unset";
+        const editSection = document.getElementById("edit-section");
+        editSection.style.display = isEditMode ? "block" : "none";
+        document.getElementById("display-section").style.display = isEditMode ? "none" : "block";
+        const editPhoneNumbers = document.getElementById("edit-phone-numbers");
+        const phoneNumbers = app.phoneNumbers.get();
+        if (isEditMode) {
+            editSection.reset();
+            // Remove existing elements. Otherwise they are duplicated when flipping in and out of display mode.
+            editPhoneNumbers.textContent = "";
+            // Always show system phone numbers (even if there is not a saved phone number).
+            const systemDescriptions = app.phoneNumbers.systemDescriptions;
+            let systemPhoneNumbers = Object.keys(systemDescriptions).sort(app.phoneNumbers.sortCaseInsensitive);
+            moveCallForHelpToFirstPosition(systemPhoneNumbers);
+            systemPhoneNumbers.forEach(description => {
+                let data = phoneNumbers[description] || {description, isHyperlink: true, number: ""};
+                data.isSystem = true;
+                let element = createEditModePhoneNumberElement(data);
+                if (data.description === callForHelp) {
+                    element.classList.add("call-for-help");
+                }
+                editPhoneNumbers.appendChild(element);
+            });
+            // Now do the same for non-system phone numbers.
+            Object.keys(phoneNumbers).sort(app.phoneNumbers.sortCaseInsensitive).forEach((description) => {
+                // Skip system phone numbers.
+                if (!systemDescriptions[description]) {
+                    let data = phoneNumbers[description];
+                    let element = createEditModePhoneNumberElement(data);
+                    editPhoneNumbers.appendChild(element);
+                }
+            });
+        } else {
+            const descriptions = Object.keys(phoneNumbers);
+            const displayPhoneNumbers = document.getElementById("display-phone-numbers");
+            if (descriptions.length === 0) {
+                // Display Mode and no phone numbers are assigned
+                displayPhoneNumbers.textContent = "You have not yet added phone numbers. Click the 'Edit Phone Numbers' button to customize this screen!";
+            } else {
+                descriptions.sort(app.phoneNumbers.sortCaseInsensitive);
+                moveCallForHelpToFirstPosition(descriptions);
+                displayPhoneNumbers.textContent = "";
+                descriptions.forEach((description) => {
+                    let data = phoneNumbers[description];
+                    let element = createDisplayModePhoneNumberElement(data);
+                    if (data.description === callForHelp) {
+                        element.classList.add("call-for-help");
+                    }
+                    displayPhoneNumbers.appendChild(element);
+                });
+            }
+        }
+    };
+
+    /**
+     * Pupose: Find "Call for Help", remove it, then add it to the begining of the array.
+     *   Why? "Call for Help" has special handling due to its prominence in the Event List.
+     * @param keys is an array of strings.
+     */
+    const moveCallForHelpToFirstPosition = descriptions => {
+        if (!descriptions || !descriptions.length) {
+            return;
+        }
+        const position = descriptions.indexOf(callForHelp);
+        if (position > 0) {
+            descriptions.splice(position, 1);
+            descriptions.unshift(callForHelp);
+        }
+    };
+
+    /***
+     * Creates all the elements needed to display a phone number.
+     */
+    const createDisplayModePhoneNumberElement = data => {
+        const container = document.createElement("div");
+        container.classList = "section";
+        
+        const description = document.createElement("strong");
+        description.textContent = data.description;
+        description.style.display = "block";
+        container.appendChild(description);
+
+        if (data.isHyperlink) {
+            const link = document.createElement("a");
+            link.href="tel:" + data.number;
+            link.textContent = "#" + data.number;
+            container.appendChild(link);
+        } else {
+            const number = document.createElement("div");
+            number.textContent = data.number;
+            container.appendChild(number);
+        }
+        return container;
+    };
+
+    
+    /***
+     * Creates all the elements needed to edit a phone number.
+     * Note that logic is a little different if the (phone) number is a "system" number 
+     * (e.g. "Code Team".)
+     * @param data should be in the format of {number, description, isHyperlink, isSystem}.
+     * Note: The element `dataset` is used a lot for identifying components in the save logic.
+     */
+    const createEditModePhoneNumberElement = (data) => {
+        // Probably should have used a templating engine...
+        const container = document.createElement("div");
+        container.classList = "section";
+        
+        let description;
+        if (data.isSystem) {
+            description = document.createElement("strong");
+            description.textContent = data.description; 
+        } else {
+            description = document.createElement("input");
+            description.style.display = "inline";
+            description.classList = "fill-available";
+            description.value = data.description;
+            description.placeholder = data.description || "Description";
+        }
+        description.dataset.description = data.description;
+        description.dataset.role = "description";
+        container.appendChild(description);
+
+        const number = document.createElement("input");
+        // Mobile browsers use virtual keyboards that dynamically change depending upon the input type.
+        // If this "phone number" is a hyperlink, then use the telephone ("tel") keyboard.
+        // Otherwise, use the standard ("text") keyboard.
+        number.type = data.isHyperlink ? "tel" : "text";
+        number.value = data.number;
+        number.placeholder = "Phone Number"
+        number.dataset.role = "number";
+        number.classList = "fill-available";
+        container.appendChild(number);
+
+        // Originally the Clear button was "float: right", but that did not work well 
+        // when the text "Create Hyperlink" was really wide (e.g., with accessibiliy mode on.)
+        // So, a table is used to keep element widths in proportion.
+        const checkboxTable = document.createElement("table");
+        checkboxTable.classList.add("fill-available");
+        const checkboxRow = document.createElement("tr");
+        // When "Create Hyperlink" line-wraps it looks silly; 
+        // this `line-height` adjustment at the row (i.e., `tr`) level fixes that.
+        checkboxRow.style.lineHeight = 1;
+        checkboxTable.appendChild(checkboxRow);
+        const checkboxColumn1 = document.createElement("td");
+        checkboxRow.appendChild(checkboxColumn1);
+        const checkboxColumn2 = document.createElement("td");
+        checkboxRow.appendChild(checkboxColumn2);
+        
+        const isHyperlink = document.createElement("input");
+        isHyperlink.type = "checkbox"
+        isHyperlink.style.alignSelf = "center";
+        // Override webkit user agent stylesheet default `margin-left` of "4px"
+        isHyperlink.style.marginLeft = "0px";
+        isHyperlink.checked = data.isHyperlink;
+        isHyperlink.dataset.role = "isHyperlink";
+        isHyperlink.addEventListener("change", event => {
+            number.type = event.target.checked ? "tel" : "text";
+        });
+        
+        checkboxColumn1.appendChild(isHyperlink);
+
+        const label = document.createElement("label");
+        label.textContent = "Create hyperlink?";
+
+        checkboxColumn1.appendChild(label);
+
+        const clearButton = document.createElement("button");
+        clearButton.type = "button";
+        if (data.isSystem) {
+            clearButton.textContent = "Clear";
+            clearButton.addEventListener("click", event => {
+                number.value = null;
+            });
+        } else {
+            clearButton.textContent = "Delete";
+            clearButton.addEventListener("click", event => {
+                container.remove();
+            });
+        }
+        checkboxColumn2.appendChild(clearButton);
+        
+        container.appendChild(checkboxTable);
+
+        return container;
+    };
+
+    /***
+     * For each HTML element assigned the class "section", extract elements related to phone numbers.
+     * This is a little tricky because the system phone numbers are handled differently compared to
+     * the purely custom phone numbers.
+     * @param event if this event is triggered by `form.submit` then use `preventDefault` to prevent an HTTP request.
+     */
+    const savePhoneNumbers = (event) => {
+        // Don't allow the form to send an actual POST to a non-existent server.
+        if (event && event.preventDefault) event.preventDefault();
+
+        const phoneNumbers = {};
+        const sections = document.getElementsByClassName("section");                
+        // The following loop basically unwinds the HTML elements into associative array structure
+        // that is persisted in localStorage. By using an associative array, we effectively 
+        // avoid duplicates(i.e., where the description is duplicated) with "last-in-wins" rules.
+        for (let i = 0; i < sections.length; i++) {
+            
+            // The checkbox is a child of a div. So, to keep this simple and future-proof,
+            // just flatten all child nodes into one array.
+            const flattenChildren = (node, result) => {
+                for (let i = 0; i < node.children.length; i++) {
+                    let child = node.children.item(i);
+                    result.push(child);
+                    flattenChildren(child, result);
+                }
+            };
+            const children = [];
+            flattenChildren(sections[i], children);
+
+            // Reconstruct the old data. 
+            let data = {description: null, number: null, isHyperlink: null};
+            for (let j = 0; j < children.length; j++) {
+                let child = children[j];
+                if (child.dataset) {
+                    const dataset = child.dataset;
+                    if(dataset.role === "description") {
+                        data.description = child.nodeName === "STRONG" ? dataset.description : child.value;
+                    } else if (dataset.role === "number") {
+                        data.number = child.value;
+                    } else if (dataset.role === "isHyperlink") {
+                        data.isHyperlink = child.checked;
+                    }
+                }
+            }
+
+            // Trim all string fields.
+            Object.keys(data).forEach(keyName => {
+                if (typeof(data[keyName]) === "string") {
+                    data[keyName] = data[keyName].trim();
+                }
+            })
+
+            // If there's valid data, keep it.
+            if (data.description && data.number) {
+                phoneNumbers[data.description] = data;
+            }
+        }
+
+        app.phoneNumbers.set(phoneNumbers);
+        setEditMode(false);
+    };
+    
+    document.getElementById("edit-button").addEventListener("click", (element, event) => {
+        setEditMode(true);
+    });
+    
+    document.getElementById("cancel").addEventListener("click", (event) => {
+        // Don't allow the form to send an actual POST to a non-existent server.
+        if (event.preventDefault) event.preventDefault();
+        setEditMode(false);
+        return false;
+    });
+
+    // Set events on the form and save button.
+    document.getElementById("edit-section").addEventListener("submit", savePhoneNumbers);
+    document.getElementById("save").addEventListener("click", savePhoneNumbers);
+
+    setEditMode(false);
+
+})();
+
+</script>

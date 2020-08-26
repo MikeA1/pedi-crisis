@@ -1,0 +1,74 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+              <button data-uri="/html/{lang}/events/last-dx.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+              <button data-uri="/html/{lang}/events/last-ddx.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-ddx">DDx</button>
+        </div>
+        <div class="button-container">
+              <button data-uri="/html/{lang}/events/last-tx.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-tx emphasis">Tx</button>
+        </div>
+        <div class="button-container">
+              <button data-uri="/html/{lang}/events/last-drugs.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-drugs">Drugs</button>
+        </div>
+        <div class="button-container">
+              <button data-uri="/html/{lang}/events/last-crisis.html" data-title="Local Anesthetic Systemic Toxicity" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-tx event-title">Treatment</div>
+</div>
+<div class="page">
+    <ul>
+        <li>Give 100% O<sub>2</sub>, evaluate ventilation, stop N<sub>2</sub>O and volatiles</li>
+        <li>Stop local anesthetic
+            <ul>
+                <li>What was given? Drug, dose, site? Does this = a crisis or not?</li>
+                <li>If crisis, <strong>request intralipid</strong>
+                    <ul>
+                        <li>
+                            <span class="no-weight">Bolus Intralipid 20% 1.5 mL/kg IV over 1 min.</span>
+                            <span class="has-weight">Bolus Intralipid 20% <span id="weight-range-3"></span> mL <span class="dose-definition">(1.5 mL/kg)</span> IV over 1 minute</span>
+                        </li>
+                        <li> <span data-uri="/html/{lang}/events/last-drugs.html" data-title="Local Anesthetic Systemic Toxicity" class="uri">Further dosing</span></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>Ensure adequate IV access, monitoring of continuous ECG, BP, and SaO<sub>2</sub></li>
+        <li>Avoid propofol, vasopressin, calcium channel blockers</li>
+
+        <li class="no-weight">To suppress seizures: give midazolam 0.05-0.1 mg/kg IV</li>
+        <li class="has-weight">To suppress seizures: give midazolam
+            <span id="weight-range-1"></span> mg <span class="dose-definition">(0.05-0.1 mg/kg)</span> IV
+        </li>
+
+        <li class="no-weight">To treat hypotension: give Epinephrine 1 MICROgram/kg IV/IO, as needed, may need infusion 0.02-0.2 MICROgrams/kg/min</li>
+        <li class="has-weight">To treat hypotension: give Epinephrine <span id="weight-range-2"></span> MICROgrams <span class="dose-definition">(1 MICROgrams/kg)</span> IV/IO, as needed, may need infusion 0.02-0.2 MICROgrams/kg/min</li>
+        
+        <li>To treat acidosis: Draw serial ABGs, consider a-line</li>
+        <li><span data-uri="/html/{lang}/events/hyperkalemia-dx.html" data-title="Hyperkalemia" class="uri">HYPERKALEMIA</span></li>
+        <li>Monitor for recurrence for 4-6 hours following the event</li>
+        <li>Consider <span class="uri" data-uri="/html/{lang}/events/last-ddx.html" data-title="Local Anesthetic Systemic Toxicity">DDx</span></li>
+    </ul>
+</div>
+
+<script>
+    if (app.weight > 0) {
+        // We'll fill in the weight ranges here.
+
+        // 0.05-0.1 mg/kg
+        const calculatedRange1a = app.printNumber(app.weight * 0.05, 0, 2);
+        const calculatedRange1b = app.printNumber(app.weight * 0.1, 0, 2);
+        document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
+
+        // 1 MICROgram/kg
+        const calculatedRange2 = app.printNumber(app.weight, 0, 2);
+        document.getElementById("weight-range-2").textContent = calculatedRange2;
+
+        // 1.5 mL/kg
+        const calculatedRange3 = app.printNumber(app.weight * 1.5, 0, 2);
+        document.getElementById("weight-range-3").textContent = calculatedRange3;
+        
+    }
+</script>

@@ -31,7 +31,7 @@
          */
         const createAbsoluteUri = (uri) => {
             // Phonegap works best on multiple platforms if all URIs are absolute.
-            // The uri is absolute if uri contains a protocol: file:///android_asset/www/html/events/index.html
+            // The uri is absolute if uri contains a protocol: file:///android_asset/www/html/{lang}/events/index.html
             let hasProtocol = uri.indexOf('://') > 0;
             // Not confirmed to occur in PhoneGap app, but guard against a context-implied protocol: //localhost:3000/index.html
             let hasImpliedProtocol = uri.indexOf('//') === 0;
@@ -41,7 +41,7 @@
             }
             // If here then assume uri is relative.
             // We don't know what the full path is until run time, (and it's different for each platform), so `navigate.root` is captured once when this script is first run/parsed.
-            // Avoid creating invalid paths with double forward slashes. This bad-uri-example has two slashes between "www" and "html": file:///android_asset/www//html/events/index.html
+            // Avoid creating invalid paths with double forward slashes. This bad-uri-example has two slashes between "www" and "html": file:///android_asset/www//html/{lang}/events/index.html
             // Note: the double forward slashes was observed to break navigation in Android.
             while (uri && uri.startsWith("/")) {
                 uri = uri.substring(1); // Remove the leading character until 
@@ -57,6 +57,7 @@
         const createHashAndTitle = (uri) => {
             var hash = uri
                 .replace(/html/g, "") // trim off common file name extension
+                .replace(/(\/[a-z]{2}-[A-Z]{2}\/)/, "") // remove language (e.g., "/en-US/" or "es-ES")
                 .replace(/\./g, "") // remove .
                 .replace(/index/g, "") // remove index
                 .replace(/\//g, "-") // replace "/" with "-"
@@ -96,6 +97,11 @@
              * Create a new history entry. Navigate to this new entry.
              */
             next: (uri, header, addClass) => {
+
+                // Most links have something like "/html/{lang}/events/acute-hypertension-crisis.html"
+                // Replace "{lang}" with the current language.
+                uri = uri.replace("{lang}", app.language || "en-US");
+
                 if (history.state && history.state.uri === uri) {
                     // Don't navigate to the same page more than once. That would be silly.
                     return;
@@ -141,15 +147,19 @@
                     return;
                 }
 
+                // Most links have something like "/html/{lang}/events/acute-hypertension-crisis.html"
+                // Replace "{lang}" with the current language.
+                uri = uri.replace("{lang}", app.language || "en-US");
+
                 // Remove swipe settings that existed for the previous page.
                 app.swipe.left = null;
                 app.swipe.right = null;
 
                 // When a navigation change occurs, add or remove emphasis to pertinent header buttons.
-                let isEvent = uri.includes("html/events/");
-                let isPhone = uri.includes("html/phone/");
-                let isWeight = uri.includes("html/weight/");
-                let isSetting = uri.includes("html/settings/");
+                let isEvent = uri.includes("/events/");
+                let isPhone = uri.includes("/phone/");
+                let isWeight = uri.includes("/weight/");
+                let isSetting = uri.includes("/settings/");
 
                 if (isEvent) {
                     eventButton.classList.add("emphasis");
@@ -188,7 +198,7 @@
                         // Normally there will be one page in this loop (i.e., `pages.length === 1`), 
                         // but multiple pages are okay in special circumstances.
                         // Q: In what situation would multiple pages be okay?
-                        // A: When only one page is visible at a time. See `/html/settings/walkthrough.html` for an example.
+                        // A: When only one page is visible at a time. See `/html/{lang}/settings/walkthrough.html` for an example.
                         for (let i = 0; i < pages.length; i++) {
                             const page = pages[i];
 
@@ -207,19 +217,19 @@
                                     // <div class="event-nav">
                                     //     <div class="button-group">
                                     //         <div class="button-container">
-                                    //             <button data-uri="/html/events/air-embolism-dx.html" data-title="Air Embolism" class="bg-dx">Dx</button>
+                                    //             <button data-uri="/html/{lang}/events/air-embolism-dx.html" data-title="Air Embolism" class="bg-dx">Dx</button>
                                     //         </div>
                                     //         <div class="button-container">
-                                    //             <button data-uri="/html/events/air-embolism-ddx.html" data-title="Air Embolism" class="bg-ddx">DDx</button>
+                                    //             <button data-uri="/html/{lang}/events/air-embolism-ddx.html" data-title="Air Embolism" class="bg-ddx">DDx</button>
                                     //         </div>
                                     //         <div class="button-container">
-                                    //             <button data-uri="/html/events/air-embolism-tx.html" data-title="Air Embolism" class="bg-tx">Tx</button>
+                                    //             <button data-uri="/html/{lang}/events/air-embolism-tx.html" data-title="Air Embolism" class="bg-tx">Tx</button>
                                     //         </div>
                                     //         <div class="button-container">
-                                    //             <button data-uri="/html/events/air-embolism-rx.html" data-title="Air Embolism" class="bg-rx">Rx</button>
+                                    //             <button data-uri="/html/{lang}/events/air-embolism-rx.html" data-title="Air Embolism" class="bg-rx">Rx</button>
                                     //         </div>
                                     //         <div class="button-container">
-                                    //             <button data-uri="/html/events/air-embolism-crisis.html" data-title="Air Embolism" class="bg-crisis emphasis">Crisis</button>
+                                    //             <button data-uri="/html/{lang}/events/air-embolism-crisis.html" data-title="Air Embolism" class="bg-crisis emphasis">Crisis</button>
                                     //         </div>
                                     //     </div>
                                     //     <div class="bg-crisis event-title">Crisis Management (If Severe)</div>
@@ -231,8 +241,8 @@
                                     // For easier usage, convert elements with attributes [data-uri] (and [data-title])
                                     // into an array of objects that looks like this:
                                     // [
-                                    //     {uri: "/html/events/air-embolism-dx.html", title: "Air Embolism"}, 
-                                    //     {uri: "/html/events/air-embolism-ddx.html", title: "Air Embolism"}, 
+                                    //     {uri: "/html/{lang}/events/air-embolism-dx.html", title: "Air Embolism"}, 
+                                    //     {uri: "/html/{lang}/events/air-embolism-ddx.html", title: "Air Embolism"}, 
                                     //     ...
                                     // ]
                                     const links = Array.from(eventNavs[0].querySelectorAll("[data-uri]")).map(element => {

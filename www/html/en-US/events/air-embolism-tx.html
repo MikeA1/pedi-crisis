@@ -1,0 +1,80 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/air-embolism-dx.html" data-title="Air Embolism" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/air-embolism-ddx.html" data-title="Air Embolism" class="bg-ddx">DDx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/air-embolism-tx.html" data-title="Air Embolism" class="bg-tx emphasis">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/air-embolism-drugs.html" data-title="Air Embolism" class="bg-drugs">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/air-embolism-crisis.html" data-title="Air Embolism" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-tx event-title">Treatment</div>
+</div>
+<style>
+    /* This is an experimental formatting. If used more widely, move these styles to "index.css". */
+    .small {
+        font-size: .8em;
+        color: #888;
+    }
+    body.hasAccessibility .small {
+        font-size: 1em;
+        color: black;
+    }
+</style>
+<div class="page">
+    <ul>
+        <li>Notify team</li>
+        <li>Stop nitrous oxide and volatile agents</li>
+        <li>Increase O<sub>2</sub> to 100%</li>
+        <li>Stop air entrainment: find air entry point, stop source, and limit further entry
+            <ul>
+                <li>Flood wound with irrigation/soaked saline dressing</li>
+                <li>Turn off all pressurized gas sources: laparoscope, endoscope</li>
+                <li>Place bone wax or cement on exposed bone edges</li>
+            </ul>
+        </li>
+        <li>Check for open venous lines or air in IV tubing</li>
+        <li>Lower surgical site below level of heart (if possible)</li>
+        <li>Perform Valsalva</li>
+        <li>Consider:
+            <ul>
+                <li>Compress jugular veins intermittently if head or cranial case</li>
+            </ul>
+        </li>
+        <li>Hemodynamic support if hypotensive:
+            <ul>
+                <li class="no-weight">Give epinephrine 1-10 MICROgrams/kg, 
+                    followed by infusion of epinephrine 0.02-1 MICROgrams/kg/min or norepinephrine
+                    0.05-2 MICROgrams/kg/min</li>
+                <li class="has-weight">
+                    Give epinephrine <span id="weight-range-1"></span> MICROgrams <span class="dose-definition">(1-10 MICROgrams/kg)</span>, 
+                    followed by infusion of epinephrine 0.02-1 MICROgrams/kg/min or norepinephrine
+                    0.05-2 MICROgrams/kg/min</li>
+                <li>Chest compressions: 100-120/min to force air through lock, even if not in cardiac arrest</li>
+                <li>If available, call for <span data-phone-number="Echo">Transesophageal Echocardiography/US</span></li>
+                <li>Consider <span data-phone-number="ECMO">ECMO</span></li>
+            </ul>
+        </li>
+        <li>Consider <span class="uri" data-uri="/html/{lang}/events/air-embolism-ddx.html" data-title="Air Embolism">DDx</span></li>
+    </ul>
+</div>
+ 
+<script>
+    if (app.weight > 0) {
+        // We'll fill in the weight ranges here.
+
+        // 1-10 MICROgrams/kg
+        const calculatedRange1a = app.printNumber(app.weight, 0, 2); 
+        const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
+        document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
+
+    }
+</script>

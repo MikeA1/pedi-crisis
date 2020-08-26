@@ -1,0 +1,78 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/laryngospasm-dx.html" data-title="Laryngospasm" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/laryngospasm-ddx.html" data-title="Laryngospasm" class="bg-ddx">DDx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/laryngospasm-tx.html" data-title="Laryngospasm" class="bg-tx emphasis">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/laryngospasm-drugs.html" data-title="Laryngospasm" class="bg-drugs">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/laryngospasm-crisis.html" data-title="Laryngospasm" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-tx event-title">Treatment</div>
+</div>
+<div class="page">
+    <ul>
+        <li>Notify team to cease stimulation/surgery</li>
+        <li>Give 100% O<sub>2</sub>, evaluate ventilation</li>
+        <li>Apply CPAP and jaw thrust</li>
+        <li>Confirm or establish adequte IV access</li>
+        <li class="no-weight">Deepen anesthesia with IV and/or inhaled agents. Consider propofol 1-3 mg/kg IV</li>
+        <li class="has-weight">Deepen anesthesia with IV and/or inhaled agents. Consider propofol
+            <span id="weight-range-1"></span> mg <span class="dose-definition">(1-3 mg/kg)</span> IV
+        </li>
+        <li class="no-weight"> Give succinylcholine 0.1-2 mg/kg (if no IV: 2-4 mg/kg IM)</li>
+        <li class="has-weight"> Give succinylcholine
+            <span id="weight-range-2"></span> mg <span class="dose-definition">(0.1-2 mg/kg)</span> IV
+            (if no IV: <span id="weight-range-3"></span> mg <span class="dose-definition">(2-4 mg/kg)</span> IM)
+        </li>
+        <li class="no-weight">If bradycardia, give atropine 0.02 mg/kg IV (if no IV: 0.04 mg/kg IM)</li>
+        <li class="has-weight">If bradycardia, give atropine
+            <span id="weight-range-4"></span> mg <span class="dose-definition">(0.02 mg/kg)</span> IV
+            (if no IV: <span id="weight-range-5"></span> mg <span class="dose-definition">(0.04 mg/kg)</span> IM)
+        </li>
+        <li>Consider direct laryngoscopy to secure the airway and/or suction</li>
+        <li>Avoid further patient stimulation during stage 2 anesthesia</li>
+        <li>If further airway instrumentation needed, consider airway topicalization with lidocaine</li>
+        <li>Monitor for negative pressure pulmonary edema (pink frothy secretions).
+            If present, consider ETT, PPV, PEEP, ICU
+        </li>
+        <li>Consider <span class="uri" data-uri="/html/{lang}/events/laryngospasm-ddx.html" data-title="Laryngospasm">DDx</span></li>
+    </ul>
+</div>
+<script>
+    if (app.weight > 0) {
+        // We'll fill in the weight ranges here.
+
+        // 1-3 mg/kg
+        const calculatedRange1a = app.printNumber(app.weight * 1, 0, 2);
+        const calculatedRange1b = app.printNumber(app.weight * 3, 0, 2);
+        document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
+
+        // 0.1-2 mg/kg
+        const calculatedRange2a = app.printNumber(app.weight * 0.1, 0, 2);
+        const calculatedRange2b = app.printNumber(app.weight * 2, 0, 2);
+        document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;
+
+        // 2-4 mg/kg
+        const calculatedRange3a = app.printNumber(app.weight * 2, 0, 2);
+        const calculatedRange3b = app.printNumber(app.weight * 4, 0, 2);
+        document.getElementById("weight-range-3").textContent = calculatedRange3a + "-" + calculatedRange3b;
+
+        // 0.02 mg/kg
+        const calculatedRange4 = app.printNumber(app.weight * 0.02, 0, 2);
+        document.getElementById("weight-range-4").textContent = calculatedRange4;
+
+        // 0.04 mg/kg
+        const calculatedRange5 = app.printNumber(app.weight * 0.04, 0, 2);
+        document.getElementById("weight-range-5").textContent = calculatedRange5;
+
+    }
+</script>
