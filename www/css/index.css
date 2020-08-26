@@ -19,7 +19,7 @@ html.hasDarkMode {
     background: #222
 }
 
-html, body {
+body {
     /* Center the body with `auto`; allow margin and padding to be controlled by child elements. */
     margin: 0 auto;
     padding: 0px;
@@ -32,7 +32,7 @@ html, body {
     flex-flow: column;
     height: 100%;
 
-    /* Keep the background color the same as the #header (in "www/index.html") for iPhoneX */    
+    /* Keep the background color the same as the #header (in "www/index.html") for iPhone X (and other devices with notches) */    
     background-color: #f4f4f4;
 
     /* On larger screens, keep max-width limited to 1000px to enhance readability. */
@@ -256,7 +256,7 @@ body.hasAccessibility .event-nav {
  */
 body.hasAccessibility .page {
     padding: 8px;
-    max-width: 986px; /* 992px = Max-Width (1000px) - Padding-Left (8px) - Padding-Right (8px) */
+    max-width: 984px; /* 984px = Max-Width (1000px) - Padding-Left (8px) - Padding-Right (8px) */
 }
 
 /* For color-blind users, make links more obvious. 
