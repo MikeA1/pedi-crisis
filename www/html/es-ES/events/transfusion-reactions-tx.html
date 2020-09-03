@@ -75,8 +75,8 @@
         <ul>
             <li>Support airway and circulation as necessary</li>
 
-            <li class="no-weight">Epinephrine 1-10 MICROgrams/kg IV</li>
-            <li class="has-weight">Epinephrine <span id="weight-range-3"></span> MICROgrams <span class="dose-definition">(1-10 MICROgrams/kg)</span> IV</li>
+            <li class="no-weight">Epinephrine 1-10 MICROgramos/kg IV</li>
+            <li class="has-weight">Epinephrine <span id="weight-range-3"></span> MICROgramos <span class="dose-definition">(1-10 MICROgramos/kg)</span> IV</li>
 
             <li class="no-weight">Diphenhydramine 1 mg/kg IV (MAX 50 mg)</li>
             <li class="has-weight">Diphenhydramine <span id="weight-range-4"></span> mg <span class="dose-definition">(1 mg/kg, MAX 50 mg)</span> IV</li>
@@ -112,7 +112,7 @@
         // 1-2 mL/kg/hour
         get("urine-output").textContent = app.printNumber(app.weight, 0, 2) + "-" + app.printNumber(app.weight * 2, 0, 2);
 
-        // 1-10 MICROgrams/kg
+        // 1-10 MICROgramos/kg
         get("weight-range-3").textContent = app.printNumber(app.weight, 0, 2) + "-" + app.printNumber(app.weight * 10, 0, 2);;
 
         // 1 mg/kg, MAX 50 mg

@@ -13,7 +13,7 @@
             <button data-uri="/html/{lang}/events/maternal-postpartum-hemorrhage-crisis.html" data-title="MATERNAL Postpartum Hemorrhage" class="bg-crisis">Crisis</button>
         </div>
     </div>
-    <div class="bg-drugs event-title">ADULT Drug / Dosage Summary</div>
+    <div class="bg-drugs event-title">ADULT Resumen de medicamentos/dosis</div>
 </div>
 <div class="page">
     <ul class="drugs">
@@ -44,7 +44,7 @@
 
         <li><span>Misoprostol</span> ADULT&nbsp;DOSE
             <ul>
-                <li>800-1000 MICROgrams rectal</li>
+                <li>800-1000 MICROgramos rectal</li>
             </ul>
         </li>
 
@@ -63,8 +63,8 @@
         <li><span>Factor VIIa</span>
             <ul>
                 <li>
-                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgrams, up to 3 doses</div>
-                    <div class="dose-definition"><span>90 MICROgrams/kg, up to 3 doses</span></div>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgramos, up to 3 doses</div>
+                    <div class="dose-definition"><span>90 MICROgramos/kg, up to 3 doses</span></div>
                 </li>
             </ul>
         </li>
@@ -74,7 +74,7 @@
     if (app.weight) {
         const get = (id) => document.getElementById(id);
 
-        // 90 MICROgrams/kg
+        // 90 MICROgramos/kg
         get("weight-range-1").textContent = app.printNumber(app.weight * 90, 0, 2);
     }
 </script>

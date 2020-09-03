@@ -16,7 +16,7 @@
             <button data-uri="/html/{lang}/events/loss-of-evoked-potentials-crisis.html" data-title="Loss of Evoked Potentials" class="bg-crisis">Crisis</button>
         </div>
     </div>
-    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+    <div class="bg-drugs event-title">Resumen de medicamentos/dosis</div>
 </div>
 <div class="page">
     <ul class="drugs">
@@ -33,8 +33,8 @@
         <li><span>Phenylephrine</span>
             <ul>
                 <li>
-                    <div class="dose-calculation"><span id="weight-range-2"></span> MICROgrams IV</div>
-                    <div class="dose-definition"><span>0.3-1 MICROgrams/kg IV, MAX 100 MICROgrams</span></div>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> MICROgramos IV</div>
+                    <div class="dose-definition"><span>0.3-1 MICROgramos/kg IV, MAX 100 MICROgramos</span></div>
                 </li>
             </ul>
         </li>
@@ -58,7 +58,7 @@
         // 0.1 mg/kg, MAX 10 mg/dose
         get("weight-range-1").textContent = app.printNumber(Math.min(app.weight * 0.1, 10), 0, 2);
 
-        // 0.3-1 MICROgrams/kg, MAX 100 MICROgrams/dose
+        // 0.3-1 MICROgramos/kg, MAX 100 MICROgramos/dose
         const weight2a = app.printNumber(Math.min(app.weight * 0.3, 100), 0, 2);
         const weight2b = app.printNumber(Math.min(app.weight, 100), 0, 2);
         get("weight-range-2").textContent = weight2a === weight2b ? weight2a : weight2a + "-" + weight2b;

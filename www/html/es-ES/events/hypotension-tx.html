@@ -48,9 +48,9 @@
     <ul id="list-group-2" class="display-none m-l-1">
         <li>Start inotrope infusion, as needed
             <ul>
-                <li>Dopamine 2-20 MICROgrams/kg/min infusion IV</li>
-                <li class="no-weight">Bolus epinephrine 1-10 MICROgrams/kg IV/IO, consider infusion 0.05-1 MICROgrams/kg/min IV</li>
-                <li class="has-weight">Bolus epinephrine <span id="weight-range-1"></span> MICROgrams IV/IO <span class="dose-definition">(1-10 MICROgrams/kg IV/IO)</span>, consider infusion 0.05-1 MICROgrams/kg/min IV</li>
+                <li>Dopamine 2-20 MICROgramos/kg/min infusion IV</li>
+                <li class="no-weight">Bolus epinephrine 1-10 MICROgramos/kg IV/IO, consider infusion 0.05-1 MICROgramos/kg/min IV</li>
+                <li class="has-weight">Bolus epinephrine <span id="weight-range-1"></span> MICROgramos IV/IO <span class="dose-definition">(1-10 MICROgramos/kg IV/IO)</span>, consider infusion 0.05-1 MICROgramos/kg/min IV</li>
             </ul>
         </li>
         <li>Consider calcium IV</li>
@@ -67,10 +67,10 @@
     <ul id="list-group-3" class="display-none m-l-1">
         <li>Start vasopressor infusion
             <ul>
-                <li>Consider infusion of norepinephrine 0.05-2 MICROgrams/kg/min IV</li>
-                <li class="no-weight">Bolus phenylephrine 1-20 MICROgrams/kg IV/IO, consider infusion 0.1-2 MICROgrams/kg/min IV</li>
-                <li class="has-weight">Bolus phenylephrine <span id="weight-range-2"></span> MICROgrams IV/IO 
-                    <span class="dose-definition">(1-20 MICROgrams/kg)</span>, consider infusion 0.1-2 MICROgrams/kg/min IV</li>
+                <li>Consider infusion of norepinephrine 0.05-2 MICROgramos/kg/min IV</li>
+                <li class="no-weight">Bolus phenylephrine 1-20 MICROgramos/kg IV/IO, consider infusion 0.1-2 MICROgramos/kg/min IV</li>
+                <li class="has-weight">Bolus phenylephrine <span id="weight-range-2"></span> MICROgramos IV/IO 
+                    <span class="dose-definition">(1-20 MICROgramos/kg)</span>, consider infusion 0.1-2 MICROgramos/kg/min IV</li>
             </ul>
         </li>
         <li>Administer steroids for adrenal crisis</li>
@@ -88,12 +88,12 @@
     ]);
 
     if (app.weight > 0) {
-        // 1-10 MICROgrams/kg
+        // 1-10 MICROgramos/kg
         const calculatedRange1a = app.printNumber(app.weight, 0, 2);
         const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
         document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
 
-         // 1-20 MICROgrams/kg
+         // 1-20 MICROgramos/kg
          const calculatedRange2a = app.printNumber(app.weight, 0, 2);
         const calculatedRange2b = app.printNumber(app.weight * 20, 0, 2);
         document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;

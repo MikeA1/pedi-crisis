@@ -16,7 +16,7 @@
             <button data-uri="/html/{lang}/events/anaphylaxis-crisis.html" data-title="Anafilaxia" class="bg-crisis">Crisis</button>
         </div>
     </div>
-    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+    <div class="bg-drugs event-title">Resumen de medicamentos/dosis</div>
 </div>
 <div class="page">
     <ul class="drugs">
@@ -24,10 +24,10 @@
             <span>Epinephrine</span>
             <ul>
                 <li>
-                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgrams IV/IO or <span id="weight-range-9"></span> mg IM q5-15 min</div>
-                    <div class="dose-definition"><span>1-10 MICROgrams/kg IV/IO or 0.01 mg/kg IM q5-15 min</span></div>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgramos IV/IO or <span id="weight-range-9"></span> mg IM q5-15 min</div>
+                    <div class="dose-definition"><span>1-10 MICROgramos/kg IV/IO or 0.01 mg/kg IM q5-15 min</span></div>
                 </li>
-                <li>Consider infusion 0.02-1 MICROgrams/kg/min IV</li>
+                <li>Consider infusion 0.02-1 MICROgramos/kg/min IV</li>
             </ul>
         </li>
 
@@ -92,7 +92,7 @@
 
 <script>
     if (app.weight > 0) {
-        // 1-10 MICROgrams/kg
+        // 1-10 MICROgramos/kg
         const calculatedRange1a = app.printNumber(app.weight, 0, 2);
         const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
         document.getElementById("weight-range-1").textContent = (calculatedRange1a + "-" + calculatedRange1b);

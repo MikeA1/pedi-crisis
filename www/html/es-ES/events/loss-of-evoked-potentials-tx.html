@@ -37,9 +37,9 @@
         <li>Check patient positioning (neck, upper and lower extremities)</li>
         <li>Review anesthetic and consider improving spinal cord perfusion by modifying:
             <ul>
-                    <li class="no-weight">Mean arterial pressure: MAP &gt; 65 mmHg using ephedrine 0.1 mg/kg IV (MAX 10 mg/dose) and/or phenylephrine 0.3-1 MICROgrams/kg IV (MAX 100 MICROgrams/dose), with repeated doses as needed</li>
+                    <li class="no-weight">Mean arterial pressure: MAP &gt; 65 mmHg using ephedrine 0.1 mg/kg IV (MAX 10 mg/dose) and/or phenylephrine 0.3-1 MICROgramos/kg IV (MAX 100 MICROgramos/dose), with repeated doses as needed</li>
                     <li class="has-weight">Mean arterial pressure: MAP &gt; 65 mmHg using ephedrine <span id="weight-range-1"></span> mg <span class="dose-definition">(0.1 mg/kg, MAX 10 mg/dose)</span> IV 
-                        and/or phenylephrine <span id="weight-range-2"></span> MICROgrams <span class="dose-definition">(0.3-1 MICROgrams/kg, MAX 100 MICROgrams/dose)</span> IV, with repeated doses as needed</li>
+                        and/or phenylephrine <span id="weight-range-2"></span> MICROgramos <span class="dose-definition">(0.3-1 MICROgramos/kg, MAX 100 MICROgramos/dose)</span> IV, with repeated doses as needed</li>
                     <li>Hemoglobin: if anemic, transfuse RBC to improve oxygen delivery</li>
                     <li>pH and PaCO<sub>2</sub>: ensure normocarbia or slight hypercarbia (↑&nbsp;I/E ratio, ↓&nbsp;PEEP)</li>
                     <li>Temperature: ensure normothermia</li>
@@ -73,7 +73,7 @@
         // 0.1 mg/kg, MAX 10 mg/dose
         get("weight-range-1").textContent = app.printNumber(Math.min(app.weight * 0.1, 10), 0, 2);
 
-        // 0.3-1 MICROgrams/kg, MAX 100 MICROgrams/dose
+        // 0.3-1 MICROgramos/kg, MAX 100 MICROgramos/dose
         const weight2a = app.printNumber(Math.min(app.weight * 0.3, 100), 0, 2);
         const weight2b = app.printNumber(Math.min(app.weight, 100), 0, 2);
         get("weight-range-2").textContent = weight2a === weight2b ? weight2a : weight2a + "-" + weight2b;

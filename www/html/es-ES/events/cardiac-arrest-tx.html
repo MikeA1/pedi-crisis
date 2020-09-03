@@ -64,12 +64,12 @@
             <li>If still in VF/VT, shock 4 joules/kg q2 min (up to 10 joules/kg on subsequent shocks)</li>
             <li>Resume chest compressions immediately regardless of rhythm</li>
 
-            <li class="no-weight">Epinephrine 10 MICROgrams/kg IV q 3-5 min while in arrest (MAX 1 mg)
+            <li class="no-weight">Epinephrine 10 MICROgramos/kg IV q 3-5 min while in arrest (MAX 1 mg)
                 <ul>
                     <li>If still no ROSC after second dose of EPINEPHrine, activate <span data-phone-number="ECMO">ECMO</span></li>
                 </ul>
             </li>
-            <li class="has-weight">Epinephrine <span id="weight-range-1"></span> MICROgrams <span class="per-kg-weight">(10 MICROgrams/kg, MAX 1 mg)</span> IV q 3-5 min while in arrest
+            <li class="has-weight">Epinephrine <span id="weight-range-1"></span> MICROgramos <span class="per-kg-weight">(10 MICROgramos/kg, MAX 1 mg)</span> IV q 3-5 min while in arrest
                 <ul>
                     <li>If still no ROSC after second dose of EPINEPHrine, activate <span data-phone-number="ECMO">ECMO</span></li>
                 </ul>
@@ -94,7 +94,7 @@
     ]);
 
     if (app.weight > 0) {
-        // 10 MICROgrams/kg, MAX 1 mg
+        // 10 MICROgramos/kg, MAX 1 mg
         const calculatedRange1 = app.printNumber(Math.min(app.weight * 10, 1000), 0, 2);
         document.getElementById("weight-range-1").textContent = calculatedRange1;
 

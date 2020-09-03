@@ -20,15 +20,15 @@
         <li>Notify surgeon, call for help and code cart</li>
         <li>Call for <span data-phone-number="Echo">ecocardiograma transesofágico</span></li>
         <li>Start chest compressions</li>
-        <li class="no-weight">Give epinephrine 10 MICROgrams/kg IV/IO</li>
-        <li class="has-weight">Give epinephrine <span id="weight-range-1"></span> MICROgrams <span class="dose-definition">(10 MICROgrams/kg)</span> IV/IO</li>
+        <li class="no-weight">Give epinephrine 10 MICROgramos/kg IV/IO</li>
+        <li class="has-weight">Give epinephrine <span id="weight-range-1"></span> MICROgramos <span class="dose-definition">(10 MICROgramos/kg)</span> IV/IO</li>
         <li>If cardiac arrest, go to <span data-uri="/html/{lang}/events/cardiac-arrest-dx.html" data-title="Cardiac Arrest" class="uri">CARDIAC ARREST</span></li>
         <li>Consider <span data-phone-number="ECMO">ECMO</span></li>
     </ul>
 </div>
 <script>
     if (app.weight > 0) {
-        // 10 MICROgrams/kg
+        // 10 MICROgramos/kg
         document.getElementById("weight-range-1").textContent = app.printNumber(app.weight * 10, 0, 2);
     }
 </script>

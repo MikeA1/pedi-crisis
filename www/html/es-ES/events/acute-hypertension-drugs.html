@@ -16,7 +16,7 @@
             <button data-uri="/html/{lang}/events/acute-hypertension-crisis.html" data-title="Acute Hypertension" class="bg-crisis">Crisis</button>
         </div>
     </div>
-    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+    <div class="bg-drugs event-title">Resumen de medicamentos/dosis</div>
 </div>
 <div class="page">
     <ul class="drugs">
@@ -26,7 +26,7 @@
 
         <li><span>Sodium nitroprusside</span>
             <ul>
-                <li>0.5-10 MICROgrams/kg/min</li>
+                <li>0.5-10 MICROgramos/kg/min</li>
             </ul>
         </li>
 
@@ -42,10 +42,10 @@
         <li><span>Esmolol</span>
             <ul>
                 <li>
-                    <div class="dose-calculation"><span id="weight-range-2"></span> MICROgrams</div>
-                    <div class="dose-definition"><span>100-500 MICROgrams/kg over 5 min</span></div>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> MICROgramos</div>
+                    <div class="dose-definition"><span>100-500 MICROgramos/kg over 5 min</span></div>
                 </li>
-                <li>Then infusion 25-300 MICROgrams/kg/min</li>
+                <li>Then infusion 25-300 MICROgramos/kg/min</li>
             </ul>
         </li>
 
@@ -61,19 +61,19 @@
 
         <li><span>Nicardapine</span>
             <ul>
-                <li>0.5-5 MICROgrams/kg/min</li>
+                <li>0.5-5 MICROgramos/kg/min</li>
             </ul>
         </li>
 
         <li><span>Clevidipine</span>
             <ul>
-                <li>0.5-3.5 MICROgrams/kg/min</li>
+                <li>0.5-3.5 MICROgramos/kg/min</li>
             </ul>
         </li>
 
         <li><span>Fenoldopam</span>
             <ul>
-                <li>0.2-0.8 MICROgrams/kg/min</li>
+                <li>0.2-0.8 MICROgramos/kg/min</li>
             </ul>
         </li>
 
@@ -89,7 +89,7 @@
         const calculatedRange2b = app.printNumber(app.weight * 0.2, 0, 2);
         document.getElementById("weight-range-1").textContent = calculatedRange2a + "-" + calculatedRange2b;
 
-        // 100-500 MICROgrams/kg
+        // 100-500 MICROgramos/kg
         const calculatedRange3a = app.printNumber(app.weight * 100, 0, 2);
         const calculatedRange3b = app.printNumber(app.weight * 500, 0, 2);
         document.getElementById("weight-range-2").textContent = calculatedRange3a + "-" + calculatedRange3b;

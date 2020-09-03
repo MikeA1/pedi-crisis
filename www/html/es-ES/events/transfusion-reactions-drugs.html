@@ -16,7 +16,7 @@
             <button data-uri="/html/{lang}/events/transfusion-reactions-crisis.html" data-title="Transfusion Reactions" class="bg-crisis">Crisis</button>
         </div>
     </div>
-    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+    <div class="bg-drugs event-title">Resumen de medicamentos/dosis</div>
 </div>
 <div class="page">
     <ul class="drugs">
@@ -42,8 +42,8 @@
         <li><span>Epinephrine</span>
             <ul>
                 <li>
-                    <div class="dose-calculation"><span id="weight-range-3"></span> MICROgrams IV</div>
-                    <div class="dose-definition"><span>1-10 MICROgrams/kg IV</span></div>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> MICROgramos IV</div>
+                    <div class="dose-definition"><span>1-10 MICROgramos/kg IV</span></div>
                 </li>
             </ul>
         </li>
@@ -80,7 +80,7 @@
         // 0.25-1 g/kg
         get("weight-range-2").textContent = app.printNumber(app.weight * .25, 0, 2) + "-" + app.printNumber(app.weight, 0, 2);
 
-        // 1-10 MICROgrams/kg
+        // 1-10 MICROgramos/kg
         get("weight-range-3").textContent = app.printNumber(app.weight, 0, 2) + "-" + app.printNumber(app.weight * 10, 0, 2);;
 
         // 1 mg/kg, MAX 50 mg

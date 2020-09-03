@@ -16,7 +16,7 @@
             <button data-uri="/html/{lang}/events/bradycardia-crisis.html" data-title="Bradycardia" class="bg-crisis">Crisis</button>
         </div>
     </div>
-    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+    <div class="bg-drugs event-title">Resumen de medicamentos/dosis</div>
 </div>
 <div class="page">
     <ul class="drugs">
@@ -54,8 +54,8 @@
             <span>Glucagon</span>
             <ul>
                 <li>
-                    <div class="dose-calculation"><span id="weight-range-5"></span> MICROgrams IV</div>
-                    <div class="dose-definition"><span>50 MICROgrams/kg IV</div>
+                    <div class="dose-calculation"><span id="weight-range-5"></span> MICROgramos IV</div>
+                    <div class="dose-definition"><span>50 MICROgramos/kg IV</div>
                 </li>
                 <li>Then infusion 0.07 mg/kg/hour IV, MAX 5 mg/hr</li>
             </ul>
@@ -82,7 +82,7 @@
         const calculatedRange4 = app.printNumber(app.weight * 50, 0, 2); 
         document.getElementById("weight-range-4").textContent = calculatedRange4;
 
-        // 50 MICROgrams/kg
+        // 50 MICROgramos/kg
         const calculatedRange5 = app.printNumber(app.weight * 50, 0, 2); 
         document.getElementById("weight-range-5").textContent = calculatedRange5;
     }

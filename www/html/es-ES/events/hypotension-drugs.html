@@ -13,40 +13,40 @@
             <button data-uri="/html/{lang}/events/hypotension-crisis.html" data-title="Hypotension" class="bg-crisis">Crisis</button>
         </div>
     </div>
-    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+    <div class="bg-drugs event-title">Resumen de medicamentos/dosis</div>
 </div>
 <div class="page">
     <ul class="drugs">
 
         <li><span>Dopamine</span> 
             <ul>
-                <li>Infusion 2-20 MICROgrams/kg/min IV</li>
+                <li>Infusion 2-20 MICROgramos/kg/min IV</li>
             </ul>
         </li>
 
         <li><span>Epinephrine</span>
             <ul>
                 <li>
-                    <div class="dose-calculation">Bolus <span id="weight-range-1"></span> MICROgrams IV/IO</div>
-                    <div class="dose-definition"><span>Bolus 1-10 MICROgrams/kg IV/IO</span></div>
+                    <div class="dose-calculation">Bolus <span id="weight-range-1"></span> MICROgramos IV/IO</div>
+                    <div class="dose-definition"><span>Bolus 1-10 MICROgramos/kg IV/IO</span></div>
                 </li>
-                <li>Consider infusion 0.05-1 MICROgrams/kg/min IV</li>
+                <li>Consider infusion 0.05-1 MICROgramos/kg/min IV</li>
             </ul>
         </li>
 
         <li><span>Norepinephrine</span>
             <ul>
-                <li>Consider infusion 0.05-2 MICROgrams/kg/min IV</li>
+                <li>Consider infusion 0.05-2 MICROgramos/kg/min IV</li>
             </ul>
         </li>
 
         <li><span>Phenylephrine</span>
             <ul>
                 <li>
-                    <div class="dose-calculation">Bolus <span id="weight-range-2"></span> MICROgrams IV/IO</div>
-                    <div class="dose-definition"><span>Bolus 1-20 MICROgrams/kg</span></div>
+                    <div class="dose-calculation">Bolus <span id="weight-range-2"></span> MICROgramos IV/IO</div>
+                    <div class="dose-definition"><span>Bolus 1-20 MICROgramos/kg</span></div>
                 </li>
-                <li>Consider infusion 0.1-2 MICROgrams/kg/min IV</li>
+                <li>Consider infusion 0.1-2 MICROgramos/kg/min IV</li>
             </ul>
         </li>
 
@@ -55,12 +55,12 @@
 
 <script>
     if (app.weight > 0) {
-        // 1-10 MICROgrams/kg
+        // 1-10 MICROgramos/kg
         const calculatedRange1a = app.printNumber(app.weight, 0, 2);
         const calculatedRange1b = app.printNumber(app.weight * 10, 0, 2);
         document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
 
-        // 1-20 MICROgrams/kg
+        // 1-20 MICROgramos/kg
         const calculatedRange2a = app.printNumber(app.weight, 0, 2);
         const calculatedRange2b = app.printNumber(app.weight * 20, 0, 2);
         document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;

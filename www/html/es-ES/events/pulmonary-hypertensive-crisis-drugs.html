@@ -17,7 +17,7 @@
                 data-title="Pulmonary Hypertensive" class="bg-crisis">Crisis</button>
         </div>
     </div>
-    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+    <div class="bg-drugs event-title">Resumen de medicamentos/dosis</div>
 </div>
 <div class="page">
     <ul class="drugs">
@@ -59,15 +59,15 @@
 
         <li><span>Norepinephrine</span>
             <ul>
-                <li>0.05-0.3 MICROgrams/kg/min</li>
+                <li>0.05-0.3 MICROgramos/kg/min</li>
             </ul>
         </li>
 
         <li><span>Epinephrine</span>
             <ul>
                 <li>
-                    <div class="dose-calculation"><span id="weight-range-4"></span> MICROgrams IV/IO</div>
-                    <div class="dose-definition"><span>1-10 MICROgrams/kg IV/IO</span></div>
+                    <div class="dose-calculation"><span id="weight-range-4"></span> MICROgramos IV/IO</div>
+                    <div class="dose-definition"><span>1-10 MICROgramos/kg IV/IO</span></div>
                 </li>
             </ul>
         </li>
@@ -90,7 +90,7 @@
         const calculatedRange3 = app.printNumber(app.weight * 0.03, 0, 2);
         document.getElementById("weight-range-3").textContent = calculatedRange3;
 
-        // 1-10 MICROgrams/kg
+        // 1-10 MICROgramos/kg
         const calculatedRange4a = app.printNumber(app.weight, 0, 2);
         const calculatedRange4b = app.printNumber(app.weight * 10, 0, 2);
         document.getElementById("weight-range-4").textContent = calculatedRange4a + "-" + calculatedRange4b;

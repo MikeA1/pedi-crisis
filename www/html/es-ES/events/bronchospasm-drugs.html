@@ -16,7 +16,7 @@
             <button data-uri="/html/{lang}/events/bronchospasm-crisis.html" data-title="Bronchospasm" class="bg-crisis">Crisis</button>
         </div>
     </div>
-    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+    <div class="bg-drugs event-title">Resumen de medicamentos/dosis</div>
 </div>
 <div class="page">
     <ul class="drugs">
@@ -35,13 +35,13 @@
         <li><span>Epinephrine</span>
             <ul>
                 <li>
-                    <div class="dose-calculation"><span id="weight-range-2"></span> MICROgrams IV</div>
-                    <div class="dose-definition"><span>1-2 MICROgrams/kg, MAX 1 mg IV</span></div>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> MICROgramos IV</div>
+                    <div class="dose-definition"><span>1-2 MICROgramos/kg, MAX 1 mg IV</span></div>
                 </li>
                 <li class="no-bullet"><strong>OR</strong></li>
                 <li>
-                    <div class="dose-calculation"><span id="weight-range-3"></span> MICROgrams subcutaneous/intramuscular</div>
-                    <div class="dose-definition"><span>10 MICROgrams/kg subcutaneous/intramuscular, MAX 0.5 mg</span></div>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> MICROgramos subcutaneous/intramuscular</div>
+                    <div class="dose-definition"><span>10 MICROgramos/kg subcutaneous/intramuscular, MAX 0.5 mg</span></div>
                 </li>
             </ul>
         </li>
@@ -74,12 +74,12 @@
         const calculatedRange1b = app.printNumber(app.weight * 2, 0, 2);
         document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
 
-        // 1-2 MICROgrams/kg, MAX 1 mg
+        // 1-2 MICROgramos/kg, MAX 1 mg
         const calculatedRange2a = app.printNumber(Math.min(app.weight, 1000), 0, 2);
         const calculatedRange2b = app.printNumber(Math.min(app.weight * 2, 1000), 0, 2);
         document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;
 
-        // 10 MICROgrams/kg, MAX 0.5 mg
+        // 10 MICROgramos/kg, MAX 0.5 mg
         const calculatedRange3 = app.printNumber(Math.min(app.weight * 10, 500), 0, 2);
         document.getElementById("weight-range-3").textContent = calculatedRange3;
 
