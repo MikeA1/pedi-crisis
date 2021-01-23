@@ -33,11 +33,18 @@
         <button id="weight-is-invalid" type="button">No, remove it</button>
     </div>
     <div class="section">
-        <strong>Patient Weight</strong>
+        <strong>Peso</strong>
         <div class="fill-available">
-            <input id="weight-input" type="number" inputmode="numeric" pattern="[0-9.]*" step="0.1" placeholder="" autofocus style="width: 100px"> kg
-            <button id="weight-ok" type="submit">Save</button>
-            <button id="weight-cancel" type="button">Cancel</button>
+            <!-- WebKit/Blink *really* wants to use "." as a decimal separator.
+                 It would be great if we could use `type='number'` with this
+                 input element, but that disallows "," as a decimal separator.
+                 So, we use `type='text'` instead, along with a forgiving `pattern`
+                 which allows us to use "," as a decimcal separator. 
+                 We also allow "." as the decimal separator; it's not correct for
+                 Spanish, but some users may try to use it out of habit. -->
+            <input id="weight-input" type="text" pattern="[0-9.,]*" placeholder="" autofocus style="width: 100px"> kg
+            <button id="weight-ok" type="submit">Guardar</button>
+            <button id="weight-cancel" type="button">Cancelar</button>
         </div>
     </div>
 </form>
@@ -51,7 +58,7 @@
 
     // The input element is used multiple times. So, get a reference to it.
     const input = document.getElementById("weight-input");
-    
+
     // This is the first time loading the screen, so set the weight input.
     const weight = window.app.weight;
     if (weight) {
@@ -66,8 +73,8 @@
     }
 
     const updateWeight = (event) => {
-        // The "+" is important because it converts the string to a number!
-        app.weight = +input.value;
+        // Replace "," to "." so that Javascript can parse this value to a float.
+        app.weight = +(input.value.replace(',', '.'));
         app.navigate.prev();
         // Don't allow the form to send an actual POST to a non-existent server.
         if (event.preventDefault) event.preventDefault();

@@ -44,7 +44,7 @@
                 }
                 weightValue = value;
                 const strong = document.createElement("strong");
-                strong.textContent = value + " kg";
+                strong.textContent = app.printNumber(value) + " kg";
                 weightButton.textContent = "";
                 weightButton.appendChild(strong);
                 startWarningTimer();
@@ -60,7 +60,7 @@
                 weightValue = 0;
                 weightButton.textContent = "";
                 const span = document.createElement("span");
-                span.textContent = "Pt Wt ";
+                span.textContent = app.language === "es-ES" ? "Peso " : "Pt Wt ";
                 weightButton.appendChild(span);
                 // On smaller screens, the three hyphens may be line-wrapped like this:
                 //    Pt Wt --
@@ -73,6 +73,7 @@
                 weightButton.appendChild(hyphens);
                 clearWarningTimer();
             } else {
+                console.log(value);
                 console.warn("Value provided where weight '" + value + '" is not a number.');
             }
         }
