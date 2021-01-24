@@ -27,58 +27,60 @@
 </div>
 <div class="cardiac-arrest-tx page">
 
-    <strong>Pick One:</strong>
+    <strong>Escoja uno:</strong>
 
     <div id="button-group-1" class="button-group">
         <div class="button-container">
-            <button>Initial Actions</button>
+            <button>Acciones iniciales</button>
         </div>
     </div>
 
     <ul id="list-group-1" class="display-none">
-        <li>If no pulse or HR &lt; 60 beats per minute with poor perfusion despite effective ventilation with oxygen</li>
-        <li>Increase O<sub>2</sub> to 100%. Turn off all anesthetic gases and anesthetic infusions</li>
-        <li>Notificar al cirujano, pedir ayuda y el carro de paro/defibrillator</li>
-        <li>If ETT, 100-120 chest compressions/min + 10 breaths/min; avoid hyperventilation</li>
-        <li>If no ETT, 15:2 compression:ventilation ratio (100-120 chest compressions/min + 8 breaths/min)</li>
-        <li>For chest compressions, ensure EtCO<sub>2</sub> &gt; 10 mmHg (go to <span data-uri="/html/{lang}/events/chest-compression-tx.html" data-title="Paro cardíaco Supine/Prone Chest Compressions" class="uri">CHEST COMPRESSIONS: SUPINE/PRONE</span>)
+        <li>Sin pulso o pulso &lt; 60 con mala perfusión a pesar de ventilación efectiva con oxígeno</li>
+        <li>Administre oxígeno al 100%. Descontinuar anestésicos</li>
+        <li>Informar al cirujano, pedir ayuda y el carro de paro/desfibrilador</li>
+        <li>Si está intubado, 100-120 compresiones/min + 10 respiraciones/min. Evitar hiperventilación</li>
+        <li>No intubado, 15:2 proporción compresión:ventilación (100-120 compresiones/min + 8 resp/min)</li>
+        <li>Compresiones torácicas, maximizar EtCO<sub>2</sub> &gt; 10 mmHg (ver página de <span data-uri="/html/{lang}/events/chest-compression-tx.html" data-title="COMPRESIONES TORÁCICAS: SUPINO/PRONO" class="uri">COMPRESIONES TORÁCICAS: SUPINO/PRONO</span>)
             <ul>
-                <li>Switch compressor every 2 min</li>
-                <li>Use sudden increase in EtCO<sub>2</sub> for ROSC, Do NOT stop compressions for pulse check</li>
+                <li>Alternar operadores cada 2 minutos</li>
+                <li>Usar ascenso del EtCO<sub>2</sub> para retorno de la circulación espontánea, NO INTERRUMPIR compresiones para comprobar pulso</li>
             </ul>
         </li>
-        <li>Start timer. Designate team leader. Assign roles. Designate a scribe/recorder. Notify family</li>
-        <li>Considere <span class="uri" data-uri="/html/{lang}/events/cardiac-arrest-ddx.html" data-title="Paro cardíaco">DDx</span></li>
-        <li>Continue with Follow-on Actions</li>
+        <li>Iniciar cronómetro. Designar líder. Asignar roles. Designar escribano. Informar a la familia</li>
+        <li>Considere <span class="uri" data-uri="/html/{lang}/events/cardiac-arrest-ddx.html" data-title="Paro cardíaco">otros diagnósticos</span></li>
+        <li>Continuar con las próximas acciones</li>
     </ul>
 
     <div id="button-group-2" class="button-group">
         <div class="button-container">
-            <button>Follow-on Actions</button>
+            <button>Acciones a seguir</button>
         </div>
     </div>
 
     <div id="list-group-2" class="display-none">
-        <div>Repeat sequence below until return of spontaneous circulation:</div>
+        <div>Repetir secuencia abajo hasta el retorno de la circulación espontánea:</div>
         <ul>
-            <li>If still in VF/VT, shock 4 joules/kg q2 min (up to 10 joules/kg on subsequent shocks)</li>
-            <li>Resume chest compressions immediately regardless of rhythm</li>
+            <li>Si persiste en fibrilación ventricular/taquicardia ventricular, desfibrilar 4J/kg cada 2 min (hasta 10 J/kg en descargas subsiguientes)</li>
+            <li>Reiniciar compresiones inmediatamente tras la descarga sin importar el ritmo</li>
 
-            <li class="no-weight">Epinephrine 10 MICROgramos/kg IV q 3-5 min while in arrest (MAX 1 mg)
+            <li class="no-weight">ADRenalina 10 MICROgramos/kg IV cada 3-5 min mientras esté en paro (MAX 1 mg)
                 <ul>
-                    <li>If still no ROSC after second dose of EPINEPHrine, activate <span data-phone-number="ECMO">ECMO</span></li>
+                    <li>Si aún no hay retorno de la circulación espontánea después de la segunda dosis de Adrenalina, activar <span data-phone-number="ECMO">ECMO</span></li>
                 </ul>
             </li>
-            <li class="has-weight">Epinephrine <span id="weight-range-1"></span> MICROgramos <span class="per-kg-weight">(10 MICROgramos/kg, MAX 1 mg)</span> IV q 3-5 min while in arrest
+            <li class="has-weight">ADRenalina <span id="weight-range-1"></span> MICROgramos <span class="per-kg-weight">(10 MICROgramos/kg, MAX 1 mg)</span> IV cada 3-5 min mientras esté en paro
                 <ul>
-                    <li>If still no ROSC after second dose of EPINEPHrine, activate <span data-phone-number="ECMO">ECMO</span></li>
+                    <li>Si aún no hay retorno de la circulación espontánea después de la segunda dosis de Adrenalina, activar <span data-phone-number="ECMO">ECMO</span></li>
                 </ul>
             </li>
-            <li>Check pulse &amp; rhythm q 2 min during compressor change</li>
-            <li>Check for reversible causes (Hs and Ts) early and often (see <span data-uri="/html/{lang}/events/cardiac-arrest-ddx.html" data-title="Paro cardíaco" class="uri">DDX</span>)</li>
-            <li class="no-weight">Lidocaine 1 mg/kg bolus (MAX 100 mg); may repeat (total: 2 doses) OR amiodarone 5 mg/kg bolus; may repeat (total: 3 doses)
-            <li class="has-weight">Lidocaine <span id="weight-range-2"></span> mg <span class="per-kg-weight">(1 mg/kg, MAX 100 mg)</span> bolus; may repeat (total: 2 doses) OR amiodarone <span id="weight-range-3"></span> mg <span class="per-kg-weight">(5 mg/kg)</span> bolus; may repeat (total: 3 doses)
-            <li>Repeat sequence in this box until return of spontaneous circulation</li>
+            <li>Comprobar pulso y ritmo cada 2 min durante el cambio de operadores</li>
+            <li>Revisar causas reversibles (Hs y Ts) temprano y frecuentemente (ver <span data-uri="/html/{lang}/events/cardiac-arrest-ddx.html" data-title="Paro cardíaco" class="uri">diagnósticos diferenciales</span>)</li>
+            <li class="no-weight">Lidocaína  1 mg/kg bolo (MAX 100 mg); se puede repetir (total: 2 dosis) 
+                <strong>O</strong> amiodarona 5 mg/kg en bolo; se puede repetir (total: 3 dosis)
+            <li class="has-weight">Lidocaína <span id="weight-range-2"></span> mg <span class="per-kg-weight">(1 mg/kg, MAX 100 mg)</span> bolo; se puede repetir (total: 2 dosis) 
+                <strong>O</strong> amiodarona <span id="weight-range-3"></span> mg <span class="per-kg-weight">(5 mg/kg)</span> en bolo; se puede repetir (total: 3 dosis)
+            <li>Repetir la secuencia en este recuadro hasta el retorno de la circulación espontánea</li>
         </ul>
 
     </div>
