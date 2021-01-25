@@ -74,8 +74,12 @@
             background-color: #000;
         }
 
-        #title {
-            font-size: 1em;
+        html[lang=es-ES] .lang-en {
+            display: none;
+        }
+
+        html[lang=es-ES] .lang-es {
+            display:initial;
         }
 
         #header {
@@ -144,22 +148,34 @@
                 <span id="header">Pedi Crisis <sup style="color: #888">2.0</sup></span>
             </div>
             <div style="align-self: center; flex: 1;">
-                <button id="back-button" class="fill-available" style="height: 1.8em; margin: 4px 0;">Back</button>
+                <button id="back-button" class="fill-available" style="height: 1.8em; margin: 4px 0;">
+                    <span class="lang-en">Back</span>
+                    <span class="lang-es">Atrás</span>
+                </button>
                 <button id="settings" class="fill-available" style="height: 1.8em;" data-uri="/html/{lang}/settings/index.html" id="settings" style="margin-bottom: 4px;">⚙</button>
             </div>
         </div>
         <div class="button-group" style="padding-top: 4px">
             <div class="button-container" style="padding-right: 6px;">
-                <button id="events" data-uri="/html/{lang}/events/index.html" data-title="Pedi Crisis">Event List</button>
+                <button id="events" data-uri="/html/{lang}/events/index.html" data-title="Pedi Crisis">
+                    <span class="lang-en">Event List</span>
+                    <span class="lang-es">Lista del evento</span>
+                </button>
             </div>
             <div class="button-container" style="padding-right: 6px;">
-                <button id="phone" data-uri="/html/{lang}/phone/index.html" data-title="Pedi Crisis">Phone Numbers</button>
+                <button id="phone" data-uri="/html/{lang}/phone/index.html" data-title="Pedi Crisis">
+                    <span class="lang-en">Phone Numbers</span>
+                    <span class="lang-es">Número de teléfono</span>
+                </button>
             </div>
             <div class="button-container">
                 <!-- The "no-transition" class prevents an animation/transition CSS class from being applied to the object. -->
                 <!-- In this case, the class is needed because iOS freaks out w.r.t. autofocus. -->
                 <!-- Another option is to use a different animation for this page (or perhaps all pages?) -->
-                <button id="weight" data-uri="/html/{lang}/weight/index.html" data-title="Pedi Crisis" data-add-class="no-transition"><span>Pt Wt </span><span style="white-space: nowrap;">---</span></button>
+                <button id="weight" data-uri="/html/{lang}/weight/index.html" data-title="Pedi Crisis" data-add-class="no-transition">
+                    <span class="lang-en">Pt Wt </span><span class="lang-en" style="white-space: nowrap;">---</span>
+                    <span class="lang-es">Peso </span><span class="lang-es" style="white-space: nowrap;">---</span>
+                </button>
             </div>
         </div>
     </div>

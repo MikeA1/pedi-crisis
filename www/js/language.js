@@ -15,6 +15,7 @@
         set(value) {
             if (app.supportedLanguages.includes(value)) {
                 languageValue = value;
+                document.documentElement.setAttribute('lang', languageValue);
                 localStorage.setItem(storageKey, value);
             }
         }
@@ -24,6 +25,7 @@
         var storageValue = localStorage.getItem(storageKey);
         if (storageValue != null && app.supportedLanguages.includes(storageValue)) {
             languageValue = storageValue;
+            document.documentElement.setAttribute('lang', languageValue);
             return;
         }
 
@@ -54,5 +56,6 @@
     if (!languageValue)
         languageValue = "en-US";
 
+    document.documentElement.setAttribute('lang', languageValue);
 
 })();
