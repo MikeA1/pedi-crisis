@@ -161,17 +161,19 @@ body.hasDarkMode .page {
 /* button-group is the parent of button-container */
 .button-group {
     display: flex;
-    padding-bottom: 0.5em;
+    flex-wrap: wrap;
+    margin-left: -4px;
+    margin-right: -4px;
 }
 
 .button-container {
     flex-grow: 1;
-    padding-right: 4px;
+    margin: 4px;
 }
 
 /* For a non-nav button-container, don't pad the far left or far right side (the containing .page already has padding) */
-.button-container:last-child {
-    padding-right: 0;
+.button-container button {
+    padding: 6px;
 }
 
 button {
@@ -246,7 +248,7 @@ body.hasAccessibility {
  }
 
 
-/* When in accessibility mode, the header and event navs have much less paddin. */
+/* When in accessibility mode, the header and event navs have much less padding. */
 body.hasAccessibility .event-nav {
     padding: 8px 8px 0 8px;
 }

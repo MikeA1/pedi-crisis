@@ -50,8 +50,8 @@
 
         /* These two rules pad the left and right side of the nav buttons. */
         #nav .button-group {
-            padding-left: 1em;
-            padding-right: 1em;
+            padding-left: 6px;
+            padding-right: 6px;
         }
 
         /* Reduce margin, padding to fit more text on each line. */
@@ -80,6 +80,14 @@
 
         html[lang=es-ES] .lang-es {
             display:initial;
+        }
+
+        html[lang=en-US] .lang-en {
+            display: initial;
+        }
+
+        html[lang=en-US] .lang-es {
+            display: none;
         }
 
         #header {
@@ -140,15 +148,15 @@
 
     </style>
     <div id="nav">
-        <div class="button-group" style="padding-top:.5em; padding-bottom:0;">
-            <div data-uri="/html/{lang}/events/index.html" data-title="Pedi Crisis" style="align-self: center; padding-right: 4px;">
+        <div class="button-group" style="padding-top: 4px;">
+            <div data-uri="/html/{lang}/events/index.html" data-title="Pedi Crisis" style="align-self: center; padding: 0 4px;">
                 <img src="img/logo.png" height=50 width=50 />
             </div>
             <div style="align-self: center; flex: 8; padding-right: 4px;">
                 <span id="header">Pedi Crisis <sup style="color: #888">2.0</sup></span>
             </div>
-            <div style="align-self: center; flex: 1;">
-                <button id="back-button" class="fill-available" style="height: 1.8em; margin: 4px 0;">
+            <div style="align-self: center; flex: 1; padding-right: 4px;">
+                <button id="back-button" class="fill-available" style="height: 1.8em; margin-bottom: 4px;">
                     <span class="lang-en">Back</span>
                     <span class="lang-es">Atrás</span>
                 </button>
@@ -156,13 +164,13 @@
             </div>
         </div>
         <div class="button-group" style="padding-top: 4px">
-            <div class="button-container" style="padding-right: 6px;">
+            <div class="button-container">
                 <button id="events" data-uri="/html/{lang}/events/index.html" data-title="Pedi Crisis">
                     <span class="lang-en">Event List</span>
                     <span class="lang-es">Lista del evento</span>
                 </button>
             </div>
-            <div class="button-container" style="padding-right: 6px;">
+            <div class="button-container">
                 <button id="phone" data-uri="/html/{lang}/phone/index.html" data-title="Pedi Crisis">
                     <span class="lang-en">Phone Numbers</span>
                     <span class="lang-es">Número de teléfono</span>
