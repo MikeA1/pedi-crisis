@@ -18,87 +18,91 @@
 <div class="page">
 
     <ul>
-        <li>Call for defibrillator and code cart. Place patient on backboard.  Attach defibrillator pads</li>
-        <li>Increase O<sub>2</sub> to 100%, stop anesthetic agents, inform surgeon, consider cardiology consult
+        <li>Solicitar el carro de paro y el desfibrilador. Ponga al paciente sobre la tabla espinal.  Colocar los parches del desfibrilador</li>
+        <li>Administre 100% O<sub>2</sub> detenga administración de anestésicos, notifique al cirujano, considere consulta a cardiología
             <ul>
-                <li>Call <span data-phone-number="Intraoperative Electrophysiology">Intraoperative Electrophysiology</span></li>
+                <li>Llame a <span data-phone-number="Intraoperative Electrophysiology">electrofisiología intraoperatoria</span></li>
             </ul>
         </li>
-        <li>If NO pulse present,  start CPR/PALS; go to <span data-uri="/html/{lang}/events/cardiac-arrest-dx.html" data-title="Cardiac Arrest" class="uri">CARDIAC ARREST</span></li>
-        <li>If pulse present, <strong>Pick One</strong></li>
+        <li>Si NO hay pulso presente, empezar reanimación cardiopulmonar pediátrica; ver página de
+            <span data-uri="/html/{lang}/events/cardiac-arrest-dx.html" data-title="Paro cardíaco" class="uri">Paro cardíaco</span></li>
+        <li>Si hay pulso presente, <strong>Escoja uno</strong></li>
     </ul>
 
     <!-- Narrow complex -->
     <div id="button-group-1" class="button-group">
         <div class="button-container">
-            <button>Narrow complex (p waves before every QRS)</button>
+            <button>Complejo estrecho: (ondas P presentes antes de cada complejo QRS)</button>
         </div>
     </div>
     <ul id="list-group-1" class="display-none m-l-1">
-        <li>Probably sinus tachycardia</li>
-        <li>Identify and treat underlying etiology</li>
+        <li>Probable taquicardia sinusal</li>
+        <li>Identifique y maneje etiología</li>
     </ul>
 
     <!-- SVT, tachyarrythmia -->
     <div id="button-group-2" class="button-group">
         <div class="button-container">
-            <button>SVT, tachyarrythmia</button>
+            <button>Taquicardia supraventricular, taquiarritmia</button>
         </div>
     </div>
     <ul id="list-group-2" class="display-none m-l-1">
-        <li>Consider vagal maneuvers</li>
-        <li class="no-weight">Adenosine 1st dose 0.1 mg/kg IV, <strong>rapid push</strong> (6 mg MAX); 2nd dose 0.2 mg/kg IV (12 mg MAX)</li>
-        <li class="has-weight">Adenosine 1st dose <span id="weight-range-1"></span> mg <span class="dose-definition">(0.1 mg/kg, 6 mg MAX)</span> IV, <strong>rapid push</strong>; 
-            2nd dose <span id="weight-range-2"></span> mg <span class="dose-definition">(0.2 mg/kg, 12 mg MAX)</span> IV
+        <li>Considere maniobras vagales</li>
+        <li class="no-weight">Adenosina: 1ª dosis 0,1 mg/kg IV, <strong>bolo rápido</strong> (6 mg MAX);
+            2ª dosis 0,2 mg/kg IV (12 mg MAX)</li>
+        <li class="has-weight">Adenosina: 1ª dosis <span id="weight-range-1"></span> mg <span class="dose-definition">(0,1 mg/kg, 6 mg MAX)</span> IV, <strong>bolo rápido</strong>; 
+            2ª dosis <span id="weight-range-2"></span> mg <span class="dose-definition">(0,2 mg/kg, 12 mg MAX)</span> IV
         </li>
 
-        <li class="no-weight">Synchronized cardioversion: 0.5-1 joule/kg, additional shocks @ 2 joules/kg</li>
-        <li class="has-weight">Synchronized cardioversion: <span class="joule-range-1"></span> joules <span class="dose-definition">(0.5-1 joule/kg)</span>,
-            additional shocks @ <span class="joule-range-2"></span> joules <span class="dose-definition">(2 joules/kg)</span>
+        <li class="no-weight">Cardioversión sincronizada: 0,5-1 julios/kg, choques subsiguientes @ 2 julios/kg </li>
+        <li class="has-weight">Cardioversión sincronizada: <span class="joule-range-1"></span> julios <span class="dose-definition">(0,5-1 julios/kg)</span>,
+            choques subsiguientes @ <span class="joule-range-2"></span> julios <span class="dose-definition">(2 julios/kg)</span>
         </li>
     </ul>
 
     <!-- Wide complex -->
     <div id="button-group-3" class="button-group">
         <div class="button-container">
-            <button>Wide complex</button>
+            <button>Complejo ancho</button>
         </div>
     </div>
 
     <ul id="list-group-3" class="display-none m-l-1">
-        <li class="no-weight">Amiodarone 5 mg/kg IV bolus over 20-60 min</li>
-        <li class="has-weight">Amiodarone <span id="weight-range-3"></span> mg <span class="dose-definition">(5 mg/kg)</span> IV bolus over 20-60 min</li>
+        <li class="no-weight">Amiodarona 5 mg/kg IV bolo en 20-60 min</li>
+        <li class="has-weight">Amiodarona <span id="weight-range-3"></span> mg <span class="dose-definition">(5 mg/kg)</span> IV bolo en 20-60 min</li>
 
-        <li class="no-bullet"><strong>OR</strong></li>
+        <li class="no-bullet"><strong>O</strong></li>
 
-        <li class="no-weight">Procainamide 15 mg/kg IV bolus over 30-60 min</li>
-        <li class="has-weight">Procainamide <span id="weight-range-4"></span> mg <span class="dose-definition">(15 mg/kg)</span> IV bolus over 30-60 min</li>
+        <li class="no-weight">Procainamida 15 mg/kg IV bolo en 30-60 min</li>
+        <li class="has-weight">Procainamida <span id="weight-range-4"></span> mg <span class="dose-definition">(15 mg/kg)</span> IV bolo en 30-60 min</li>
 
-        <li class="no-bullet"><strong>OR</strong></li>
+        <li class="no-bullet"><strong>O</strong></li>
 
-        <li class="no-weight">Synchronized cardioversion: 0.5-1 joule/kg, additional shocks @ 2 joules/kg</li>
-        <li class="has-weight">Synchronized cardioversion: <span class="joule-range-1"></span> joules <span class="dose-definition">(0.5-1 joule/kg)</span>,
-            additional shocks @ <span class="joule-range-2"></span> joules <span class="dose-definition">(2 joules/kg)</span>
+        <li class="no-weight">Cardioversión sincronizada: 0,5-1 julios/kg, choques subsiguientes @ 2 julios/kg </li>
+        <li class="has-weight">Cardioversión sincronizada: <span class="joule-range-1"></span> julios <span class="dose-definition">(0,5-1 julios/kg)</span>,
+            choques subsiguientes @ <span class="joule-range-2"></span> julios <span class="dose-definition">(2 julios/kg)</span>
         </li>
     </ul>
 
     <!-- Torsade de Pointes (polymorphic VT with prolonged QT) -->
     <div id="button-group-4" class="button-group">
         <div class="button-container">
-            <button>Torsade de Pointes (polymorphic VT with prolonged QT)</button>
+            <button>Torsade de Pointes (taquicardia ventricular polimórfica con prolongación de QT)</button>
         </div>
     </div>
     <ul id="list-group-4" class="display-none m-l-1">
-        <li class="no-weight">Magnesium sulfate 25-50 mg/kg IV/IO (MAX 2 g)</li>
-        <li class="has-weight">Magnesium sulfate <span id="weight-range-5"></span> mg <span class="dose-definition">(25-50 mg/kg, MAX 2 g)</span> IV/IO</li>
+        <li class="no-weight">Sulfato de magnesio 25-50 mg/kg IV/IO (MAX 2 g)</li>
+        <li class="has-weight">Sulfato de magnesio <span id="weight-range-5"></span> mg <span class="dose-definition">(25-50 mg/kg, MAX 2 g)</span> IV/IO</li>
 
-        <li class="no-weight">Lidocaine 1 mg/kg IV (MAX 100 mg)</li>
-        <li class="has-weight">Lidocaine <span id="weight-range-6"></span> mg <span class="dose-definition">(1 mg/kg, MAX 100 mg)</span> IV</li>
+        <li class="no-weight">Lidocaína 1 mg/kg IV (MAX 100 mg)</li>
+        <li class="has-weight">Lidocaína <span id="weight-range-6"></span> mg <span class="dose-definition">(1 mg/kg, MAX 100 mg)</span> IV</li>
 
-        <li class="no-weight">Sodium bicarbonate (for quinidine-related SVT) 1 mEq/kg IV</li>
-        <li class="has-weight">Sodium bicarbonate (for quinidine-related SVT) <span id="weight-range-7"></span> mEq <span class="dose-definition">(1 mEq/kg)</span> IV</li>
+        <li class="no-weight">Bicarbonato de sodio (para taquicardia supraventricular relacionada a la quinidina) 
+            1mEq/kg IV</li>
+        <li class="has-weight">Bicarbonato de sodio (para taquicardia supraventricular relacionada a la quinidina) 
+            <span id="weight-range-7"></span> mEq <span class="dose-definition">(1 mEq/kg)</span> IV</li>
 
-        <li>Temporary <span data-uri="/html/{lang}/events/bradycardia-misc.html" data-title="Transcutaneous Pacing" class="uri">TRANSCUTANEOUS PACING</span></li>
+        <li><span data-uri="/html/{lang}/events/bradycardia-misc.html" data-title="Marcapasos transcutaneo" class="uri">Marcapasos transcutaneo</span> temporal</li>
     </ul>
 
 </div>
