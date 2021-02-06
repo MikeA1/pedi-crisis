@@ -106,7 +106,7 @@
         document.getElementById("weight-range-4").textContent = calculatedRange4;
 
         // 1 mg/kg, MAX 50 mg
-        const calculatedRange5 = app.printNumber(Math.min(app.weight * 2, 50), 0, 2);
+        const calculatedRange5 = app.printNumber(Math.min(app.weight * 1, 50), 0, 2);
         document.getElementById("weight-range-5").textContent = calculatedRange5;
 
         // 0.25 mg/kg, MAX 20 mg
