@@ -35,11 +35,13 @@
             let hasProtocol = uri.indexOf('://') > 0;
             // Not confirmed to occur in PhoneGap app, but guard against a context-implied protocol: //localhost:3000/index.html
             let hasImpliedProtocol = uri.indexOf('//') === 0;
-            let fullUri = uri;
             if (hasProtocol || hasImpliedProtocol) {
                 return uri;
             }
             // If here then assume uri is relative.
+            if (!navigate.rootPath) 
+                return uri;
+
             // We don't know what the full path is until run time, (and it's different for each platform), so `navigate.root` is captured once when this script is first run/parsed.
             // Avoid creating invalid paths with double forward slashes. This bad-uri-example has two slashes between "www" and "html": file:///android_asset/www//html/{lang}/events/index.html
             // Note: the double forward slashes was observed to break navigation in Android.
@@ -327,7 +329,7 @@
                     document.title = title;
                 }
             },
-        }
+        };
 
         // If in a browser, handle the user using the "back" and "forward" browser buttons.
         // If in a Cordova wrapper, in practice, we only handle Android's native "back" button.
@@ -347,12 +349,16 @@
 
             // Determine the rootPath. 
             let rootPath = window.location.href;
+            
+            // Nothing to parse here.
+            if (!rootPath) return;
+
             // If here due to a browser reloading on a hash-nav page, remove everything after hash.
             // Example: 
             //    Before: http://localhost:3000/#events
             //    After: http://localhost:3000/
             let hashPosition = rootPath.indexOf("#");
-            if (hashPosition) {
+            if (hashPosition >= 0) {
                 rootPath = rootPath.substring(0, hashPosition);
             }
             // The primary "index.html" file should be the first (and only) page that references this script.

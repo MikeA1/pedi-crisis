@@ -13,9 +13,13 @@
     <preference name="android-minSdkVersion" value="19" />
     <preference name="android-targetSdkVersion" value="28" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+    <preference name="Allow3DTouchLinkPreview" value="false" />
     <access launch-external="yes" origin="tel:*" />
     <access origin="https://www.google-analytics.com" />
     <splash src="www/img/ios/Default@2x~universal~anyany.png" />
+    <platform name="ios">
+        <preference name="InterceptRemoteRequests" value="all" />
+    </platform>
     <platform name="ios (disabled)">
         <icon height="180" src="www/img/ios/180x180.png" width="180" />
         <icon height="60" src="www/img/ios/60x60.png" width="60" />
