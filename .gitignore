@@ -14,6 +14,8 @@ npm-debug.log
 # res
 resources/signing
 
+# vscode project settings
 .vscode/
 
-untracked/
+# the npm lock file introduced issues when upgrading to the latest version of cordova
+package-lock.json 
