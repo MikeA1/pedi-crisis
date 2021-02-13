@@ -19,10 +19,6 @@
             // iOS doesn't have a physcial back button, so add one to the app.
             // Note: button visibility is driven via CSS rules.
             document.body.classList.add("display-virtual-back-button");
-            
-            // Use FastClick (https://github.com/ftlabs/fastclick) to eliminate 300ms delay on `Click` events.
-            // Why just iOS? Cordova uses UIWebView rather than (newer) WKWebView (see https://github.com/ftlabs/fastclick/issues/514#issuecomment-368019416).
-            FastClick.attach(document.body, {tapDelay: 5});
         }
 
         // Try to update the root path. It's important that this happens during `deviceready` for iOS.
