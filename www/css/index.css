@@ -162,8 +162,6 @@ body.hasDarkMode .page {
 .button-group {
     display: flex;
     flex-wrap: wrap;
-    margin-left: -4px;
-    margin-right: -4px;
 }
 
 .button-container {
