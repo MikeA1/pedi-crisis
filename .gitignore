@@ -19,3 +19,13 @@ resources/signing
 
 # the npm lock file introduced issues when upgrading to the latest version of cordova
 package-lock.json 
+
+# iOS: save build assets
+!platforms/ios/Pedi Crisis/Images.xcassets/AppIcon.appiconset/
+!platforms/ios/Pedi Crisis/Images.xcassets/AppIcon.appiconset/*
+!platforms/ios/Pedi Crisis/Images.xcassets/LaunchStoryboard.imageset
+
+# iOS: Do not allow WKWebView to adjust the height of the body; adds the following:
+# wkWebView.scrollView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+!/platforms/ios/CordovaLib/Classes/Private/Plugins/CDVWebViewEngine/CDVWebViewEngine.m
+
