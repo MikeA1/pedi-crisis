@@ -7,12 +7,12 @@
 
 html {
     /* On larger screens, give the background a little flair. (This creates a diagnoally-striped background) */
-    background-image: repeating-linear-gradient(-45deg,
-        transparent 1px,
-        transparent 1px,
-        #f4f4f4 3px,
-        #eee 6px
-    );
+    background: #f4f4f4;
+}
+
+html.hasDarkMode {
+    background: #000;
+    color: #fff;
 }
 
 html.hasDarkMode {
