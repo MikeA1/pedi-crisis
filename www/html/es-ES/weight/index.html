@@ -42,7 +42,7 @@
                  which allows us to use "," as a decimcal separator. 
                  We also allow "." as the decimal separator; it's not correct for
                  Spanish, but some users may try to use it out of habit. -->
-            <input id="weight-input" type="text" pattern="[0-9.,]*" placeholder="" autofocus style="width: 100px"> kg
+            <input id="weight-input" type="number" inputmode="decimal" step="0.1" placeholder="" autofocus style="width: 100px"> kg
             <button id="weight-ok" type="submit">Guardar</button>
             <button id="weight-cancel" type="button">Cancelar</button>
         </div>
