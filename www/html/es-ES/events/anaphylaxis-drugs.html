@@ -77,16 +77,7 @@
                 </li>
             </ul>
         </li>
-     
-        <li>
-            <span>Ranitidina</span>
-            <ul>
-                <li>
-                    <div class="dose-calculation"><span id="weight-range-7"></span> mg IV</div>
-                    <div class="dose-definition"><span>1 mg/kg IV MAX 50 mg</span></div>
-                </li>
-            </ul>
-        </li>
+
     </ul>
 </div>
 
@@ -113,10 +104,6 @@
         const calculatedRange6 = app.printNumber(Math.min(app.weight * 0.25, 20), 0, 2);
         document.getElementById("weight-range-6").textContent = calculatedRange6;
 
-        // 1 mg/kg, MAX 50 mg
-        const calculatedRange7 = app.printNumber(Math.min(app.weight * 1, 50), 0, 2);
-        document.getElementById("weight-range-7").textContent = calculatedRange7;
-        
         // 0.01 mg/kg
         document.getElementById("weight-range-9").textContent = app.printNumber(app.weight * 0.01, 0, 2);
     }

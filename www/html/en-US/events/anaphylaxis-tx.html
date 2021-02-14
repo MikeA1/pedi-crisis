@@ -48,8 +48,8 @@
 
         <li>To ↓&nbsp;bronchoconstriction: give albuterol 4-10 puffs, repeat as needed</li>
 
-        <li class="no-weight">To ↓&nbsp;effects of histamine: give famotidine 0.25 mg/kg IV (MAX 20 mg) or ranitidine 1 mg/kg IV (MAX 50 mg)</li>
-        <li class="has-weight">To ↓&nbsp;effects of histamine: give famotidine <span id="weight-range-7"></span> mg <span class="dose-definition">(0.25 mg/kg, MAX 20 mg)</span> IV or ranitidine <span id="weight-range-8"></span> mg <span class="dose-definition">(1 mg/kg, MAX 50 mg)</span> IV</li>
+        <li class="no-weight">To ↓&nbsp;effects of histamine: give famotidine 0.25 mg/kg IV (MAX 20 mg)</li>
+        <li class="has-weight">To ↓&nbsp;effects of histamine: give famotidine <span id="weight-range-7"></span> mg <span class="dose-definition">(0.25 mg/kg, MAX 20 mg)</span> IV</li>
 
         <li>Send tryptase</li>
 
@@ -85,9 +85,7 @@
         // 0.25 mg/kg, MAX 20 mg
         document.getElementById("weight-range-7").textContent = app.printNumber(Math.min(app.weight * 0.25, 20), 0, 2);
 
-        // 1 mg/kg, MAX 50 mg
-        document.getElementById("weight-range-8").textContent = app.printNumber(Math.min(app.weight, 50), 0, 2);
-
+        
         // 0.01 mg/kg
         document.getElementById("weight-range-9").textContent = app.printNumber(app.weight * 0.01, 0, 2);
     }
