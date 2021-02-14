@@ -64,6 +64,16 @@
             </ul>
         </li>
 
+        <li><span>Magnesium Sulfate</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-8"></span> mg IV</div>
+                    <div class="dose-definition"><span>50-75 mg/kg (MAX 2 grams) bolused over 20 minutes</span></div>
+                    <div>CAUTION, may cause hypotension</div>
+                </li>
+            </ul>
+        </li>
+
     </ul>
 </div>
 
@@ -92,6 +102,11 @@
         const calculatedRange7a = app.printNumber(Math.min(app.weight * 0.15, 16), 0, 2);
         const calculatedRange7b = app.printNumber(Math.min(app.weight * 0.25, 16), 0, 2);
         document.getElementById("weight-range-7").textContent = calculatedRange7a === calculatedRange7b ? calculatedRange7a : calculatedRange7a + "-" + calculatedRange7b;
+
+        // 50-75 mg/kg, MAX 2 grams
+        const calculatedRange8a = app.printNumber(Math.min(app.weight * 50, 2000), 0, 1);
+        const calculatedRange8b = app.printNumber(Math.min(app.weight * 75, 2000), 0, 1);
+        document.getElementById("weight-range-8").textContent = calculatedRange8a + "-" + calculatedRange8b;
 
     }
 </script>
