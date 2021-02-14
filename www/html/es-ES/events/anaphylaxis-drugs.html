@@ -24,8 +24,8 @@
             <span>ADRenalina</span>
             <ul>
                 <li>
-                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgramos IV/IO o <span id="weight-range-9"></span> mg IM q5-15 min</div>
-                    <div class="dose-definition"><span>1-10 MICROgramos/kg IV/IO o 0,01 mg/kg IM q5-15 min</span></div>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> MICROgramos IV/IO o <span id="weight-range-9"></span> MICROgramos IM q5-15 min</div>
+                    <div class="dose-definition"><span>1-10 MICROgramos/kg IV/IO o 10 MICROgramos/kg IM q5-15 min</span></div>
                 </li>
                 <li>Considere infusión 0,02-1 MICROgramos/kg/min IV</li>
             </ul>
@@ -104,7 +104,7 @@
         const calculatedRange6 = app.printNumber(Math.min(app.weight * 0.25, 20), 0, 2);
         document.getElementById("weight-range-6").textContent = calculatedRange6;
 
-        // 0.01 mg/kg
-        document.getElementById("weight-range-9").textContent = app.printNumber(app.weight * 0.01, 0, 2);
+        // 10 MICROgrams/kg
+        document.getElementById("weight-range-9").textContent = app.printNumber(app.weight * 10, 0, 2);
     }
 </script>

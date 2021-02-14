@@ -31,10 +31,10 @@
         <li class="has-weight">Para restaurar volumen intravascular: administre solución salina o lactato de Ringer <span id="weight-range-1"></span> mL <span class="dose-definition">(10-30 mL/kg)</span> IV/IO <strong>rápidamente</strong></li>
 
         <li class="no-weight">Para restaurar TA y ↓&nbsp;liberación de mediadores: administre ADRenalina 1-10 MICROgramos/kg IV/IO
-            como sea necesario, o 0,01 mg/kg IM q5-15 min como sea necesario; puede necesitar infusión de ADRenalina 0,02-1 MICROgramos/kg/min IV
+            como sea necesario, o 10 MICROgramos/kg IM q5-15 min como sea necesario; puede necesitar infusión de ADRenalina 0,02-1 MICROgramos/kg/min IV
         </li>
         <li class="has-weight">Para restaurar TA y ↓&nbsp;liberación de mediadores: administre ADRenalina <span id="weight-range-2"></span> MICROgramos <span class="dose-definition">(1-10 MICROgramos/kg)</span> IV/IO
-            como sea necesario, o <span id="weight-range-9"></span> mg IM q5-15 min como sea necesario; puede necesitar infusión de ADRenalina 0,02-1 MICROgramos/kg/min IV
+            como sea necesario, o <span id="weight-range-9"></span> MICROgramos <span class="dose-definition">(10 MICROgramos/kg)</span> IM q5-15 min como sea necesario; puede necesitar infusión de ADRenalina 0,02-1 MICROgramos/kg/min IV
         </li>
 
         <li class="no-weight">Para ↓&nbsp;efectos mediados por la histamina: administre difenhidramina 1 mg/kg IV/IO (MAX 50 mg)</li>
@@ -86,7 +86,7 @@
         // 0.25 mg/kg, MAX 20 mg
         document.getElementById("weight-range-7").textContent = app.printNumber(Math.min(app.weight * 0.25, 20), 0, 2);
 
-        // 0.01 mg/kg
-        document.getElementById("weight-range-9").textContent = app.printNumber(app.weight * 0.01, 0, 2);
+        // 10 MICROgrams/kg
+        document.getElementById("weight-range-9").textContent = app.printNumber(app.weight * 10, 0, 2);
     }
 </script>
