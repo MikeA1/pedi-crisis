@@ -134,12 +134,9 @@
         languageButton.addEventListener("click", (event) => {
             app.language = language;
             app.navigate.next("/html/{lang}/settings/index.html");
-            // Array.from(languageButtons).forEach(langButton => {
-            //     if (langButton === languageButton)
-            //         langButton.classList.add("active");
-            //     else
-            //         langButton.classList.remove("active");
-            // })
+            
+            // Resets the text of the weight button.
+            app.weight = app.weight;
         });
     });
 
