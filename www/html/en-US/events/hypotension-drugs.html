@@ -18,6 +18,24 @@
 <div class="page">
     <ul class="drugs">
 
+        <li><span>Calcium chloride</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> mg IV</div>
+                    <div class="dose-definition"><span>10-30 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Calcium gluconate</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-4"></span> mg IV</div>
+                    <div class="dose-definition"><span>50 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
         <li><span>Dopamine</span> 
             <ul>
                 <li>Infusion 2-20 MICROgrams/kg/min IV</li>
@@ -50,6 +68,7 @@
             </ul>
         </li>
 
+
     </ul>
 </div>
 
@@ -64,5 +83,13 @@
         const calculatedRange2a = app.printNumber(app.weight, 0, 2);
         const calculatedRange2b = app.printNumber(app.weight * 20, 0, 2);
         document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;
+
+        // 10-30 mg/kg
+        const calculatedRange3a = app.printNumber(app.weight * 10, 0, 2);
+        const calculatedRange3b = app.printNumber(app.weight * 30, 0, 2);
+        document.getElementById("weight-range-3").textContent = calculatedRange3a + "-" + calculatedRange3b;
+
+        // 50 mg/kg
+        document.getElementById("weight-range-4").textContent = app.printNumber(app.weight * 50, 0, 2);
     }
 </script>
