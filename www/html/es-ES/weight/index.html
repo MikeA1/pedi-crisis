@@ -25,6 +25,9 @@
         border: 1px solid black;
         border-radius: 50%;
     }
+    #weight-input {
+        width: 100px;
+    }
 </style>
 <form id="weight-form" class="page">
     <div id="weight-warning" class="section">
@@ -35,14 +38,7 @@
     <div class="section">
         <strong>Peso</strong>
         <div class="fill-available">
-            <!-- WebKit/Blink *really* wants to use "." as a decimal separator.
-                 It would be great if we could use `type='number'` with this
-                 input element, but that disallows "," as a decimal separator.
-                 So, we use `type='text'` instead, along with a forgiving `pattern`
-                 which allows us to use "," as a decimcal separator. 
-                 We also allow "." as the decimal separator; it's not correct for
-                 Spanish, but some users may try to use it out of habit. -->
-            <input id="weight-input" type="number" inputmode="decimal" step="0.1" placeholder="" autofocus style="width: 100px"> kg
+            <input id="weight-input" type="number" inputmode="decimal" step="0.1" placeholder="" autofocus> kg
             <button id="weight-ok" type="submit">Guardar</button>
             <button id="weight-cancel" type="button">Cancelar</button>
         </div>
