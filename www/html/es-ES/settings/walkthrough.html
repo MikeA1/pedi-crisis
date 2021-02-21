@@ -12,8 +12,13 @@
 
     #walkthrough {
         position: absolute;
+
         top: 20px;
+        top: calc(20px + constant(safe-area-inset-top)); 
+        
         bottom: 20px;
+        bottom: calc(20px + constant(safe-area-inset-bottom)); 
+
         z-index: 20;
         background-color: #fff;
         width: 100%;
