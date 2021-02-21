@@ -8,12 +8,10 @@
     //   "Fire": {
     //     "description": "Fire",
     //     "number": "Yell Loudly",
-    //     "isHyperlink": false
     //   },
     //   "My Custom Number": {
     //     "description": "My Custom Number",
     //     "number": "555-555-5555",
-    //     "isHyperlink": true
     //   }
     // }
     app.phoneNumbers = {
@@ -60,32 +58,20 @@
                     space.textContent = " ";
                     element.appendChild(space);
 
-                    // If it's a hyperlink, then assume it's a telephone number: prefix with a hashtag (i.e., "#").
-                    // Otherwise, use emphasis (i.e., "<em>") to distinguish the text as special.
-                    if (phoneNumber.isHyperlink) {
-                        // If the element looks like this:
-                        //     <span data-phone-number="ECMO">ECMO</span>
-                        // and we have a phone number defined as this:
-                        //     {description: "ECMO", number: "555-555-5555", isHyperlink: true}
-                        // then the amended element will look like this
-                        //     <span data-phone-number="ECMO">ECMO<span> </span><a href="tel:555-555-5555">#555-555-5555</a></span>
-                        // which to the user is displayed like this:
-                        //    ECMO #555-555-5555
-                        const link = document.createElement("a");
-                        link.href="tel:" + number;
-                        link.textContent = " #" + number;
-                        element.appendChild(link);
-                    } else {
-                        // If the element looks like this:
-                        //     <span data-phone-number="ECMO">ECMO</span>
-                        // and we have a phone number defined as this:
-                        //     {description: "ECMO", number: "Yell For Help", isHyperlink: false}
-                        // then the amended element will look like this
-                        //     <span data-phone-number="ECMO">ECMO<span> </span><em>Yell For Help</em></span>
-                        const nonLink = document.createElement("em");
-                        nonLink.textContent = number;
-                        element.appendChild(nonLink);
-                    }
+                    // Give the phone number a nice format: prefix with a hashtag (i.e., "#").
+                    // If the element looks like this:
+                    //     <span data-phone-number="ECMO">ECMO</span>
+                    // and we have a phone number defined as this:
+                    //     {description: "ECMO", number: "555-555-5555"}
+                    // then the amended element will look like this
+                    //     <span data-phone-number="ECMO">ECMO<span> </span><a href="tel:555-555-5555">#555-555-5555</a></span>
+                    // which to the user is displayed like this:
+                    //    ECMO #555-555-5555
+                    const link = document.createElement("a");
+                    link.href="tel:" + number;
+                    link.textContent = " #" + number;
+                    element.appendChild(link);
+                  
                 }
             });
         },
