@@ -153,11 +153,18 @@ body.hasDarkMode .page {
 .button-group {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 3px;
+}
+
+.event-nav .button-group {
+    /* This offsets the left/right margin of button-container */
+    margin-left: -3px; 
+    margin-right: -3px;
 }
 
 .button-container {
     flex-grow: 1;
-    margin: 4px;
+    margin: 3px;
 }
 
 /* For a non-nav button-container, don't pad the far left or far right side (the containing .page already has padding) */
