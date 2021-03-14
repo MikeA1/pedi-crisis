@@ -4,9 +4,9 @@
   "displayName": "Pedi Crisis",
   "cordova": {
     "platforms": [
-      "android",
       "browser",
-      "ios"
+      "ios",
+      "android"
     ],
     "plugins": {
       "cordova-plugin-device": {},
@@ -16,7 +16,6 @@
     }
   },
   "dependencies": {
-    "cordova-android": "^8.1.0",
     "cordova-plugin-device": "^2.0.1",
     "cordova-plugin-insomnia": "git+https://github.com/MikeA1/Insomnia-PhoneGap-Plugin.git",
     "cordova-plugin-whitelist": "^1.3.3",
@@ -25,6 +24,7 @@
   },
   "private": true,
   "devDependencies": {
+    "cordova-android": "^9.0.0",
     "cordova-browser": "^6.0.0",
     "cordova-ios": "^6.2.0",
     "cordova-plugin-wkwebview-file-xhr": "^3.0.0"
