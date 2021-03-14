@@ -56,7 +56,7 @@
         <button id="button-view-instructions" type="button" class="m-b-1">Ver instrucciones</button>
 
         <div id="view-instructions" class="section">
-            <p>Agregue números de teléfono para referencia rápida. Los números de teléfono se enumeran aquí y aparecen en eventos.</p>
+            <p>Añadir números de teléfono para referencia rápida. Los números telefónicos están listados aquí y aparecen en eventos.</p>
         </div>
         <div id="edit-phone-numbers"></div>
         <div id="add-a-phone-number" class="section">
@@ -160,7 +160,7 @@
                 const displayPhoneNumbers = document.getElementById("display-phone-numbers");
                 if (descriptions.length === 0) {
                     // Display Mode and no phone numbers are assigned
-                    displayPhoneNumbers.textContent = "Aún no ha agregado números de teléfono. Haga clic en el botón 'Editar números de teléfono' para personalizar esta pantalla.";
+                    displayPhoneNumbers.textContent = "Añadir números de teléfono para referencia rápida. Los números telefónicos están listados aquí y aparecen en eventos.";
                 } else {
                     descriptions.sort(app.phoneNumbers.sortCaseInsensitive);
                     moveCallForHelpToFirstPosition(descriptions);
