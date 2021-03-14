@@ -30,8 +30,8 @@
     </div>
     <ul id="list-non-intubated" class="display-none m-l-1">
         <li class="no-weight">If severe, consider intravenous epinephrine 1-2 MICROgrams/kg IV (MAX 1 mg) or 10 MICROgrams/kg subcutaneous/intramuscular (MAX 0.5 mg)</li>
-        <li class="has-weight">If severe, consider intravenous epinephrine <span id="weight-range-4"></span> MICROgrams <span class="dose-definition">(1-2 MICROgrams/kg, MAX 1 mg)</span> IV
-            or <span id="weight-range-5"></span> <span class="dose-definition">(10 MICROgrams/kg, MAX 0.5 mg)</span>MICROgrams subcutaneous/intramuscular
+        <li class="has-weight">If severe, consider intravenous epinephrine <span id="weight-range-4"></span> MICROgrams <span class="dose-definition"> (1-2 MICROgrams/kg, MAX 1 mg)</span> IV
+            or <span id="weight-range-5"></span> <span class="dose-definition">(10 MICROgrams/kg, MAX 0.5 mg)</span> MICROgrams subcutaneous/intramuscular
         </li>
         <li>Administer supplemental oxygen</li>
         <li>Auscultate the chest, differentiate from stridor/extrathoracic airway obstruction</li>
@@ -72,7 +72,10 @@
         <li class="no-weight">If needed, give ketamine 1-2 mg/kg IV</li>
         <li class="has-weight">If needed, give ketamine <span id="weight-range-1"></span> mg <span class="dose-definition">(1-2 mg/kg)</span> IV</li>
         
-        <li>Consider IV steroids</li>
+        <li class="no-weight">Consider IV steroids: methylprednisolone 2mg/kg IV (MAX 60 mg) or dexamethasone 0.15-0.25 mg/kg (MAX 16 mg)</li>
+        <li class="has-weight">Consider IV steroids: methylprednisolone <span id="weight-range-8"></span> mg <span class="dose-definition">(2mg/kg, MAX 60 mg)</span> IV 
+            or dexamethasone <span id="weight-range-9"></span> mg <span class="dose-definition">(0.15-0.25 mg/kg, MAX 16 mg)</span></li>
+
         <li>Consider chest radiograph</li>
         <li class="no-weight">For refractory bronchospasm, consider magnesium 50-75 mg/kg (MAX 2 grams) bolused over 20 minutes, (CAUTION, may
             cause hypotension)</li>
@@ -126,6 +129,15 @@
         const calculatedRange7a = app.printNumber(Math.min(app.weight * 0.15, 16), 0, 2);
         const calculatedRange7b = app.printNumber(Math.min(app.weight * 0.25, 16), 0, 2);
         document.getElementById("weight-range-7").textContent = calculatedRange7a === calculatedRange7b ? calculatedRange7a : calculatedRange7a + "-" + calculatedRange7b;
+
+        // 2mg/kg IV, MAX 60 mg
+        const calculatedRange8 = app.printNumber(Math.min(app.weight * 2, 60), 0, 1);
+        document.getElementById("weight-range-8").textContent = calculatedRange8;
+
+        // 0.15-0.25 mg/kg, MAX 16 mg
+        const calculatedRange9a = app.printNumber(Math.min(app.weight * 0.15, 16), 0, 2);
+        const calculatedRange9b = app.printNumber(Math.min(app.weight * 0.25, 16), 0, 2);
+        document.getElementById("weight-range-9").textContent = calculatedRange9a === calculatedRange9b ? calculatedRange9a : calculatedRange9a + "-" + calculatedRange9b;
 
     }
 </script>

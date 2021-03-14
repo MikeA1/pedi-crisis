@@ -72,7 +72,11 @@
         <li class="no-weight">Si es necesario, administrar ketamina 1-2 mg/kg IV</li>
         <li class="has-weight">Si es necesario, administrar ketamina <span id="weight-range-1"></span> mg <span class="dose-definition">(1-2 mg/kg)</span> IV</li>
         
-        <li>Considerar esteroides IV</li>
+        <li class="no-weight">Considerar esteroides IV: metilprednisolona 2 mg/kg IV (MAX 60 mg) o dexametasona 0,15-0,25 mg/kg (MAX 16 mg)</li>
+        <li class="has-weight">Considerar esteroides IV: metilprednisolona <span id="weight-range-8"></span> mg <span class="dose-definition">(2 mg/kg, MAX 60 mg)</span> IV 
+            o dexametasona <span id="weight-range-9"></span> mg <span class="dose-definition">(0,15-0,25 mg/kg, MAX 16 mg)</span></li>
+
+
         <li>Considerar radiografía de tórax</li>
         <li class="no-weight">Para broncoespasmo refractario, considerar sulfato de magnesio 50-75 mg/kg (MAX 2 gramos) bolo en 20 min (PRECAUCIÓN, puede causar hipotensión)</li>
         <li class="has-weight">Para broncoespasmo refractario, considerar sulfato de magnesio <span id="weight-range-3"></span> mg <span class="dose-definition">(50-75 mg/kg, MAX 2 gramos)</span> 
@@ -126,6 +130,15 @@
         const calculatedRange7a = app.printNumber(Math.min(app.weight * 0.15, 16), 0, 2);
         const calculatedRange7b = app.printNumber(Math.min(app.weight * 0.25, 16), 0, 2);
         document.getElementById("weight-range-7").textContent = calculatedRange7a === calculatedRange7b ? calculatedRange7a : calculatedRange7a + "-" + calculatedRange7b;
+
+        // 2mg/kg IV, MAX 60 mg
+        const calculatedRange8 = app.printNumber(Math.min(app.weight * 2, 60), 0, 1);
+        document.getElementById("weight-range-8").textContent = calculatedRange8;
+
+        // 0.15-0.25 mg/kg, MAX 16 mg
+        const calculatedRange9a = app.printNumber(Math.min(app.weight * 0.15, 16), 0, 2);
+        const calculatedRange9b = app.printNumber(Math.min(app.weight * 0.25, 16), 0, 2);
+        document.getElementById("weight-range-9").textContent = calculatedRange9a === calculatedRange9b ? calculatedRange9a : calculatedRange9a + "-" + calculatedRange9b;
 
     }
 </script>

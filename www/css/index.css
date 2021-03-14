@@ -313,12 +313,12 @@ body.hasDarkMode .dose-definition {
 }
 
 /* This is another special case where `.dose-definition` is displayed black and normal-sized. */
- body.no-weight ul.drugs div.dose-definition {
+ body.no-weight ul.drugs .dose-definition {
     color: #000;
     font-size: 1em;
 }
 
-body.no-weight.hasDarkMode ul.drugs div.dose-definition {
+body.no-weight.hasDarkMode ul.drugs .dose-definition {
     color: #fff;
 }
 
@@ -355,15 +355,15 @@ ul.drugs > li > span {
     font-weight: bold;
 }
 
-body.has-weight ul.drugs div.dose-definition span::before{
+body.has-weight ul.drugs .dose-definition span::before{
     content: "(";
 }
 
-body.has-weight ul.drugs div.dose-definition span::after{
+body.has-weight ul.drugs .dose-definition span::after{
     content: ")";
 }
 
-body.no-weight ul.drugs div.dose-calculation {
+body.no-weight ul.drugs .dose-calculation {
     display: none;
 }
 

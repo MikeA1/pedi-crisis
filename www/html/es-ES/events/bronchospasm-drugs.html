@@ -21,8 +21,8 @@
 <div class="page">
     <ul class="drugs">
         <li><span>Albuterol</span>
-            <ul><li>Para paciente no intubado, 2,5-5 mg; si es severo, 5-20 mg/h</li></ul>
-            <ul><li>Para paciente intubado, 4-10 atomizaciones, repita como sea necesario</li></ul>
+            <ul><li>No intubado: 2,5-5 mg; si es severo, 5-20 mg/h</li></ul>
+            <ul><li>Intubado: 4-10 atomizaciones, repita como sea necesario</li></ul>
         </li>
         <li><span>Ketamina</span>
             <ul>
@@ -48,9 +48,13 @@
 
         <li><span>Metilprednisolona</span>
             <ul>
-                <li>
-                    <div class="dose-calculation"><span id="weight-range-6"></span> mg IV</div>
-                    <div class="dose-definition"><span>1mg/kg IV, MAX 60 mg</span></div>
+                <li>No intubado:
+                    <span class="dose-calculation"><span id="weight-range-9"></span> mg IV<br /></span>
+                    <span class="dose-definition"><span>1mg/kg IV, MAX 60 mg</span></span>
+                </li>
+                <li>Intubado:
+                    <span class="dose-calculation"><span id="weight-range-6"></span> mg IV<br /></span>
+                    <span class="dose-definition"><span>2mg/kg IV, MAX 60 mg</span></span>
                 </li>
             </ul>
         </li>
@@ -93,9 +97,8 @@
         const calculatedRange3 = app.printNumber(Math.min(app.weight * 10, 500), 0, 2);
         document.getElementById("weight-range-3").textContent = calculatedRange3;
 
-
-        // 1mg/kg IV, MAX 60 mg
-        const calculatedRange6 = app.printNumber(Math.min(app.weight, 60));
+        // 2mg/kg IV, MAX 60 mg
+        const calculatedRange6 = app.printNumber(Math.min(app.weight * 2, 60));
         document.getElementById("weight-range-6").textContent = calculatedRange6;
 
         // 0.15-0.25 mg/kg, MAX 16 mg
@@ -108,5 +111,8 @@
         const calculatedRange8b = app.printNumber(Math.min(app.weight * 75, 2000), 0, 1);
         document.getElementById("weight-range-8").textContent = calculatedRange8a + "-" + calculatedRange8b;
 
+        // 1mg/kg IV, MAX 60 mg
+        const calculatedRange9 = app.printNumber(Math.min(app.weight, 60));
+        document.getElementById("weight-range-9").textContent = calculatedRange9;
     }
 </script>
