@@ -56,7 +56,7 @@
         <button id="button-view-instructions" type="button" class="m-b-1">View Instructions</button>
 
         <div id="view-instructions" class="section">
-            <p>Add phone numbers for quick reference. Phone numbers are listed here and appear in events.</p>
+            <p>Add phone numbers for quick reference. Phone numbers will be listed here and also appear in specific events.</p>
         </div>
         <div id="edit-phone-numbers"></div>
         <div id="add-a-phone-number" class="section">
@@ -148,7 +148,7 @@
                 const displayPhoneNumbers = document.getElementById("display-phone-numbers");
                 if (descriptions.length === 0) {
                     // Display Mode and no phone numbers are assigned
-                    displayPhoneNumbers.textContent = "Add phone numbers for quick reference. Phone numbers are listed here and appear in events.";
+                    displayPhoneNumbers.textContent = "Add phone numbers for quick reference. Phone numbers will be listed here and also appear in specific events.";
                 } else {
                     descriptions.sort(app.phoneNumbers.sortCaseInsensitive);
                     moveCallForHelpToFirstPosition(descriptions);
