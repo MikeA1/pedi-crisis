@@ -4,6 +4,9 @@
             <button data-uri="/html/{lang}/events/hypotension-dx.html" data-title="Hipotensión" class="bg-dx">Diagnóstico</button>
         </div>
         <div class="button-container">
+            <button data-uri="/html/{lang}/events/hypotension-ddx.html" data-title="Hipotensión" class="bg-ddx">Diagnóstico diferencial</button>
+        </div>
+        <div class="button-container">
             <button data-uri="/html/{lang}/events/hypotension-tx.html" data-title="Hipotensión" class="bg-tx">Tratamiento</button>
         </div>
         <div class="button-container">
@@ -17,6 +20,25 @@
 </div>
 <div class="page">
     <ul class="drugs">
+
+        <li><span>Cloruro de calcio</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> mg IV</div>
+                    <div class="dose-definition"><span>10-30 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Gluconato de calcio</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-4"></span> mg IV</div>
+                    <div class="dose-definition"><span>50 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
 
         <li><span>DOPamina</span> 
             <ul>
@@ -64,5 +86,13 @@
         const calculatedRange2a = app.printNumber(app.weight, 0, 2);
         const calculatedRange2b = app.printNumber(app.weight * 20, 0, 2);
         document.getElementById("weight-range-2").textContent = calculatedRange2a + "-" + calculatedRange2b;
+
+        // 10-30 mg/kg
+        const calculatedRange3a = app.printNumber(app.weight * 10, 0, 2);
+        const calculatedRange3b = app.printNumber(app.weight * 30, 0, 2);
+        document.getElementById("weight-range-3").textContent = calculatedRange3a + "-" + calculatedRange3b;
+
+        // 50 mg/kg
+        document.getElementById("weight-range-4").textContent = app.printNumber(app.weight * 50, 0, 2);
     }
 </script>

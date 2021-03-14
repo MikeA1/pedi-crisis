@@ -1,0 +1,74 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/hypotension-dx.html" data-title="Hipotensión" class="bg-dx">Diagnóstico</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/hypotension-ddx.html" data-title="Hipotensión" class="bg-ddx emphasis">Diagnóstico diferencial</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/hypotension-tx.html" data-title="Hipotensión" class="bg-tx">Tratamiento</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/hypotension-drugs.html" data-title="Hipotensión" class="bg-drugs">Medicamentos</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/hypotension-crisis.html" data-title="Hipotensión" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-ddx event-title">Diagnóstico diferencial (lista parcial)</div>
+</div>
+<div class="page">
+    <strong>Diagnóstico diferencial: escoja uno:</strong>
+
+     <div id="button-group-1" class="button-group">
+        <div class="button-container">
+            <button>↓ Precarga</button>
+        </div>
+    </div>
+    <ul id="list-group-1" class="display-none m-l-1">
+        <li>Hipovolemia/<span data-uri="/html/{lang}/events/massive-hemorrhage-dx.html" data-title="Hemorragia masiva" class="uri">hemorragia</span></li>
+        <li>Vasodilatación</li>
+        <li>Disminución del retorno venoso</li>
+        <li><span data-uri="/html/{lang}/events/tamponade-cardiac-dx.html" data-title="Taponamiento cardíaco" class="uri">Taponamiento cardíaco</span></li>
+        <li>Compresión de vena cava inferior (prono, quirúrgica, obesidad)</li>
+        <li><span data-uri="/html/{lang}/events/tension-pneumothorax-dx.html" data-title="Neumotórax a tensión" class="uri">Neumotórax</span>/neumoperitoneo</li>
+        <li>Aumento de la presión de la vía aérea (PIP o PEEP)</li>
+    </ul>
+
+    <div id="button-group-2" class="button-group">
+        <div class="button-container">
+            <button>↓ Contractilidad</button>
+        </div>
+    </div>
+    <ul id="list-group-2" class="display-none m-l-1">
+        <li>Fármacos inotrópicos negativos (anestésicos)</li>
+        <li>Arritmias</li>
+        <li><span data-uri="/html/{lang}/events/hypoxia-dx.html" data-title="Hipoxia" class="uri">Hipoxia</span></li>
+        <li>Insuficiencia cardíaca (isquemia)</li>
+        <li>Hipocalcemia/administración de componentes sanguíneos</li>
+    </ul>
+
+    <div id="button-group-3" class="button-group">
+        <div class="button-container">
+            <button>↓ Poscarga</button>
+        </div>
+    </div>
+    <ul id="list-group-3" class="display-none m-l-1">
+        <li>Vasodilatación por fármacos</li>
+        <li>Sepsis</li>
+        <li><span data-uri="/html/{lang}/events/anaphylaxis-dx.html" data-title="Anafilaxia" class="uri">Anafilaxia</span></li>
+        <li>Crisis adrenal</li>
+        <li>Hipocalcemia</li>
+        <li>Crisis tiroidea</li>
+    </ul>
+</div>
+<script>
+    // The "pick one" section uses the accordion paradigm to show only relevant data.
+    const get = (name => document.getElementById(name)); // (this is a helper function)
+    app.createAccordion([
+        {button: get("button-group-1"), content: get("list-group-1")}, 
+        {button: get("button-group-2"), content: get("list-group-2")},
+        {button: get("button-group-3"), content: get("list-group-3")}
+    ]);
+</script>
