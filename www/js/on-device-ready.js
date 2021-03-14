@@ -3,7 +3,7 @@
     "use strict";
 
     // This object may be updated later by the `deviceready` event!
-    app.device = {ios: false, safari: false};
+    app.device = {ios: false, safari: false, platform: null};
 
     // Handle the cordova "device ready" event.
     const onDeviceReady = () => {
@@ -12,8 +12,9 @@
         // https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-device/index.html
         app.device.safari = (device.model.toLowerCase() === "safari");
 
+        app.device.platform = device.platform.toLowerCase();
         // iOS has a few quirks - they're documented here.
-        if (device.platform.toLowerCase() === "ios") {
+        if (app.device.platform === "ios") {
             app.device.ios = true;
 
             // iOS doesn't have a physcial back button, so add one to the app.

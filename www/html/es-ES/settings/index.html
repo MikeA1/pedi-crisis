@@ -22,58 +22,61 @@
 
 </style>
 <div class="page">
-    <div>Los siguientes ajustes le permiten personalizar esta aplicación.</div>
-    <div>¡Nos encantaría recibir tus comentarios! Envíe <a href="mailto:spapedicrisis@gmail.com">sus comentarios a Anna Clebone</a>.</div>
+    <div>La siguiente configuración le permite personalizar la aplicación.</div>
+    <div>¡Nos encantaría recibir sus comentarios! Por favor envíelos a <a href="mailto:spapedicrisis@gmail.com">Anna Clebone</a>.</div>
     <div class="m-b-1"><strong>¡Gracias!</strong></div>
+    <div class="section">
+        <div><strong>Idioma</strong></div>
+        <div class="description">Cambiar a otro idioma</div>
+        <button data-language="es-ES" class="lang">Español</button>
+        <button data-language="en-US" class="lang active">English</button>
+    </div>
     <div class="section" data-setting-name="hasEventDiagnosis">
-        <div><strong>Show Event Signs and Symptoms</strong></div>
-        <div class="description">When on, the event list displays signs and symptoms for select events.</div>
-        <button class="on">On</button>
-        <button class="off">Off</button>
+        <div><strong>Mostrar signos y síntomas de eventos</strong></div>
+        <div class="description">Cuando encendido, la lista de eventos muestra signos y síntomas para eventos seleccionados</div>
+        <button class="on">Encendido</button>
+        <button class="off">Apagado</button>
     </div>
     <div class="section" data-setting-name="hasAccessibility">
-        <div><strong>Accessibility Mode</strong></div>
-        <div class="description">When on, text is larger and darker.</div>
-        <button id="accessibility-on" class="on">On</button>
-        <button id="accessibility-off" class="off">Off</button>
+        <div><strong>Modo de accesibilidad</strong></div>
+        <div class="description">Cuando encendido, el texto es más grande</div>
+        <button id="accessibility-on" class="on">Encendido</button>
+        <button id="accessibility-off" class="off">Apagado</button>
     </div>
     <div class="section" data-setting-name="hasDarkMode">
-        <div><strong>Dark Mode</strong></div>
-        <div class="description">When on, background is dark and text is light.</div>
-        <button id="accessibility-on" class="on">On</button>
-        <button id="accessibility-off" class="off">Off</button>
+        <div><strong>Modo de oscuridad</strong></div>
+        <div class="description">Cuando encendido, el fondo es oscuro y el texto es claro</div>
+        <button id="accessibility-on" class="on">Encendido</button>
+        <button id="accessibility-off" class="off">Apagado</button>
     </div>
     <div class="section" data-setting-name="hasInsomnia">
-        <div><strong>Disable Screen Lock</strong></div>
-        <div class="description">When on, the screen will not automatically lock.</div>
-        <button id="accessibility-on" class="on">On</button>
-        <button id="accessibility-off" class="off">Off</button>
+        <div><strong>Desactivar el bloqueo de pantalla</strong></div>
+        <div class="description">Cuando encendido, la pantalla no se va a bloquear automáticamente</div>
+        <button id="accessibility-on" class="on">Encendido</button>
+        <button id="accessibility-off" class="off">Apagado</button>
     </div>
     <div class="section">
-        <div><strong>Language</strong></div>
-        <div class="description">Switch to a different langugage</div>
-        <button data-language="en-US" class="lang active">English</button>
-        <button data-language="es-ES" class="lang">Español</button>
+        <!-- Walkthrough -->
+        <div><strong>Instrucciones de la aplicación</strong></div>
+        <div class="description">¿Quieres repasarlas de nuevo? ¡Vamos!</div>
+        <button data-uri="/html/{lang}/settings/walkthrough.html" data-title="Pedi Crisis"> Vamos</button>
     </div>
     <div class="section">
-        <div><strong>Walkthrough</strong></div>
-        <div class="description">Want to step through the walkthrough again? Let's go!</div>
-        <button data-uri="/html/{lang}/settings/walkthrough.html" data-title="Pedi Crisis">Go</button>
+        <!-- Disclaimer -->
+        <div><strong>Descargo de responsabilidad</strong></div>
+        <div class="description">¿Quiere leer el descargo de responsabilidad nuevamente? Ok!</div>
+        <button data-uri="/html/{lang}/settings/disclaimer.html" data-title="Pedi Crisis"> Vamos</button>
     </div>
     <div class="section">
-        <div><strong>Disclaimer</strong></div>
-        <div class="description">Want to read the disclaimer again? OK!</div>
-        <button data-uri="/html/{lang}/settings/disclaimer.html" data-title="Pedi Crisis">Go</button>
-    </div>
-    <div class="section">
-        <div><strong>Software License</strong></div>
-        <div class="description">Want to view the copyright? Sure!</div>
-        <button data-uri="/html/{lang}/settings/licenses.html" data-title="Pedi Crisis">Go</button>
+        <!-- License -->
+        <div><strong>Licencia de software</strong></div>
+        <div class="description">¿Quiere ver el copyright? ¡Por supuesto!</div>
+        <button data-uri="/html/en-US/settings/licenses.html" data-title="Pedi Crisis"> Vamos</button>
     </div>
     <div id="printable-view" class="section display-none">
         <div><strong>Printable View</strong></div>
         <div class="description">View all events in a single printable page.</div>
-        <a href="/printable.html" target="_blank"><button>Go</button></a>
+        <a href="/printable.html" target="_blank"><button> Vamos</button></a>
     </div>
 </div>
 <script>
