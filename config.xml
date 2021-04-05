@@ -23,6 +23,7 @@
     <platform name="android">
         <preference name="android-targetSdkVersion" value="29" />
     </platform>
+    <icon src="www/img/icon.png" />
     <allow-intent href="tel:*" />
     <allow-intent href="mailto:*" />
     <plugin name="cordova-plugin-device" spec="^2.0.1" />
