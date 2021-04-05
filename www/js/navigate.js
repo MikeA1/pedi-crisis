@@ -3,6 +3,17 @@
 // better debugging in the browser.
 (() => {
     "use strict";
+
+    // Pollyfill for `endsWith`, which is used for determining swipe events.
+    if (!String.prototype.endsWith) {
+        String.prototype.endsWith = function(search, this_len) {
+          if (this_len === undefined || this_len > this.length) {
+            this_len = this.length;
+          }
+          return this.substring(this_len - search.length, this_len) === search;
+        };
+      }
+
     app.navigate = (() => {
         // The header is updated when a "data-uri" attribute is accompanied by a "data-title" attribute.
         const defaultHeader = "Pedi Crisis";
@@ -257,10 +268,16 @@
                                     // Determine where we are in the set of links. 
                                     // Example: if at index 2, then swipe-left will navigate to the link at index 1
                                     // and swipe-right will navigate to the link at index 3 (if index 3 exists).
-                                    const currentUri = removeLeadingForwardSlash(history.state.uri);
+                                    let fileName = history.state.uri;
+                                    var lastSlash = fileName.lastIndexOf("/");
+                                    if (lastSlash !== -1)
+                                    {
+                                        fileName = fileName.substring(lastSlash);
+                                    }
+
                                     for (let j = 0; j < links.length; j++) {
                                         const link = links[j];
-                                        if (link.uri === currentUri) {
+                                        if (link.uri.endsWith(fileName)) {
                                             // Currently on this link.
                                             if (j > 0) {
                                                 const prevLink = links[j - 1];
