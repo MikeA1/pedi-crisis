@@ -4,9 +4,9 @@
   "displayName": "Pedi Crisis",
   "cordova": {
     "platforms": [
-      "browser",
       "ios",
-      "android"
+      "android",
+      "browser"
     ],
     "plugins": {
       "cordova-plugin-device": {},
@@ -24,7 +24,7 @@
   },
   "private": true,
   "devDependencies": {
-    "cordova-android": "^9.0.0",
+    "cordova-android": "^10.1.2",
     "cordova-browser": "^6.0.0",
     "cordova-ios": "^6.2.0",
     "cordova-plugin-wkwebview-file-xhr": "^3.0.0"
