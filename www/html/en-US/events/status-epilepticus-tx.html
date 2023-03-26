@@ -1,0 +1,150 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/status-epilepticus-dx.html" data-title="Status Epilepticus" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/status-epilepticus-ddx.html" data-title="Status Epilepticus" class="bg-ddx">DDx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/status-epilepticus-tx.html" data-title="Status Epilepticus" class="bg-tx emphasis">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/status-epilepticus-drugs.html" data-title="Status Epilepticus" class="bg-drugs">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/status-epilepticus-crisis.html" data-title="Status Epilepticus" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-tx event-title">Treatment</div>
+</div>
+
+<div class="page">
+
+    <ul>
+        <li>Confirm ABCs: Airway, Breathing, Circulation</li>
+        <li>Increase O2 to 100%, consider intubation</li>
+        <li>Place monitors: ECG, SpO2, BP, EtCO2</li>
+        <li>Obtain IV access</li>
+        <li>Stop local anesthetic infusion/injection</li>
+        <li>Check glucose. If &lt; 60 mg/dL, give D25W IV:
+            <ul>
+                <li class="no-weight">&lt; 2 years: 4 mL/kg</li>
+                <li class="has-weight">&lt; 2 years: <span id="weight-range-1"></span> mL <span class="dose-definition">(4 mL/kg)</span></li>
+
+                <li class="no-weight">≥ 2 years: 2 mL/kg</li>
+                <li class="has-weight">≥ 2 years: <span id="weight-range-2"></span> mL <span class="dose-definition">(2 mL/kg)</span></li>
+
+            </ul>
+        </li>
+    </ul>
+   
+    <strong>Pick One:</strong>
+
+    <div id="button-section-a" class="button-group">
+        <div class="button-container">
+            <button>Preop/PACU/Natural Airway</button>
+        </div>
+    </div>
+    <ul id="list-section-a" class="display-none m-l-1">
+        <li>Prepare to immediately intubate, if needed</li>
+        <li>Give benzodiazepine, IF available
+            <ul>
+                <li>IF IV access:</br>
+                    <span style="margin-left:1em;" class="no-weight">Midazolam or lorazepam or diazepam 0.1-0.2 mg/kg (MAX 20 mg) may give 2nd dose</span>
+                    <span style="margin-left:1em;" class="has-weight">
+                        Midazolam or lorazepam or diazepam 
+                        <span id="weight-range-3"></span> mg <span class="dose-definition">(0.1-0.2 mg/kg, MAX 20 mg)</span> may give 2nd dose
+                    </span>
+                </li>
+                <li>IF NO IV access:</br>
+                    <span style="margin-left:1em;" class="no-weight">Midazolam intranasal or IM 0.4 mg/kg (MAX 20 mg)</span>
+                    <span style="margin-left:1em;" class="has-weight">Midazolam intranasal or IM <span id="weight-range-4"></span> mg <span class="dose-definition">(0.4 mg/kg (MAX 20 mg)</span></span>
+                </li>
+            </ul>
+        </li>
+        <li>If seizures continue, go to "Intraop/Assisted Ventilation"</li>
+    </ul>
+
+    <div id="button-section-b" class="button-group">
+        <div class="button-container">
+            <button>Intraop/Assisted Ventilation</button>
+        </div>
+    </div>
+    <ul id="list-section-b" class="display-none m-l-1">
+        <li>Maintain adequate ventilation</li>
+        
+        <li class="no-weight">Increase inhaled anesthetic to 1.5-2 MAC, or give propofol 2 mg/kg IV (avoid if on ketogenic diet) or midazolam 0.1 mg/kg IV (repeat 2x every 3 min, if needed)</li>
+        
+        <li class="has-weight">Increase inhaled anesthetic to 1.5-2 MAC, or give 
+            propofol <span id="weight-range-5"></span> mg <span class="dose-definition">(2 mg/kg)</span> IV (avoid if on ketogenic diet) or 
+            midazolam <span id="weight-range-6"></span> mg <span class="dose-definition">(0.1 mg/kg)</span> IV IV (repeat 2x every 3 min, if needed)</li>
+
+
+        <li>If movement could be dangerous, consider neuromuscular blockade and pausing surgery</li>
+        <li>Create safer environment, if needed (e.g. removal from Mayfield pins)</li>
+        <li>If seizure &gt;6 minutes, consider anticonvulsants in consultation with ICU and neurology:
+            <ul>
+                <li class="no-weight">levetiracetam 50 mg/kg (MAX 4.5 g)</li>
+                <li class="no-weight">After 10 min, if needed, give fosphenytoin 20 mg/kg (MAX 1.5 g) or valproic acid 40 mg/kg (MAX 3 g)</li>
+                
+                <li class="has-weight">levetiracetam <span id="weight-range-7"></span> mg <span class="dose-definition">(50 mg/kg, MAX 4.5 g)</span></li>
+                <li class="has-weight"> If needed after 10 min, give
+                    fosphenytoin <span id="weight-range-8"></span> mg <span class="dose-definition">(20 mg/kg, MAX 1.5 g)</span> or 
+                    valproic acid <span id="weight-range-9"></span> mg <span class="dose-definition">(40 mg/kg, MAX 3 g)</span></li>
+            </ul>
+        </li>
+
+    </ul>
+
+    <ul style="margin-top:1em;">
+        <li>Watch for myocardial suppression, vasoplegia, or rhabdomyolysis: may be
+            associated with poorly controlled or prolonged seizures</li>
+        <li>If seizure ≥ 15 min, consult expert and see American Epilepsy Society Guidelines</li>
+        <li>Consider ABG/VBG and temperature monitoring</li>
+        <li>Consider PICU postop</li>
+    </ul>
+    
+</div>
+
+<script>
+    // The "pick one" section uses the accordion paradigm to show only relevant data.
+    const get = (name => document.getElementById(name)); // (this is a helper function)
+    app.createAccordion([
+        {button: get("button-section-b"), content: get("list-section-b")}, 
+        {button: get("button-section-a"), content: get("list-section-a")}
+    ]);
+
+    if (app.weight > 0) {
+        
+        // 4 mL/kg
+        document.getElementById("weight-range-1").textContent = app.printNumber(app.weight * 4, 0, 2);
+
+        // 2 mL/kg
+        document.getElementById("weight-range-2").textContent = app.printNumber(app.weight * 2, 0, 2);
+
+        // 0.1-0.2 mg/kg
+        const calculatedRange1a = app.printNumber(app.weight * 0.1, 0, 2);
+        const calculatedRange1b = app.printNumber(app.weight * 0.2, 0, 2);
+        document.getElementById("weight-range-3").textContent = calculatedRange1a + "-" + calculatedRange1b;
+        
+        // 0.4 mg/kg, 20 mg MAX
+        document.getElementById("weight-range-4").textContent = app.printNumber(Math.min(app.weight * 0.4, 20), 0, 2);
+
+        // 2 mg/kg IV
+        document.getElementById("weight-range-5").textContent = app.printNumber(app.weight * 2, 0, 2);
+
+        // .1 mg/kg IV
+        document.getElementById("weight-range-6").textContent = app.printNumber(app.weight * .1, 0, 2);
+
+        // 50 mg/kg, MAX 4.5 g
+        document.getElementById("weight-range-7").textContent = app.printNumber(Math.min(app.weight * 50, 4500), 0, 2);
+
+        // 20 mg/kg, MAX 1.5 g
+        document.getElementById("weight-range-8").textContent = app.printNumber(Math.min(app.weight * 20, 1500), 0, 2);
+		
+        // 40 mg/kg, MAX 3 g
+        document.getElementById("weight-range-9").textContent = app.printNumber(Math.min(app.weight * 40, 3000), 0, 2);
+		
+    }
+</script>
