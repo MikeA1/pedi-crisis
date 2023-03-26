@@ -43,6 +43,10 @@
             </ul>
         </li>
         
+        <li class="no-weight">Consider TXA 10-30 mg/kg IV bolus then 5-10 mg/kg/h IV infusion</li>
+        
+        <li class="has-weight">Consider TXA <span id="weight-range-3"></span> mg <span class="dose-definition">(10-30 mg/kg)</span> IV bolus then 5-10 mg/kg/h IV infusion</li>
+
         <li>When under control: call <span data-phone-number="Blood Bank">Blood Bank</span> to terminate</li>
     </ul>
 </div>
@@ -55,6 +59,10 @@
 
         // 20 mg/kg IV
         get("weight-range-2").textContent = app.printNumber(app.weight * 20, 0, 2);
+
+        // 10-30 mg/kg
+        const calculatedRange1a = app.printNumber(app.weight * 10, 0, 2);
+        const calculatedRange1b = app.printNumber(app.weight * 30, 0, 2);
+        document.getElementById("weight-range-3").textContent = calculatedRange1a + "-" + calculatedRange1b;
     }
 </script>
-    
