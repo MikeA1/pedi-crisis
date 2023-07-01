@@ -1,0 +1,96 @@
+<div class="event-nav">
+    <div class="button-group">
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/status-epilepticus-dx.html" data-title="Status Epilepticus" class="bg-dx">Dx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/status-epilepticus-ddx.html" data-title="Status Epilepticus" class="bg-ddx">DDx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/status-epilepticus-tx.html" data-title="Status Epilepticus" class="bg-tx">Tx</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/status-epilepticus-drugs.html" data-title="Status Epilepticus" class="bg-drugs emphasis">Drugs</button>
+        </div>
+        <div class="button-container">
+            <button data-uri="/html/{lang}/events/status-epilepticus-crisis.html" data-title="Status Epilepticus" class="bg-crisis">Crisis</button>
+        </div>
+    </div>
+    <div class="bg-drugs event-title">Drug / Dosage Summary</div>
+</div>
+<div class="page">
+    <ul class="drugs">
+
+
+        <li><span>Midazolam, lorazepam, or diazepam</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1"></span> mg IV</div>
+                    <div class="dose-definition"><span>0.1-0.2 mg/kg IV</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Midazolam</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2"></span> mg</div>
+                    <div class="dose-definition"><span>0.4 mg/kg intranasal or IM, MAX 20 mg</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Propofol</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-3"></span> mg IV</div>
+                    <div class="dose-definition"><span>2 mg/kg IV</span></div>
+                </li>
+                <li><strong>Avoid</strong> if on ketogenic diet</li>
+            </ul>
+        </li>
+
+        <li><span>Levetiracetam</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-4"></span> mg IV</div>
+                    <div class="dose-definition"><span>50 mg/kg IV, MAX 4.5 g</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Fosphenytoin</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-5"></span> mg IV</div>
+                    <div class="dose-definition"><span>20 mg/kg IV, MAX 1.5 g</span></div>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+
+<script>
+    if (app.weight > 0) {
+        
+        // 0.1-0.2 mg/kg
+        const calculatedRange1a = app.printNumber(app.weight * 0.1, 0, 2);
+        const calculatedRange1b = app.printNumber(app.weight * 0.2, 0, 2);
+        document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
+
+        // 0.4 mg/kg, 20 mg MAX
+        document.getElementById("weight-range-2").textContent = app.printNumber(Math.min(app.weight * 0.4, 20), 0, 2);
+
+        
+        // 2 mg/kg IV
+        document.getElementById("weight-range-3").textContent = app.printNumber(app.weight * 2, 0, 2);
+
+        // 50 mg/kg (MAX 4.5 g)
+        document.getElementById("weight-range-4").textContent = app.printNumber(Math.min(app.weight * 50, 4500), 0, 2);
+
+        // 20 mg/kg (MAX 1.5 g)
+        document.getElementById("weight-range-5").textContent = app.printNumber(Math.min(app.weight * 20, 1500), 0, 2);
+
+    }
+</script>
