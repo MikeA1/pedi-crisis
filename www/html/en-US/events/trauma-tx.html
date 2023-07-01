@@ -71,6 +71,11 @@
             </ul>
         </li>
         <li>Continuously assess for undiagnosed secondary and/or developing injuries, blood loss</li>
+
+        <li class="no-weight">Consider TXA 10-30 mg/kg IV bolus then 5-10 mg/kg/h IV infusion within 3 hours</li>
+        <li class="has-weight">Consider TXA <span id="weight-range-4"></span> mg <span class="dose-definition">(10-30 mg/kg)</span> IV bolus 
+            then 5-10 mg/kg/h IV infusion within 3 hours</li>
+
     </ul>
 </div>
 <script>
@@ -90,6 +95,12 @@
 
         // 20 mL/kg
         get("weight-range-3").textContent = app.printNumber(app.weight * 20, 0, 2);
+
+        get("weight-range-4").textContent = app.printNumber(app.weight * 20, 0, 2);
+
+        // 10-30
+        const calculatedRange4a = app.printNumber(app.weight * 10, 0, 2);
+        const calculatedRange4b = app.printNumber(app.weight * 30, 0, 2);
+        document.getElementById("weight-range-4").textContent = calculatedRange4a + "-" + calculatedRange4b;
     }
 </script>
-    

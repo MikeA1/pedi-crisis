@@ -41,6 +41,15 @@
                 </li>
             </ul>
         </li>
+        <li><span>TXA</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation">Bolus <span id="weight-range-4"></span> mg IV</div>
+                    <div class="dose-definition"><span>Bolus 10-30 mg/kg IV</span></div>
+                </li>
+                <li>Then 5-10 mg/kg/h IV infusion within 3 hours</li>
+            </ul>
+        </li>
     </ul>
 </div>
 <script>
@@ -55,5 +64,10 @@
 
         // 20 mL/kg
         get("weight-range-3").textContent = app.printNumber(app.weight * 20, 0, 2);
+
+        // 10-30
+        const calculatedRange4a = app.printNumber(app.weight * 10, 0, 2);
+        const calculatedRange4b = app.printNumber(app.weight * 30, 0, 2);
+        document.getElementById("weight-range-4").textContent = calculatedRange4a + "-" + calculatedRange4b;
     }
 </script>
