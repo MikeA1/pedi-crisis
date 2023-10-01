@@ -173,6 +173,9 @@ body.hasDarkMode .page {
 }
 
 button {
+    /* default input/button color is blue on iOS, so set this explicitly */
+    color: black;
+
 	background-color:#ededed;
 	-moz-border-radius:8px;
 	-webkit-border-radius:8px;
