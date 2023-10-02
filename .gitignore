@@ -27,5 +27,6 @@ package-lock.json
 
 # iOS: Do not allow WKWebView to adjust the height of the body; adds the following:
 # wkWebView.scrollView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+# See: https://github.com/apache/cordova-ios/issues/933#issuecomment-722241225
 !/platforms/ios/CordovaLib/Classes/Private/Plugins/CDVWebViewEngine/CDVWebViewEngine.m
 

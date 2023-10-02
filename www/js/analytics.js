@@ -1,8 +1,14 @@
-// Adapted analytics.js to work with this app.
-// See: https://developers.google.com/analytics/devguides/collection/analyticsjs
-// Also: https://stackoverflow.com/a/42216498/772086
+
 (() => {
     "use strict";
+    // Do nothing for now
+    app.logAction = () => {};
+
+    return;
+
+    // Adapted analytics.js to work with this app.
+    // See: https://developers.google.com/analytics/devguides/collection/analyticsjs
+    // Also: https://stackoverflow.com/a/42216498/772086
     try {
 
         (function (i, s, o, g, r, a, m) {
