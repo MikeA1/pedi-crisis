@@ -100,5 +100,6 @@
     <allow-intent href="tel:*" />
     <allow-intent href="mailto:*" />
     <plugin name="cordova-plugin-device" spec="^2.0.1" />
+    <!-- TODO: replace with built-in functionality. See: https://github.com/apache/cordova-plugin-whitelist -->
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
 </widget>
