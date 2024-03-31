@@ -11,7 +11,8 @@
     "plugins": {
       "cordova-plugin-device": {},
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-insomnia": {}
+      "cordova-plugin-insomnia": {},
+      "cordova-plugin-cors": {}
     }
   },
   "dependencies": {
