@@ -30,3 +30,8 @@ package-lock.json
 # See: https://github.com/apache/cordova-ios/issues/933#issuecomment-722241225
 !/platforms/ios/CordovaLib/Classes/Private/Plugins/CDVWebViewEngine/CDVWebViewEngine.m
 
+# This is useful for reproducible builds
+!/platforms/ios/Pedi Crisis/Pedi Crisis-Info.plist
+
+# The Cordova launch screen never really works. Use this instead.
+!/platforms/ios/LaunchScreen.storyboard
