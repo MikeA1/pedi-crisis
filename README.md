@@ -2,20 +2,20 @@
 
 # Pedi Crisis 2.0
 
-This app contains peer-reviewed algorithms for treating 26 pediatric crisis situations. As an interactive version of the [SPA critical event checklists](http://www.pedsanesthesia.org/critical-events-checklist/), crucial details for these 26 pediatric critical events are now just a 'tap' away on your pocket device!
+This app contains peer-reviewed algorithms for treating over 26 pediatric crisis situations. As an interactive version of the [SPA critical event checklists](http://www.pedsanesthesia.org/critical-events-checklist/), crucial details for these pediatric critical events are now just a 'tap' away on your pocket device!
 
 You can download the latest version of this app in the [iOS App Store](https://itunes.apple.com/us/app/pedi-crisis-2-0/id1409734476) or [Google Play Store](https://play.google.com/store/apps/details?id=org.pedsanesthesia.crisis).
 
 ## Getting Started
 
 1. Install Git, Node and NPM. These versions should work well:
-   - `node --version` v8.9 (or greater)
-   - `npm --version` 4.6 (or greater, but NPM v5 is sketchy, so consider a downgrade via `npm install -g npm@4`).
-   - `git --version` 2.14 (or greater)
-2. Install [PhoneGap](http://docs.phonegap.com/getting-started/1-install-phonegap/cli/)
-   - `npm install -g phonegap` (you may need to use `sudo` in linux/mac)
-   - `phonegap --version` 9.0.0 (or greater)
-3. Fork and Clone this repo 
+   - `node --version` v20.16.0
+   - `npm --version` 10.8.1
+   - `git --version` 2.46.0
+2. Install [Cordova](https://cordova.apache.org/docs/en/12.x/guide/cli/installation.html)
+   - `npm install -g cordova` (you may need to use `sudo` in linux/mac)
+   - `cordova --version` 12.0.0
+3. Fork and Clone this repo
    - Example: `git clone https://github.com/~your~account~name~/pedi-crisis.git`
    - (or just [download the project files](https://github.com/MikeA1/pedi-crisis/archive/master.zip))
 4. Restore packages
