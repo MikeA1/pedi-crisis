@@ -22,11 +22,20 @@
     <ul class="drugs">
 
 
-        <li><span>Midazolam, lorazepam, or diazepam</span>
+        <li><span>Lorazepam</span>
             <ul>
                 <li>
-                    <div class="dose-calculation"><span id="weight-range-1"></span> mg IV</div>
-                    <div class="dose-definition"><span>0.1-0.2 mg/kg IV</span></div>
+                    <div class="dose-calculation"><span id="weight-range-1a"></span> mg IV</div>
+                    <div class="dose-definition"><span>0.1-0.2 mg/kg IV, MAX 4 mg</span></div>
+                </li>
+            </ul>
+        </li>
+
+        <li><span>Diazepam</span>
+            <ul>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-1b"></span> mg IV</div>
+                    <div class="dose-definition"><span>0.1-0.2 mg/kg IV, MAX 10 mg</span></div>
                 </li>
             </ul>
         </li>
@@ -34,7 +43,11 @@
         <li><span>Midazolam</span>
             <ul>
                 <li>
-                    <div class="dose-calculation"><span id="weight-range-2"></span> mg</div>
+                    <div class="dose-calculation"><span id="weight-range-2a"></span> mg IV</div>
+                    <div class="dose-definition"><span>0.1-0.2 mg/kg IV, MAX 10 mg</span></div>
+                </li>
+                <li>
+                    <div class="dose-calculation"><span id="weight-range-2b"></span> mg</div>
                     <div class="dose-definition"><span>0.4 mg/kg intranasal or IM, MAX 20 mg</span></div>
                 </li>
             </ul>
@@ -74,13 +87,32 @@
 <script>
     if (app.weight > 0) {
         
-        // 0.1-0.2 mg/kg
-        const calculatedRange1a = app.printNumber(app.weight * 0.1, 0, 2);
-        const calculatedRange1b = app.printNumber(app.weight * 0.2, 0, 2);
-        document.getElementById("weight-range-1").textContent = calculatedRange1a + "-" + calculatedRange1b;
+        // 0.1-0.2 mg/kg, MAX 4 mg
+        const calculatedRange1a1 = app.printNumber(Math.min(app.weight * 0.1, 4), 0, 2);
+        const calculatedRange1a2 = app.printNumber(Math.min(app.weight * 0.2, 4), 0, 2);
+        document.getElementById("weight-range-1a").textContent = 
+            calculatedRange1a1 === calculatedRange1a2 ?
+            calculatedRange1a1 :
+            calculatedRange1a1 + "-" + calculatedRange1a2;
+
+        // 0.1-0.2 mg/kg, MAX 10 mg
+        const calculatedRange1b1 = app.printNumber(Math.min(app.weight * 0.1, 10), 0, 2);
+        const calculatedRange1b2 = app.printNumber(Math.min(app.weight * 0.2, 10), 0, 2);
+        document.getElementById("weight-range-1b").textContent = 
+            calculatedRange1b1 === calculatedRange1b2 ?
+            calculatedRange1b1 :
+            calculatedRange1b1 + "-" + calculatedRange1b2;
+
+        // 0.1-0.2 mg/kg, MAX 10 mg
+        const calculatedRange2a1 = app.printNumber(Math.min(app.weight * 0.1, 10), 0, 2);
+        const calculatedRange2a2 = app.printNumber(Math.min(app.weight * 0.2, 10), 0, 2);
+        document.getElementById("weight-range-2a").textContent =
+            calculatedRange2a1 === calculatedRange2a2 ?
+            calculatedRange2a1 :
+            calculatedRange2a1 + "-" + calculatedRange2a2;
 
         // 0.4 mg/kg, 20 mg MAX
-        document.getElementById("weight-range-2").textContent = app.printNumber(Math.min(app.weight * 0.4, 20), 0, 2);
+        document.getElementById("weight-range-2b").textContent = app.printNumber(Math.min(app.weight * 0.4, 20), 0, 2);
 
         
         // 2 mg/kg IV
