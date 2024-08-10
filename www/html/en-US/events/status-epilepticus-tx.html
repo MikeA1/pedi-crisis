@@ -51,15 +51,27 @@
         <li>Give benzodiazepine, IF available
             <ul>
                 <li>IF IV access:</br>
-                    <span style="margin-left:1em;" class="no-weight">Midazolam or lorazepam or diazepam 0.1-0.2 mg/kg (MAX 20 mg) may give 2nd dose</span>
-                    <span style="margin-left:1em;" class="has-weight">
-                        Midazolam or lorazepam or diazepam 
-                        <span id="weight-range-3"></span> mg <span class="dose-definition">(0.1-0.2 mg/kg, MAX 20 mg)</span> may give 2nd dose
+                    <div class="no-weight">
+                        Lorazepam 0.1-0.2 mg/kg (MAX 4mg) may give 2nd dose
+                        <br/>
+                        <strong>OR</strong>
+                        <br/>
+                        Midazolam or diazepam 0.1-0.2 mg/kg (MAX 10 mg) may give 2nd dose
+                    </div>
+
+                    <span class="has-weight">
+                        Lorazepam 
+                        <span id="weight-range-3a"></span> mg <span class="dose-definition">(0.1-0.2 mg/kg, MAX 4 mg)</span> may give 2nd dose
+                        <br/>
+                        <strong>OR</strong>
+                        <br/>
+                        Midazolam or diazepam 
+                        <span id="weight-range-3b"></span> mg <span class="dose-definition">(0.1-0.2 mg/kg, MAX 10 mg)</span> may give 2nd dose
                     </span>
                 </li>
                 <li>IF NO IV access:</br>
-                    <span style="margin-left:1em;" class="no-weight">Midazolam intranasal or IM 0.4 mg/kg (MAX 20 mg)</span>
-                    <span style="margin-left:1em;" class="has-weight">Midazolam intranasal or IM <span id="weight-range-4"></span> mg <span class="dose-definition">(0.4 mg/kg (MAX 20 mg)</span></span>
+                    <span class="no-weight">Midazolam intranasal or IM 0.4 mg/kg (MAX 20 mg)</span>
+                    <span class="has-weight">Midazolam intranasal or IM <span id="weight-range-4"></span> mg <span class="dose-definition">(0.4 mg/kg (MAX 20 mg)</span></span>
                 </li>
             </ul>
         </li>
@@ -123,10 +135,21 @@
         // 2 mL/kg
         document.getElementById("weight-range-2").textContent = app.printNumber(app.weight * 2, 0, 2);
 
-        // 0.1-0.2 mg/kg
-        const calculatedRange1a = app.printNumber(app.weight * 0.1, 0, 2);
-        const calculatedRange1b = app.printNumber(app.weight * 0.2, 0, 2);
-        document.getElementById("weight-range-3").textContent = calculatedRange1a + "-" + calculatedRange1b;
+        // Lorazepam 0.1-0.2 mg/kg (MAX 4mg)
+        const calculatedRange1a = app.printNumber(Math.min(app.weight * 0.1, 4), 0, 2);
+        const calculatedRange1b = app.printNumber(Math.min(app.weight * 0.2, 4), 0, 2);
+        document.getElementById("weight-range-3a").textContent = 
+            calculatedRange1a === calculatedRange1b ?
+            calculatedRange1a :
+            calculatedRange1a + "-" + calculatedRange1b;
+
+        // Midazolam or diazepam 0.1-0.2 mg/kg (MAX 10 mg)
+        const calculatedRange2a = app.printNumber(Math.min(app.weight * 0.1, 10), 0, 2);
+        const calculatedRange2b = app.printNumber(Math.min(app.weight * 0.2, 10), 0, 2);
+        document.getElementById("weight-range-3b").textContent = 
+            calculatedRange2a === calculatedRange2b ?
+            calculatedRange2a :
+            calculatedRange2a + "-" + calculatedRange2b;
         
         // 0.4 mg/kg, 20 mg MAX
         document.getElementById("weight-range-4").textContent = app.printNumber(Math.min(app.weight * 0.4, 20), 0, 2);
