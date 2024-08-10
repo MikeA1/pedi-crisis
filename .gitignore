@@ -21,6 +21,7 @@ resources/signing
 package-lock.json 
 
 # iOS: save build assets
+!platforms/ios/*
 !platforms/ios/Pedi Crisis/Images.xcassets/AppIcon.appiconset/
 !platforms/ios/Pedi Crisis/Images.xcassets/AppIcon.appiconset/*
 !platforms/ios/Pedi Crisis/Images.xcassets/LaunchStoryboard.imageset
