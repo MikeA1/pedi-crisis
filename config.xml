@@ -63,16 +63,13 @@
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
     </platform>
     <icon src="www/img/icon.png" />
-    <icon src="www/img/icon.png" platform="android"/>
+    <icon platform="android" src="www/img/icon.png" />
     <allow-intent href="tel:*" />
     <allow-intent href="mailto:*" />
-    <plugin name="cordova-plugin-device" spec="^2.0.1" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
-
     <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/splash.png" />
     <preference name="AndroidWindowSplashScreenBackground" value="#E35247" />
     <preference name="AndroidWindowSplashScreenIconBackgroundColor" value="#E35247" />
     <preference name="SplashScreenDelay" value="200" />
     <preference name="AutoHideSplashScreen" value="true" />
-
 </widget>
