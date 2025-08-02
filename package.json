@@ -5,8 +5,8 @@
   "cordova": {
     "platforms": [
       "ios",
-      "android",
-      "browser"
+      "browser",
+      "android"
     ],
     "plugins": {
       "cordova-plugin-device": {},
@@ -23,7 +23,7 @@
   },
   "private": true,
   "devDependencies": {
-    "cordova-android": "^10.1.2",
+    "cordova-android": "^14.0.1",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-insomnia": "github:MikeA1/Insomnia-PhoneGap-Plugin",
     "cordova-plugin-wkwebview-file-xhr": "^3.0.0"
