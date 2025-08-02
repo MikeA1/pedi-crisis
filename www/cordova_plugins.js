@@ -1,0 +1,1 @@
+// Cordova will throw an exception during initialization if this file is missing.
